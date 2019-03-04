@@ -4,6 +4,6 @@
 	<title>SIM APOTIK</title>
 </head>
 <body>
-hello word
+hello word cuy cuy
 </body>
 </html>
