@@ -1,7 +1,7 @@
-<!DOCTYPE html>
+<!DOCTYPE html> <!--Aditya Gusti Mandala Putra-->
 <html>
 <head>
-	<title>SIM APOTIK</title>
+	<title>SIM-Apotik</title>
 </head>
 <body>
 
