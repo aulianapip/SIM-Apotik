@@ -1,8 +1,8 @@
 <?php
 	include 'db.php';
 	$QuerySql = "SELECT * FROM `obat`, `jenis_obat` WHERE jenis_obat.kode_jenis=obat.kode_jenis";
-	$SQL = mysqli_query($connect, $QuerySql);
-?>
+	$SQL = mysqli_query($connect, $QuerySql); 
+?> <!--Aditya Gusti Mandala Putra perbaiki query db.php-->
 
 <!DOCTYPE html>
 <html>
