@@ -9,19 +9,22 @@
 	$QuerySql = "SELECT * FROM pelanggan";
 
 	$SQL = mysqli_query($connect,$QuerySql);
-	?>
+
+
+?>
 
 <body>
 <h1>TABEL PELANGGAN</h1>
 <table border="1" class="table" >
 	<thead class="thead-dark">
-		<tr align="center"><td>ID</td>
+		<tr align="center">
+			<td>Tanggal Terdaftar</td>
+			<td>ID</td>
 			<td>Nama</td>
 			<td>Jk</td>
 			<td>NoHp</td>
 			<td>Email</td>
 			<td>Alamat</td>
-			<td>Member</td>
 			<td colspan="2">OPSI</td>
 		</tr>
 	</thead>
@@ -29,15 +32,15 @@
 	foreach ($SQL as $Data) {
 		echo "
 		<tr>
+		<td> $Data[tgl_daftar]</td>
 		<td >$Data[ID]</td>
 		<td >$Data[Nama]</td>
 		<td >$Data[Jk]</td>
 		<td >$Data[NoHp]</td>
 		<td >$Data[Email]</td>
 		<td >$Data[Alamat]</td>
-		<td >$Data[Member]</td>
-		<td ><a href='formedit.php?$Data[ID]'>Edit </a>
-		<td ><a href='hapus.php?$Data[ID]'>Hapus </a>
+		<td ><a href='formedit.php?ID=$Data[ID]'>Edit</a>
+		<td ><a href='hapus.php?$Data[ID]'>Hapus</a>
 		";
 	}
 

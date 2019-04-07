@@ -1,19 +1,19 @@
 <?php  
 	if ($_POST){
 		include 'conect.php';
-		$ID = $_POST['ID'];
+		
 		$Nama = $_POST['Nama'];
-		$JK = $_POST['JK'];
+		$Jk = $_POST['Jk'];
 		$NoHP = $_POST['NoHP'];
 		$Email = $_POST['Email'];
 		$Alamat = $_POST['Alamat'];
-		$Member = $_POST['Member'];
+		
 
-		$QuerySql = "INSERT INTO pelanggan VALUES('$ID','$Nama','$JK','$NoHP','$Email', '$Alamat','$Member')";
+		$QuerySql = "INSERT INTO pelanggan VALUES(now(),null,'$Nama','$Jk','$NoHP','$Email', '$Alamat')";
 		$SQL = mysqli_query($connect,$QuerySql);
 
 		echo " Input Berhasil <br>";
-		echo "<a href='pelanggan.php'>Lihat Hasil</a> ";
+		header("location:pelanggan.php");
 	}
 
 
@@ -28,15 +28,14 @@
 		<b><h1><center><font face="Bebas" size="">INPUT DATA</font></h1></b>
 		<br>
 		<table>
-		<tr><td>ID</td>
-		<td> : </td>
-		<td><input class="form-control" type="text" name="ID" value=""></td></tr>
 		<tr><td>Nama</td>
 		<td> : </td>
 		<td><input class="form-control" type="text" name="Nama" value=""></td></tr>
 		<tr><td>JK</td>
 		<td> : </td>
-		<td><input class="form-control" type="text" name="JK" value=""></td></tr>
+		<td><select name="Jk" >
+			<option>Laki-Laki</option>
+			<option>Perempuan</option></tr>
 		<tr><td>NoHP</td>
 		<td> : </td>
 		<td><input class="form-control" type="text" name="NoHP" value=""></td></tr>
@@ -46,13 +45,7 @@
 		<tr><td>Alamat</td>
 		<td> : </td>
 		<td><input class="form-control" type="text" name="Alamat" value=""></td></tr>
-		<tr><td>Member</td>
-		<td> : </td>
-		<td><select name="Member" value="">
-			<option>Member</option>
-			<option>Non Member</option>
-		</select></td></tr>
-
+	
 	</table>
 	<br>
 	<button type="submit" class="btn btn-dark" >SEND</button>
