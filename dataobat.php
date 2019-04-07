@@ -3,7 +3,7 @@
 	$QuerySql = "SELECT * FROM `obat`, `jenis_obat` WHERE jenis_obat.kode_jenis=obat.kode_jenis";
 	$SQL = mysqli_query($connect, $QuerySql); 
 ?> <!--Aditya Gusti Mandala Putra perbaiki query db.php-->
-
+<!--Muhammad Afrizal, membuat file function dataobat.php-->
 <!DOCTYPE html>
 <html>
 <head>
