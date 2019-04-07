@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 07 Apr 2019 pada 09.40
+-- Waktu pembuatan: 08 Apr 2019 pada 01.07
 -- Versi server: 10.1.31-MariaDB
 -- Versi PHP: 7.2.4
 
@@ -51,6 +51,25 @@ INSERT INTO `jenis_obat` (`kode_jenis`, `nama_jenis`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Struktur dari tabel `login`
+--
+
+CREATE TABLE `login` (
+  `user` varchar(20) NOT NULL,
+  `password` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `login`
+--
+
+INSERT INTO `login` (`user`, `password`) VALUES
+('user', 'user'),
+('admin', 'admin');
+
+-- --------------------------------------------------------
+
+--
 -- Struktur dari tabel `obat`
 --
 
@@ -77,7 +96,7 @@ INSERT INTO `obat` (`nama_obat`, `harga_obat`, `kode_obat`, `dosis_obat`, `kode_
 ('Promagh', 3500, 3, '2x1', 106, 23, 'Oktober', 2020, 25, '2019-04-13'),
 ('Mastin', 3500, 4, '1x1', 105, 20, 'Februari', 2019, 50, '2019-01-12'),
 ('Hemavitan', 3000, 5, '2x1', 103, 30, 'Maret', 2019, 75, '2019-02-02'),
-('Antimo', 5000, 6, '1x1', 101, 15, 'April', 2019, 100, '2019-02-16'),
+('Antimo', 5000, 6, '1x1', 101, 15, 'April', 2019, 5, '2019-02-16'),
 ('Diapet', 4000, 7, '3x1', 106, 16, 'Mei', 2019, 10, '2019-03-02'),
 ('Vatigon', 4500, 8, '1x1', 104, 24, 'Juni', 2019, 35, '2019-03-09'),
 ('Oskadon', 2000, 9, '2x1', 101, 27, 'Juli', 2019, 40, '2019-03-09'),
@@ -95,7 +114,9 @@ INSERT INTO `obat` (`nama_obat`, `harga_obat`, `kode_obat`, `dosis_obat`, `kode_
 ('Amoxilin', 7000, 21, '2x1', 101, 21, 'Januari', 2019, 15, '2019-03-09'),
 ('Neutropin', 9000, 22, '3x1', 105, 7, 'Desember', 2020, 35, '2019-02-09'),
 ('Darsi', 13000, 23, '1x1', 105, 9, 'Februari', 2020, 115, '2019-03-02'),
-('Komik', 5000, 25, '3x1', 105, 9, 'April', 2020, 125, '2019-03-16');
+('Komik', 5000, 25, '3x1', 105, 9, 'April', 2020, 125, '2019-03-16'),
+('Bodrex', 2000, 26, '3x1', 101, 25, 'September', 2020, 110, '2019-04-07'),
+('Mimin', 5000, 27, '3x1', 101, 20, 'September', 2019, 20, '2019-04-07');
 
 -- --------------------------------------------------------
 
@@ -132,7 +153,8 @@ INSERT INTO `supplier` (`nama_pemasok`, `kode_obat`, `jumlah_pasok`, `nomer_tele
 ('Faobat', 12, 30, '08335552278', 912, 2000, '2018-12-31'),
 ('Faobat', 13, 30, '08335552278', 913, 3000, '2018-12-26'),
 ('Faobat', 14, 30, '08335552278', 914, 5500, '2018-12-27'),
-('Faobat', 15, 30, '08335552278', 915, 4500, '2018-12-28');
+('Faobat', 15, 30, '08335552278', 915, 4500, '2018-12-28'),
+('Farmasi Indones', 26, 20, '02740001010', 917, 20500, '0000-00-00');
 
 --
 -- Indexes for dumped tables
