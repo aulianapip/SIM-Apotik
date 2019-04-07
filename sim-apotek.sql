@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 08 Mar 2019 pada 04.42
+-- Waktu pembuatan: 07 Apr 2019 pada 09.40
 -- Versi server: 10.1.31-MariaDB
 -- Versi PHP: 7.2.4
 
@@ -63,38 +63,39 @@ CREATE TABLE `obat` (
   `tanggal_kadaluarsa` int(2) NOT NULL,
   `bulan_kadaluarsa` varchar(12) NOT NULL,
   `tahun_kadaluarsa` int(4) NOT NULL,
-  `Stok_Obat` int(10) NOT NULL
+  `Stok_Obat` int(10) NOT NULL,
+  `tanggal_input` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `obat`
 --
 
-INSERT INTO `obat` (`nama_obat`, `harga_obat`, `kode_obat`, `dosis_obat`, `kode_jenis`, `tanggal_kadaluarsa`, `bulan_kadaluarsa`, `tahun_kadaluarsa`, `Stok_Obat`) VALUES
-('Konvermeks', 2500, 1, '2x3', 101, 20, 'Januari', 2020, 20),
-('Paracetamol', 2500, 2, '3x1', 106, 21, 'September', 2020, 30),
-('Promagh', 3500, 3, '2x1', 106, 23, 'Oktober', 2020, 25),
-('Mastin', 3500, 4, '1x1', 105, 20, 'Februari', 2019, 50),
-('Hemavitan', 3000, 5, '2x1', 103, 30, 'Maret', 2019, 75),
-('Antimo', 5000, 6, '1x1', 101, 15, 'April', 2019, 100),
-('Diapet', 4000, 7, '3x1', 106, 16, 'Mei', 2019, 10),
-('Vatigon', 4500, 8, '1x1', 104, 24, 'Juni', 2019, 35),
-('Oskadon', 2000, 9, '2x1', 101, 27, 'Juli', 2019, 40),
-('Kalpanak', 3000, 10, '3x1', 107, 23, 'Agustus', 2019, 60),
-('Mylanta', 5000, 11, '2x1', 106, 18, 'September', 2019, 70),
-('Paramex', 3000, 12, '2x1', 101, 25, 'Oktober', 2019, 80),
-('Procold', 4000, 13, '2x1', 101, 13, 'November', 2019, 45),
-('Hemaviton', 6500, 14, '3x1', 106, 3, 'April', 2019, 55),
-('Inza', 5500, 15, '3x1', 101, 7, 'Maret', 2020, 65),
-('Albotil', 15000, 16, '3x1', 106, 30, 'Oktober', 2019, 40),
-('Ambroxol', 11000, 17, '1x1', 101, 9, 'Juni', 2019, 25),
-('Alphara', 12000, 18, '1x1', 106, 18, 'Juli', 2020, 95),
-('Decolgen', 8000, 19, '3x1', 101, 19, 'Desember', 2018, 60),
-('Catropile', 10000, 20, '1x1', 101, 13, 'Desember', 2018, 15),
-('Amoxilin', 7000, 21, '2x1', 101, 21, 'Januari', 2019, 15),
-('Neutropin', 9000, 22, '3x1', 105, 7, 'Desember', 2020, 35),
-('Darsi', 13000, 23, '1x1', 105, 9, 'Februari', 2020, 115),
-('Komik', 5000, 25, '3x1', 105, 9, 'April', 2020, 125);
+INSERT INTO `obat` (`nama_obat`, `harga_obat`, `kode_obat`, `dosis_obat`, `kode_jenis`, `tanggal_kadaluarsa`, `bulan_kadaluarsa`, `tahun_kadaluarsa`, `Stok_Obat`, `tanggal_input`) VALUES
+('Konvermeks', 2500, 1, '2x3', 101, 20, 'Januari', 2020, 20, '2019-01-05'),
+('Paracetamol', 2500, 2, '3x1', 106, 21, 'September', 2020, 30, '2019-01-05'),
+('Promagh', 3500, 3, '2x1', 106, 23, 'Oktober', 2020, 25, '2019-04-13'),
+('Mastin', 3500, 4, '1x1', 105, 20, 'Februari', 2019, 50, '2019-01-12'),
+('Hemavitan', 3000, 5, '2x1', 103, 30, 'Maret', 2019, 75, '2019-02-02'),
+('Antimo', 5000, 6, '1x1', 101, 15, 'April', 2019, 100, '2019-02-16'),
+('Diapet', 4000, 7, '3x1', 106, 16, 'Mei', 2019, 10, '2019-03-02'),
+('Vatigon', 4500, 8, '1x1', 104, 24, 'Juni', 2019, 35, '2019-03-09'),
+('Oskadon', 2000, 9, '2x1', 101, 27, 'Juli', 2019, 40, '2019-03-09'),
+('Kalpanak', 3000, 10, '3x1', 107, 23, 'Agustus', 2019, 60, '2019-03-16'),
+('Mylanta', 5000, 11, '2x1', 106, 18, 'September', 2019, 70, '2019-03-30'),
+('Paramex', 3000, 12, '2x1', 101, 25, 'Oktober', 2019, 80, '2019-03-30'),
+('Procold', 4000, 13, '2x1', 101, 13, 'November', 2019, 45, '2019-03-30'),
+('Hemaviton', 6500, 14, '3x1', 106, 3, 'April', 2019, 55, '2019-03-30'),
+('Inza', 5500, 15, '3x1', 101, 7, 'Maret', 2020, 65, '2019-03-30'),
+('Albotil', 15000, 16, '3x1', 106, 30, 'Oktober', 2019, 40, '0000-00-00'),
+('Ambroxol', 11000, 17, '1x1', 101, 9, 'Juni', 2019, 25, '2019-02-23'),
+('Alphara', 12000, 18, '1x1', 106, 18, 'Juli', 2020, 95, '2019-02-16'),
+('Decolgen', 8000, 19, '3x1', 101, 19, 'Desember', 2018, 60, '2019-02-09'),
+('Catropile', 10000, 20, '1x1', 101, 13, 'Desember', 2018, 15, '2019-03-30'),
+('Amoxilin', 7000, 21, '2x1', 101, 21, 'Januari', 2019, 15, '2019-03-09'),
+('Neutropin', 9000, 22, '3x1', 105, 7, 'Desember', 2020, 35, '2019-02-09'),
+('Darsi', 13000, 23, '1x1', 105, 9, 'Februari', 2020, 115, '2019-03-02'),
+('Komik', 5000, 25, '3x1', 105, 9, 'April', 2020, 125, '2019-03-16');
 
 -- --------------------------------------------------------
 
