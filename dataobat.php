@@ -98,7 +98,7 @@
       <th scope="col">Harga Obat</th>
       <th scope="col">Kode Obat</th>
       <th scope="col">Jenis Obat</th>
-      <th scope="col">Tanngal Kadaluarsa</th>
+      <th scope="col">Tanggal Kadaluarsa</th>   <!--mohamad rifky fajri perbaiki tabel tanggal kadaluarsa-->
       <th scope="col">Bulan Kadaluarsa</th>
       <th scope="col">Tahun Kadaluarsa</th>
       <th scope="col">Stok Obat</th>
