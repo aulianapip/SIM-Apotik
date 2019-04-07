@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 21 Mar 2019 pada 03.01
+-- Waktu pembuatan: 07 Apr 2019 pada 04.28
 -- Versi server: 10.1.31-MariaDB
 -- Versi PHP: 7.2.3
 
@@ -129,21 +129,22 @@ INSERT INTO `nama_user` (`id_user`, `nm_lengkap`, `nm_user`, `password`, `akses`
 --
 
 CREATE TABLE `pelanggan` (
-  `ID` char(4) NOT NULL,
+  `tgl_daftar` date NOT NULL,
+  `ID` int(7) NOT NULL,
   `Nama` varchar(35) NOT NULL,
   `Jk` enum('Laki-Laki','Perempuan') NOT NULL,
   `NoHp` varchar(15) NOT NULL,
   `Email` varchar(35) NOT NULL,
-  `Alamat` text NOT NULL,
-  `Member` enum('member','bukan') NOT NULL
+  `Alamat` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `pelanggan`
 --
 
-INSERT INTO `pelanggan` (`ID`, `Nama`, `Jk`, `NoHp`, `Email`, `Alamat`, `Member`) VALUES
-('A001', 'Carto Ardiyanto', 'Laki-Laki', '089604943794', 'zone9robe@gmail.com', 'Ds Kertawinangun', 'member');
+INSERT INTO `pelanggan` (`tgl_daftar`, `ID`, `Nama`, `Jk`, `NoHp`, `Email`, `Alamat`) VALUES
+('2019-04-01', 1, 'Carto Ardiyanto', '', '089604943794', 'zone9robe@gmail.com', 'Ds Kertawinangun'),
+('2019-04-07', 2, 'danial', 'Laki-Laki', '0892131112', 'zadsa@gmail.com', 'adsaadasadadas');
 
 -- --------------------------------------------------------
 
@@ -266,6 +267,12 @@ ALTER TABLE `penjualan_tmp`
 --
 -- AUTO_INCREMENT untuk tabel yang dibuang
 --
+
+--
+-- AUTO_INCREMENT untuk tabel `pelanggan`
+--
+ALTER TABLE `pelanggan`
+  MODIFY `ID` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT untuk tabel `penjualan`
