@@ -7,10 +7,11 @@
     $nomer_telepon_supp=$_POST['nomer_telepon_supp'];
     $kode_pasok=$_POST['kode_pasok'];
     $harga_beli=$_POST['harga_beli'];
-    
+    $tanggal_pasok=$_POST['tanggal_pasok'];
+    //memperbaiki query tambah supplier
     
    
-    $QuerySql = " INSERT INTO Supplier VALUES ('$nama_pemasok', '$kode_obat', '$jumlah_pasok', '$nomer_telepon_supp', '$kode_pasok', ' $harga_beli')";
+    $QuerySql = " INSERT INTO supplier VALUES ('$nama_pemasok', '$kode_obat', '$jumlah_pasok', '$nomer_telepon_supp', '$kode_pasok', '$harga_beli', '$tanggal_pasok')";
       $SQL = mysqli_query($connect, $QuerySql);
     }
 
@@ -89,12 +90,12 @@
         </div>
         <div class="row">
           <div class="control">
-  <input class="input" type="text"data-length="20" name="jumlah_pasok" placeholder="Jumlah Pasok">
+  <input class="input" type="text" data-length="20" name="jumlah_pasok" placeholder="Jumlah Pasok">
           </div>
         </div>
         <div class="row">
           <div class="control">
-  <input class="input" type="text"data-length="20" name="nomer_telepon_supp" placeholder="Nomer telepon">
+  <input class="input" type="text" data-length="20" name="nomer_telepon_supp" placeholder="Nomer telepon">
           </div>
         </div>
         <div class="row">
@@ -106,10 +107,12 @@
           <div class="control">
   <input class="input" type="text" data-length="20" name="harga_beli" placeholder="Harga Beli">
           </div>
-        </div>
-      
+        </div>        
+        <div class="row">
+          <div class="control">
+  <input class="input" type="text" data-length="20" name="tanggal_pasok" placeholder="Tanggal Pasok">
           </div>
-        </div>                              
+        </div>                           
         <center><button class="button is-success" type="submit">Submit</button>
         <a href="datasupiler.php" class="button is-success">Lihat Hasil</a></center>
       </form>
