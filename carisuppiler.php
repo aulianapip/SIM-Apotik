@@ -27,7 +27,7 @@
   <div id="navbarBasicExample" class="navbar-menu">
     <div class="navbar-start">
       <a class="navbar-item" href="login.html">
-       Menu Utama
+      <img src="logut.png"></img>  <!--mohamad rifky fajri memperbaiki tampilan logout-->
       </a>
 
       <div class="navbar-item has-dropdown is-hoverable">
