@@ -3,7 +3,7 @@
 	$QuerySql = "SELECT * FROM `Supplier` ORDER BY `tanggal_pasok` ASC";
 	$SQL = mysqli_query($connect, $QuerySql);
 ?>
-<!--Arindra wahyu-->
+<!--ARINDRA WAHYU CANDRA-->
 
 <!DOCTYPE html>
 <html>
