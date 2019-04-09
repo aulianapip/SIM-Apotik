@@ -1,4 +1,4 @@
-<!--ARINDRA WAHYU CANDRA -->
+<!--ARINDRA WAHYU CANDRA YANG BUAT -->
 <?php
 
     include 'db.php';
