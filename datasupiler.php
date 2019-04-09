@@ -3,7 +3,7 @@
 	$QuerySql = "SELECT `nama_pemasok`,`kode_obat`,`jumlah_pasok`,`nomer_telepon_supp`,`kode_pasok`,`harga_beli` FROM `supplier`";
 	$SQL = mysqli_query($connect, $QuerySql);
 ?>
-<!--Gifari Nanda Utama-->
+<!--Gifari Nanda Utama Yang Membuat Ini-->
 <!DOCTYPE html>
 <html>
 <head>
