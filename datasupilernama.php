@@ -3,7 +3,7 @@
 	$QuerySql = "SELECT * FROM `Supplier` ORDER BY `nama_pemasok` ASC";
 	$SQL = mysqli_query($connect, $QuerySql);
 ?>
-<!--Mohamad rifky fajri-->
+<!--Mohamad rifky fajri yang buat file ini-->
 
 <!DOCTYPE html>
 <html>
