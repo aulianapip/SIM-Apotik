@@ -5,7 +5,7 @@
   $SQL = mysqli_query($connect, $QuerySql);
       if(mysqli_num_rows($SQL)>0){
 ?>
-<!--Mohamad rifky fajri-->
+<!--Mohamad rifky fajri membuat file ini-->
 <!DOCTYPE html>
 <html>
 <head>
