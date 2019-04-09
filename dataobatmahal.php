@@ -4,7 +4,7 @@
 	$SQL = mysqli_query($connect, $QuerySql);
 ?>
 
-<!--Gifari Nanda-->
+<!--Gifari Nanda yang Membuat Ini-->
 
 <!DOCTYPE html>
 <html>
