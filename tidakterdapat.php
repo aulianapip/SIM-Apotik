@@ -3,7 +3,7 @@
 	$QuerySql = "SELECT * FROM beli";
 	$SQL = mysqli_query($connect, $QuerySql);
 ?>
-
+<!--ARINDRA WAHYU CANDRA KURNIAWAN YANG BUAT -->
 <!DOCTYPE html>
 <html>
 <head>
