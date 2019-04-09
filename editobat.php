@@ -1,4 +1,4 @@
-<!--ARINDRA WAHYU CANDRA KURNIAWAN -->
+<!--ARINDRA WAHYU CANDRA KURNIAWAN YANG BUAT -->
 <?php
     include 'db.php';
     $kode_obat = $_GET['kode_obat'];
@@ -7,7 +7,6 @@
 ?>
 
 
-<!--ARINDRA WAHYU CANDRA -->
 
 <!DOCTYPE html>
 <html>
