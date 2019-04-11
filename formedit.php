@@ -11,8 +11,7 @@
 		$QuerySql = "UPDATE pelanggan SET ID='$ID', Nama='$Nama', JK='$JK', NoHP='$NoHP', Email='$Email', Alamat='$Alamat' WHERE ID='$ID' ";
 		$SQL = mysqli_query($connect,$QuerySql);
 
-		echo " Edit Berhasil <br>";
-		echo "<a href='pelanggan.php'>Lihat Hasil</a> ";
+		header('location:pelanggan.php?pesan=Edit');
 	}
 ?>
 <!DOCTYPE html>
@@ -34,7 +33,7 @@
 		<tr><td>JK</td>
 		<td> : </td>
 		<td><select name="Jk" >
-			<option>Laki-Laki</option>
+			<option>Laki-Laki</option> 
 			<option>Perempuan</option></tr>
 		<tr><td>NoHP</td>
 		<td> : </td>
