@@ -141,9 +141,9 @@
 		<label for="tgl_akhir">Sampai Tanggal</label>
 		<input type="date" id="tgl_akhir" name="tgl_akhir">
 	</div>
-	<!-- line 138-142 dibuat oleh rizka -->
-	<input type="submit" name="Cari" value="Cari" class="button"> <!--dibuat oleh carto -->
-	<input type="image" width="2%" src="icon/refresh.png" name="Refresh" class="button"><!-- dibuat oleh carto -->
+	<!-- line 138-142 dibuat rizka -->
+	<input type="submit" name="Cari" value="Cari" class="button"> <!--dibuat  carto -->
+	<input type="image" width="2%" src="icon/refresh.png" name="Refresh" class="button"><!-- dibuat carto -->
 
 </form>
 
