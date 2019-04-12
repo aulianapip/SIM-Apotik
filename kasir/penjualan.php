@@ -106,7 +106,7 @@ if(!isset($_SESSION['SES_LOGIN'])){
 								echo "<td align='center'>".number_format($rek['harga'],0,",",".")."</td>";
 								echo "<td align='center'>".$rek['jumlah']."</td>";
 								echo "<td align='right'>".number_format($rek['sub_total'],0,",",".")."</td>";
-								
+								echo "<td align='center'><button class=\"btn btn-danger btn-xs btnHapusJual\" data-val=\"$rek[id]\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Hapus Data\" ><span class=\"shortcut-icon icon-remove\"></span></button></td>";
 								echo "</tr>";
 								$ttlItem = $ttlItem + $rek['jumlah'];
 								$ttlJual = $ttlJual + $rek['sub_total'];
