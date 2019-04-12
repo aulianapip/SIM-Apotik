@@ -1,13 +1,90 @@
 <?php 
     include('conect.php');
  
-    $SQL = mysqli_query($connect, "SELECT * FROM pelanggan ORDER BY Nama DESC");
+    
+   if (isset($_POST['Cari'])) {
 
+  if(isset($_GET['pesan'])){
+    $pesan=$_GET['pesan'];
+    if($pesan=="Hapus"){
+      echo "<center>
+        Berhasil dihapus !
+      </center>";
+    }
+    else if($pesan=="Edit"){
+      echo "
+      <center>
+      Berhasil diupdate !
+      </center>
+      ";
+
+    }
+  }
+    include 'fungsi_indotgl.php';
+    $tgl_awal= $_POST['tgl_awal'];
+    $tgl_akhir= $_POST['tgl_akhir'];
+
+
+  $q1="SELECT * from pelanggan where tgl_daftar between '$tgl_awal' and '$tgl_akhir'";
+  $SQL=mysqli_query($connect,$q1);
+  
+  }
+  else if(isset($_POST['Refresh'])){
+    echo "<meta http-equiv='refresh' content='1 url=pelanggan.php'>";
+  }
+  else{
+
+  if(isset($_GET['pesan'])){
+    $pesan=$_GET['pesan'];
+    if($pesan=="Hapus"){
+      echo "<center>
+        Berhasil dihapus !
+      </center>";
+    }
+    else if($pesan=="Edit"){
+      echo "
+      <center>
+      Berhasil diupdate !
+      </center>
+      ";
+
+    }
+  }
+
+  $SQL = mysqli_query($connect, "SELECT * FROM pelanggan ORDER BY Nama DESC");
+    
+  }
 
 ?>
 <!DOCTYPE html>
 <html>
   <head>
+  <script type="text/javascript">
+          $(document).ready(function(){
+            $("tgl_awal").datepicker({
+              altFormat:"dd MM yy",
+              changeMonth : true,
+              changeYear : true
+            });
+            $("#tgl_awal").change(function() {
+              $("#tgl_awal").datepicker("option","dateFormat","yy-mm-dd");
+            });
+          });
+        </script>
+        <script type="text/javascript">
+          $(document).ready(function(){
+            $("tgl_akhir").datepicker({
+              altFormat:"dd MM yy",
+              changeMonth : true,
+              changeYear : true
+            });
+            $("#tgl_awal").change(function() {
+              $("#tgl_akhir").datepicker("option","dateFormat","yy-mm-dd");
+            });
+          });
+          //line 4-26 dibuat rizka
+        </script>
+
     <title>CRM APOTEK</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -25,11 +102,10 @@ body{
   width: 100%;
 }
 
- td,  th {
+ td {
   border: 1px solid #ddd;
   padding: 8px;
-  width:100%;
-  height:100%;
+  
   text-align: left;
 }
 .page-item.active .page-link {
@@ -48,12 +124,7 @@ label {
 
  tr:hover {background-color: #ddd;}
 
- th {
-  padding-top: 12px;
-  padding-bottom: 12px;
-  text-align: left;
-  background-color: #4CAF50;
-  color: white;
+
 }
 }
 </style>
@@ -122,34 +193,69 @@ body {
   <div class="header-right">
     <a class="active" href="index.php">Home</a>
     <a href="inputdata.php">Input Data</a>
-    <a href="formedit.php">Edit Data</a>
-    <a class="active" href="pelanggan.php">Tanggal</a>
-    <a class="active" href="hapus.php">Hapus</a>
+ 
   </div>
 </div>
+ 
 
     <!-- Badan -->
-    <table id="example" class="table table-striped table-bordered" width="100%" cellspacing="0">
+    <div>
+       <form method="post" action="index.php">
+  <div>
+  <center>
+  <table>
+    <tr>
+      <td>
+      <label for="tgl_awal">Dari Tanggal</label>
+      <input type="date" id="tgl_awal" name="tgl_awal">&nbsp;
+      </td>
+      <td>
+      <label for="tgl_akhir">Sampai Tanggal</label>
+      <input type="date" id="tgl_akhir" name="tgl_akhir"> 
+      </td>
+      <td>
+      <input type="submit" name="Cari" value="Cari" class="button"> <!--dibuat  carto -->
+      </td>
+      <td>
+      <input type="image" width="20%" src="refresh.png" name="Refresh" class="button"><!-- dibuat carto -->  
+      </td>
+    </tr>
+ </table></center>
+    
+ 
+  <!-- line 138-142 dibuat rizka -->
+  
+  
+ </div>
+  </form>
+    </div>
+    <table id="example" class="table table-striped table-bordered" width="100%" cellspacing="1 ">
         <thead>
             <tr>
-                <td>Nama</td>
-                <td>ID</td>
-                <td>Jk</td>
-                <td>NoHp</td>
-                <td>Email</td>
-                <td>Alamat</td>
+                <td width="10%">Tanggal Terdaftar</td>
+                <td width="10%">ID</td>
+                <td width="10%">Nama</td>
+                <td width="10%">Jk</td>
+                <td width="10%">NoHp</td>
+                <td width="10%">Email</td>
+                <td width="30%">Alamat</td>
+                <td width="10%">Opsi</td>
             </tr>
         </thead>
         
         <tbody>
-            <?php while($data = mysqli_fetch_array($SQL)){ ?>
+            <?php   while($data = mysqli_fetch_array($SQL)){ ?>
                 <tr>
-                    <td><?= $data['Nama'] ?></td>
+                    <td><?= $data['tgl_daftar'] ?></td>
                     <td><?= $data['ID'] ?></td>
+                    <td><?= $data['Nama'] ?></td>
                     <td><?= $data['Jk'] ?></td>
                     <td><?= $data['NoHp'] ?></td>
                     <td><?= $data['Email'] ?></td>
                     <td><?= $data['Alamat'] ?></td>
+                    <td><a href='formedit.php?ID=<?php echo $data['ID']; ?>'>Edit</a>
+                        <a href='hapus.php?ID=<?php echo $data['ID']; ?>'>hapus</a>
+                    </td>
                 </tr>
             <?php } ?>
         </tbody>

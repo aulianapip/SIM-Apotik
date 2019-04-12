@@ -1,59 +1,57 @@
-<?php  
-include ('header.php');
-	if ($_POST){
-		include 'conect.php';
-		$ID = $_POST['ID'];
-		$Nama = $_POST['Nama'];
-		$JK = $_POST['Jk'];
-		$NoHP = $_POST['NoHP'];
-		$Alamat = $_POST['Alamat'];
-		$Email = $_POST['Email'];
 
-		$QuerySql = "UPDATE pelanggan SET ID='$ID', Nama='$Nama', JK='$JK', NoHP='$NoHP', Email='$Email', Alamat='$Alamat' WHERE ID='$ID' ";
-		$SQL = mysqli_query($connect,$QuerySql);
-
-		header('location:pelanggan.php?pesan=Edit');
-	}
-?>
-<!DOCTYPE html>
 <html>
 <head>	
-	<title>EDIT DATA PELANGGAN</title>
-	<link rel="stylesheet" type="text/css" href="style.css">
+	<title>Edit User Data</title>
 </head>
+<?php
+	
+	$connect = new mysqli("localhost", "root", "", "sim-apotek-pos-test");
+
+	$ID=$_GET["ID"];
+	$edit="SELECT ID,Nama,Jk,NoHP,Email,Alamat FROM pelanggan where ID='$ID'";
+	foreach (mysqli_query($connect,$edit) as $a){	
+	
+?>
+
 <body>
-	<form method="post" action="formedit.php"><center>
-		<b><h1><center><font face="Bebas" size="">EDIT DATA PELANGGAN</font></h1></b>
+	<form method="POST" action="edit.php?ID=<?php echo $a['ID'];?>"><center>
+		<b><h1><center><font face="Bebas" size="">EDIT DATA</font></h1></b>
 		<br>
 		<table>
-		<tr><td>ID</td>
-		<td> : </td>
-		<td><input class="form-control" type="text" name="ID" value=""></td></tr>
+		<TR>
+			<TD>ID</TD>
+			<td>:</td>
+			<td><input type="text" name="ID" disabled value="<?php echo $a['ID']; ?>" /></td>
+		</TR>
 		<tr><td>Nama</td>
 		<td> : </td>
-		<td><input class="form-control" type="text" name="Nama" value=""></td></tr>
+		<td><input class="form-control" type="text" name="Nama" value="<?php echo $a['Nama']; ?>"></td></tr>
 		<tr><td>JK</td>
 		<td> : </td>
-		<td><select name="Jk" >
-			<option>Laki-Laki</option> 
-			<option>Perempuan</option></tr>
+		<td><select name="jeniskelamin" >
+			<option value="1">Laki-Laki</option>
+			<option value="2">Perempuan</option></td>
+		</tr>
 		<tr><td>NoHP</td>
 		<td> : </td>
-		<td><input class="form-control" type="text" name="NoHP" value=""></td></tr>
+		<td><input class="form-control" type="text" name="NoHP" value="<?php echo $a['NoHP'];?>"></td></tr>
 		<tr><td>Email</td>
 		<td> : </td>
-		<td><input class="form-control" type="text" name="Email" value=""></td></tr>
+		<td><input class="form-control" type="text" name="Email" value="<?php echo $a['Email'];?>"></td></tr>
 		<tr><td>Alamat</td>
 		<td> : </td>
-		<td><input class="form-control" type="text" name="Alamat" value=""></td></tr>
-	<table>
-		<button a href="inputdata.php"><input type="submit" name="Kirim" value="Edit data" class="button" >
-		</button>
+		<td><input class="form-control" type="text" name="Alamat" value="<?php echo $a['Alamat'];?>"></td></tr>
+		
+
 	</table>
-	</table>
+	<br>
+	<button type="submit" class="btn btn-dark" >SIMPAN</button>
 	</center>
 </form>
-</body></html>
-</body>
-</html>
+<?php 
 
+}
+
+ ?>
+
+</body></html>
