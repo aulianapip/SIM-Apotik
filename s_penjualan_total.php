@@ -1,4 +1,4 @@
-<!--ALDANSYAH DARMAWAN-->
+<!-- ALWAN ZAKI-->
 <?php
 	session_start();
 
@@ -9,7 +9,7 @@ if (!isset($_SESSION["login1"])) {
       
   
 	include "connection/db.php";
-	$QuerySql = "SELECT *,harga_obat*jumlah_terjual as total FROM `tabel_penjualan`, `obat` WHERE tabel_penjualan.kode_obat=obat.kode_obat ORDER BY obat.nama_obat ASC ";
+	$QuerySql = "SELECT *,harga_obat*jumlah_terjual as total FROM `tabel_penjualan`, `obat` WHERE tabel_penjualan.kode_obat=obat.kode_obat ORDER BY total ASC ";
 
 	$SQL = mysqli_query($connect, $QuerySql); 
 ?> 
