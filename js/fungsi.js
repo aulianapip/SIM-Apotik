@@ -34,6 +34,26 @@ $(document).ready(function(){
 		}
 	});
 	
+	//hapus item penjualan.
+	$(".btnHapusJual").click(function(){
+		var r = confirm('YAKIN INGIN MENGHAPUS DATA INI ???');
+		if(r==true){
+				var id = $(this).data('val');
+				$.ajax({
+					type:"POST",
+					url:"kasir/penjualan_proses.php",
+					data:{hapusJual:'',kodeRow:id},
+					dataType: "json",
+					success:function(resp){
+						$("#alertMsg").html(resp.msg1);
+						window.setTimeout(function(){window.location=window.location;}, 0);
+					},
+					
+				});
+		};	
+		
+		
+	});
 	
 	//simpan data penjualan
 	$("#btnJualSimpan").click(function(){
