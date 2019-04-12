@@ -110,6 +110,18 @@ function no_id($tabel){
 	
 }
 
+#fungsi mengurangi stok barang dari penjualan toko
+function updateStockBarang($noTrans,$type){
+	//type=2 -> penjualan
+
+	$noTrans = trim($noTrans);
+	$type = trim($type);
+
+	$tbl="penjualan_detail";
+	$x=-1;
+	//TO-DO belum selesai bikin updateStockbarang
+}
+
 
 
 #fungsi untuk mencari total penjualan di kasir. 
