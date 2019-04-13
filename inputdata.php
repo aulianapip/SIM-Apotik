@@ -1,4 +1,9 @@
+<?php
+	include "library/import.php";
+
+?>
 <?php  
+include ('header.php');
 	if ($_POST){
 		include 'conect.php';
 		
@@ -12,45 +17,53 @@
 		$QuerySql = "INSERT INTO pelanggan VALUES(now(),null,'$Nama','$Jk','$NoHP','$Email', '$Alamat')";
 		$SQL = mysqli_query($connect,$QuerySql);
 
-		echo " Input Berhasil <br>";
-		header("location:pelanggan.php");
+		echo "<script>alert('Input data baru sukses!!!');window.location='index.php'</script>";
 	}
 
 
 ?>
-<!DOCTYPE html>
 <html>
-<head>	
-	<title>INPUT DATA PELANGGAN</title>
-</head>
-<body>
-	<form method="post" action="inputdata.php"><center>
-		<b><h1><center><font face="Bebas" size="">INPUT DATA</font></h1></b>
-		<br>
-		<table>
-		<tr><td>Nama</td>
-		<td> : </td>
-		<td><input class="form-control" type="text" name="Nama" value=""></td></tr>
-		<tr><td>JK</td>
-		<td> : </td>
-		<td><select name="Jk" >
-			<option>Laki-Laki</option>
-			<option>Perempuan</option></tr>
-		<tr><td>NoHP</td>
-		<td> : </td>
-		<td><input class="form-control" type="text" name="NoHP" value=""></td></tr>
-		<tr><td>Email</td>
-		<td> : </td>
-		<td><input class="form-control" type="text" name="Email" value=""></td></tr>
-		<tr><td>Alamat</td>
-		<td> : </td>
-		<td><textarea name="Alamat" ></textarea></td></tr>
+<head>
+
 	
-	</table>
+</head>
+
+<body><center><div class=jumbotron><h1>INPUT DATA PELANGGAN</h1></div><br>
 	<br>
-	<button type="submit" class="btn btn-dark" >SEND</button>
+	<form method="post" action="inputdata.php">
+	<table width="45%" >
+		<tr>
+			 <td><label for="kode_obat">Nama</label>
+     			 <input type="text" class="form-control" id="kode_obat" name="Nama" required oninvalid="this.setCustomValidity('Nama tidak boleh kosong')" oninput="setCustomValidity('')"></td>
+		</tr>
+		<tr>
+			  <td><label for="status" name="Jk">Jenis Kelamin</label>
+  				<select name="jenis_obat" class="form-control" id="jenis_obat">
+  				  	 <option value="1">Laki-Laki</option>
+   					 <option value="2">Perempuan</option>
+   					 
+    				 
+ 				 </select></td>
+		</tr>
+		<tr>
+			<td><label for="kode_obat">Nomor Handphone</label>
+     			 <input type="text" class="form-control" id="Nama Obat" name="NoHP" required oninvalid="this.setCustomValidity('Nomor Handphone tidak boleh kosong')" oninput="setCustomValidity('')"></td>
+		</tr>
+		
+		<tr>
+			<td><label for="harga_obat">Email</label>
+     		<input type="text" class="form-control" id="harga obat" name="Email" required oninvalid="this.setCustomValidity('Email tidak boleh kosong')" oninput="setCustomValidity('')"></td>
+		</tr>
+		<tr>
+			<td><label for="harga_obat">Alamat</label>
+     		<textarea class="form-control" rows="5" id="Alamat" name="Alamat" required oninvalid="this.setCustomValidity('Alamat tidak boleh kosong')" oninput="setCustomValidity('')"></textarea>
+		</tr>
+
+	</table><br>
+	<CENTER><input type="submit" class="btn btn-primary" value="KIRIM"></CENTER>
+	</form>
 	</center>
-</form>
-</body></html>
+
+
 </body>
 </html>

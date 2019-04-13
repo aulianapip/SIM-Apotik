@@ -1,6 +1,6 @@
 <?php 
     include('conect.php');
- 
+
     
    if (isset($_POST['Cari'])) {
 
@@ -214,7 +214,7 @@ body {
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 
     <div class="dropdown">
-    <button class="btn btn-primary dropdown-toggle"  data-toggle="dropdown">Cari rentang tanggal
+    <button class="btn btn-primary "  data-toggle="dropdown">Cari rentang tanggal
     <span class="caret"></span></button>
     <ul class="dropdown-menu" >
       <li>
@@ -228,12 +228,13 @@ body {
       <input type="submit" name="Cari" value="Cari" class="button"> <!--dibuat  carto -->
       </ul>
       <ul>
-      <input type="submit" name="Refresh" value="Refresh" class="button"><!-- dibuat carto -->  
+      <a href="index.php"><input type="submit"  value="Refresh" class="button"></input></a><!-- dibuat carto -->  
       </ul>
     </ul>  
- </div>
-    
  
+ </div>
+ <br>
+<a href="selectdelete.php">PILIH</a>
   <!-- line 138-142 dibuat rizka -->
   
   
