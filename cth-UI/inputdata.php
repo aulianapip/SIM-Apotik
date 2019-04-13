@@ -13,7 +13,7 @@ include ('header.php');
 		$QuerySql = "INSERT INTO pelanggan VALUES(now(),null,'$Nama','$Jk','$NoHP','$Email', '$Alamat')";
 		$SQL = mysqli_query($connect,$QuerySql);
 
-		echo "<script>alert('Input data baru sukses!!!');window.location='pelanggan.php'</script>";
+		echo "<script>alert('Input data baru sukses!!!');window.location='index.php'</script>";
 	}
 
 
@@ -23,6 +23,7 @@ include ('header.php');
 <head>	
 	<title>INPUT DATA PELANGGAN</title>
 	<link rel="stylesheet" type="text/css" href="style.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
 	<form method="post" action="inputdata.php"><center>
@@ -46,13 +47,15 @@ include ('header.php');
 		<tr><td>Alamat</td>
 		<td> : </td>
 		<td><textarea name="Alamat" ></textarea></td></tr>
+		
+	</table>
 	<table>
 		<button a href="inputdata.php"><input type="submit" name="Kirim" value="Input" class="button" >
-		</button>
-	</table>
+	</button>
 	</table>
 	</center>
 </form>
-</body></html>
 </body>
+</html>
+
 </html>

@@ -114,6 +114,7 @@ body{
     background-color: pink;
     border-color: pink;
 }
+
 label {
     display: inline-block;
     margin-top: 1rem;
@@ -136,7 +137,12 @@ body {
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
 }
-
+.btn-primary.active, .btn-primary:active, .open>.dropdown-toggle.btn-primary {
+    color: black;
+    background-color: pink;
+    background-image: none;
+    border-color: #ddd;
+}
 .header {
   overflow: hidden;
   background-color: pink;
@@ -193,34 +199,39 @@ body {
   <div class="header-right">
     <a class="active" href="index.php">Home</a>
     <a href="inputdata.php">Input Data</a>
- 
-  </div>
+<div>
 </div>
- 
+</div>
+</div>
 
     <!-- Badan -->
     <div>
        <form method="post" action="index.php">
   <div>
-  <center>
-  <table>
-    <tr>
-      <td>
+
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+    <div class="dropdown">
+    <button class="btn btn-primary dropdown-toggle"  data-toggle="dropdown">Cari rentang tanggal
+    <span class="caret"></span></button>
+    <ul class="dropdown-menu" >
+      <li>
       <label for="tgl_awal">Dari Tanggal</label>
       <input type="date" id="tgl_awal" name="tgl_awal">&nbsp;
-      </td>
-      <td>
       <label for="tgl_akhir">Sampai Tanggal</label>
       <input type="date" id="tgl_akhir" name="tgl_akhir"> 
-      </td>
-      <td>
+      </li>
+      
+        <ul>
       <input type="submit" name="Cari" value="Cari" class="button"> <!--dibuat  carto -->
-      </td>
-      <td>
-      <input type="image" width="20%" src="refresh.png" name="Refresh" class="button"><!-- dibuat carto -->  
-      </td>
-    </tr>
- </table></center>
+      </ul>
+      <ul>
+      <input type="submit" name="Refresh" value="Refresh" class="button"><!-- dibuat carto -->  
+      </ul>
+    </ul>  
+ </div>
     
  
   <!-- line 138-142 dibuat rizka -->
@@ -233,7 +244,7 @@ body {
         <thead>
             <tr>
                 <td width="10%">Tanggal Terdaftar</td>
-                <td width="10%">ID</td>
+                <td width="10%">ID</td> 
                 <td width="10%">Nama</td>
                 <td width="10%">Jk</td>
                 <td width="10%">NoHp</td>
@@ -253,8 +264,8 @@ body {
                     <td><?= $data['NoHp'] ?></td>
                     <td><?= $data['Email'] ?></td>
                     <td><?= $data['Alamat'] ?></td>
-                    <td><a href='formedit.php?ID=<?php echo $data['ID']; ?>'>Edit</a>
-                        <a href='hapus.php?ID=<?php echo $data['ID']; ?>'>hapus</a>
+                    <td><a href='formedit.php?ID=<?php echo $data['ID']; ?>'><input type="image" src="edit.png" width="20" height="20"/></a>
+                    <a href='hapus.php?ID=<?php echo $data['ID']; ?>'><input type="image" src="delete.png" width="20" height="20"/></a>
                     </td>
                 </tr>
             <?php } ?>

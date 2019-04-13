@@ -3,8 +3,8 @@ input[type=text], select {
   padding: 12px 20px;
   margin: 8px 0;
   display: inline-block;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  border: 1px ;
+  border-radius: 0px;
   box-sizing: border-box;
 }
 

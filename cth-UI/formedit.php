@@ -4,7 +4,8 @@
 	<title>Edit User Data</title>
 </head>
 <?php
-	
+	include('header.php');
+
 	$connect = new mysqli("localhost", "root", "", "sim-apotek-pos-test");
 
 	$ID=$_GET["ID"];
@@ -12,6 +13,8 @@
 	foreach (mysqli_query($connect,$edit) as $a){	
 	
 ?>
+<link rel="stylesheet" type="text/css" href="style.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 <body>
 	<form method="POST" action="edit.php?ID=<?php echo $a['ID'];?>"><center>
@@ -44,8 +47,10 @@
 		
 
 	</table>
-	<br>
-	<button type="submit" class="btn btn-dark" >SIMPAN</button>
+	<table>
+		<button a href="inputdata.php"><input type="submit" name="Kirim" value="Edit" class="button" >
+	</button>
+	</table>
 	</center>
 </form>
 <?php 

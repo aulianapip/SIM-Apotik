@@ -64,14 +64,8 @@ body {
 <body>
 <!-- kepala -->
 <div class="header">
-  <a href="#default" class="logo">CRM APOTEK</a>
+  <a href="index.php" class="logo">CRM APOTEK</a>
   <div class="header-right">
-    <a class="active" href="index.php">Home</a>
-    <a class="active" href="inputdata.php">Input Data</a>
-    <a class="active" href="formedit.php">Edit Data</a>
-    <a class="active" href="pelanggan.php">Tanggal</a>
-    <a class="active" href="hapus.php">Hapus</a>
-
   </div>
 </div>
 
