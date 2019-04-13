@@ -1,9 +1,10 @@
 <?php
 	include 'db.php';
-	$QuerySql = "SELECT * FROM `obat`, `jenis_obat` WHERE jenis_obat.kode_jenis=obat.kode_jenis";
+	$QuerySql = "SELECT * FROM `obat`, `jenis_obat` WHERE jenis_obat.kode_jenis=obat.kode_jenis order by Stok_Obat asc";
 	$SQL = mysqli_query($connect, $QuerySql); 
 ?> <!--Aditya Gusti Mandala Putra perbaiki query db.php-->
 <!--Muhammad Afrizal, membuat file function dataobat.php-->
+<!--Arindra Wahyu , menambahkan sorting stok obat terkecil dataobat.php-->
 <!DOCTYPE html>
 <html>
 <head>
@@ -104,21 +105,42 @@
       <th scope="col">Stok Obat</th>
     </tr>
   </thead>
+
+
 		<?php
+
 			foreach ($SQL as $key) {
+        if($key['Stok_Obat']<15){
 				echo "<tr>
-						<td>$key[nama_obat]</td>
-						<td>$key[harga_obat]</td>
-						<td>$key[kode_obat]</td>
-						<td>$key[nama_jenis]</td>
-						<td>$key[tanggal_kadaluarsa]</td>
-						<td>$key[bulan_kadaluarsa]</td>
-						<td>$key[tahun_kadaluarsa]</td>
-						<td>$key[Stok_Obat]</td>
+						<td bgcolor=red>$key[nama_obat]</td>
+						<td bgcolor=red>$key[harga_obat]</td>
+						<td bgcolor=red>$key[kode_obat]</td> 
+						<td bgcolor=red>$key[nama_jenis]</td>
+						<td bgcolor=red>$key[tanggal_kadaluarsa]</td>
+						<td bgcolor=red>$key[bulan_kadaluarsa]</td>
+						<td bgcolor=red>$key[tahun_kadaluarsa]</td>
+						<td bgcolor=red>$key[Stok_Obat]</td>
 						
 				</tr>";
+      }else{
+        echo "<tr>
+            <td>$key[nama_obat]</td>
+            <td>$key[harga_obat]</td>
+            <td>$key[kode_obat]</td>
+            <td>$key[nama_jenis]</td>
+            <td>$key[tanggal_kadaluarsa]</td>
+            <td>$key[bulan_kadaluarsa]</td>
+            <td>$key[tahun_kadaluarsa]</td>
+            <td>$key[Stok_Obat]</td>
+            
+        </tr>";
+
+
+      }
 			}
 		?>
+    <!--Arindra Wahyu , menandai obat yang stok menipis dataobat.php-->
 </table>
 </body>
 </html>
+
