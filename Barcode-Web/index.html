@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Scan Barcode</title>
+        <link rel="stylesheet">
+    </head>
+    <body>
+       
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                        <h4>SCAN APOTEK UAD E PRPL</h4>
+                </div>
+            </div>
+                        
+                        <div class="well" style="display: inline-block;">
+                            <div id="camera-select" ></div>
+                            <canvas width="300" height="200" id="webcodecam-canvas"></canvas>
+                            <div class="scanner-laser laser-rightBottom" style="opacity: 1;"></div>
+                            <div class="scanner-laser laser-rightTop" style="opacity: 1;"></div>
+                            <div class="scanner-laser laser-leftBottom" style="opacity: 1;"></div>
+                            <div class="scanner-laser laser-leftTop" style="opacity: 1;"></div>
+                      </div>            
+                         
+                            <div class="caption" style="position: relative;">
+                                <button title="scan" id="play" type="button"> Scan </button>
+                                <button title="Stop scan" id="stop" type="button"> Stop </button>
+                                <p id="scanned-QR"></p></div>
+                            </div>
+
+        <script type="text/javascript" src="js/filereader.js"></script>
+     
+            <script type="text/javascript" src="js/jquery.js"></script>
+            <script type="text/javascript" src="js/qrcodelib.js"></script>
+            <script type="text/javascript" src="js/webcodecamjquery.js"></script>
+            <script type="text/javascript" src="js/mainjquery.js"></script>
+     
+</body>
+<style type="text/css">
+
+.caption{
+    margin-left: 15%;
+    margin-top: 40%;
+}
+
+#camera-select {
+    margin-left: 10%; 
+}
+
+.h4, h4 {
+    width: auto;
+    float: left;
+    font-size: 20px;
+    line-height: 1;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.well {
+    right: 70%;
+    top: 52%;
+    position: absolute;
+    
+}
+
+.panel-heading {
+    display: inline-block;
+    width: 100%;
+}
+
+.scanner-laser {
+    position: absolute;
+    margin: 40px;
+    height: 30px;
+    width: 30px;
+    opacity: 0.5;
+}
+
+.laser-leftTop {
+    top: 0;
+    left: 0;
+    border-top: solid green 5px;
+    border-left: solid green 5px;
+}
+
+.laser-leftBottom {
+    bottom: 0;
+    left: 0;
+    border-bottom: solid green 5px;
+    border-left: solid green 5px;
+}
+
+.laser-rightTop {
+    top: 0;
+    right: 0;
+    border-top: solid green 5px;
+    border-right: solid green 5px;
+}
+
+.laser-rightBottom {
+    bottom: 0;
+    right: 0;
+    border-bottom: solid green 5px;
+    border-right: solid green 5px;
+    
+}
+
+#webcodecam-canvas {
+    height: auto;
+    margin-top: 0%;
+    margin-bottom: 5%;
+    background: url("Capture.PNG");
+
+}
+#scanned-QR{
+    margin-top: 1%;
+    margin-left: 1%;
+    word-break: break-word;
+}
+    </style>
+
+</html>
