@@ -1,14 +1,29 @@
+<- Fitur POS, fitur untuk menjalankan fungsi kasir dan operasional penjualan apotik ->
+
+// Nama  : Ardiansyah
+// NIM   : 1600018058
+// Kelas : E
+
+
 <?php 
+
  if(!isset($_SESSION['SES_LOGIN'])){
 	header('location:home');
  }
+
+// library untuk koneksi ke database
+
 require_once "library/inc.connection.php";
 require_once "library/inc.library.php";
 opendb();
-//cari data toko
+
+//cari data dari toko
+
    $qri = "SELECT * FROM nama_toko";
    $res = querydb($qri);
    $rec = arraydb($res);
+   
+   // ngambil data toko
    $namaToko = $rec['nm_toko'];
    $alamatToko = $rec['almt_toko'];
    $kota = $rec['kota'];
