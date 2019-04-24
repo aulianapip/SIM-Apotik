@@ -1,17 +1,26 @@
-<!-- ALWAN ZAKI-->
+<!-- ALWAN ZAKI 1700018259-->
+<!--
+Penjelasan class :
+  Dalam keuangan kami membuat beberapa function seperti cashflow, data pembelian,
+  data penjualan, dan total keuntungan. cashflow gambaran mengenai jumlah uang yang masuk dan keluar. 
+  data pembelian hanya menampilkan data pembelian barang dari suplier. 
+  data penjualan gambaran informasi data-data penjualan yang dihasilkan dari penjualan kasir.
+  total keuntungan menampilkan keuntungan dari harga jual tiap barang dikurangi harga beli dari suplier.
+-->
 <?php
 	session_start();
 
-if (!isset($_SESSION["login1"])) {
-    	  header("location: http://localhost/apotik-keuangan/login.php");
+if (!isset($_SESSION["login1"]))//jika login gagal, maka akan kembali ke login.php 
+	{
+    	  header("location: http://localhost/apotik-keuangan/login.php"); //link untuk login.php 
       exit;
     }
       
   
 	include "connection/db.php";
-	$QuerySql = "SELECT *,harga_obat*jumlah_terjual as total FROM `tabel_penjualan`, `obat` WHERE tabel_penjualan.kode_obat=obat.kode_obat ORDER BY total ASC ";
+	$QuerySql = "SELECT *,harga_obat*jumlah_terjual as total FROM `tabel_penjualan`, `obat` WHERE tabel_penjualan.kode_obat=obat.kode_obat ORDER BY total ASC ";//fungsi untuk memanggil total terjual (harga_obat*jumlah_terjual) dari tabel_penjualan dan obat, menggunakan relasi dari "tabel_penjualan.kode_obat=obat.kode_obat "  
 
-	$SQL = mysqli_query($connect, $QuerySql); 
+	$SQL = mysqli_query($connect, $QuerySql);//inisialisasi isi SQL 
 ?> 
 <!DOCTYPE html>
 <html>
@@ -36,7 +45,8 @@ if (!isset($_SESSION["login1"])) {
     </tr>
   </thead>
 		<?php
-			foreach ($SQL as $key) {
+			foreach ($SQL as $key)//inisialisasi SQL menjadi key 
+			{
 				echo "<tr>
 						<td>$key[id_penjualan]</td>
 						<td>$key[tanggal_terjual]</td>
@@ -44,8 +54,8 @@ if (!isset($_SESSION["login1"])) {
 						<td>$key[nama_obat]</td>
 						<td>$key[harga_obat]</td>
 						<td>$key[jumlah_terjual]</td>
-						<td>$key[total]</td>
-				</tr>";
+						<td>$key[total]</td> 
+				</tr>";//menampilkan isi dari atribut-atribut di dalam tabel
                 	
 				}
 		?>
