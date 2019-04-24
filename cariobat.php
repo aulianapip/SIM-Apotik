@@ -1,7 +1,26 @@
+<!--1.  Pada kelompok gudang, kami telah membuat beberapa kelas yang mempunyai fungsi sebagai berikut:
+• Fungsi Sorting Nama Obat A-Z : fitur ini berfungsi mengurutkan nama obat sesuai alpabet dari awalan huruf A sampai awalan huruf Z.
+• Fungsi Sorting Jenis Obat Kapsul : fitur ini berfungsi mensorting obat yang berjenis kapsul untuk di tampilkan.
+• Fungsi Menampilkan seluruh data obat
+• Fungsi Tanggal pasok obat
+• Function Update Data Obat : Fitur ini berfungsi mengupdate perubahan yang telah kita tambah, Kurang, dan mengedit sesuai database
+• Function Stok Obat Menipis : Fitur ini berfungsi menandai tabel obat yang stoknya telah menipis
+• Function Pencarian  Data Tidak Ditemukan : fitur ini berfungsi  jika kita mencari obat atau supplier yang tidak ada didatabase
+• Function Sorting Tanggal Supplier : fitur ini berfungsi mensorting obat dengan tanggal pemasok supplier yang telah memasok obat dari tanggal terdahulu
+• Function Tambah Obat : fitur ini berfungsi untuk menambah data obat baru ke dalam tabel Obat
+• Function Tambah Supllier : fitur ini berfungsi untuk menambah data supllier baru ke tabel Supllier
+• Function Cari Obat : fitur ini berfungsi buat mencari data obat yang ada di tabel obat
+• Fuction Cari Supplier : fitur ini berfungsi mncari data supplier yang ada di tabel supplier
+• Function Sorting Nama Supplier A-Z : fitur ini berfungsi untuk mengurutkan nama supplier dari A-Z
+• Function data suplier : fitur ini berfungsi untuk menampilkan data suplier sesuai database
+-->
 <?php
   include 'db.php';
   $cari = $_POST['cari'];
   $QuerySql = "SELECT `nama_obat`,`harga_obat`,`kode_obat`,`dosis_obat`,`nama_jenis`,`tanggal_kadaluarsa`,`bulan_kadaluarsa`,`tahun_kadaluarsa`,`Stok_Obat` FROM `obat`, `jenis_obat` WHERE nama_obat LIKE '%$cari%' AND jenis_obat.kode_jenis=obat.kode_jenis";
+  //query untuk menampilkan data obat yang dicari ditabel obat, dimana jika kita ketik A di kolom pencarian maka akan muncul data obat yang ada huruf A nya, tentu data obat yang ada di database yang muncul
+  //Mohamad rifky fajri 1700018239  
+
   $SQL = mysqli_query($connect, $QuerySql);
       if(mysqli_num_rows($SQL)>0){
 ?>
