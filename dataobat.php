@@ -19,6 +19,7 @@
 	include 'db.php';
 	$QuerySql = "SELECT * FROM `obat`, `jenis_obat` WHERE jenis_obat.kode_jenis=obat.kode_jenis order by Stok_Obat asc";
 	$SQL = mysqli_query($connect, $QuerySql); 
+//Function untuk menampilkan seluruh data obat yang ada >UTS Muhammad afrizal 1700018231
 //Function Sorting Stok Obat : dengan mengurutkan dengan query  dari yang terkecil sampai terbesar dari stok obat  -->UTS Arindra Wahyu C. K 1700018279
 ?> <!--Aditya Gusti Mandala Putra perbaiki query db.php-->
 <!--Muhammad Afrizal, membuat file function dataobat.php-->
