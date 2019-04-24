@@ -1,24 +1,38 @@
 <?php
 
+// Fitur POS, fitur untuk menjalankan fungsi kasir dan operasional penjualan apotik 
+
+// Nama  : Muhammad Ramon Saputra
+// NIM   : 1700018245
+// Kelas : E
+
+
+// library untuk koneksi ke database
+
 require_once "../library/inc.connection.php";
 require_once "../library/inc.library.php";
 
 opendb();
 
-#mencari item barang
+//mencari item barang
 	
 	$kdBarang=trim($_POST['kdBarang']);
 	$noFaktur=trim($_POST['noFaktur']);
 	$user_id=trim($_POST['userid']);
 	
 	$errMsg="";
-	
+
+//kode sql untuk memunculkan nama obat berdasar kode barang
+
+
 	$qri = "SELECT * FROM nama_obat WHERE kd_barang='$kdBarang' AND active='Y'";
 	$hsl = querydb($qri);
 	$row = numrows($hsl);
 	if($row>=1){
 		while($rek = arraydb($hsl)){
+
 			//cari data harga beli rata-rata untuk barang tsb. 
+
 			$qri2 = "SELECT * FROM stock_barang WHERE kd_barang='$kdBarang'";
 			$hsl2 = querydb($qri2);
 			$rek2 = arraydb($hsl2);
@@ -31,7 +45,7 @@ opendb();
 		
 		}
 	}else{
-	
+		
 		$errMsg  = "<div class=\"alert alert-danger alert-dismissible\" role=\"alert\">";
 		$errMsg .= "<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>";
 		$errMsg .= " Kode Barang : <b>$kdBarang</b> Tidak Ada dalam database !!!"; 
