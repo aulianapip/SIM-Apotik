@@ -1,9 +1,9 @@
 <?php
 
 //==================================
-// Nama : Azhaarudzdzikri Alfirdaus
-// NIM  : 1700018238
-// Kelas: E
+// Nama  : Azhaarudzdzikri Alfirdaus
+// NIM   : 1700018238
+// Kelas : E
 //==================================
  
  //-----------------------------------
