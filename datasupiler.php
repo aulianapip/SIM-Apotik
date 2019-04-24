@@ -1,7 +1,26 @@
+<!--1.  Pada kelompok gudang, kami telah membuat beberapa kelas yang mempunyai fungsi sebagai berikut:
+• Fungsi Sorting Nama Obat A-Z : fitur ini berfungsi mengurutkan nama obat sesuai alpabet dari awalan huruf A sampai awalan huruf Z.
+• Fungsi Sorting Jenis Obat Kapsul : fitur ini berfungsi mensorting obat yang berjenis kapsul untuk di tampilkan.
+• Fungsi Menampilkan seluruh data obat
+• Fungsi Tanggal pasok obat
+• Function Update Data Obat : Fitur ini berfungsi mengupdate perubahan yang telah kita tambah, Kurang, dan mengedit sesuai database
+• Function Stok Obat Menipis : Fitur ini berfungsi menandai tabel obat yang stoknya telah menipis
+• Function Pencarian  Data Tidak Ditemukan : fitur ini berfungsi  jika kita mencari obat atau supplier yang tidak ada didatabase
+• Function Sorting Tanggal Supplier : fitur ini berfungsi mensorting obat dengan tanggal pemasok supplier yang telah memasok obat dari tanggal terdahulu
+• Function Tambah Obat : fitur ini berfungsi untuk menambah data obat baru ke dalam tabel Obat
+• Function Tambah Supllier : fitur ini berfungsi untuk menambah data supllier baru ke tabel Supllier
+• Function Cari Obat : fitur ini berfungsi buat mencari data obat yang ada di tabel obat
+• Fuction Cari Supplier : fitur ini berfungsi mncari data supplier yang ada di tabel supplier
+• Function Sorting Nama Supplier A-Z : fitur ini berfungsi untuk mengurutkan nama supplier dari A-Z
+• Function data suplier : fitur ini berfungsi untuk menampilkan data suplier sesuai database
+• Function sorting obat mahal : fitur ini berfungsi untuk mengurutkan harga obat dari yang termahal
+-->
 <?php
 	include 'db.php';
 	$QuerySql = "SELECT `nama_pemasok`,`kode_obat`,`jumlah_pasok`,`nomer_telepon_supp`,`kode_pasok`,`harga_beli` FROM `supplier`";
 	$SQL = mysqli_query($connect, $QuerySql);
+//menampilkan nama pemasok, kode obat yang, jumlah pasok suplier, nomer telfon suplier, kode pasok dan harga beli dari pemasok yang sesuai dengan di database gudang 
+//Gifari Nanda Utama 1700018250
 ?>
 <!--Gifari Nanda Utama Yang Membuat Ini-->
 <!DOCTYPE html>
@@ -94,6 +113,14 @@
     </tr>
   </thead>
 		<?php
+//function ini untuk menampilkan nama pemasok, kode obat yang, jumlah pasok suplier, nomer telfon suplier, kode pasok dan harga beli dari pemasok yang sesuai dengan di database gudang 
+//Gifari Nanda Utama 1700018250
+//baris nama_pemasok untuk menampilkan nama pemasok sesuai dengan database
+//baris kode_obat untuk menampilkan kode obat sesuai dengan database
+//baris jumlah_pemasok untuk menampilkan jumlah pemasok yang ada sesuai dengan database
+//baris nomer_telepon_supp untuk menampilkan nomer telefon suplier sesuai dengan database
+//baris kode_pasok untuk menampilkan kode pasok obat sesuai dengan database
+//baris harga_beli untuk menampilkan harga beli obat dari suplier sesuai dengan database
 			foreach ($SQL as $key) {
 				echo "<tr>
 						<td>$key[nama_pemasok]</td>
