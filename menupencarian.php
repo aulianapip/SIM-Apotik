@@ -6,6 +6,16 @@
 <body bgcolor="lightblue">
 <h1>Keuntungan Tahun 2017	</h1>
 
+<- Fitur POS, fitur untuk menjalankan fungsi kasir dan operasional penjualan apotik ->
+
+// Nama  : Haykal Eka Putra Gultom
+// NIM   : 1700018226
+// Kelas : E
+
+// fungsi untuk pencarian berdasar tanggal
+
+
+// inputan tanggal awal dan akhir
 tanggal awal  : <input type="date" name="date1">
 tanggal akhir : <input type="date" name="date2">
 
@@ -14,10 +24,12 @@ tanggal akhir : <input type="date" name="date2">
 
 <?php 
 
+// mengambil data dari hasil inputan
+
 $date1=$_POST['date1'];
 $date2=$_POST['date2'];
 
-	$QueryString = "SELECT penjualan.tgl_penjualan AS Tanggal_beli, penjualan.no_transaksi AS Invoice, penjualan_detail.kd_barang AS Kode_Barang, nama_obat.nm_barang AS Nama_barang, penjualan_detail.harga AS Harga_satuan, penjualan_detail.jumlah AS Quantity, penjualan_detail.sub_total AS Sub_total FROM penjualan,penjualan_detail,nama_obat WHERE (penjualan.tgl_penjualan BETWEEN $date1 AND $date2) AND penjualan.id=penjualan_detail.id AND nama_obat.kd_barang=penjualan_detail.kd_barang;"
+	$QueryString = "SELECT penjualan.tgl_penjualan AS Tanggal_beli, penjualan.no_transaksi AS Invoice, penjualan_detail.kd_barang AS Kode_Barang, nama_obat.nm_barang AS Nama_barang, penjualan_detail.harga AS Harga_satuan, penjualan_detail.jumlah AS Quantity, penjualan_detail.sub_total AS Sub_total FROM penjualan,penjualan_detail,nama_obat WHERE (penjualan.tgl_penjualan BETWEEN $date1 AND $date2) AND penjualan.id=penjualan_detail.id AND nama_obat.kd_barang=penjualan_detail.kd_barang;"  // kode sql between untuk memunculkan data dari tanggal awal dan akhir
 
 	$SQL = mysqli_query($connect,$QueryString); ?>
 
