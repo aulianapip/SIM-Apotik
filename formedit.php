@@ -1,9 +1,10 @@
 <!-- 1. Fitur CRM atau disebut pelanggan. fitur ini digunakan untuk menginputkan data member yang akan digunakan di bagian kasir. jika pelanggan tersebut adalah member maka akan di kenakan diskon. -->
+<!-- 
+fitur ini berupa jika data member akan diedit user maka jendela akan beralih pada formedit.php ini -->
+ 
 <!-- fitur ini dikerjakan oleh rizka arnanda s 170001248
 	 di modifikasi query edit pelanggan oleh adelia f z 170001281
-	 menambahkan script css oleh Carto Ardiyanto 1700018283 
-	script validasi input ditambahkan oleh Alfian Noor 1700018233
-	-->
+	 menambahkan script css & alert oleh Carto Ardiyanto 1700018283 -->
 <?php
 	include "library/import.php";//Pemanggilan folder css,bootsrap dengan nama file import.php
 //

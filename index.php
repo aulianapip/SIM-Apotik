@@ -1,10 +1,14 @@
+<!-- fitur menampilkan semua data pelanggan yang tergabung dalam member, dan UI utama CRM menggantikan pelanggan.php-->
+
+
 <?php 
-    include('conect.php');
 
-    
-   if (isset($_POST['Cari'])) {
+    // query dan alert dikerjakan oleh rizka arnanda s 170001248 dan dimodify oleh carto ardiyanto 1700018283
 
-  if(isset($_GET['pesan'])){
+    include('conect.php');  // memanggil file connect.php untuk terhubung kedalam database
+   if (isset($_POST['Cari'])) {  // syntax post untuk mendapatkan data $tgl_awal dan $akhir yang nantinya digunakan untuk menampilkan data member berdasarkan rentang waktu terdaftar menjadi member
+
+  if(isset($_GET['pesan'])){ // line 10-24 untuk mendapatkan pesan jika setelah ditampilkan berdasarkan rentang waktu lalu ada yang akan di edit/ dihapus, setelah selesai mengedit dan menghapusnya akan keluar alert Berhasil dihapus jika Hapus dan Berhasil diupdate jika edit 
     $pesan=$_GET['pesan'];
     if($pesan=="Hapus"){
       echo "<center>
@@ -20,13 +24,13 @@
 
     }
   }
-    include 'fungsi_indotgl.php';
-    $tgl_awal= $_POST['tgl_awal'];
-    $tgl_akhir= $_POST['tgl_akhir'];
+    
+    $tgl_awal= $_POST['tgl_awal']; // variable berisi method post mendapatkan data tgl_awal user yang dipilih
+    $tgl_akhir= $_POST['tgl_akhir']; //variable berisi method post mendapatkan data tgl_akhir user yang dipilih
 
 
-  $q1="SELECT * from pelanggan where tgl_daftar between '$tgl_awal' and '$tgl_akhir'";
-  $SQL=mysqli_query($connect,$q1);
+  $q1="SELECT * from pelanggan where tgl_daftar between '$tgl_awal' and '$tgl_akhir'"; //query menampilkan data member berdasarkan rentang waktu
+  $SQL=mysqli_query($connect,$q1); // sebuah function untuk menjalankan query tsb
   
   }
   else if(isset($_POST['Refresh'])){
@@ -59,34 +63,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-  <script type="text/javascript">
-          $(document).ready(function(){
-            $("tgl_awal").datepicker({
-              altFormat:"dd MM yy",
-              changeMonth : true,
-              changeYear : true
-            });
-            $("#tgl_awal").change(function() {
-              $("#tgl_awal").datepicker("option","dateFormat","yy-mm-dd");
-            });
-          });
-        </script>
-        <script type="text/javascript">
-          $(document).ready(function(){
-            $("tgl_akhir").datepicker({
-              altFormat:"dd MM yy",
-              changeMonth : true,
-              changeYear : true
-            });
-            $("#tgl_awal").change(function() {
-              $("#tgl_akhir").datepicker("option","dateFormat","yy-mm-dd");
-            });
-          });
-          //line 4-26 dibuat rizka
-        </script>
-
     <title>CRM APOTEK</title>
-    <!--link boostrap-->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
       <meta name="description" content="Demo project with jQuery">
@@ -97,13 +74,8 @@
     <script type="text/javascript" charset="utf8" src="http://cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
     <link rel="stylesheet" type="text/css" href="style.css">
 <style type="text/css">
- 
-
-<!-- untuk bagian UI dikerjakan Aditiya Aziz saputra 17000182233 dan Alfian Noor 1700018233 -->
-
- <!-- ini merupakan fungsi dan query membuat bagian Navbar -->
 body{
-  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif; 
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
   border-collapse: collapse;
   width: 100%;
 }
@@ -134,38 +106,36 @@ label {
 
 }
 }
-
 </style>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
 * {box-sizing: border-box;}
-<!-- Mengatur Layout Dengan CSS -->
+
 body { 
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
 }
-
 .btn-primary.active, .btn-primary:active, .open>.dropdown-toggle.btn-primary {
     color: black;
     background-color: pink;
-    background-image: none; <!-- untuk menentukan waran back ground -->
-    border-color: #ddd; <!-- untuk warna pebatas-->
+    background-image: none;
+    border-color: #ddd;
 }
-<!-- ini merupakan fungsi dan query membuat bagian Navbar -->
 .header {
   overflow: hidden;
   background-color: pink;
   padding: 20px 10px;
 }
-.header a {   <!-- fungsi untuk bagian header tampilan-->
+
+.header a {
   float: left;
-  color: black; <!-- untuk bagian  warna : hitam-->
-  text-align: center; <!-- untuk perataan texs : tengah -->
-  padding: 12px;    
-  text-decoration: none; <!-- untuk teks-dekorasi : tidak ada-->
-  font-size: 18px;  <!-- untuk ukuran huruf-->
-  line-height: 25px;  <!-- garis tinggi-->
-  border-radius: 4px; <!-- batas-rasius-->
+  color: black;
+  text-align: center;
+  padding: 12px;
+  text-decoration: none;
+  font-size: 18px; 
+  line-height: 25px;
+  border-radius: 4px;
 }
 
 .header a.logo {
@@ -217,33 +187,34 @@ body {
        <form method="post" action="index.php">
   <div>
 
- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"> <!-- memanggil bootsrap -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> <!-- line  192-192 pemanggilan jquery -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 
-    <div class="dropdown">
-    <button class="btn btn-primary "  data-toggle="dropdown">Cari Berdasarkan rentang tanggal
-    <span class="caret"></span></button>
-    <ul class="dropdown-menu" >
+    <div class="dropdown"> <!-- bootsrap untuk pop up dropdown -->
+    <button class="btn btn-primary "  data-toggle="dropdown">Cari Berdasarkan rentang tanggal 
+    <span class="caret"></span></button> <!-- button dengan bootsrap -->
+    <ul class="dropdown-menu" > <!--  bootsrap menu (pop up) -->
       <li>
-      <label for="tgl_awal">Dari Tanggal</label>
-      <input type="date" id="tgl_awal" name="tgl_awal">&nbsp;
+      <label for="tgl_awal">Dari Tanggal</label>      
+      <input type="date" id="tgl_awal" name="tgl_awal">&nbsp; <!-- input untuk data dari tanggal (mulai tanggal rentang) -->
       <label for="tgl_akhir">Sampai Tanggal</label>
-      <input type="date" id="tgl_akhir" name="tgl_akhir"> 
+      <input type="date" id="tgl_akhir" name="tgl_akhir"> <!-- input data sampai tanggal rentang -->
       </li>
       
         <ul>
-      <input type="submit" name="Cari" value="Cari" class="button"> <!--dibuat  carto -->
+      <input type="submit" name="Cari" value="Cari" class="button">  <!-- button submit  -->
       </ul>
       <ul>
-      <a href="index.php"><input type="submit"  value="Refresh" class="button"></input></a><!-- dibuat carto -->  
+      <a href="index.php"><input type="submit"  value="Refresh" class="button"></input></a> <!-- sebuah button untuk kembali ke tampilan keseluruhan data member  -->
+      <!-- line 190-210 dibuat rizka arnanda s 170001248 dan dimodify oleh Carto Ardiyanto, modifikasi meliputi ui bootsrap, dan refrsh -->
       </ul>
     </ul>  
  
  </div>
  <br>
 <a href="selectdelete.php">PILIH</a>
-  <!-- line 138-142 dibuat rizka -->
+
   
   
  </div>
