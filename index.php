@@ -86,6 +86,7 @@
         </script>
 
     <title>CRM APOTEK</title>
+    <!--link boostrap-->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
       <meta name="description" content="Demo project with jQuery">
@@ -96,8 +97,13 @@
     <script type="text/javascript" charset="utf8" src="http://cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
     <link rel="stylesheet" type="text/css" href="style.css">
 <style type="text/css">
+ 
+
+<!-- untuk bagian UI dikerjakan Aditiya Aziz saputra 17000182233 dan Alfian Noor 1700018233 -->
+
+ <!-- ini merupakan fungsi dan query membuat bagian Navbar -->
 body{
-  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif; 
   border-collapse: collapse;
   width: 100%;
 }
@@ -128,36 +134,38 @@ label {
 
 }
 }
+
 </style>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
 * {box-sizing: border-box;}
-
+<!-- Mengatur Layout Dengan CSS -->
 body { 
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
 }
+
 .btn-primary.active, .btn-primary:active, .open>.dropdown-toggle.btn-primary {
     color: black;
     background-color: pink;
-    background-image: none;
-    border-color: #ddd;
+    background-image: none; <!-- untuk menentukan waran back ground -->
+    border-color: #ddd; <!-- untuk warna pebatas-->
 }
+<!-- ini merupakan fungsi dan query membuat bagian Navbar -->
 .header {
   overflow: hidden;
   background-color: pink;
   padding: 20px 10px;
 }
-
-.header a {
+.header a {   <!-- fungsi untuk bagian header tampilan-->
   float: left;
-  color: black;
-  text-align: center;
-  padding: 12px;
-  text-decoration: none;
-  font-size: 18px; 
-  line-height: 25px;
-  border-radius: 4px;
+  color: black; <!-- untuk bagian  warna : hitam-->
+  text-align: center; <!-- untuk perataan texs : tengah -->
+  padding: 12px;    
+  text-decoration: none; <!-- untuk teks-dekorasi : tidak ada-->
+  font-size: 18px;  <!-- untuk ukuran huruf-->
+  line-height: 25px;  <!-- garis tinggi-->
+  border-radius: 4px; <!-- batas-rasius-->
 }
 
 .header a.logo {
