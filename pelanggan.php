@@ -29,15 +29,13 @@
 
 
 
-<!-- untuk bagian UI dikerjakan Aditiya Aziz saputra 17000182233 dan Alfian Noor 1700018233 -->
-
+<!-- untuk bagian UI dikerjakan oleh Alfian Noor 1700018233->
 
 <!-- Mengatur Layout Dengan CSS -->
-<link rel="stylesheet" type="text/css" href="style.css">  <--! untuk link css -->
+<link rel="stylesheet" type="text/css" href="style.css"> <!-- untuk link css -->  
 <style type="text/css">
 body{
-  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif; <!-- untuk jenis huruf -->
-  border-collapse: collapse;
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif; /*untuk jenis huruf*/   border-collapse: collapse;
   width: 100%;
 }
 
@@ -50,16 +48,16 @@ body{
 }
 
  tr:nth-child(even){background-color: #f2f2f2;}   
-<!-- Salah satu cara untuk meningkatkan keterbacaan tabel besar adalah dengan mewarnai baris bergantian -->
+/*Salah satu cara untuk meningkatkan keterbacaan tabel besar adalah dengan mewarnai baris bergantian*/ 
 
  tr:hover {background-color: #ddd;}
- <!--menambahkannya ke baris tabel menggunakan aturan stylesheet -->
+ /*menambahkannya ke baris tabel menggunakan aturan stylesheet */
 
  th {
   padding-top: 12px;
   padding-bottom: 12px;
-  text-align: left;   <!-- fungsi untuk membuat perataan teks bagian kiri-->
-  background-color: #4CAF50; <!-- untuk pewarnaan backg round: --!>
+  text-align: left;   /*fungsi untuk membuat perataan teks bagian kiri*/
+  background-color: #4CAF50;  /*untuk pewarnaan backg round*/
   color: white;
 }
 }
@@ -165,8 +163,6 @@ body{
 	?>
 
 	
-
-
 	</tr>
 
 </table>
