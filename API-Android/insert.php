@@ -7,7 +7,7 @@
 // Kelas : E
 
 
-// library untuk koneksi ke database
+// library untuk koneksi ke database nya
 
 require_once "../library/inc.connection.php";
 require_once "../library/inc.library.php";
