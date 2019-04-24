@@ -14,7 +14,7 @@
     <!--Membuat Navbar --------------------------------------->
 <nav class="nav-extended">
     <div class="nav-wrapper">
-<a href="#" class="brand-logo center">ANALITIK</a></nav>
+<a href="#" class="brand-logo center">ANALITIK</a></nav><!--Membuat Logo Analitik--------------------------------------->
 </div>
 
 <!--Membuat Pilihan Data Yang Mau di Analisis ---------------->
@@ -27,8 +27,11 @@
         </div>
         <div class="card-action">
           <center>
+<!--Memanggil supply.php--------------------------------------->
         <a href="supply.php" class="waves-effect waves-light btn-small">Grafik Data Supplier</a>
-	  	<a href="GRAFIK_SUPPLIER_FAOBAT_JUMLAH_PASOK_BERDASARKAN_TAHUN.php" class="waves-effect waves-light btn-small">GRAFIK JUMLAH PASOK BERDASARKAN WAKTU</a>
+<!--Memanggil GRAFIK_SUPPLIER_FAOBAT_JUMLAH_PASOK_BERDASARKAN_TAHUN.php--------------------------------------->
+	<a href="GRAFIK_SUPPLIER_FAOBAT_JUMLAH_PASOK_BERDASARKAN_TAHUN.php" class="waves-effect waves-light btn-small">GRAFIK JUMLAH PASOK BERDASARKAN WAKTU</a>
+<!--Memanggil GRAFIK_TOTAL_PASOK_SELURUH_SUPPLIER_2019.php--------------------------------------->
         <a href="GRAFIK_TOTAL_PASOK_SELURUH_SUPPLIER_2019.php" class="waves-effect waves-light btn-small">GRAFIK STOCK DARI KESELURUHAN SUPPLIER
 TAHUN 2019</a>
 	</center>
@@ -47,7 +50,9 @@ TAHUN 2019</a>
         </div>
         <div class="card-action">
           <center>
+<!--Memanggil obat.php--------------------------------------->
           		<a href="obat.php" class="waves-effect waves-light btn-small">Grafik Data Obat</a>
+<!--Memanggil TABEL OBAT BERDASARKAN TAHUN KADALUARSA.php--------------------------------------->
           		<a href="TABEL OBAT BERDASARKAN TAHUN KADALUARSA.php" class="waves-effect waves-light btn-small">Grafik Kadaluarsa</a>
         </div>
       </div>
