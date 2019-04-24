@@ -1,9 +1,9 @@
 <!-- 1. Fitur CRM atau disebut pelanggan. fitur ini digunakan untuk menginputkan data member yang akan digunakan di bagian kasir. jika pelanggan tersebut adalah member maka akan di kenakan diskon. -->
- 
+
 <!-- 
 fitur ini dikerjakan oleh adelia fitriawati z 1700018281
 query dan ui dimodifikasi oleh Carto Ardiyanto 1700018283
-validasi dikerjakan oleh Alfian Noor
+Dan untuk query input tidak boleh kosong data di kerjakan Alfian Noor 1700018233
  -->
 <?php
 	include "library/import.php"; //Pemanggilan link untuk css,bootsrap dengan file name bernama import.php
@@ -61,6 +61,7 @@ include ('header.php'); //pemanggilan untuk bagian header dengan nama file heade
 		<tr>
 			<td><label for="Alamat">Alamat</label> <!-- label tersebut untuk control yang memiliki id name alamat -->
      		<textarea class="form-control" rows="5" id="Alamat" name="Alamat" required oninvalid="this.setCustomValidity('Alamat tidak boleh kosong')" oninput="setCustomValidity('')"></textarea> <!-- karena alamat disini membutuhkan inputan yang panjang maka digunakan textarea, dengan ketentuan class form contol untuk inisialisasi class css. dengan row 5. id digunakan untuk memanggil value yang sudah di inisialisasi sebelumnya yaitu id=email. dan name digunakan untuk inisialisasi. required oninvalid disini adalah alert yang jika kita tidak mengisi kolom tersebut maka akan muncul alert yang mengatakan "nama tidak boleh kosong" dan jika oninput maka tidak akan keluar alertrequired oninvalid disini adalah alert yang jika kita tidak mengisi kolom tersebut maka akan muncul alert yang mengatakan "nama tidak boleh kosong" dan jika oninput maka tidak akan keluar alert -->
+
 		</tr>
 
 	</table><br>
