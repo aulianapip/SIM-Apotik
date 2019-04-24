@@ -1,7 +1,7 @@
 <?php 
-// Nama : Meliya Kurniasari
-// NIM  : 1700018244
-// Kelas: E
+// Nama  : Meliya Kurniasari
+// NIM   : 1700018244
+// Kelas : E
 
 // Fungsi grafik obat kadaluarsa berdasarkan bulan ditahun 2019
 
