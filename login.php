@@ -1,19 +1,26 @@
 <?php
- session_start();
+// Fitur POS, fitur untuk menjalankan fungsi kasir dan operasional penjualan apotik ->
 
+// Nama  : Falakh Burhanuddin S
+// NIM   : 1700018227
+// Kelas : E
+
+
+ session_start();
+//untuk menghubungkan ke database sim-apotik
  require_once "library/inc.connection.php";
  require_once "library/inc.library.php";
  opendb();
-//cari data toko
+//menampilkan data toko
    $qri = "SELECT * FROM nama_toko";
    $res = querydb($qri);
    $rec = arraydb($res);
-   $namaToko = $rec['nm_toko'];
-   $alamatToko = $rec['almt_toko'];
-   $kota = $rec['kota'];
-   $logoToko   = $rec['logo'];
-   $telpToko   = $rec['tlp_toko'];
-   $faxToko   = $rec['fax_toko'];
+   $namaToko = $rec['nm_toko']; //mengambil nama toko dari database
+   $alamatToko = $rec['almt_toko']; //mengambil alamat toko dari database
+   $kota = $rec['kota']; //mengambil nama kota toko dari database
+   $logoToko   = $rec['logo']; //mengambil logo toko dari database
+   $telpToko   = $rec['tlp_toko']; //mengambil nomortelpon toko dari database
+   $faxToko   = $rec['fax_toko']; //mengambil nomorfax toko dari database
 
  //cari data user 
  
@@ -30,7 +37,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes"> 
     
-<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" /> <!--memanggil css dari botstraps-->
 <link href="css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css" />
 
 <link href="css/font-awesome.css" rel="stylesheet">
@@ -47,7 +54,7 @@
 </head>
 
 <body>
-	<div class="navbar navbar-fixed-top">
+	<div class="navbar navbar-fixed-top"> <!--menampilkan navigation bar-->
 	<div class="navbar-inner">
 		<div class="container">
 			<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
