@@ -1,4 +1,7 @@
+<?php
+	include "library/import.php";
 
+?>
 <html>
 <head>	
 	<title>Edit User Data</title>
@@ -20,33 +23,38 @@
 	<form method="POST" action="edit.php?ID=<?php echo $a['ID'];?>"><center>
 		<b><h1><center><font face="Bebas" size="">EDIT DATA</font></h1></b>
 		<br>
-		<table>
-		<TR>
-			<TD>ID</TD>
-			<td>:</td>
-			<td><input type="text" name="ID" disabled value="<?php echo $a['ID']; ?>" /></td>
-		</TR>
-		<tr><td>Nama</td>
-		<td> : </td>
-		<td><input class="form-control" type="text" name="Nama" value="<?php echo $a['Nama']; ?>"></td></tr>
-		<tr><td>JK</td>
-		<td> : </td>
-		<td><select name="jeniskelamin" >
-			<option value="1">Laki-Laki</option>
-			<option value="2">Perempuan</option></td>
+		<table width="45%" >
+		<tr>
+			 <td><label for="kode_obat">ID</label>
+     			 <input type="text" disabled class="form-control" id="kode_obat" name="Nama" required oninvalid="this.setCustomValidity('Nama tidak boleh kosong')" value="<?php echo $a['ID']; ?>" oninput="setCustomValidity('')"></td>
 		</tr>
-		<tr><td>NoHP</td>
-		<td> : </td>
-		<td><input class="form-control" type="text" name="NoHP" value="<?php echo $a['NoHP'];?>"></td></tr>
-		<tr><td>Email</td>
-		<td> : </td>
-		<td><input class="form-control" type="text" name="Email" value="<?php echo $a['Email'];?>"></td></tr>
-		<tr><td>Alamat</td>
-		<td> : </td>
-		<td><input class="form-control" type="text" name="Alamat" value="<?php echo $a['Alamat'];?>"></td></tr>
+		<tr>
+			 <td><label for="kode_obat">Nama</label>
+     			 <input type="text" class="form-control" id="kode_obat" name="Nama" required oninvalid="this.setCustomValidity('Nama tidak boleh kosong')" value="<?php echo $a['Nama']; ?>" oninput="setCustomValidity('')"></td>
+		</tr>
+		<tr>
+			  <td><label for="status" name="Jk">Jenis Kelamin</label>
+  				<select name="Jk" class="form-control" id="Jk">
+  				  	 <option >Laki-Laki</option>
+   					 <option >Perempuan</option>
+ 				 </select></td>
+		</tr>
+		<tr>
+			<td><label for="kode_obat">Nomor Handphone</label>
+     			 <input type="text" class="form-control" id="Nama Obat" name="NoHP" value="<?php echo $a['NoHP'];?>" required oninvalid="this.setCustomValidity('Nomor Handphone tidak boleh kosong')" oninput="setCustomValidity('')"></td>
+		</tr>
 		
+		<tr>
+			<td><label for="harga_obat">Email</label>
+     		<input type="text" class="form-control" id="harga obat" value="<?php echo $a['Email'];?>" name="Email" required oninvalid="this.setCustomValidity('Email tidak boleh kosong')" oninput="setCustomValidity('')"></td>
+		</tr>
+		<tr>
+			<td><label for="harga_obat">Alamat</label>
+     		<textarea class="form-control" rows="5" id="Alamat" name="Alamat" required oninvalid="this.setCustomValidity('Alamat tidak boleh kosong')" oninput="setCustomValidity('')"><?php echo $a['Alamat'];?></textarea>
+		</tr>
 
-	</table>
+	</table><br>
+		
 	<table>
 		<button a href="inputdata.php"><input type="submit" name="Kirim" value="Edit" class="button" >
 	</button>

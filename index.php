@@ -214,7 +214,7 @@ body {
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 
     <div class="dropdown">
-    <button class="btn btn-primary "  data-toggle="dropdown">Cari rentang tanggal
+    <button class="btn btn-primary "  data-toggle="dropdown">Cari Berdasarkan rentang tanggal
     <span class="caret"></span></button>
     <ul class="dropdown-menu" >
       <li>

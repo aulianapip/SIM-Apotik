@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 07 Apr 2019 pada 04.28
--- Versi server: 10.1.31-MariaDB
--- Versi PHP: 7.2.3
+-- Generation Time: Apr 13, 2019 at 09:30 AM
+-- Server version: 10.1.31-MariaDB
+-- PHP Version: 7.2.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -25,7 +25,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `jenis_obat`
+-- Table structure for table `jenis_obat`
 --
 
 CREATE TABLE `jenis_obat` (
@@ -35,7 +35,7 @@ CREATE TABLE `jenis_obat` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `jenis_obat`
+-- Dumping data for table `jenis_obat`
 --
 
 INSERT INTO `jenis_obat` (`kd_satuan`, `nm_satuan`, `active`) VALUES
@@ -52,7 +52,7 @@ INSERT INTO `jenis_obat` (`kd_satuan`, `nm_satuan`, `active`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `nama_obat`
+-- Table structure for table `nama_obat`
 --
 
 CREATE TABLE `nama_obat` (
@@ -66,7 +66,7 @@ CREATE TABLE `nama_obat` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `nama_obat`
+-- Dumping data for table `nama_obat`
 --
 
 INSERT INTO `nama_obat` (`kd_barang`, `nm_barang`, `kd_satuan`, `kd_kategori`, `hrg_jual`, `hrg_beli`, `active`) VALUES
@@ -78,7 +78,7 @@ INSERT INTO `nama_obat` (`kd_barang`, `nm_barang`, `kd_satuan`, `kd_kategori`, `
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `nama_toko`
+-- Table structure for table `nama_toko`
 --
 
 CREATE TABLE `nama_toko` (
@@ -92,7 +92,7 @@ CREATE TABLE `nama_toko` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `nama_toko`
+-- Dumping data for table `nama_toko`
 --
 
 INSERT INTO `nama_toko` (`kd_toko`, `nm_toko`, `almt_toko`, `kota`, `tlp_toko`, `fax_toko`, `logo`) VALUES
@@ -101,7 +101,7 @@ INSERT INTO `nama_toko` (`kd_toko`, `nm_toko`, `almt_toko`, `kota`, `tlp_toko`, 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `nama_user`
+-- Table structure for table `nama_user`
 --
 
 CREATE TABLE `nama_user` (
@@ -114,7 +114,7 @@ CREATE TABLE `nama_user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `nama_user`
+-- Dumping data for table `nama_user`
 --
 
 INSERT INTO `nama_user` (`id_user`, `nm_lengkap`, `nm_user`, `password`, `akses`, `active`) VALUES
@@ -125,7 +125,7 @@ INSERT INTO `nama_user` (`id_user`, `nm_lengkap`, `nm_user`, `password`, `akses`
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `pelanggan`
+-- Table structure for table `pelanggan`
 --
 
 CREATE TABLE `pelanggan` (
@@ -139,17 +139,25 @@ CREATE TABLE `pelanggan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `pelanggan`
+-- Dumping data for table `pelanggan`
 --
 
 INSERT INTO `pelanggan` (`tgl_daftar`, `ID`, `Nama`, `Jk`, `NoHp`, `Email`, `Alamat`) VALUES
-('2019-04-01', 1, 'Carto Ardiyanto', '', '089604943794', 'zone9robe@gmail.com', 'Ds Kertawinangun'),
-('2019-04-07', 2, 'danial', 'Laki-Laki', '0892131112', 'zadsa@gmail.com', 'adsaadasadadas');
+('2019-04-07', 1001, 'adelia', 'Perempuan', '089550786432', 'adeliafitriawati29@gmail.com', 'jogja'),
+('2019-04-07', 1002, 'rizka', 'Perempuan', '089554321768', 'rizka05081999@gmail.com', 'jogja'),
+('2019-04-07', 1003, 'carto', 'Laki-Laki', '085324798655', 'zone9robe@gmail.com', 'jogja'),
+('2019-04-07', 1004, 'wais', 'Laki-Laki', '089765432167', 'w.alqorni240@gmail.com', 'jogja'),
+('2019-04-07', 1005, 'putra', 'Laki-Laki', '087654344518', 'putraaditya1877@gmail.com', 'jogja'),
+('2019-04-07', 1006, 'ripki', 'Laki-Laki', '087890012567', 'muhammadrifkifajri@gmail.com', 'jogja'),
+('2019-04-07', 1007, 'herni', 'Perempuan', '081324555789', 'hernism7@gmail.com', 'jogja'),
+('2019-04-07', 1008, 'amanda', 'Perempuan', '082313555777', 'fahmidyna25@gmail.com', 'jogja'),
+('2019-04-07', 1009, 'cendani', 'Perempuan', '081325777834', 'cendaniasih@gmail.com', 'jogja'),
+('2019-04-07', 1010, 'yoga', 'Laki-Laki', '085667834236', 'yogazah@gmail.com', 'jogja');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `penjualan`
+-- Table structure for table `penjualan`
 --
 
 CREATE TABLE `penjualan` (
@@ -162,7 +170,7 @@ CREATE TABLE `penjualan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `penjualan`
+-- Dumping data for table `penjualan`
 --
 
 INSERT INTO `penjualan` (`id`, `no_transaksi`, `no_faktur`, `tgl_penjualan`, `total_penjualan`, `user`) VALUES
@@ -172,7 +180,7 @@ INSERT INTO `penjualan` (`id`, `no_transaksi`, `no_faktur`, `tgl_penjualan`, `to
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `penjualan_detail`
+-- Table structure for table `penjualan_detail`
 --
 
 CREATE TABLE `penjualan_detail` (
@@ -186,7 +194,7 @@ CREATE TABLE `penjualan_detail` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `penjualan_detail`
+-- Dumping data for table `penjualan_detail`
 --
 
 INSERT INTO `penjualan_detail` (`id`, `no_transaksi`, `kd_barang`, `jumlah`, `harga`, `sub_total`, `hrg_pokok`) VALUES
@@ -196,7 +204,7 @@ INSERT INTO `penjualan_detail` (`id`, `no_transaksi`, `kd_barang`, `jumlah`, `ha
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `penjualan_tmp`
+-- Table structure for table `penjualan_tmp`
 --
 
 CREATE TABLE `penjualan_tmp` (
@@ -215,73 +223,73 @@ CREATE TABLE `penjualan_tmp` (
 --
 
 --
--- Indeks untuk tabel `jenis_obat`
+-- Indexes for table `jenis_obat`
 --
 ALTER TABLE `jenis_obat`
   ADD PRIMARY KEY (`kd_satuan`);
 
 --
--- Indeks untuk tabel `nama_obat`
+-- Indexes for table `nama_obat`
 --
 ALTER TABLE `nama_obat`
   ADD PRIMARY KEY (`kd_barang`);
 
 --
--- Indeks untuk tabel `nama_toko`
+-- Indexes for table `nama_toko`
 --
 ALTER TABLE `nama_toko`
   ADD PRIMARY KEY (`kd_toko`);
 
 --
--- Indeks untuk tabel `nama_user`
+-- Indexes for table `nama_user`
 --
 ALTER TABLE `nama_user`
   ADD PRIMARY KEY (`id_user`);
 
 --
--- Indeks untuk tabel `pelanggan`
+-- Indexes for table `pelanggan`
 --
 ALTER TABLE `pelanggan`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Indeks untuk tabel `penjualan`
+-- Indexes for table `penjualan`
 --
 ALTER TABLE `penjualan`
   ADD PRIMARY KEY (`id`),
   ADD KEY `no_faktur` (`no_faktur`);
 
 --
--- Indeks untuk tabel `penjualan_detail`
+-- Indexes for table `penjualan_detail`
 --
 ALTER TABLE `penjualan_detail`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `penjualan_tmp`
+-- Indexes for table `penjualan_tmp`
 --
 ALTER TABLE `penjualan_tmp`
   ADD PRIMARY KEY (`id`),
   ADD KEY `no_faktur` (`no_faktur`);
 
 --
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT untuk tabel `pelanggan`
+-- AUTO_INCREMENT for table `pelanggan`
 --
 ALTER TABLE `pelanggan`
-  MODIFY `ID` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `ID` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1011;
 
 --
--- AUTO_INCREMENT untuk tabel `penjualan`
+-- AUTO_INCREMENT for table `penjualan`
 --
 ALTER TABLE `penjualan`
   MODIFY `id` double NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
--- AUTO_INCREMENT untuk tabel `penjualan_detail`
+-- AUTO_INCREMENT for table `penjualan_detail`
 --
 ALTER TABLE `penjualan_detail`
   MODIFY `id` double NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;

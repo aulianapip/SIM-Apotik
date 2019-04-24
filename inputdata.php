@@ -14,7 +14,7 @@ include ('header.php');
 		$Alamat = $_POST['Alamat'];
 		
 
-		$QuerySql = "INSERT INTO pelanggan VALUES(now(),null,'$Nama','$Jk','$NoHP','$Email', '$Alamat')";
+		$QuerySql = "INSERT INTO pelanggan VALUES(now(),NULL,'$Nama','$Jk','$NoHP','$Email', '$Alamat')";
 		$SQL = mysqli_query($connect,$QuerySql);
 
 		echo "<script>alert('Input data baru sukses!!!');window.location='index.php'</script>";
@@ -38,11 +38,9 @@ include ('header.php');
 		</tr>
 		<tr>
 			  <td><label for="status" name="Jk">Jenis Kelamin</label>
-  				<select name="jenis_obat" class="form-control" id="jenis_obat">
-  				  	 <option value="1">Laki-Laki</option>
-   					 <option value="2">Perempuan</option>
-   					 
-    				 
+  				<select name="Jk" class="form-control" id="Jk">
+  				  	 <option >Laki-Laki</option>
+   					 <option >Perempuan</option>
  				 </select></td>
 		</tr>
 		<tr>

@@ -4,7 +4,7 @@
 		
 		$ID=$_GET['ID'];
 		$Nama= $_POST['Nama'];
-		$jeniskelamin = $_POST['jeniskelamin'];
+		$jeniskelamin = $_POST['Jk'];
 		$NoHP= $_POST['NoHP'];
 		$Email = $_POST['Email'];
 		$Alamat = $_POST['Alamat'];
