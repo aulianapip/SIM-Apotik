@@ -4,7 +4,7 @@
 <head>  <script type="text/javascript">
         	$(document).ready(function(){
         		$("tgl_awal").datepicker({
-        			altFormat:"dd MM yy",
+        			altFormat:"dd MM yy", //format tanggal-bulat-tahun
         			changeMonth : true,
         			changeYear : true
         		});
@@ -24,7 +24,7 @@
         			$("#tgl_akhir").datepicker("option","dateFormat","yy-mm-dd");
         		});
         	});
-        	//line 4-26 dibuat rizka
+        	//line 4-26 dibuat rizka arnanda menggunakan script bootstrap datepicker
         </script>
 <link rel="stylesheet" type="text/css" href="style.css">
 <style type="text/css">
@@ -80,9 +80,9 @@ body{
 
 		}
 	}
-		include 'fungsi_indotgl.php';
-		$tgl_awal= $_POST['tgl_awal'];//sintaks yang berfungsi untuk sebagai inisial yang akan menyimpan nilai atau value
-		$tgl_akhir= $_POST['tgl_akhir'];//sintaks yang berfungsi untuk sebagai inisial yang akan menyimpan nilai atau value
+
+		$tgl_awal= $_POST['tgl_awal'];//method yang berfungsi untuk sebagai inisial yang akan menyimpan nilai atau value
+		$tgl_akhir= $_POST['tgl_akhir'];//method yang berfungsi untuk sebagai inisial yang akan menyimpan nilai atau value
 
 
 	$q1="SELECT * from pelanggan where tgl_daftar between '$tgl_awal' and '$tgl_akhir'";
@@ -160,13 +160,13 @@ body{
 
 <br>
 <br>
-<form method="post" action="pelanggan.php">
+<form method="post" action="pelanggan.php"><!-- untuk mengirimkan nilai dari value yang akan dimasukan, dan action disini berguna sebagai navigator -->
 	<div><label for="tgl_awal">Dari Tanggal</label>
-		<input type="date" id="tgl_awal" name="tgl_awal">&nbsp;
+		<input type="date" id="tgl_awal" name="tgl_awal">&nbsp; <!--menampilkan datepicker -->
 		<label for="tgl_akhir">Sampai Tanggal</label>
-		<input type="date" id="tgl_akhir" name="tgl_akhir">
+		<input type="date" id="tgl_akhir" name="tgl_akhir"><!--menampilkan datepicker -->
 	</div>
-	<!-- line 159-164 dibuat rizka -->
+	<!-- line 163-168 dibuat rizka -->
 	<button>
 	<input type="submit" name="Cari" value="Cari" class="button"> <!--dibuat  carto -->
 	<!-- tombol input dengan type submit dan value=cari -->
