@@ -1,11 +1,18 @@
+<!-- 1. Fitur CRM atau disebut pelanggan. fitur ini digunakan untuk menginputkan data member yang akan digunakan di bagian kasir. jika pelanggan tersebut adalah member maka akan di kenakan diskon. -->
+
+<!-- 
+fitur ini dikerjakan oleh Herni Sartika Manalu 1700018285
+ui dimodifikasi oleh Carto Ardiyanto 1700018283
+ -->
+
 <!DOCTYPE html>
 <?php
-	include "library/import.php";
+	include "library/import.php";//Pemanggilan folder css,bootsrap dengan nama file import.php
 
 ?>
 <html>
 <head>
-	<title>Hapus Banyak Data</title>
+	<title>Hapus Banyak Data</title><!--Membuat judul -->
 	<link rel="stylesheet" type="text/css" href="style.css">
 	<style>
 * {box-sizing: border-box;}
@@ -78,11 +85,11 @@ body {
     <a href="inputdata.php">Input Data</a>
 </div>
 <br><br><br><br>
-	<form action="deleteselect.php" method="post">		
-		<table border="1" class="table">
+	<form action="deleteselect.php" method="post"> <!--untuk memproses pengahpusan multiple data  dengan folder deleteselect -->		
+		<table border="1" class="table">/
 			<tr>
-			<td>Tanggal Terdaftar</td>
-			<td>ID</td>
+			<td>Tanggal Terdaftar</td> <!--Membuat tabel untuk menampilkan data yang ada pada database -->
+			<td>ID</td> 
 			<td>Nama</td>
 			<td>Jk</td>
 			<td>NoHp</td>
@@ -91,14 +98,14 @@ body {
 			<td colspan="2">OPSI</td>
 			</tr>
 			<?php 
-			include "conect.php";
-			$QuerySql = "SELECT * FROM pelanggan";
-			$Data = mysqli_query($connect, $QuerySql);
+			include "conect.php"; //untuk menyambungkan ke database yang sudah dibuat dengan nama folder conect.php
+			$QuerySql = "SELECT * FROM pelanggan"; //semua data dari database tabel pelanggan dipanggil
+			$Data = mysqli_query($connect, $QuerySql);//merupakan perintah untuk menjalankan sintaks yang ada di querySql
 		
-			while($d = mysqli_fetch_array($Data)){
+			while($d = mysqli_fetch_array($Data)){ //data dimasukkan kedalam array untuk di proses
 			?>
 			<tr>
-				<td><?php echo $d['tgl_daftar']; ?></td>
+				<td><?php echo $d['tgl_daftar']; ?></td> <!--Menampilkan data dengan tabel sesuai dengan data yang ada pada database -->
 				<td><?php echo $d['ID']; ?></td>	
 				<td><?php echo $d['Nama']; ?></td>
 				<td><?php echo $d['Jk']; ?></td>	
@@ -109,7 +116,7 @@ body {
 			</tr>
 			<?php } ?>
 		</table>
-		<input type="submit" name="hapus" value="Hapus">
+		<input type="submit" name="hapus" value="Hapus"> <!--akan diproses melalui folder deleteselect dan di kirim untuk proses multiple delete -->
 		<a href="index.php"><input type="image" width="20%" src="refresh.png" name="Refresh" class="button"></a>
 		
 	</form>
