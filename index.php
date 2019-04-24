@@ -3,6 +3,7 @@
     <!--UI DESIGNER
     	Nama : Baharuddin Izha Al Sya'na
         Nim  : 1700018257
+	Kelas : E
         ---------------->
         <title></title>
         <script type="text/javascript" src="Chart.js/Chart.js"></script>
