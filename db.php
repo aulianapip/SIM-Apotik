@@ -1,4 +1,4 @@
-<!--Aditya Gusti Mandala Putra-->
+<!--Aditya Gusti Mandala Putra--> 
 <?php
 
 	$connect = new mysqli("localhost", "root", "", "SIM-Apotek");
