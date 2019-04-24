@@ -1,7 +1,21 @@
 <?php
+
+//Fitur POS, fitur untuk menjalankan fungsi kasir dan operasional penjualan apotik 
+
+// Nama  : Nurul Ika Praptiwi
+// NIM   : 1700018254
+// Kelas : E
+
+
+//library untuk menghubungkan ke database
+
 require_once "library/inc.connection.php";
 require_once "library/inc.library.php";
 opendb();
+
+
+
+//percabangan untuk validasi apakah username dan pasword sudah terdaftar
 
 if(isset($_POST['checkUser']))
 {	
@@ -20,6 +34,8 @@ if(isset($_POST['checkUser']))
 		$stmt->store_result();
 		$row = $stmt->num_rows;
 		
+		//percabangan apabila user tidak ada
+
 		if($row<1)
 		{
 
@@ -34,6 +50,8 @@ if(isset($_POST['checkUser']))
 			$stmt->bind_result($uid,$name, $pw,$akses);
 			$rek = $stmt->fetch();
 			
+
+		// percabangan apabila password salah	
 			if($pw!==$pwd2)
 			{
 				echo "<div class=\"alert alert-danger alert-dismissible\" role=\"alert\">";
@@ -43,6 +61,8 @@ if(isset($_POST['checkUser']))
 				
 			
 			}
+
+			//percabangan apabila login berhasil
 			else
 			{	
 			
