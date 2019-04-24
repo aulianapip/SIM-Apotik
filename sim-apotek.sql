@@ -1,3 +1,22 @@
+/*1.  Pada kelompok gudang, kami telah membuat beberapa kelas yang mempunyai fungsi sebagai berikut:
+• Fungsi Sorting Nama Obat A-Z : fitur ini berfungsi mengurutkan nama obat sesuai alpabet dari awalan huruf A sampai awalan huruf Z.
+• Fungsi Sorting Jenis Obat Kapsul : fitur ini berfungsi mensorting obat yang berjenis kapsul untuk di tampilkan.
+• Fungsi Menampilkan seluruh data obat
+• Fungsi Tanggal pasok obat
+• Function Update Data Obat : Fitur ini berfungsi mengupdate perubahan yang telah kita tambah, Kurang, dan mengedit sesuai database
+• Function Stok Obat Menipis : Fitur ini berfungsi menandai tabel obat yang stoknya telah menipis
+• Function Pencarian  Data Tidak Ditemukan : fitur ini berfungsi  jika kita mencari obat atau supplier yang tidak ada didatabase
+• Function Sorting Tanggal Supplier : fitur ini berfungsi mensorting obat dengan tanggal pemasok supplier yang telah memasok obat dari tanggal terdahulu
+• Function Tambah Obat : fitur ini berfungsi untuk menambah data obat baru ke dalam tabel Obat
+• Function Tambah Supllier : fitur ini berfungsi untuk menambah data supllier baru ke tabel Supllier
+• Function Cari Obat : fitur ini berfungsi buat mencari data obat yang ada di tabel obat
+• Fuction Cari Supplier : fitur ini berfungsi mncari data supplier yang ada di tabel supplier
+• Function Sorting Nama Supplier A-Z : fitur ini berfungsi untuk mengurutkan nama supplier dari A-Z
+• Function data suplier : fitur ini berfungsi untuk menampilkan data suplier sesuai database
+*/
+
+--Aditya Gusti Mandala Putra yang membuat database--
+
 -- phpMyAdmin SQL Dump
 -- version 4.8.0
 -- https://www.phpmyadmin.net/
@@ -54,7 +73,7 @@ INSERT INTO `jenis_obat` (`kode_jenis`, `nama_jenis`) VALUES
 -- Struktur dari tabel `login`
 --
 
-CREATE TABLE `login` (
+CREATE TABLE `login` ( --dimas menambahkan tabel login untuk login tampilan awal--
   `user` varchar(20) NOT NULL,
   `password` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
