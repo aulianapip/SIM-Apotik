@@ -86,9 +86,9 @@ body{
 
 		}
 	}
-		include 'fungsi_indotgl.php';
-		$tgl_awal= $_POST['tgl_awal'];  //sintaks yang berfungsi untuk sebagai inisial yang akan menyimpan nilai atau value
-		$tgl_akhir= $_POST['tgl_akhir'];  //sintaks yang berfungsi untuk sebagai inisial yang akan menyimpan nilai atau value
+		
+		$tgl_awal= $_POST['tgl_awal'];  //method yang berfungsi untuk sebagai inisial yang akan menyimpan nilai atau value
+		$tgl_akhir= $_POST['tgl_akhir'];  //method yang berfungsi untuk sebagai inisial yang akan menyimpan nilai atau value
 
 
 	$q1="SELECT * from pelanggan where tgl_daftar between '$tgl_awal' and '$tgl_akhir'";
@@ -169,18 +169,20 @@ body{
 
 <br>
 <br>
-<form method="post" action="pelanggan.php">
+<form method="post" action="pelanggan.php"><!-- untuk mengirimkan nilai dari value yang akan dimasukan, dan action disini berguna sebagai navigator -->
 	<div><label for="tgl_awal">Dari Tanggal</label>
-		<input type="date" id="tgl_awal" name="tgl_awal">&nbsp;
+		<input type="date" id="tgl_awal" name="tgl_awal">&nbsp; <!--menampilkan datepicker -->
 		<label for="tgl_akhir">Sampai Tanggal</label>
-		<input type="date" id="tgl_akhir" name="tgl_akhir">
+		<input type="date" id="tgl_akhir" name="tgl_akhir"> <!--menampilkan datepicker -->
 	</div>
-	<!-- line 138-142 dibuat rizka -->
+	<!-- line 172-178 dibuat rizka -->
 	<button>
 	<input type="submit" name="Cari" value="Cari" class="button"> <!--dibuat  carto -->
+	<!-- tombol input dengan type submit dan value=cari -->
 	</button>
 	<button>
 	<input type="submit" name="Refresh" value="Refresh"class="button"><!-- dibuat carto -->
+	<!-- tombol input dengan type submit dan value=refresh --> 
 </button>
 </form>
 

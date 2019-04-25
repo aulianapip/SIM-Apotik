@@ -38,6 +38,7 @@
 		<tr>
 			 <td><label for="kode_obat">Nama</label>
      			 <input type="text" class="form-control" id="kode_obat" name="Nama" required oninvalid="this.setCustomValidity('Nama tidak boleh kosong')" value="<?php echo $a['Nama']; ?>" oninput="setCustomValidity('')"></td>
+     			 <!-- karena alamat disini membutuhkan inputan yang panjang maka digunakan textarea, required oninvalid disini adalah alert yang jika kita tidak mengisi kolom tersebut maka akan muncul alert yang mengatakan "nama tidak boleh kosong" dan jika oninput maka tidak akan keluar alertrequired oninvalid disini adalah alert yang jika kita tidak mengisi kolom tersebut maka akan muncul alert yang mengatakan "nama tidak boleh kosong" dan jika oninput maka tidak akan keluar alert -->
 		</tr>
 		<tr>
 			  <td><label for="status" name="Jk">Jenis Kelamin</label>
@@ -56,7 +57,7 @@
 		<tr>
 			<td><label for="harga_obat">Email</label>
      		<input type="text" class="form-control" id="harga obat" value="<?php echo $a['Email'];?>" name="Email" required oninvalid="this.setCustomValidity('Email tidak boleh kosong')" oninput="setCustomValidity('')"></td>
-     		<!-- type disini memakai text dengan nama class untuk css form-control. dan id disini akan memanggil value yang sudah di inisialisasi sebelumnya. required oninvalid disini adalah alert yang jika kita tidak mengisi kolom tersebut maka akan muncul alert yang mengatakan "nama tidak boleh kosong dan jika oninput maka tidak akan keluar alert" -->
+     		<!-- type disini memakai text dengan nama class untuk css form-control. dan id disini akan memanggil value yang sudah di inisialisasi sebelumnya. required oninvalid disini adalah alert yang jika kita tidak mengisi kolom tersebut maka akan muncul alert yang mengatakan "Email tidak boleh kosong dan jika oninput maka tidak akan keluar alert" -->
 		</tr>
 		<tr>
 			<td><label for="harga_obat">Alamat</label>
