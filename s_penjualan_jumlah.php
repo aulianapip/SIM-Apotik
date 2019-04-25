@@ -1,17 +1,33 @@
 <!--NURMUTMAINAH-->
+<!--
+Penjelasan class :
+  Dalam keuangan kami membuat beberapa function seperti cashflow, data pembelian,
+  data penjualan, dan total keuntungan. cashflow gambaran mengenai jumlah uang yang masuk dan keluar. 
+  data pembelian hanya menampilkan data pembelian barang dari suplier. 
+  data penjualan gambaran informasi data-data penjualan yang dihasilkan dari penjualan kasir.
+  total keuntungan menampilkan keuntungan dari harga jual tiap barang dikurangi harga beli dari suplier.
+--><!--
+Penjelasan class :
+  Dalam keuangan kami membuat beberapa function seperti cashflow, data pembelian,
+  data penjualan, dan total keuntungan. cashflow gambaran mengenai jumlah uang yang masuk dan keluar. 
+  data pembelian hanya menampilkan data pembelian barang dari suplier. 
+  data penjualan gambaran informasi data-data penjualan yang dihasilkan dari penjualan kasir.
+  total keuntungan menampilkan keuntungan dari harga jual tiap barang dikurangi harga beli dari suplier.
+-->
 <?php
-	session_start();
+	session_start();//untuk memulai eksekusi session pada server dan kemudian menyimpan pada browser dan posisinya 
+	//harus paling depan 
 
-if (!isset($_SESSION["login1"])) {
-    	  header("location: http://localhost/apotik-keuangan/login.php");
-      exit;
+if (!isset($_SESSION["login1"])) {//jika belum melakukan login makan akan dilempar ke header
+    	  header("location: http://localhost/apotik-keuangan/login.php");//diheader ini adalah link untuk kembali ke home 
+      exit;//keluar
     }
       
   
-	include "connection/db.php";
-	$QuerySql = "SELECT *,harga_obat*jumlah_terjual as total FROM `tabel_penjualan`, `obat` WHERE tabel_penjualan.kode_obat=obat.kode_obat ORDER BY jumlah_terjual ASC ";
+	include "connection/db.php";//pemanggilan databases
+	$QuerySql = "SELECT *,harga_obat*jumlah_terjual as total FROM `tabel_penjualan`, `obat` WHERE tabel_penjualan.kode_obat=obat.kode_obat ORDER BY jumlah_terjual ASC ";//query untuk menentukan total yang terjual
 
-	$SQL = mysqli_query($connect, $QuerySql); 
+	$SQL = mysqli_query($connect, $QuerySql); //untuk menghubungka mysql database
 ?> 
 <!DOCTYPE html>
 <html>
