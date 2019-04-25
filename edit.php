@@ -2,7 +2,7 @@
 
 	include 'conect.php'; //pemanggilan database
 		
-		$ID=$_GET['ID']; //method untuk Menampilkan variabel ID
+		$ID=$_GET['ID']; //method get untuk mengambil variabel ID dari id yg dipilih
 		$Nama= $_POST['Nama'];//method yang berfungsi untuk inisial yang akan menyimpan value
 		$jeniskelamin = $_POST['Jk'];//method yang berfungsi untuk inisial yang akan menyimpan value
 		$NoHP= $_POST['NoHP'];//method yang berfungsi untuk inisial yang akan menyimpan value

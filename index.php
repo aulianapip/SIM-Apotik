@@ -1,15 +1,21 @@
 <!-- 1. Fitur CRM atau disebut pelanggan. fitur ini digunakan untuk menginputkan data member yang akan digunakan di bagian kasir. jika pelanggan tersebut adalah member maka akan di kenakan diskon. -->
-<?php 
-    include('conect.php');
 
+<!-- fitur menampilkan semua data pelanggan yang tergabung dalam member, dan UI utama CRM menggantikan pelanggan.php-->
+
+<?php 
+  // query dan alert dikerjakan oleh rizka arnanda s 170001248 dan dimodify oleh carto ardiyanto 1700018283
+
+
+    include('conect.php');// memanggil file connect.php untuk terhubung kedalam database
+  
     
-   if (isset($_POST['Cari'])) {
+   if (isset($_POST['Cari'])) { // syntax post untuk mendapatkan data $tgl_awal dan $akhir yang nantinya digunakan untuk menampilkan data member berdasarkan rentang waktu terdaftar menjadi member
 /*dikerjakan oleh ADITYA AZIZ SAPUTRA 1700018264*/
 
 /*selain fungsi ui yg lain copast dari file rekan*/
 
 /*alert untuk peringatan berhasil dihapus dan diupdate*/
-  if(isset($_GET['pesan'])){
+  if(isset($_GET['pesan'])){// line 10-24 untuk mendapatkan pesan jika setelah ditampilkan berdasarkan rentang waktu lalu ada yang akan di edit/ dihapus, setelah selesai mengedit dan menghapusnya akan keluar alert Berhasil dihapus jika Hapus dan Berhasil diupdate jika edit 
     $pesan=$_GET['pesan'];
     if($pesan=="Hapus"){
       echo "<center>
@@ -25,22 +31,21 @@
 
     }
   }
-  /*function mennentukan tanggal awal dan tanggal lahir*/
-    include 'fungsi_indotgl.php';
-    $tgl_awal= $_POST['tgl_awal'];
-    $tgl_akhir= $_POST['tgl_akhir'];
+  
+    $tgl_awal= $_POST['tgl_awal'];// variable berisi method post mendapatkan data tgl_awal user yang dipilih
+    $tgl_akhir= $_POST['tgl_akhir']; //variable berisi method post mendapatkan data tgl_akhir user yang dipilih
 
 
-  $q1="SELECT * from pelanggan where tgl_daftar between '$tgl_awal' and '$tgl_akhir'";
-  $SQL=mysqli_query($connect,$q1);
+  $q1="SELECT * from pelanggan where tgl_daftar between '$tgl_awal' and '$tgl_akhir'";//query menampilkan data member berdasarkan rentang waktu
+  $SQL=mysqli_query($connect,$q1);// sebuah function untuk menjalankan query tsb
   
   }
-  else if(isset($_POST['Refresh'])){
-    echo "<meta http-equiv='refresh' content='1 url=pelanggan.php'>";
+  else if(isset($_POST['Refresh'])){  //method post mendapatkan jika yg diklik ialah button refesh maka akan menjalankan line berikutnya yaitu
+    echo "<meta http-equiv='refresh' content='1 url=pelanggan.php'>"; // mengembalikan ke pelanggan.php
   }
   else{
 
-  if(isset($_GET['pesan'])){
+  if(isset($_GET['pesan'])){ //sama seperti diatas
     $pesan=$_GET['pesan'];
     if($pesan=="Hapus"){
       echo "<center>
@@ -57,7 +62,7 @@
     }
   }
 
-  $SQL = mysqli_query($connect, "SELECT * FROM pelanggan ORDER BY Nama DESC");
+  $SQL = mysqli_query($connect, "SELECT * FROM pelanggan ORDER BY Nama DESC"); // query sorting 
     
   }
 
@@ -223,32 +228,34 @@ body {                        /*desain body*/
        <form method="post" action="index.php">
   <div>
 <!-- pengambilan jenis dan bentuk tabel dari bootstrap -->
- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"> <!-- memanggil bootsrap -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> <!-- line  231-233 pemanggilan jquery -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 
-    <div class="dropdown">
+    <div class="dropdown">  <!-- bootsrap untuk pop up dropdown -->
     <button class="btn btn-primary "  data-toggle="dropdown">Cari Berdasarkan rentang tanggal
-    <span class="caret"></span></button>
-    <ul class="dropdown-menu" >
+    <span class="caret"></span></button><!-- line 236 - 237 button dengan bootsrap -->
+    <ul class="dropdown-menu" > <!--  bootsrap menu (pop up) -->
       <li>
       <label for="tgl_awal">Dari Tanggal</label>
-      <input type="date" id="tgl_awal" name="tgl_awal">&nbsp;
+      <input type="date" id="tgl_awal" name="tgl_awal">&nbsp; <!-- input untuk data dari tanggal (mulai tanggal rentang) -->
       <label for="tgl_akhir">Sampai Tanggal</label>
-      <input type="date" id="tgl_akhir" name="tgl_akhir"> 
+      <input type="date" id="tgl_akhir" name="tgl_akhir"> <!-- input data sampai tanggal rentang -->
       </li>
       
         <ul>
-      <input type="submit" name="Cari" value="Cari" class="button"> 
+      <input type="submit" name="Cari" value="Cari" class="button"> <!-- button submit  -->
       </ul>
       <ul>
-      <a href="index.php"><input type="submit"  value="Refresh" class="button"></input></a>
+      <a href="index.php"><input type="submit"  value="Refresh" class="button"></input></a><!-- sebuah button untuk kembali ke tampilan keseluruhan data member  -->
+      <!-- line 190-210 dibuat rizka arnanda s 170001248 dan dimodify oleh Carto Ardiyanto, modifikasi meliputi ui bootsrap, dan refrsh -->
       </ul>
     </ul>  
  
  </div>
- <br>
-<a href="selectdelete.php">PILIH</a>
+ <br> <!-- 
+ line 258 - 295 dimodify carto ardiyanto 1700018283 -->
+<a href="selectdelete.php">PILIH</a> <!-- link untuk ke multipledelete -->
  
   
   
@@ -270,17 +277,17 @@ body {                        /*desain body*/
         </thead>
         
         <tbody>
-            <?php   while($data = mysqli_fetch_array($SQL)){ ?>
+            <?php   while($data = mysqli_fetch_array($SQL)){ ?><!-- merupakan perintah untuk menjalankan sintaks $SQL -->
                 <tr>
-                    <td><?= $data['tgl_daftar'] ?></td>
-                    <td><?= $data['ID'] ?></td>
-                    <td><?= $data['Nama'] ?></td>
-                    <td><?= $data['Jk'] ?></td>
-                    <td><?= $data['NoHp'] ?></td>
-                    <td><?= $data['Email'] ?></td>
-                    <td><?= $data['Alamat'] ?></td>
-                    <td><a href='formedit.php?ID=<?php echo $data['ID']; ?>'><input type="image" src="edit.png" width="20" height="20"/></a>
-                    <a href='hapus.php?ID=<?php echo $data['ID']; ?>'><input type="image" src="delete.png" width="20" height="20"/></a>
+                    <td><?= $data['tgl_daftar'] ?></td>!--Menampilkan data dengan tabel sesuai dengan data yang ada pada database -->
+                    <td><?= $data['ID'] ?></td><!-- menampilkan data ID --><!-- menampilkan data ID -->
+                    <td><?= $data['Nama'] ?></td><!-- menampilkan data Nama -->
+                    <td><?= $data['Jk'] ?></td><!-- menampilkan data Jenis Kelamin -->
+                    <td><?= $data['NoHp'] ?></td><!-- menampilkan data NO hp -->
+                    <td><?= $data['Email'] ?></td><!-- menampilkan data Email -->
+                    <td><?= $data['Alamat'] ?></td><!-- menampilkan data Alamat -->     
+                    <td><a href='formedit.php?ID=<?php echo $data['ID']; ?>'><input type="image" src="edit.png" width="20" height="20"/></a> <!-- untuk button edit dan mendapatkan data id ketika klik button edit yang berguna untuk menampilkan data member berdasarkan id yg dipilih dalam file formedit.php -->
+                    <a href='hapus.php?ID=<?php echo $data['ID']; ?>'><input type="image" src="delete.png" width="20" height="20"/></a><!-- button untuk menghapus  -->
                     </td>
                 </tr>
             <?php } ?>

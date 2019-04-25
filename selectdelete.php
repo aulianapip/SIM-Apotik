@@ -7,7 +7,7 @@ ui dimodifikasi oleh Carto Ardiyanto 1700018283
 
 <!DOCTYPE html>
 <?php
-	include "library/import.php";
+	include "library/import.php"; //Pemanggilan folder css,bootsrap dengan nama file import.php
 
 ?>
 <html>
