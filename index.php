@@ -1,20 +1,40 @@
-<!--Amanda Fahmidyna-->
-
+<!-- Amanda Fahmidyna
+     1700018273
+     E
+ -->
+<!--
+Penjelasan class :
+  Dalam keuangan kami membuat beberapa function seperti cashflow, data pembelian,
+  data penjualan, dan total keuntungan. cashflow gambaran mengenai jumlah uang yang masuk dan keluar. 
+  data pembelian hanya menampilkan data pembelian barang dari suplier. 
+  data penjualan gambaran informasi data-data penjualan yang dihasilkan dari penjualan kasir.
+  total keuntungan menampilkan keuntungan dari harga jual tiap barang dikurangi harga beli dari suplier.
+-->
 <?php
 require_once('database/db.php');
 include "navbar_cashflow.php";
-// $q = "select * from transaksi_detail";
-$q = "SELECT tabel_penjualan.tanggal_terjual as tanggal, tabel_penjualan.kode_obat as transaksi, tabel_penjualan.lain as trans, tabel_penjualan.jumlah_terjual as jumlah, tabel_penjualan.harga as harga, transaksi.jenis from tabel_penjualan join transaksi on tabel_penjualan.id_penjualan = transaksi.id_penjualan order by tabel_penjualan.tanggal_terjual asc";
-$sql = mysqli_query($c, $q);
 
-$q = "SELECT sum(harga*jumlah_terjual) as total from tabel_penjualan";
-$sql2 = mysqli_query($c, $q);
+if(isset($_GET['tanggal_awal']) and isset($_GET['tanggal_akhir'])) {//untuk mengeksekusi bahwa variabel tanggal_awal dan tanggal_akhir bernilai true jika sudah diisi dan false jika kosong
+    $awal = $_GET['tanggal_awal']; //deklarasi bahwa variabel awal = variabel tanggal_awal 
+    $akhir = $_GET['tanggal_akhir'];//deklarasi akhir =  tanggal_akhir 
+    $q = "SELECT tabel_penjualan.tanggal_terjual as tanggal, tabel_penjualan.kode_obat as transaksi, tabel_penjualan.lain as trans, tabel_penjualan.jumlah_terjual as jumlah, tabel_penjualan.harga as harga, transaksi.jenis, obat.nama_obat as nama from tabel_penjualan join transaksi on tabel_penjualan.id_penjualan = transaksi.id_penjualan left join obat on obat.kode_obat = tabel_penjualan.kode_obat where tabel_penjualan.tanggal_terjual between '$awal' and '$akhir' order by tabel_penjualan.tanggal_terjual asc"; // query untuk menampilkan data dalam database pada tabel tabel_penjualan,obat,dan transaksi
+    $sql = mysqli_query($connect, $q); //syntax untuk menyambungkan dengan database agar oquery dapat digunakan
 
-$q= "SELECT obat.nama_obat as nama, tabel_penjualan.lain as lain from obat,tabel_penjualan group by tabel_penjualan.id_penjualan";
-$sql3=mysqli_query($c,$q);
-$result = mysqli_fetch_object($sql2);
-$total_saldo = $result->total;
-$total = $total_saldo;
+
+    $q= "SELECT jumlah as kas from kasawal"; // query untuk menampilkan data pada tabel kasawal
+    $sql3=mysqli_query($connect,$q);//syntax untuk menyambungkan dengan database agar query dapat digunakan 
+    $res=mysqli_fetch_object($sql3);//deklarasi res sebagai penampung agar variabel jumlah as kas dapat dikalkulasikan
+    $modal = $res->kas;//pemindahan nilai 
+    $kas=$modal;
+} else {
+ $q = "SELECT tabel_penjualan.tanggal_terjual as tanggal, tabel_penjualan.kode_obat as transaksi, tabel_penjualan.lain as trans, tabel_penjualan.jumlah_terjual as jumlah, tabel_penjualan.harga as harga, transaksi.jenis, obat.nama_obat as nama from tabel_penjualan join transaksi on tabel_penjualan.id_penjualan = transaksi.id_penjualan left join obat on obat.kode_obat = tabel_penjualan.kode_obat or tabel_penjualan.lain = NULL order by tabel_penjualan.tanggal_terjual asc";
+$sql = mysqli_query($connect, $q);
+$q= "SELECT jumlah as kas from kasawal";
+$sql3=mysqli_query($connect,$q);
+$res=mysqli_fetch_object($sql3);
+$modal = $res->kas;
+$kas=$modal;  
+}
 ?>
 <html lang="en">
 
@@ -25,34 +45,41 @@ $total = $total_saldo;
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-      <link rel="stylesheet" href="bulma.min.css">
+    <link rel="stylesheet" href="bulma.min.css">
     <title>Cashflow Statement</title>
 </head>
 
 <body>
     <div class="container-fluid">
         <div class="container py-4">
-        <form action="index.php" method="post" onsubmit="return isClear()">
+        <form action="index.php" method="get" onsubmit="return isValid()"> <!-- action akan menuju ke index php apabila filter dijalankan -->
             <div class="row">
                 <div class="col-4 mb-3">
-                    <input type="date" class="form-control" name="awal">
+                    <div class="form-group">
+                        <label for="awal">Tanggal Awal</label>
+                        <input type="date" class="form-control" id="awal" name="tanggal_awal"><!-- mengiputkan data dengan tipe data date dengan nama variabel awal untuk eksekusi nilai true atau false --> 
+                    </div>
                 </div>
                 <div class="col-4 mb-3">
-                    <input type="date" class="form-control" name="akhir">
+                    <div class="form-group">
+                        <label for="akhir">Tanggal Akhir</label>
+                        <input type="date" class="form-control" id="akhir" name="tanggal_akhir"><!-- mengiputkan data dengan tipe data date dengan nama variabel akhir untuk eksekusi nilai true atau false --> 
+                    </div>
                 </div>
                 <div class="col-4 mb-3">
-                    <button class="btn btn-primary float-right">  Cari berdasarkan filter</button>
+                    <a href="index.php" class="btn btn-success float-right mx-3" style="margin-top: 33px">Semua</a> <!--ketika button semua diklik maka akan dialihkan ke halaman index.php dengan menampilkan semua hari aruskas(default page)--> 
+                    <button type="submit" class="btn btn-primary float-right" style="margin-top: 33px"> Cari berdasarkan filter</button><!--ketika form filter sudah diisi danmengklik button tersebutmaka akan terfilter -->
                 </div>
             </div>
+        </form>
         </div>
         <div class="row">
             <div class="col-1"></div>
             <div class="col-10">
                 <table class="table">
-                    <thead>
+                    <thead><!--tabel cashflow-->
                         <th>Tanggal</th>
-                        <th>Nama Pemasukan</th>
-                      
+                        <th>Transaksi</th>
                         <th>Jumlah</th>
                         <th>Debit</th>
                         <th>Kredit</th>
@@ -62,13 +89,6 @@ $total = $total_saldo;
                     <tbody>
                         <tr>
                             <td>
-                                <!-- <script>
-                                    document.write(new Date().getFullYear());
-                                    document.write('-0');
-                                    document.write(new Date().getMonth() + 1);
-                                    document.write('-');
-                                    document.write(new Date().getDate());
-                                </script> -->
                                 #
                             </td>
                             <td>
@@ -79,38 +99,39 @@ $total = $total_saldo;
                             <td>-</td>
                             <td>-</td>
                             <td>
-                                <?php echo "Rp " . $total; ?>
+                                <?php echo "Rp " . $kas; //untuk  menampilkan saldo?> 
                             </td>
                         </tr>
                         <?php
-                        foreach ($sql as $data) { ?>
+                        foreach ($sql as $data) { //perulangan dari sintax yang sudah dideklarasikan di atas, dan dta sebagai penampung?>
                             <tr>
                                 <td>
-                                    <?php echo $data['tanggal']; ?>
+                                    <?php echo $data['tanggal']; //untuk menampilkan tanggal transaksi ?>
                                 </td>
                                 <td>
                                     <?php
-                                    if ($data['jenis'] == 'debit')
+                                    if ($data['jenis'] == 'debit') // apabila jenis transaksinya debit
 
-                                        echo  $data['transaksi'];
+                                        echo  $data['nama']; // maka transaksi akan diambil dari data obat
                                    
                                    
-                                    else if ($data['jenis'] == 'kredit') {
+                                    else if ($data['jenis'] == 'kredit') { //apabila jenis transaksi kredit
                                    
-                                        echo  $data['trans'];
+                                        echo  $data['trans'];//maka akan diambil dari data transaksi lain
+                                        echo $data['nama'];//dan diambil dari data suplier(pembelian obat)
                                     }
                                     ?>
                                 </td>
                              
                                 <td>
-                                    <?php echo $data['jumlah']; ?>
+                                    <?php echo $data['jumlah']; //menampilkan jumlah barang yang ditransaksikan?>
                                 </td>
                                 <td>
                                     <?php
-                                    if ($data['jenis'] == "debit")
-                                        echo "Rp " . $data['harga'];
+                                    if ($data['jenis'] == "debit")//jika jenis debit
+                                        echo "Rp " . $data['harga'];//maka jumlah akan dikalikan harga barang
                                     else
-                                        echo '0';
+                                        echo '0';//jika tidak maka tidak akan dikalikan
                                     ?>
                                 </td>
                                 <td>
@@ -125,14 +146,14 @@ $total = $total_saldo;
                                     echo "Rp " . $data['jumlah'] * $data['harga'];
                                     ?></td>
                                 <td>
-                                    <?php
+                                    <?php //agar jumlah kas bisa bertambah secara otomatis apabila jenis transaksi debitdan berkurang otomatis apabila jenis transaksi kredit
                                     if ($data['jenis'] == "debit") {
-                                        $total += $data['harga'] * $data['jumlah'];
+                                        $kas += $data['harga'] * $data['jumlah'];
                                     } else {
-                                        $total -= $data['harga'] * $data['jumlah'];
+                                        $kas -= $data['harga'] * $data['jumlah'];
                                     }
 
-                                    echo "Rp " . $total;
+                                    echo "Rp " . $kas; //menampilkan hasil kalkulasi di atas. sisa saldonya
                                     ?>
                                 </td>
                             </tr>
@@ -143,29 +164,19 @@ $total = $total_saldo;
             <div class="col-1"></div>
         </div>
     </div>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+  <script>
+      let awal = document.getElementById('awal');//pendeklarasian awal untuk variabel awal 
+      let akhir = document.getElementById('akhir');//deklarasi akhir untuk variabel akhir
 
-    <script>
-    let awal = document.getElementById("awal");
-    let akhir = document.getElementById("akhir");
-
-    const filterSetahun = () => {
-      if {
-        awal.removeAttribute("disabled")
-        akhir.removeAttribute("disabled")
+      const isValid = () => {//data filter bersifat valid dan bernilai true karena terisi
+        if(awal.value == '' || akhir.value == '') {//jika filter kosong
+            Swal.fire('Oops!', 'Kolom filter tidak boleh ada yang kosong!', 'warning');//menampilkan warning dengan tulisan di samping
+            return false;//karena data kosong maka bernilai false
+        }
+        
+        return true;//jika tidak kosong maka truw
       }
-      // console.log(awal);
-      // console.log(setahunan.checked)
-    }
-
-    const isClear = () => {
-      console.log("ini dijalankan");
-      if (awal.value != '' && akhir.value != '') {
-        return true;
-      } else {
-        alert("Form tidak sesuai")
-        return false;
-      }
-    }
   </script>
 
 
