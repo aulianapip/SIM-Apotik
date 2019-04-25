@@ -18,7 +18,7 @@ if (!isset($_SESSION["login1"])) {//untuk login sebelum function
       
   
 	include "connection/db.php"; //panggilan database 
-	$QuerySql = "SELECT *,harga_obat*jumlah_terjual as total FROM `tabel_penjualan`, `obat` WHERE tabel_penjualan.kode_obat=obat.kode_obat";//untuk menampilkan hatga jual obat
+	$QuerySql = "SELECT *,harga_obat*jumlah_terjual as total FROM `tabel_penjualan`, `obat` WHERE tabel_penjualan.kode_obat=obat.kode_obat";//untuk menampilkan harga jual obat
 
 	$SQL = mysqli_query($connect, $QuerySql); //untuk menghubungkan mysql database
 ?> 
@@ -45,7 +45,7 @@ if (!isset($_SESSION["login1"])) {//untuk login sebelum function
     </tr>
   </thead>
 		<?php
-		//panggilan data atribut di php
+		//untuk memanggil data atribut di PHP
 			foreach ($SQL as $key) {
 				echo "<tr>
 						<td>$key[id_penjualan]</td>

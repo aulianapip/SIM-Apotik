@@ -44,6 +44,7 @@ if (!isset($_SESSION["login1"])) {//untuk login sebelum function
     </tr>
   </thead>
 		<?php
+    //untuk memanggil data atribut di PHP
 			foreach ($SQL as $key) {
 				echo "<tr>
 						<td>$key[kode_supplier]</td>
