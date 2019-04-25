@@ -1,27 +1,35 @@
 <!--SITTI BARKAH PELLU-->
+	<!--
+Penjelasan class :
+  Dalam keuangan kami membuat beberapa function seperti cashflow, data pembelian,
+  data penjualan, dan total keuntungan. cashflow gambaran mengenai jumlah uang yang masuk dan keluar. 
+  data pembelian hanya menampilkan data pembelian barang dari suplier. 
+  data penjualan gambaran informasi data-data penjualan yang dihasilkan dari penjualan kasir.
+  total keuntungan menampilkan keuntungan dari harga jual tiap barang dikurangi harga beli dari suplier.
+-->
 <?php
-	session_start();
+	session_start(); //login
 
-if (!isset($_SESSION["login1"])) {
+if (!isset($_SESSION["login1"])) { //pengkondisian jika data bernilai true dan false
     	  header("location: http://localhost/apotik-keuangan/login.php");
       exit;
     }
-	include "connection/db.php";
-	$QuerySql = "SELECT *,harga_beli*jumlah_obat AS total FROM `supplier`, `obat` WHERE supplier.kode_obat=obat.kode_obat ORDER BY supplier.harga_beli*supplier.jumlah_obat ASC ";
+	include "connection/db.php";//pemanggilan database yang ada didalam folder database dengan file db.php
+	$QuerySql = "SELECT *,harga_beli*jumlah_obat AS total FROM `supplier`, `obat` WHERE supplier.kode_obat=obat.kode_obat ORDER BY supplier.harga_beli*supplier.jumlah_obat ASC "; //buat memanggil fungsi query untuk mengurutkan table penjualan berdasarkan pembelian total
 
-	$SQL = mysqli_query($connect, $QuerySql); 
+	$SQL = mysqli_query($connect, $QuerySql); //pemanggilan data agar database dapat ditampilkan
 ?> 
 <!DOCTYPE html>
 <html>
 <head>
 	<title>DATA PEMBELIAN</title>
-	<link rel="stylesheet" href="bulma.min.css">
+	<link rel="stylesheet" href="bulma.min.css"><!--proses untuk memanggil CSS-->
 </head>
 <body>
 <?php 
-  include "navbar/navbar_pembelian.php";
+  include "navbar/navbar_pembelian.php"; //memanggil database navbar pembelian
  ?>
-<table class="table is-fullwidth" >
+<table class="table is-fullwidth" ><!--untuk menampilkan tabel data pembelian-->
   <thead>
     <tr>
       <th scope="col"><a href="s_pembelian_supplier.php"> ID PEMBELIAN</a></th>
@@ -35,7 +43,7 @@ if (!isset($_SESSION["login1"])) {
     </tr>
   </thead>
 		<?php
-			foreach ($SQL as $key) {
+			foreach ($SQL as $key) { //perulangan pemanggilan pada database pembelian by total
 				echo "<tr>
 						<td>$key[kode_supplier]</td>
 						<td>$key[tanggal_beli]</td>
@@ -47,7 +55,7 @@ if (!isset($_SESSION["login1"])) {
 						<td>$key[tanggal_kadaluarsa]</td>
 				</tr>";
                 	
-				}
+				}//buat menampilkan value kode_supplier, tanggal_beli, kode_obat, nama_obat, harga_beli, jumlah_obat, total dan tanggal_kedalwarsa
 		?>
 </table>
 </body>
