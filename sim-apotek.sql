@@ -22,7 +22,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 08 Apr 2019 pada 01.07
+-- Waktu pembuatan: 03 Bulan Mei 2019 pada 16.18
 -- Versi server: 10.1.31-MariaDB
 -- Versi PHP: 7.2.4
 
@@ -98,44 +98,42 @@ CREATE TABLE `obat` (
   `kode_obat` int(10) NOT NULL,
   `dosis_obat` varchar(3) NOT NULL,
   `kode_jenis` int(10) NOT NULL,
-  `tanggal_kadaluarsa` int(2) NOT NULL,
-  `bulan_kadaluarsa` varchar(12) NOT NULL,
-  `tahun_kadaluarsa` int(4) NOT NULL,
   `Stok_Obat` int(10) NOT NULL,
-  `tanggal_input` date NOT NULL
+  `tanggal_input` date NOT NULL,
+  `kadaluarsa_obat` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `obat`
 --
 
-INSERT INTO `obat` (`nama_obat`, `harga_obat`, `kode_obat`, `dosis_obat`, `kode_jenis`, `tanggal_kadaluarsa`, `bulan_kadaluarsa`, `tahun_kadaluarsa`, `Stok_Obat`, `tanggal_input`) VALUES
-('Konvermeks', 2500, 1, '2x3', 101, 20, 'Januari', 2020, 20, '2019-01-05'),
-('Paracetamol', 2500, 2, '3x1', 106, 21, 'September', 2020, 30, '2019-01-05'),
-('Promagh', 3500, 3, '2x1', 106, 23, 'Oktober', 2020, 25, '2019-04-13'),
-('Mastin', 3500, 4, '1x1', 105, 20, 'Februari', 2019, 50, '2019-01-12'),
-('Hemavitan', 3000, 5, '2x1', 103, 30, 'Maret', 2019, 75, '2019-02-02'),
-('Antimo', 5000, 6, '1x1', 101, 15, 'April', 2019, 5, '2019-02-16'),
-('Diapet', 4000, 7, '3x1', 106, 16, 'Mei', 2019, 10, '2019-03-02'),
-('Vatigon', 4500, 8, '1x1', 104, 24, 'Juni', 2019, 35, '2019-03-09'),
-('Oskadon', 2000, 9, '2x1', 101, 27, 'Juli', 2019, 40, '2019-03-09'),
-('Kalpanak', 3000, 10, '3x1', 107, 23, 'Agustus', 2019, 60, '2019-03-16'),
-('Mylanta', 5000, 11, '2x1', 106, 18, 'September', 2019, 70, '2019-03-30'),
-('Paramex', 3000, 12, '2x1', 101, 25, 'Oktober', 2019, 80, '2019-03-30'),
-('Procold', 4000, 13, '2x1', 101, 13, 'November', 2019, 45, '2019-03-30'),
-('Hemaviton', 6500, 14, '3x1', 106, 3, 'April', 2019, 55, '2019-03-30'),
-('Inza', 5500, 15, '3x1', 101, 7, 'Maret', 2020, 65, '2019-03-30'),
-('Albotil', 15000, 16, '3x1', 106, 30, 'Oktober', 2019, 40, '0000-00-00'),
-('Ambroxol', 11000, 17, '1x1', 101, 9, 'Juni', 2019, 25, '2019-02-23'),
-('Alphara', 12000, 18, '1x1', 106, 18, 'Juli', 2020, 95, '2019-02-16'),
-('Decolgen', 8000, 19, '3x1', 101, 19, 'Desember', 2018, 60, '2019-02-09'),
-('Catropile', 10000, 20, '1x1', 101, 13, 'Desember', 2018, 15, '2019-03-30'),
-('Amoxilin', 7000, 21, '2x1', 101, 21, 'Januari', 2019, 15, '2019-03-09'),
-('Neutropin', 9000, 22, '3x1', 105, 7, 'Desember', 2020, 35, '2019-02-09'),
-('Darsi', 13000, 23, '1x1', 105, 9, 'Februari', 2020, 115, '2019-03-02'),
-('Komik', 5000, 25, '3x1', 105, 9, 'April', 2020, 125, '2019-03-16'),
-('Bodrex', 2000, 26, '3x1', 101, 25, 'September', 2020, 110, '2019-04-07'),
-('Mimin', 5000, 27, '3x1', 101, 20, 'September', 2019, 20, '2019-04-07');
+INSERT INTO `obat` (`nama_obat`, `harga_obat`, `kode_obat`, `dosis_obat`, `kode_jenis`, `Stok_Obat`, `tanggal_input`, `kadaluarsa_obat`) VALUES
+('Konvermeks', 2500, 1, '2x3', 101, 20, '2019-01-05', '2024-02-10'),
+('Paracetamol', 2500, 2, '3x1', 106, 30, '2019-01-05', '2024-05-25'),
+('Promagh', 3500, 3, '2x1', 106, 25, '2019-04-13', '0024-08-18'),
+('Mastin', 3500, 4, '1x1', 105, 50, '2019-01-12', '2022-05-20'),
+('Hemavitan', 3000, 5, '2x1', 103, 75, '2019-02-02', '2023-08-17'),
+('Antimo', 5000, 6, '1x1', 101, 5, '2019-02-16', '2022-03-10'),
+('Diapet', 4000, 7, '3x1', 106, 10, '2019-03-02', '2023-04-20'),
+('Vatigon', 4500, 8, '1x1', 104, 35, '2019-03-09', '2024-02-10'),
+('Oskadon', 2000, 9, '2x1', 101, 40, '2019-03-09', '2023-06-20'),
+('Kalpanak', 3000, 10, '3x1', 107, 60, '2019-03-16', '2023-09-13'),
+('Mylanta', 5000, 11, '2x1', 106, 70, '2019-03-30', '2023-06-11'),
+('Paramex', 3000, 12, '2x1', 101, 80, '2019-03-30', '2024-11-22'),
+('Procold', 4000, 13, '2x1', 101, 45, '2019-03-30', '2024-04-12'),
+('Hemaviton', 6500, 14, '3x1', 106, 55, '2019-03-30', '2023-12-28'),
+('Inza', 5500, 15, '3x1', 101, 65, '2019-03-30', '2024-11-29'),
+('Albotil', 15000, 16, '3x1', 106, 40, '2018-11-10', '2023-05-28'),
+('Ambroxol', 11000, 17, '1x1', 101, 25, '2019-02-23', '2023-04-25'),
+('Alphara', 12000, 18, '1x1', 106, 95, '2019-02-16', '2023-02-10'),
+('Decolgen', 8000, 19, '3x1', 101, 60, '2019-02-09', '2023-10-13'),
+('Catropile', 10000, 20, '1x1', 101, 15, '2019-03-30', '2024-11-20'),
+('Amoxilin', 7000, 21, '2x1', 101, 15, '2019-03-09', '2024-03-18'),
+('Neutropin', 9000, 22, '3x1', 105, 35, '2019-02-09', '2023-05-17'),
+('Darsi', 13000, 23, '1x1', 105, 115, '2019-03-02', '2024-01-10'),
+('Komik', 5000, 25, '3x1', 105, 125, '2019-03-16', '2023-04-20'),
+('Bodrex', 2000, 26, '3x1', 101, 110, '2019-04-07', '2023-05-28'),
+('Mimin', 5000, 27, '3x1', 101, 20, '2019-04-07', '0000-00-00');
 
 -- --------------------------------------------------------
 
@@ -150,30 +148,30 @@ CREATE TABLE `supplier` (
   `nomer_telepon_supp` varchar(15) NOT NULL,
   `kode_pasok` int(10) NOT NULL,
   `harga_beli` int(11) NOT NULL,
-  `tanggal_pasok` date NOT NULL
+  `tanggal_pasok` date NOT NULL,
+  `Alamat` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `supplier`
 --
 
-INSERT INTO `supplier` (`nama_pemasok`, `kode_obat`, `jumlah_pasok`, `nomer_telepon_supp`, `kode_pasok`, `harga_beli`, `tanggal_pasok`) VALUES
-('Terobat', 7, 30, '081227171781', 901, 3000, '2018-12-29'),
-('Hexobat', 2, 25, '085646738121', 902, 1700, '2018-12-29'),
-('Naobat', 1, 50, '089887766553', 903, 1500, '2018-12-30'),
-('Faobat', 5, 30, '08335552278', 904, 2000, '2018-12-31'),
-('Riobat', 8, 20, '08776337489', 905, 3500, '2018-12-26'),
-('Faobat', 3, 30, '08335552278', 906, 2500, '2018-12-26'),
-('Faobat', 4, 30, '08335552278', 907, 2500, '2018-12-26'),
-('Faobat', 6, 30, '08335552278', 908, 4000, '2018-12-27'),
-('Faobat', 9, 30, '08335552278', 909, 1000, '2018-12-28'),
-('Faobat', 10, 30, '08335552278', 910, 2000, '2018-12-29'),
-('Faobat', 11, 30, '08335552278', 911, 4500, '2018-12-30'),
-('Faobat', 12, 30, '08335552278', 912, 2000, '2018-12-31'),
-('Faobat', 13, 30, '08335552278', 913, 3000, '2018-12-26'),
-('Faobat', 14, 30, '08335552278', 914, 5500, '2018-12-27'),
-('Faobat', 15, 30, '08335552278', 915, 4500, '2018-12-28'),
-('Farmasi Indones', 26, 20, '02740001010', 917, 20500, '0000-00-00');
+INSERT INTO `supplier` (`nama_pemasok`, `kode_obat`, `jumlah_pasok`, `nomer_telepon_supp`, `kode_pasok`, `harga_beli`, `tanggal_pasok`, `Alamat`) VALUES
+('PT Daya Sembada', 7, 30, '(024) 8449568', 901, 3000, '2019-01-29', 'Jl Simpang Lima 1'),
+('PT Dexa Medica', 2, 25, '(021) 54200134', 902, 1700, '2019-01-29', 'Jl Kelapa Gading'),
+('PT Interbat', 1, 50, '(021) 55768884', 903, 1500, '2019-01-01', 'Jl Imam Bonjol'),
+('PT Metro Pillar', 5, 30, '(021) 88357528', 904, 2000, '2019-01-01', 'Jl Cempaka Km 37'),
+('PT Brayat Sehat', 8, 20, '(0778) 7022453', 905, 3500, '2018-12-26', 'Jl Bukit Indah I 7 K'),
+('PT Sejahtera', 3, 30, '(021) 5529035', 906, 2500, '2018-12-26', 'Jl Honoris Raya'),
+('PT Trimitra Med', 4, 30, '(031) 5686161', 907, 2500, '2018-12-26', 'Jl Kapuas 2 Surabaya'),
+('PT Mandara Medi', 6, 30, '(021) 5881090', 908, 4000, '2018-12-27', 'Jl Pantai Indah'),
+('PT Kimia Farma', 9, 30, '(021) 3847709', 909, 1000, '2018-12-28', 'Jl. Veteran No. 9'),
+('PT Brayat Sehat', 10, 30, '(0778) 7022453', 910, 2000, '2018-12-29', 'Jl Bukit Indah I 7 K'),
+('PT Interbat', 11, 30, '(021) 55768884', 911, 4500, '2018-12-30', 'Jl Imam Bonjol'),
+('PT Mandara Medi', 12, 30, '(021) 5881090', 912, 2000, '2018-12-31', 'Jl Kapuas 2 Surabaya'),
+('PT Daya Sembada', 13, 30, '(024) 8449568', 913, 3000, '2018-12-26', 'Jl Simpang Lima 1'),
+('PT Metro Pillar', 14, 30, '(021) 88357528', 914, 5500, '2019-03-18', 'Jl Cempaka Km 37'),
+('PT Sejahtera', 15, 30, '(021) 5529035', 915, 4500, '2019-04-01', 'Jl Honoris Raya');
 
 --
 -- Indexes for dumped tables
@@ -219,3 +217,4 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
