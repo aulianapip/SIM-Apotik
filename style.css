@@ -1,6 +1,4 @@
-/*1. Fitur CRM atau disebut pelanggan. fitur ini digunakan untuk menginputkan data member yang akan digunakan di bagian kasir. jika pelanggan tersebut adalah member maka akan di kenakan diskon.*/
-
-input[type=text], select {/*model buat kolom input text*/
+input[type=text], select {
   width: 100%;
   padding: 12px 20px;
   margin: 8px 0;
@@ -10,7 +8,7 @@ input[type=text], select {/*model buat kolom input text*/
   box-sizing: border-box;
 }
 
-input[type=submit] {/*model buat kolom submit*/
+input[type=submit] {
   width: 100%;
   background-color: pink;
   color: black;
@@ -20,17 +18,17 @@ input[type=submit] {/*model buat kolom submit*/
   border-radius: 4px;
   cursor: pointer;
 }
-a{/*model buat baris/simbol a*/
+a{
   color: pink;
 }
 
-button[type=submit]:hover {/*model buat button*/
+button[type=submit]:hover {
   color: pink;
   border-color: none;
 
 }
 
-form {/*model buat kolom form*/
+form {
   border-radius: 5px;
   background-color: #ddd;
   padding: 5px;

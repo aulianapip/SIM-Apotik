@@ -1,5 +1,5 @@
 <!-- 1. Fitur CRM atau disebut pelanggan. fitur ini digunakan untuk menginputkan data member yang akan digunakan di bagian kasir. jika pelanggan tersebut adalah member maka akan di kenakan diskon. -->
-
+  
 <!-- 
 fitur ini dikerjakan oleh Herni Sartika Manalu 1700018285
 
@@ -17,7 +17,7 @@ for($x=0; $x<$jumlah_dipilih; $x++){
  
 }
  
-header("location:selectdelete.php"); // setelah berhasil di delete, maka akan kembali atau refresh ke folder awal untul mendelete data.
+header("location:selectdelete.php"); // setelah berhasil di delete, maka akan kembali atau refresh ke layar selectdelete.php  untuk mendelete data.
 ?>
 
 

@@ -21,12 +21,12 @@
 
     }
   }
-   
+    
     $tgl_awal= $_POST['tgl_awal'];
     $tgl_akhir= $_POST['tgl_akhir'];
 
 
-  $q1="SELECT * from pelanggan where tgl_daftar between '$tgl_awal' and '$tgl_akhir'";
+  $q1="SELECT penjualan.tgl_penjualan AS waktu,penjualan.tipe as tipe,penjualan.id as id,pelanggan.Nama as nama,penjualan.no_transaksi as no_transaksi,penjualan_detail.kd_barang as kode_obat,penjualan_detail.jumlah as jumlah_beli, penjualan_detail.sub_total as total_beli from penjualan,pelanggan,penjualan_detail where penjualan.id=pelanggan.ID and penjualan.tipe=pelanggan.tipe and penjualan.tipe=penjualan_detail.tipe and penjualan.id=penjualan_detail.id and penjualan.no_transaksi=penjualan_detail.no_transaksi and penjualan.tgl_penjualan between '$tgl_awal' and '$tgl_akhir'";
   $SQL=mysqli_query($connect,$q1);
   
   }
@@ -52,7 +52,7 @@
     }
   }
 
-  $SQL = mysqli_query($connect, "SELECT * FROM pelanggan ORDER BY Nama DESC");
+  $SQL = mysqli_query($connect, "SELECT penjualan.tgl_penjualan AS waktu,penjualan.tipe as tipe,penjualan.id as id,pelanggan.Nama as nama, penjualan.no_transaksi as no_transaksi,penjualan_detail.kd_barang as kode_obat,penjualan_detail.jumlah as jumlah_beli, penjualan_detail.sub_total as total_beli from penjualan,pelanggan,penjualan_detail where penjualan.id=pelanggan.ID and penjualan.tipe=pelanggan.tipe and penjualan.tipe=penjualan_detail.tipe and penjualan.id=penjualan_detail.id and penjualan.no_transaksi=penjualan_detail.no_transaksi;");
     
   }
 
@@ -60,32 +60,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <!-- pengaturan posisi dan pengambilan dari pencarian dari rentang tanggal -->
-  <script type="text/javascript">
-          $(document).ready(function(){
-            $("tgl_awal").datepicker({
-              altFormat:"dd MM yy",
-              changeMonth : true,
-              changeYear : true
-            });
-            $("#tgl_awal").change(function() {
-              $("#tgl_awal").datepicker("option","dateFormat","yy-mm-dd");
-            });
-          });
-        </script>
-        <script type="text/javascript">
-          $(document).ready(function(){
-            $("tgl_akhir").datepicker({
-              altFormat:"dd MM yy",
-              changeMonth : true,
-              changeYear : true
-            });
-            $("#tgl_awal").change(function() {
-              $("#tgl_akhir").datepicker("option","dateFormat","yy-mm-dd");
-            });
-          });
-        </script>
-
+ 
     <title>CRM APOTEK</title>
     <!--link boostrap-->
     <meta charset="utf-8">
@@ -206,7 +181,7 @@ body {
   <div class="header-right">
     <a class="active" href="index.php">Home</a>
     <a href="inputdata.php">Input Data</a>
-    <a href="riwayat.php">Riwayat pembelian</a>
+    
 <div>
 </div>
 </div>
@@ -215,7 +190,7 @@ body {
 
     <!-- Badan -->
     <div>
-       <form method="post" action="index.php">
+       <form method="post" action="riwayat.php">
   <div>
 <!-- pengambilan jenis dan bentuk tabel dari bootstrap -->
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
@@ -243,40 +218,33 @@ body {
  
  </div>
  <br>
-<a href="selectdelete.php">PILIH</a>
- 
-  
-  
+
  </div>
   </form>
     </div>
     <table id="example" class="table table-striped table-bordered" width="100%" cellspacing="1 ">
         <thead>
             <tr>
-                <td width="10%">Tanggal Terdaftar</td>
+                <td width="15%">Waktu</td>
+                <td width="6%">NO Transaksi</td>
                 <td width="10%">ID</td> 
                 <td width="10%">Nama</td>
-                <td width="10%">Jk</td>
-                <td width="10%">NoHp</td>
-                <td width="10%">Email</td>
-                <td width="30%">Alamat</td>
-                <td width="10%">Opsi</td>
+                <td width="10%">Kode Obat</td>
+                <td width="10%">jumlah</td>
+                <td width="10%">total bayar</td>
             </tr>
         </thead>
         
         <tbody>
             <?php   while($data = mysqli_fetch_array($SQL)){ ?>
                 <tr>
-                    <td><?= $data['tgl_daftar'] ?></td>
-                    <td><?= $data['tipe'] ?><?= $data['ID'] ?></td>
-                    <td><?= $data['Nama'] ?></td>
-                    <td><?= $data['Jk'] ?></td>
-                    <td><?= $data['NoHp'] ?></td>
-                    <td><?= $data['Email'] ?></td>
-                    <td><?= $data['Alamat'] ?></td>
-                    <td><a href='formedit.php?ID=<?php echo $data['ID']; ?>'><input type="image" src="edit.png" width="20" height="20"/></a>
-                    <a href='hapus.php?ID=<?php echo $data['ID']; ?>'><input type="image" src="delete.png" width="20" height="20"/></a>
-                    </td>
+                    <td><?= $data['waktu'] ?></td>
+                    <td><?= $data['no_transaksi'] ?></td>
+                    <td><?= $data['tipe'] ?><?= $data['id'] ?></td>
+                    <td><?= $data['nama'] ?></td>
+                    <td><?= $data['kode_obat'] ?></td>
+                    <td><?= $data['jumlah_beli'] ?></td>
+                    <td><?= $data['total_beli'] ?></td>
                 </tr>
             <?php } ?>
         </tbody>

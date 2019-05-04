@@ -1,5 +1,5 @@
 <!-- 1. Fitur CRM atau disebut pelanggan. fitur ini digunakan untuk menginputkan data member yang akan digunakan di bagian kasir. jika pelanggan tersebut adalah member maka akan di kenakan diskon. -->
-
+ 
 <!-- 
 fitur ini dikerjakan oleh Herni Sartika Manalu 1700018285
 

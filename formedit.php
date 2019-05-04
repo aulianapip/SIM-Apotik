@@ -1,9 +1,10 @@
 <!-- 1. Fitur CRM atau disebut pelanggan. fitur ini digunakan untuk menginputkan data member yang akan digunakan di bagian kasir. jika pelanggan tersebut adalah member maka akan di kenakan diskon. -->
+<!-- 
+fitur ini berupa jika data member akan diedit user maka jendela akan beralih pada formedit.php ini -->
+ 
 <!-- fitur ini dikerjakan oleh rizka arnanda s 170001248
 	 di modifikasi query edit pelanggan oleh adelia f z 170001281
-	 menambahkan script css oleh Carto Ardiyanto 1700018283 
-	script validasi input ditambahkan oleh Alfian Noor 1700018233
-	-->
+	 menambahkan script css & alert oleh Carto Ardiyanto 1700018283 -->
 <?php
 	include "library/import.php";//Pemanggilan folder css,bootsrap dengan nama file import.php
 //
@@ -32,13 +33,12 @@
 		<table width="45%" ><!-- ukuran tabel -->
 		<tr>
 			 <td><label for="kode_obat">ID</label>
-     			 <input type="text" disabled class="form-control" id="kode_obat" name="Nama" required oninvalid="this.setCustomValidity('Nama tidak boleh kosong')" value="<?php echo $a['ID']; ?>" oninput="setCustomValidity('')"></td>
+     			 <input type="text" disabled class="form-control" id="kode_obat" name="Nama" required oninvalid="this.setCustomValidity('Nama tidak boleh kosong')" value="<?php echo "$a[tipe]"; echo $a['ID']; ?>" oninput="setCustomValidity('')"></td>
      			 <!-- type disini memakai text dengan nama class untuk css form-control. dan id disini akan memanggil value yang sudah di inisialisasi sebelumnya. required oninvalid disini adalah alert yang jika kita tidak mengisi kolom tersebut maka akan muncul alert yang mengatakan "ID tidak boleh kosong dan jika oninput maka tidak akan keluar alert" -->
 		</tr>
 		<tr>
 			 <td><label for="kode_obat">Nama</label>
      			 <input type="text" class="form-control" id="kode_obat" name="Nama" required oninvalid="this.setCustomValidity('Nama tidak boleh kosong')" value="<?php echo $a['Nama']; ?>" oninput="setCustomValidity('')"></td>
-     			 <!-- type disini memakai text dengan nama class untuk css form-control. dan id disini akan memanggil value yang sudah di inisialisasi sebelumnya. required oninvalid disini adalah alert yang jika kita tidak mengisi kolom tersebut maka akan muncul alert yang mengatakan "nama tidak boleh kosong dan jika oninput maka tidak akan keluar alert" -->
 		</tr>
 		<tr>
 			  <td><label for="status" name="Jk">Jenis Kelamin</label>
@@ -57,7 +57,7 @@
 		<tr>
 			<td><label for="harga_obat">Email</label>
      		<input type="text" class="form-control" id="harga obat" value="<?php echo $a['Email'];?>" name="Email" required oninvalid="this.setCustomValidity('Email tidak boleh kosong')" oninput="setCustomValidity('')"></td>
-     		<!-- type disini memakai text dengan nama class untuk css form-control. dan id disini akan memanggil value yang sudah di inisialisasi sebelumnya. required oninvalid disini adalah alert yang jika kita tidak mengisi kolom tersebut maka akan muncul alert yang mengatakan "Email tidak boleh kosong dan jika oninput maka tidak akan keluar alert" -->
+     		<!-- type disini memakai text dengan nama class untuk css form-control. dan id disini akan memanggil value yang sudah di inisialisasi sebelumnya. required oninvalid disini adalah alert yang jika kita tidak mengisi kolom tersebut maka akan muncul alert yang mengatakan "nama tidak boleh kosong dan jika oninput maka tidak akan keluar alert" -->
 		</tr>
 		<tr>
 			<td><label for="harga_obat">Alamat</label>

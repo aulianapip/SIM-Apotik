@@ -1,4 +1,4 @@
-<!-- 1. Fitur CRM atau disebut pelanggan. fitur ini digunakan untuk menginputkan data member yang akan digunakan di bagian kasir. jika pelanggan tersebut adalah member maka akan di kenakan diskon. -->
+
 <?php 
     include('conect.php');
 
@@ -21,7 +21,7 @@
 
     }
   }
-   
+    include 'fungsi_indotgl.php';
     $tgl_awal= $_POST['tgl_awal'];
     $tgl_akhir= $_POST['tgl_akhir'];
 
@@ -52,7 +52,7 @@
     }
   }
 
-  $SQL = mysqli_query($connect, "SELECT * FROM pelanggan ORDER BY Nama DESC");
+  $SQL = mysqli_query($connect, "SELECT * FROM pelanggan ORDER BY ID ASC");
     
   }
 
@@ -60,7 +60,6 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <!-- pengaturan posisi dan pengambilan dari pencarian dari rentang tanggal -->
   <script type="text/javascript">
           $(document).ready(function(){
             $("tgl_awal").datepicker({
@@ -84,10 +83,10 @@
               $("#tgl_akhir").datepicker("option","dateFormat","yy-mm-dd");
             });
           });
+          //line 4-26 dibuat rizka
         </script>
 
     <title>CRM APOTEK</title>
-    <!--link boostrap-->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
       <meta name="description" content="Demo project with jQuery">
@@ -98,74 +97,68 @@
     <script type="text/javascript" charset="utf8" src="http://cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
     <link rel="stylesheet" type="text/css" href="style.css">
 <style type="text/css">
- 
-
- <!-- ini merupakan fungsi dan query membuat bagian Navbar -->
 body{
-  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif; 
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
   border-collapse: collapse;
   width: 100%;
 }
 
- td {                           /mdesain baris/
+ td {
   border: 1px solid #ddd;
   padding: 8px;
   
   text-align: left;
 }
-.page-item.active .page-link { 
+.page-item.active .page-link {
     z-index: 1;
     color: #fff;
     background-color: pink;
     border-color: pink;
 }
 
-label {                         /desain label/
+label {
     display: inline-block;
     margin-top: 1rem;
     margin-bottom: .5rem;
 }
 
- tr:nth-child(even){background-color: #f2f2f2;}   /desain kolom/
+ tr:nth-child(even){background-color: #f2f2f2;}
 
  tr:hover {background-color: #ddd;}
 
 
 }
 }
-
 </style>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
 * {box-sizing: border-box;}
 
-body {                       
+body { 
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
 }
-
-
-
-.btn-primary.active, .btn-primary:active, .open>.dropdown-toggle.btn-primary {  
+.btn-primary.active, .btn-primary:active, .open>.dropdown-toggle.btn-primary {
     color: black;
     background-color: pink;
     background-image: none;
-    border-color: #ddd; 
+    border-color: #ddd;
 }
-/*ini merupakan fungsi dan query membuat bagian Navbar */
 .header {
   overflow: hidden;
   background-color: pink;
   padding: 20px 10px;
 }
-.header a {   
+
+.header a {
   float: left;
-  color: black; 
+  color: black;
   text-align: center;
-  padding: 12px;    
-  text-decoration: none; /  font-size: 18px;  
-  line-height: 25px;  
-  border-radius: 4px; 
+  padding: 12px;
+  text-decoration: none;
+  font-size: 18px; 
+  line-height: 25px;
+  border-radius: 4px;
 }
 
 .header a.logo {
@@ -198,32 +191,31 @@ body {
   }
 }
 </style>
-  </head>  </head>
+  </head>
   <body>
 
-<!-- kepala --><div class="header">
+<!-- kepala -->
+<div class="header">
   <a href="#default" class="logo">CRM APOTEK</a>
   <div class="header-right">
     <a class="active" href="index.php">Home</a>
     <a href="inputdata.php">Input Data</a>
-    <a href="riwayat.php">Riwayat pembelian</a>
 <div>
 </div>
 </div>
 </div>
 
-
     <!-- Badan -->
     <div>
        <form method="post" action="index.php">
   <div>
-<!-- pengambilan jenis dan bentuk tabel dari bootstrap -->
+
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 
     <div class="dropdown">
-    <button class="btn btn-primary "  data-toggle="dropdown">Cari Berdasarkan rentang tanggal
+    <button class="btn btn-primary "  data-toggle="dropdown">Cari rentang tanggal
     <span class="caret"></span></button>
     <ul class="dropdown-menu" >
       <li>
@@ -234,17 +226,17 @@ body {
       </li>
       
         <ul>
-      <input type="submit" name="Cari" value="Cari" class="button"> 
+      <input type="submit" name="Cari" value="Cari" class="button"> <!--dibuat  carto -->
       </ul>
       <ul>
-      <a href="index.php"><input type="submit"  value="Refresh" class="button"></input></a>
+      <a href="index.php"><input type="submit"  value="Refresh" class="button"></input></a><!-- dibuat carto -->  
       </ul>
     </ul>  
  
  </div>
  <br>
 <a href="selectdelete.php">PILIH</a>
- 
+  <!-- line 138-142 dibuat rizka -->
   
   
  </div>
@@ -268,7 +260,7 @@ body {
             <?php   while($data = mysqli_fetch_array($SQL)){ ?>
                 <tr>
                     <td><?= $data['tgl_daftar'] ?></td>
-                    <td><?= $data['tipe'] ?><?= $data['ID'] ?></td>
+                    <td><?= $data['ID'] ?></td>
                     <td><?= $data['Nama'] ?></td>
                     <td><?= $data['Jk'] ?></td>
                     <td><?= $data['NoHp'] ?></td>
@@ -281,7 +273,6 @@ body {
             <?php } ?>
         </tbody>
     </table>
-    <!-- rangkaian dari bootstrap untuk tabel -->
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>

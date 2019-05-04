@@ -7,7 +7,7 @@ fitur ui utama awal sebelum diganti dan pengerjakan pertama oleh team -->
 <head>  <script type="text/javascript">
         	$(document).ready(function(){
         		$("tgl_awal").datepicker({
-        			altFormat:"dd MM yy",  //format tanggal-bulat-tahun
+        			altFormat:"dd MM yy", //format tanggal-bulat-tahun
         			changeMonth : true,
         			changeYear : true
         		});
@@ -19,7 +19,7 @@ fitur ui utama awal sebelum diganti dan pengerjakan pertama oleh team -->
         <script type="text/javascript">
         	$(document).ready(function(){
         		$("tgl_akhir").datepicker({
-        			altFormat:"dd MM yy", 
+        			altFormat:"dd MM yy",
         			changeMonth : true,
         			changeYear : true
         		});
@@ -29,16 +29,11 @@ fitur ui utama awal sebelum diganti dan pengerjakan pertama oleh team -->
         	});
         	//line 4-26 dibuat rizka arnanda menggunakan script bootstrap datepicker
         </script>
-
-
-
-<!-- untuk bagian UI dikerjakan oleh Alfian Noor 1700018233->
-
-<!-- Mengatur Layout Dengan CSS -->
-<link rel="stylesheet" type="text/css" href="style.css"> <!-- untuk link css -->  
+<link rel="stylesheet" type="text/css" href="style.css">
 <style type="text/css">
 body{
-  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif; /*untuk jenis huruf*/   border-collapse: collapse;
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
   width: 100%;
 }
 
@@ -50,17 +45,15 @@ body{
   text-align: left;
 }
 
- tr:nth-child(even){background-color: #f2f2f2;}   
-/*Salah satu cara untuk meningkatkan keterbacaan tabel besar adalah dengan mewarnai baris bergantian*/ 
+ tr:nth-child(even){background-color: #f2f2f2;}
 
  tr:hover {background-color: #ddd;}
- /*menambahkannya ke baris tabel menggunakan aturan stylesheet */
 
  th {
   padding-top: 12px;
   padding-bottom: 12px;
-  text-align: left;   /*fungsi untuk membuat perataan teks bagian kiri*/
-  background-color: #4CAF50;  /*untuk pewarnaan backg round*/
+  text-align: left;
+  background-color: #4CAF50;
   color: white;
 }
 }
@@ -68,10 +61,11 @@ body{
 </head>
 
 <?php  
-	include 'conect.php';   //untuk menghubungkan ke database (dibuat oleh tesya pratiwi 1700018246)
-	include ('header.php');  //pemanggilan untuk bagian header dengan nama file header.php
+	include 'conect.php';//untuk menghubungkan ke database (dibuat oleh tesya pratiwi 1700018246)
+	include ('header.php');//pemanggilan untuk bagian header dengan nama file header.php
+	
 
-	if (isset($_POST['Cari'])) {  //sintaks yang berfungsi untuk sebagai inisial yang akan menyimpan nilai atau value
+	if (isset($_POST['Cari'])) {//sintaks yang berfungsi untuk sebagai inisial yang akan menyimpan nilai atau value
 
 	if(isset($_GET['pesan'])){
 		$pesan=$_GET['pesan'];
@@ -89,13 +83,13 @@ body{
 
 		}
 	}
-		
-		$tgl_awal= $_POST['tgl_awal'];  //method yang berfungsi untuk sebagai inisial yang akan menyimpan nilai atau value
-		$tgl_akhir= $_POST['tgl_akhir'];  //method yang berfungsi untuk sebagai inisial yang akan menyimpan nilai atau value
+
+		$tgl_awal= $_POST['tgl_awal'];//method yang berfungsi untuk sebagai inisial yang akan menyimpan nilai atau value
+		$tgl_akhir= $_POST['tgl_akhir'];//method yang berfungsi untuk sebagai inisial yang akan menyimpan nilai atau value
 
 
 	$q1="SELECT * from pelanggan where tgl_daftar between '$tgl_awal' and '$tgl_akhir'";
-	$SQL=mysqli_query($connect,$q1);  //query ini berfungsi untuk memanggil fungsi conect untuk memberikan akses ke database dan inisialisasi dari querysql
+	$SQL=mysqli_query($connect,$q1);//query ini berfungsi untuk memanggil fungsi conect untuk memberikan akses ke database dan inisialisasi dari querysql
 
 	
 	}
@@ -149,7 +143,7 @@ body{
 	foreach($SQL as $Data) {// sintaks untuk perulangan menampilkan semua isi data pelanggan
 		echo "
 		<tr>
-		<td >$Data[tgl_daftar]</td>
+		<td >$Data[tgl_daftar]</td> 
 		<td >$Data[ID]</td>
 		<td >$Data[Nama]</td>
 		<td >$Data[Jk]</td>
@@ -161,11 +155,8 @@ body{
 		";
 	}
 	// line 142-153 dibuat oleh tesya pratiwi 1700018246
-
-
 	?>
 
-	
 	</tr>
 
 </table>
@@ -176,9 +167,9 @@ body{
 	<div><label for="tgl_awal">Dari Tanggal</label>
 		<input type="date" id="tgl_awal" name="tgl_awal">&nbsp; <!--menampilkan datepicker -->
 		<label for="tgl_akhir">Sampai Tanggal</label>
-		<input type="date" id="tgl_akhir" name="tgl_akhir"> <!--menampilkan datepicker -->
+		<input type="date" id="tgl_akhir" name="tgl_akhir"><!--menampilkan datepicker -->
 	</div>
-	<!-- line 172-178 dibuat rizka -->
+	<!-- line 163-168 dibuat rizka -->
 	<button>
 	<input type="submit" name="Cari" value="Cari" class="button"> <!--dibuat  carto -->
 	<!-- tombol input dengan type submit dan value=cari -->
