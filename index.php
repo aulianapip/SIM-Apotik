@@ -1,3 +1,4 @@
+<!-- Amanda Fahmidyna 170008273 -->
 <?php
 require_once('database/db.php');
 include "navbar_cashflow.php";
@@ -70,6 +71,7 @@ if (isset($_GET['filter']) and $_GET['filter'] != 'tanggal' ) {
 </head>
 
 <body>
+
  <div class="container-fluid">
  <div class="container py-4">
  <form action="index.php" method="get" onsubmit="return isValid()">
@@ -99,8 +101,11 @@ if (isset($_GET['filter']) and $_GET['filter'] != 'tanggal' ) {
  <option value="tahun">Tahunan</option>
  </select>
  </div>
+
  <div class="col-4 mb-3">
+ <a href="labarugi.php" class="btn btn-danger float-right "  style="margin-top: 33px">Laporan</a>
  <a href="index.php?filter=semua" class="btn btn-success float-right mx-3" style="margin-top: 33px">Semua</a>
+
  <!--ketika button semua diklik maka akan dialihkan ke halaman index.php dengan menampilkan semua hari aruskas(default page)-->
  <button type="submit" class="btn btn-primary float-right" style="margin-top: 33px"> Cari berdasarkan filter</button>
  <!--ketika form filter sudah diisi danmengklik button tersebutmaka akan terfilter -->
@@ -231,6 +236,8 @@ if (isset($_GET['filter']) and $_GET['filter'] != 'tanggal' ) {
  </script>
  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
  </script>
+
+
 </body>
 
 </html>
