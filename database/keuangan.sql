@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.9
+-- version 4.7.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 12, 2019 at 02:51 PM
--- Server version: 10.1.31-MariaDB
--- PHP Version: 7.2.3
+-- Generation Time: 10 Mei 2019 pada 04.35
+-- Versi Server: 10.1.25-MariaDB
+-- PHP Version: 7.1.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -25,7 +25,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `gaji_pegawai`
+-- Struktur dari tabel `gaji_pegawai`
 --
 
 CREATE TABLE `gaji_pegawai` (
@@ -36,7 +36,7 @@ CREATE TABLE `gaji_pegawai` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `jenis_obat`
+-- Struktur dari tabel `jenis_obat`
 --
 
 CREATE TABLE `jenis_obat` (
@@ -45,7 +45,7 @@ CREATE TABLE `jenis_obat` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `jenis_obat`
+-- Dumping data untuk tabel `jenis_obat`
 --
 
 INSERT INTO `jenis_obat` (`kode_jenis`, `nama_jenis`) VALUES
@@ -62,7 +62,24 @@ INSERT INTO `jenis_obat` (`kode_jenis`, `nama_jenis`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `login`
+-- Struktur dari tabel `kasawal`
+--
+
+CREATE TABLE `kasawal` (
+  `jumlah` int(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `kasawal`
+--
+
+INSERT INTO `kasawal` (`jumlah`) VALUES
+(3000000);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `login`
 --
 
 CREATE TABLE `login` (
@@ -75,7 +92,7 @@ CREATE TABLE `login` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `login`
+-- Dumping data untuk tabel `login`
 --
 
 INSERT INTO `login` (`id`, `user`, `password`, `nama`, `jabatan`, `tanggal_terdaftar`) VALUES
@@ -85,7 +102,7 @@ INSERT INTO `login` (`id`, `user`, `password`, `nama`, `jabatan`, `tanggal_terda
 -- --------------------------------------------------------
 
 --
--- Table structure for table `obat`
+-- Struktur dari tabel `obat`
 --
 
 CREATE TABLE `obat` (
@@ -99,7 +116,7 @@ CREATE TABLE `obat` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `obat`
+-- Dumping data untuk tabel `obat`
 --
 
 INSERT INTO `obat` (`kode_obat`, `nama_obat`, `kode_jenis`, `Stok_Obat`, `harga_obat`, `dosis_obat`, `tanggal_input`) VALUES
@@ -132,7 +149,7 @@ INSERT INTO `obat` (`kode_obat`, `nama_obat`, `kode_jenis`, `Stok_Obat`, `harga_
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pengeluaran`
+-- Struktur dari tabel `pengeluaran`
 --
 
 CREATE TABLE `pengeluaran` (
@@ -147,7 +164,7 @@ CREATE TABLE `pengeluaran` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `supplier`
+-- Struktur dari tabel `supplier`
 --
 
 CREATE TABLE `supplier` (
@@ -160,20 +177,20 @@ CREATE TABLE `supplier` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `supplier`
+-- Dumping data untuk tabel `supplier`
 --
 
 INSERT INTO `supplier` (`kode_obat`, `jumlah_obat`, `kode_supplier`, `harga_beli`, `tanggal_beli`, `tanggal_kadaluarsa`) VALUES
-('B022', 2, '', 2, '2019-04-12', '2019-05-11'),
-('B005', 100, 'R001', 5000, '2019-04-01', '2019-04-30'),
-('B005', 12, 'R002', 15, '2019-05-03', '2019-05-03'),
-('B022', 11, 'R003', 3, '0000-00-00', '2019-05-09'),
-('B012', 2, 'R004', 2, '2019-04-12', '2019-05-02');
+('B022', 4, '', 78650, '2019-01-30', '2019-05-11'),
+('B005', 3, 'R001', 199529, '2018-12-12', '2019-04-30'),
+('B005', 1, 'R002', 199529, '2018-12-30', '2019-05-03'),
+('B022', 4, 'R003', 78650, '2018-12-22', '2019-05-09'),
+('B012', 2, 'R004', 10164, '2019-04-12', '2019-05-02');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tabel_penjualan`
+-- Struktur dari tabel `tabel_penjualan`
 --
 
 CREATE TABLE `tabel_penjualan` (
@@ -187,7 +204,7 @@ CREATE TABLE `tabel_penjualan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tabel_penjualan`
+-- Dumping data untuk tabel `tabel_penjualan`
 --
 
 INSERT INTO `tabel_penjualan` (`id_penjualan`, `tanggal_terjual`, `kode_obat`, `lain`, `jumlah_terjual`, `harga`, `subotal`) VALUES
@@ -201,12 +218,24 @@ INSERT INTO `tabel_penjualan` (`id_penjualan`, `tanggal_terjual`, `kode_obat`, `
 ('P008', '2019-03-06', 'B003', NULL, 11, 10286, 113146),
 ('P009', '2019-03-20', 'B008', NULL, 9, 78650, 707850),
 ('P010', '2019-03-21', 'B007', NULL, 11, 49610, 545710),
-('P011', '2019-04-08', NULL, 'Pembelian Makanan', 5, 15000, 75000);
+('P011', '2019-04-08', NULL, 'Pembelian Makanan', 5, 15000, 75000),
+('P012', '2019-05-04', NULL, 'bayar parkir', 1, 5000, 5000),
+('P013', '2019-04-26', NULL, 'Pembelian Etalase ', 1, 1000000, 1000000),
+('P014', '2019-05-01', 'B003', NULL, 10, 10286, 102860),
+('P015', '2019-04-30', 'B009', NULL, 10, 217800, 2178000),
+('P016', '2019-01-30', 'B022', NULL, 4, 78650, 314600),
+('P017', '2018-12-12', 'B005', NULL, 3, 199529, 598587),
+('P018', '2018-12-30', 'B005', NULL, 1, 199529, 199529),
+('P019', '2018-12-22', 'B022', NULL, 4, 78650, 314600),
+('P020', '2019-04-12', 'B012', NULL, 2, 10164, 20328),
+('P021', '2019-01-01', 'B005', NULL, 3, 199529, 598587),
+('P022', '2019-05-05', NULL, 'Pembelian lemari', 2, 500000, 1000000),
+('P023', '2019-05-10', NULL, 'Beli Loker', 1, 750000, 750000);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `transaksi`
+-- Struktur dari tabel `transaksi`
 --
 
 CREATE TABLE `transaksi` (
@@ -215,7 +244,7 @@ CREATE TABLE `transaksi` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `transaksi`
+-- Dumping data untuk tabel `transaksi`
 --
 
 INSERT INTO `transaksi` (`id_penjualan`, `jenis`) VALUES
@@ -227,7 +256,20 @@ INSERT INTO `transaksi` (`id_penjualan`, `jenis`) VALUES
 ('P006', 'debit'),
 ('P007', 'debit'),
 ('P008', 'debit'),
-('P011', 'kredit');
+('P011', 'kredit'),
+('P012', 'kredit'),
+('P013', 'kredit'),
+('P014', 'debit'),
+('P015', 'kredit'),
+('P015', 'debit'),
+('P016', 'kredit'),
+('P017', 'kredit'),
+('P018', 'kredit'),
+('P019', 'kredit'),
+('P020', 'kredit'),
+('P021', 'debit'),
+('P022', 'kredit'),
+('P023', 'kredit');
 
 --
 -- Indexes for dumped tables
@@ -283,29 +325,29 @@ ALTER TABLE `transaksi`
   ADD KEY `id_pembelian` (`jenis`);
 
 --
--- Constraints for dumped tables
+-- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
 --
 
 --
--- Constraints for table `gaji_pegawai`
+-- Ketidakleluasaan untuk tabel `gaji_pegawai`
 --
 ALTER TABLE `gaji_pegawai`
   ADD CONSTRAINT `gaji_pegawai_ibfk_1` FOREIGN KEY (`id`) REFERENCES `login` (`id`);
 
 --
--- Constraints for table `obat`
+-- Ketidakleluasaan untuk tabel `obat`
 --
 ALTER TABLE `obat`
   ADD CONSTRAINT `obat_ibfk_1` FOREIGN KEY (`kode_jenis`) REFERENCES `jenis_obat` (`kode_jenis`);
 
 --
--- Constraints for table `tabel_penjualan`
+-- Ketidakleluasaan untuk tabel `tabel_penjualan`
 --
 ALTER TABLE `tabel_penjualan`
   ADD CONSTRAINT `tabel_penjualan_ibfk_1` FOREIGN KEY (`kode_obat`) REFERENCES `obat` (`kode_obat`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `transaksi`
+-- Ketidakleluasaan untuk tabel `transaksi`
 --
 ALTER TABLE `transaksi`
   ADD CONSTRAINT `transaksi_ibfk_1` FOREIGN KEY (`id_penjualan`) REFERENCES `tabel_penjualan` (`id_penjualan`) ON DELETE CASCADE ON UPDATE CASCADE;
