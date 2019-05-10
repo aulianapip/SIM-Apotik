@@ -103,7 +103,7 @@ if (isset($_GET['filter']) and $_GET['filter'] != 'tanggal' ) {
  </div>
 
  <div class="col-4 mb-3">
- <a href="labarugi.php" class="btn btn-danger float-right "  style="margin-top: 33px">Laporan</a>
+ <a href="laporan keuntungan.php" class="btn btn-danger float-right "  style="margin-top: 33px">Laporan</a>
  <a href="index.php?filter=semua" class="btn btn-success float-right mx-3" style="margin-top: 33px">Semua</a>
 
  <!--ketika button semua diklik maka akan dialihkan ke halaman index.php dengan menampilkan semua hari aruskas(default page)-->
