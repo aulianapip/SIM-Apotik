@@ -1,16 +1,9 @@
 <html>
     <head>
     <!--UI DESIGNER
-    	Nama  : Baharuddin Izha Al Sya'na
-        Nim   : 1700018257
-	Kelas : E
+    	Nama : Baharuddin Izha Al Sya'na
+        Nim  : 1700018257
         ---------------->
-<!--1. Fitur Analitik 
-Fitur untuk menganalisa data dari seluruh fitur yang ada di sistem Informasi Apotik. 
-untuk menganalisa dibuatlah berbagai macam grafik untuk membantu merepresentasi hasil analisa yang telah dibuat. 
-hasil analisa tersebut juga dapat juga dapat membantu kita untuk mengambil keputusan dimasa yang akan datang.
--->
-
         <title></title>
         <script type="text/javascript" src="Chart.js/Chart.js"></script>
 <link rel="stylesheet" href="materialize.min.css">
@@ -20,7 +13,7 @@ hasil analisa tersebut juga dapat juga dapat membantu kita untuk mengambil keput
     <!--Membuat Navbar --------------------------------------->
 <nav class="nav-extended">
     <div class="nav-wrapper">
-<a href="#" class="brand-logo center">ANALITIK</a></nav><!--Membuat Logo Analitik--------------------------------------->
+<a href="#" class="brand-logo center">ANALITIK</a></nav>
 </div>
 
 <!--Membuat Pilihan Data Yang Mau di Analisis ---------------->
@@ -33,13 +26,12 @@ hasil analisa tersebut juga dapat juga dapat membantu kita untuk mengambil keput
         </div>
         <div class="card-action">
           <center>
-<!--Memanggil supply.php--------------------------------------->
         <a href="supply.php" class="waves-effect waves-light btn-small">Grafik Data Supplier</a>
-<!--Memanggil GRAFIK_SUPPLIER_FAOBAT_JUMLAH_PASOK_BERDASARKAN_TAHUN.php--------------------------------------->
-	<a href="GRAFIK_SUPPLIER_FAOBAT_JUMLAH_PASOK_BERDASARKAN_TAHUN.php" class="waves-effect waves-light btn-small">GRAFIK JUMLAH PASOK BERDASARKAN WAKTU</a>
-<!--Memanggil GRAFIK_TOTAL_PASOK_SELURUH_SUPPLIER_2019.php--------------------------------------->
+	  	<a href="GRAFIK_SUPPLIER_FAOBAT_JUMLAH_PASOK_BERDASARKAN_TAHUN.php" class="waves-effect waves-light btn-small">GRAFIK JUMLAH PASOK BERDASARKAN WAKTU</a>
         <a href="GRAFIK_TOTAL_PASOK_SELURUH_SUPPLIER_2019.php" class="waves-effect waves-light btn-small">GRAFIK STOCK DARI KESELURUHAN SUPPLIER
 TAHUN 2019</a>
+        <a href="GRAFIK_TOTAL_PASOK_SELURUH_SUPPLIER_2018.php" class="waves-effect waves-light btn-small">GRAFIK STOCK DARI KESELURUHAN SUPPLIER
+TAHUN 2018</a>
 	</center>
         </div>
       </div>
@@ -56,9 +48,7 @@ TAHUN 2019</a>
         </div>
         <div class="card-action">
           <center>
-<!--Memanggil obat.php--------------------------------------->
           		<a href="obat.php" class="waves-effect waves-light btn-small">Grafik Data Obat</a>
-<!--Memanggil TABEL OBAT BERDASARKAN TAHUN KADALUARSA.php--------------------------------------->
           		<a href="TABEL OBAT BERDASARKAN TAHUN KADALUARSA.php" class="waves-effect waves-light btn-small">Grafik Kadaluarsa</a>
         </div>
       </div>
@@ -75,7 +65,8 @@ TAHUN 2019</a>
         </div>
         <div class="card-action">
           <center>
-          		<a href="pelanggan.php" class="waves-effect waves-light btn-small">Analisa Pembelian</a>
+          		<a href="grafikPelangganJK.php" class="waves-effect waves-light btn-small">Grafik Data Pelanggan Berdasar Jenis Kelamin</a>
+			<a href="grafikPelangganKota.php" class="waves-effect waves-light btn-small">Grafik Data Pelanggan Berdasar Kota</a>
         </div>
       </div>
     </div>
