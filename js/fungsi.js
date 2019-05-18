@@ -33,7 +33,7 @@ $(document).ready(function(){
 			
 		}
 	});
-	
+		
 	//hapus item penjualan.
 	$(".btnHapusJual").click(function(){
 		var r = confirm('YAKIN INGIN MENGHAPUS DATA INI ???');

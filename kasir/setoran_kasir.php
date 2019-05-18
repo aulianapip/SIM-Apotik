@@ -69,7 +69,7 @@ opendb();
 											
 											echo "<option value='".$i."'>".$i."</option>";
 										}
-									?>	
+									?>		
 								</select>
 								<select class="form-control input-sm" name="blnAkhir" id="blnAkhir">
 									<?php 
@@ -105,7 +105,7 @@ opendb();
 								<table class="table table-bordered table-condensed">
 									<tr>
 										<th>No</th>
-										<th>No. Faktur</th>
+											<th>No. Faktur</th>
 										<th>Tanggal</th>
 										<th>Nilai Penjualan</th>
 									</tr>

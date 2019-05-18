@@ -78,6 +78,7 @@
         <?php 
       }
         ?>
+        <li><a href="../SIM-Apotik-pos/CRM/index.php"><i class="icon-dashboard"></i>&nbsp;&nbsp;member</a></li>
         
       </ul>
     </nav>

@@ -115,7 +115,7 @@ if(isset($_POST['simpanJual'])){
 					//$id=buatKode("penjualan","");
 					
 					$qri3="INSERT INTO penjualan (no_transaksi,no_faktur,tgl_penjualan,total_penjualan,user) 
-						VALUES('$noTrans','$noFaktur','$tgl','$ttlJual','$user_id')";
+						VALUES('$noTrans','$noFaktur',now(),'$ttlJual','$user_id')";
 					$res3=$mysqli->query($qri3);
 					if(!$res3){$errors[] = $mysqli->error;}
 					

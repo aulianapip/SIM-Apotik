@@ -16,6 +16,7 @@ if(!isset($_SESSION['SES_LOGIN'])){
 	$bln = date("m");
 	$hri = date("d");
 
+
 	$qri = "SELECT MAX(no_faktur) AS no_faktur FROM penjualan";
 	$hsl = querydb($qri);
 	$rek = arraydb($hsl);
@@ -25,19 +26,7 @@ if(!isset($_SESSION['SES_LOGIN'])){
 			$noFaktur3 = sprintf("%05s",$noFaktur2);
 		}
 		$noFaktur4 = $thn.$bln.$hri.$noFaktur3;	
-		
-	//hitung kembalian	
-	if(isset($_POST['cash'])){
-		$cash=$_POST['cash'];
-		if($cash>=1){
-			$kembali=($cash-$ttlJual);
-		}else{
-			$kembali=0;
-		}
-	}
-	else{
-		$kembali=0;
-	}	
+			
 
 	//cari data user
 	$qri2 = "SELECT * FROM nama_user WHERE id_user='$user_id'";
@@ -45,12 +34,11 @@ if(!isset($_SESSION['SES_LOGIN'])){
 	$rek2 = arraydb($hsl2);
 		$namaLengkap = $rek2['nm_lengkap'];
 		$username    = $rek2['nm_user'];
-		$akses		=  $rek2['akses'];
+		$akses		 = $rek2['akses'];
+	
+
 
 ?>
-
-
-
 
 
 <div class="main">  
@@ -61,28 +49,47 @@ if(!isset($_SESSION['SES_LOGIN'])){
 <br>
     		<div class="row">
     			
-    
-
-  
+     
         <div class="span12">
           <div class="widget">
             <div class="widget-header"> <i class="icon-copy"></i>
               <h3>Form Kasir</h3>
               
             </div>
+
+ <form  method="POST" action="page.php?open=penjualan">
+
+  	Member : <input type="text" name="inpMember"  data-toggle="tooltip" data-placement="bottom" title="Isi 'ID' jika ada, isi '0' jika tidak ada">
+  	&nbsp;<input type="submit" name="submit" class="btn btn-xs btn-info" value="submit">
+
+
+
+
+
+  	<?php 
+  						//id member
+					
+
+							
+	?>
+
+   	</form>
+
+
             <div class="row1">
   <div class="column" style="background-color:#fff;">
     <div class="panel panel-primary alert-info" id="panelPenjualan1">
 			<div class="panel-body">
-				<form class="form-horizontal" name="formNoFaktur">
-					<p>Kode Barang&nbsp;&nbsp;&nbsp;: <input type="text" name="inpKodeBarang" id="inpKodeBarang" data-toggle="tooltip" data-placement="top" title="Tekan ENTER setelah mengisi kode barang" autofocus></p>
+				<form class="form-horizontal" name="formNoFaktur" method="POST" action="penjualan.php">
 					<p>Invoice&nbsp;&nbsp;: <input type="text" value="#<?php echo $noFaktur4?>" name="inpNoFaktur" id="inpNoFaktur" readonly="readonly"></p>
-					<p>Total Belanja&nbsp;&nbsp;&nbsp;: <input type="text" value="<?php echo number_format($ttlJual,0,",",".")?>" readonly="readonly"></p>
-					
+					<p>Kode Barang&nbsp;&nbsp;&nbsp;: <input type="text" name="inpKodeBarang" id="inpKodeBarang" data-toggle="tooltip" data-placement="right" title="isi kode barang lalu tekan ENTER" ></p>
+					<!-- <p>Jumlah&nbsp;&nbsp;&nbsp;: <input type="text" name="inpJumlahBeli" id="inpJumlahBeli" data-toggle="tooltip" data-placement="right" title="isi jumlah barang"></p> -->
 				</form>
 			</div>
 		</div><!-- /panel -->
   </div>
+
+
   <div class="column" style="background-color:#fff;">
     <div class="table-responsive">
 				<table class="table table-bordered table-condensed table-hover" style="background:#fff;" id="tblPembelian">
@@ -95,7 +102,10 @@ if(!isset($_SESSION['SES_LOGIN'])){
 							<th></th>
 						</tr>
 
+
+
 						<?php 
+							//$jmlbeli=$_POST['inpJumlahBeli'];
 							$ttlItem=0;$ttlJual=0;
 							$qri="SELECT a.*,b.nm_barang FROM penjualan_tmp a LEFT JOIN nama_obat b ON b.kd_barang=a.kd_barang WHERE a.user='$user_id'";
 							$hsl=querydb($qri);
@@ -108,11 +118,30 @@ if(!isset($_SESSION['SES_LOGIN'])){
 								echo "<td align='right'>".number_format($rek['sub_total'],0,",",".")."</td>";
 								echo "<td align='center'><button class=\"btn btn-danger btn-xs btnHapusJual\" data-val=\"$rek[id]\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Hapus Data\" ><span class=\"shortcut-icon icon-remove\"></span></button></td>";
 								echo "</tr>";
+
+								
 								$ttlItem = $ttlItem + $rek['jumlah'];
 								$ttlJual = $ttlJual + $rek['sub_total'];
 							}
 						?>
-						
+
+						<?php  
+							
+							// if($tipe=='m' and  $ttlItem >= 50000){
+							// 	 $ttlItem= $ttlItem-( $ttlItem *0.2);
+							//  //hitung kembalian	
+							// }
+						if(isset($_POST['cash'])){
+							$cash=$_POST['cash'];
+							if($cash>=1){
+									$kembali=$cash-$ttlJual;
+							}
+						}
+						else{
+							$kembali=0;
+						}
+						 ?>
+
 				</table>
 				<div class="table-responsive">
 
@@ -120,6 +149,7 @@ if(!isset($_SESSION['SES_LOGIN'])){
 					<tr>
 						<td><h3>TOTAL</h3></td>
 						<td align="right"><h3>Rp</h3></td>
+
 						<td align="right"><h3><?php echo number_format($ttlJual,0,",",".")?></h3></td>
 					</tr>
 					<tr>
@@ -129,7 +159,7 @@ if(!isset($_SESSION['SES_LOGIN'])){
 					</tr>
 				</table>
 				</div>
-				<form name="formKembali" id="formKembali" action="" method="POST">
+				<form name="formKembali" id="formKembali" action="page.php?open=penjualan" method="POST">
 				Cash <input type="text" name="cash" id="cash">&nbsp;<input type="submit" name="btnKembali" id="btnKembali" class="btn btn-xs btn-info" value="hitung">
 				</form>
 				<input type="button" value="Print Nota" id="btnCetakFaktur" class="btn btn-xs btn-info" onclick="popup()">&nbsp;&nbsp;<input type="button" value="Selesai" name="btnJualSimpan" id="btnJualSimpan" class="btn btn-xs btn-primary">
@@ -169,12 +199,6 @@ if(!isset($_SESSION['SES_LOGIN'])){
             <!-- /widget-header -->
             <div class="widget-content">
               <div class="shortcuts"> 
-              	
-
-
-				
-
-
 		
         <!-- span -->
       </div>

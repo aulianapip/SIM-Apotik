@@ -1,9 +1,3 @@
-<- Fitur POS, fitur untuk menjalankan fungsi kasir dan operasional penjualan apotik ->
-
-// Nama  : Ardiansyah
-// NIM   : 1600018058
-// Kelas : E
-
 
 <?php 
 
