@@ -54,7 +54,7 @@ if(!isset($_SESSION['SES_LOGIN'])){
           <div class="widget">
             <div class="widget-header"> <i class="icon-copy"></i>
               <h3>Form Kasir</h3>
-              
+
             </div>
 
  <form  method="POST" action="page.php?open=penjualan">
@@ -67,7 +67,27 @@ if(!isset($_SESSION['SES_LOGIN'])){
 
 
   	<?php 
-  						//id member
+  	$iden=0;
+
+
+  						if (isset($_POST['inpMember'])) {
+  							$inpIdMember=$_POST['inpMember'];
+  							$qri3="SELECT Nama, ID,tipe from pelanggan where ID='$inpIdMember' ";
+							$hsl3=querydb($qri3);
+							while($rek3=arraydb($hsl3)){
+								
+								echo "<br>";
+								echo $rek3['ID'];
+								echo "<br>"; 
+								echo $rek3['Nama'];
+								
+
+
+								$iden=$rek3['ID'];
+								$Member=$rek3['tipe'];
+							}
+
+  						}
 					
 
 							
@@ -76,12 +96,32 @@ if(!isset($_SESSION['SES_LOGIN'])){
    	</form>
 
 
+	<?php 
+	$idmember=$iden;
+	$qri3="SELECT Nama, ID,tipe from pelanggan where ID='$idmember' ";
+							$hsl3=querydb($qri3);
+							while($rek3=arraydb($hsl3)){
+								
+								echo "<br>";
+								echo $rek3['ID'];
+								echo "<br>"; 
+								echo $rek3['Nama'];
+								echo $rek3['tipe'];
+
+
+								$iden=$rek3['ID'];
+								$Member=$rek3['tipe'];
+							}
+
+	 ?>
+
+
             <div class="row1">
   <div class="column" style="background-color:#fff;">
     <div class="panel panel-primary alert-info" id="panelPenjualan1">
 			<div class="panel-body">
 				<form class="form-horizontal" name="formNoFaktur" method="POST" action="penjualan.php">
-					<p>Invoice&nbsp;&nbsp;: <input type="text" value="#<?php echo $noFaktur4?>" name="inpNoFaktur" id="inpNoFaktur" readonly="readonly"></p>
+					<p>Invoice&nbsp;&nbsp;: <input type="text" value="<?php echo $noFaktur4?>" name="inpNoFaktur" id="inpNoFaktur" readonly="readonly"></p>
 					<p>Kode Barang&nbsp;&nbsp;&nbsp;: <input type="text" name="inpKodeBarang" id="inpKodeBarang" data-toggle="tooltip" data-placement="right" title="isi kode barang lalu tekan ENTER" ></p>
 					<!-- <p>Jumlah&nbsp;&nbsp;&nbsp;: <input type="text" name="inpJumlahBeli" id="inpJumlahBeli" data-toggle="tooltip" data-placement="right" title="isi jumlah barang"></p> -->
 				</form>
@@ -126,19 +166,35 @@ if(!isset($_SESSION['SES_LOGIN'])){
 						?>
 
 						<?php  
+
+						$m='m';
 							
+						if ($ttlJual>30000 && $idmember>=1 ) {
+										$ttlJual=($ttlJual-($ttlJual*0.2));
+									 }
+									else {
+										$ttlJual=$ttlJual;
+									}
+
 							// if($tipe=='m' and  $ttlItem >= 50000){
 							// 	 $ttlItem= $ttlItem-( $ttlItem *0.2);
 							//  //hitung kembalian	
 							// }
 						if(isset($_POST['cash'])){
+							
+							$m='m';
 							$cash=$_POST['cash'];
-							if($cash>=1){
-									$kembali=$cash-$ttlJual;
-							}
-						}
+
+							if ($ttlJual>30000 && $m==$Member ) {
+										$kembali=$cash-($ttlJual-($ttlJual*0.2));
+									 }
+									else {
+										$kembali=$cash-$ttlJual;
+									}
+										
+							}			
 						else{
-							$kembali=0;
+							$kembali=0;	
 						}
 						 ?>
 
@@ -159,7 +215,7 @@ if(!isset($_SESSION['SES_LOGIN'])){
 					</tr>
 				</table>
 				</div>
-				<form name="formKembali" id="formKembali" action="page.php?open=penjualan" method="POST">
+				<form name="formKembali" id="formKembali" action="" method="POST">
 				Cash <input type="text" name="cash" id="cash">&nbsp;<input type="submit" name="btnKembali" id="btnKembali" class="btn btn-xs btn-info" value="hitung">
 				</form>
 				<input type="button" value="Print Nota" id="btnCetakFaktur" class="btn btn-xs btn-info" onclick="popup()">&nbsp;&nbsp;<input type="button" value="Selesai" name="btnJualSimpan" id="btnJualSimpan" class="btn btn-xs btn-primary">
