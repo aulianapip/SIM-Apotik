@@ -22,7 +22,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 03 Bulan Mei 2019 pada 16.18
+-- Waktu pembuatan: 25 Bulan Mei 2019 pada 07.17
 -- Versi server: 10.1.31-MariaDB
 -- Versi PHP: 7.2.4
 
@@ -38,34 +38,79 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `sim-apotek`
+-- Database: `sim_apotek`
 --
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `jenis_obat`
+-- Struktur dari tabel `barcode`
 --
 
-CREATE TABLE `jenis_obat` (
-  `kode_jenis` int(10) NOT NULL,
-  `nama_jenis` varchar(10) NOT NULL
+CREATE TABLE `barcode` (
+  `kode_obat` varchar(99) NOT NULL,
+  `tanggal_pasok` date NOT NULL,
+  `nomor_pasok` int(99) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `jenis_obat`
+-- Dumping data untuk tabel `barcode`
 --
 
-INSERT INTO `jenis_obat` (`kode_jenis`, `nama_jenis`) VALUES
-(101, 'Tablet'),
-(102, 'Serbuk'),
-(103, 'Pil'),
-(104, 'Kapsul'),
-(105, 'Kaplet'),
-(106, 'Syrup'),
-(107, 'Salep'),
-(108, 'Tetes'),
-(109, 'Suntik');
+INSERT INTO `barcode` (`kode_obat`, `tanggal_pasok`, `nomor_pasok`) VALUES
+('ADS', '2019-05-25', 1),
+('ADS', '2019-05-25', 2),
+('ADS', '2019-05-25', 3),
+('ADS', '2019-05-25', 4),
+('ADS', '2019-05-25', 5),
+('ADS', '2019-05-25', 6),
+('ADS', '2019-05-25', 7),
+('ADS', '2019-05-25', 8),
+('ADS', '2019-05-25', 9),
+('ADS', '2019-05-25', 10),
+('ADS', '2019-05-25', 11),
+('ADS', '2019-05-25', 12),
+('ADS', '2019-05-25', 13),
+('ADS', '2019-05-25', 14),
+('ADS', '2019-05-25', 15),
+('ADS', '2019-05-25', 16),
+('ADS', '2019-05-25', 17),
+('ADS', '2019-05-25', 18),
+('ADS', '2019-05-25', 19),
+('ADS', '2019-05-25', 20),
+('ADS', '2019-05-25', 21),
+('ADS', '2019-05-25', 22),
+('ADS', '2019-05-25', 23),
+('AMO', '2019-03-06', 1),
+('AMO', '2019-03-06', 2),
+('AMO', '2019-03-06', 3),
+('AMO', '2019-03-06', 4),
+('AMO', '2019-03-06', 5),
+('AMO', '2019-03-06', 6),
+('AMO', '2019-03-06', 7),
+('AMO', '2019-03-06', 8),
+('AMO', '2019-03-06', 9),
+('AMO', '2019-03-06', 10),
+('AMO', '2019-03-06', 11),
+('AMO', '2019-03-06', 12),
+('AMO', '2019-03-06', 13),
+('AMO', '2019-03-06', 14),
+('AMO', '2019-03-06', 15),
+('AMO', '2019-03-06', 16),
+('AMO', '2019-03-06', 17),
+('AMO', '2019-03-06', 18),
+('AMO', '2019-03-06', 19),
+('AMO', '2019-03-06', 20),
+('AMO', '2019-03-06', 21),
+('AMO', '2019-03-06', 22),
+('AMO', '2019-03-06', 23),
+('AMO', '2019-03-06', 24),
+('AMO', '2019-03-06', 25),
+('AMO', '2019-03-06', 26),
+('AMO', '2019-03-06', 27),
+('AMO', '2019-03-06', 28),
+('AMO', '2019-03-06', 29),
+('AMO', '2019-03-06', 30);
 
 -- --------------------------------------------------------
 
@@ -73,18 +118,10 @@ INSERT INTO `jenis_obat` (`kode_jenis`, `nama_jenis`) VALUES
 -- Struktur dari tabel `login`
 --
 
-CREATE TABLE `login` ( --dimas menambahkan tabel login untuk login tampilan awal--
+CREATE TABLE `login` (
   `user` varchar(20) NOT NULL,
-  `password` varchar(10) NOT NULL
+  `password` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data untuk tabel `login`
---
-
-INSERT INTO `login` (`user`, `password`) VALUES
-('user', 'user'),
-('admin', 'admin');
 
 -- --------------------------------------------------------
 
@@ -93,47 +130,137 @@ INSERT INTO `login` (`user`, `password`) VALUES
 --
 
 CREATE TABLE `obat` (
-  `nama_obat` varchar(15) NOT NULL,
-  `harga_obat` int(15) NOT NULL,
-  `kode_obat` int(10) NOT NULL,
-  `dosis_obat` varchar(3) NOT NULL,
-  `kode_jenis` int(10) NOT NULL,
-  `Stok_Obat` int(10) NOT NULL,
-  `tanggal_input` date NOT NULL,
-  `kadaluarsa_obat` date NOT NULL
+  `nama_obat` text NOT NULL,
+  `harga` int(99) NOT NULL,
+  `jenis` varchar(99) NOT NULL,
+  `kode_obat` varchar(99) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `obat`
 --
 
-INSERT INTO `obat` (`nama_obat`, `harga_obat`, `kode_obat`, `dosis_obat`, `kode_jenis`, `Stok_Obat`, `tanggal_input`, `kadaluarsa_obat`) VALUES
-('Konvermeks', 2500, 1, '2x3', 101, 20, '2019-01-05', '2024-02-10'),
-('Paracetamol', 2500, 2, '3x1', 106, 30, '2019-01-05', '2024-05-25'),
-('Promagh', 3500, 3, '2x1', 106, 25, '2019-04-13', '0024-08-18'),
-('Mastin', 3500, 4, '1x1', 105, 50, '2019-01-12', '2022-05-20'),
-('Hemavitan', 3000, 5, '2x1', 103, 75, '2019-02-02', '2023-08-17'),
-('Antimo', 5000, 6, '1x1', 101, 5, '2019-02-16', '2022-03-10'),
-('Diapet', 4000, 7, '3x1', 106, 10, '2019-03-02', '2023-04-20'),
-('Vatigon', 4500, 8, '1x1', 104, 35, '2019-03-09', '2024-02-10'),
-('Oskadon', 2000, 9, '2x1', 101, 40, '2019-03-09', '2023-06-20'),
-('Kalpanak', 3000, 10, '3x1', 107, 60, '2019-03-16', '2023-09-13'),
-('Mylanta', 5000, 11, '2x1', 106, 70, '2019-03-30', '2023-06-11'),
-('Paramex', 3000, 12, '2x1', 101, 80, '2019-03-30', '2024-11-22'),
-('Procold', 4000, 13, '2x1', 101, 45, '2019-03-30', '2024-04-12'),
-('Hemaviton', 6500, 14, '3x1', 106, 55, '2019-03-30', '2023-12-28'),
-('Inza', 5500, 15, '3x1', 101, 65, '2019-03-30', '2024-11-29'),
-('Albotil', 15000, 16, '3x1', 106, 40, '2018-11-10', '2023-05-28'),
-('Ambroxol', 11000, 17, '1x1', 101, 25, '2019-02-23', '2023-04-25'),
-('Alphara', 12000, 18, '1x1', 106, 95, '2019-02-16', '2023-02-10'),
-('Decolgen', 8000, 19, '3x1', 101, 60, '2019-02-09', '2023-10-13'),
-('Catropile', 10000, 20, '1x1', 101, 15, '2019-03-30', '2024-11-20'),
-('Amoxilin', 7000, 21, '2x1', 101, 15, '2019-03-09', '2024-03-18'),
-('Neutropin', 9000, 22, '3x1', 105, 35, '2019-02-09', '2023-05-17'),
-('Darsi', 13000, 23, '1x1', 105, 115, '2019-03-02', '2024-01-10'),
-('Komik', 5000, 25, '3x1', 105, 125, '2019-03-16', '2023-04-20'),
-('Bodrex', 2000, 26, '3x1', 101, 110, '2019-04-07', '2023-05-28'),
-('Mimin', 5000, 27, '3x1', 101, 20, '2019-04-07', '0000-00-00');
+INSERT INTO `obat` (`nama_obat`, `harga`, `jenis`, `kode_obat`) VALUES
+('Albumin', 7500, 'Syrup', 'ALB'),
+('Ambroxol', 10000, 'Kapsul', 'AMB'),
+('Amoxcilin', 15000, 'Tablet', 'AMO'),
+('Antimo', 5000, 'Syrup', 'ANT'),
+('Aspirin', 10000, 'Kapsul', 'ASP'),
+('Bromifar', 5000, 'Pil', 'BRO'),
+('Dexa', 10000, 'Pil', 'DEX'),
+('Heparin', 10000, 'Tablet', 'HEP'),
+('Ibuprofen', 7500, 'Kapsul', 'IBU'),
+('Isoniazid', 7500, 'Pil', 'ISO'),
+('Kalpanax', 4500, 'Salep', 'KAL'),
+('Konvermeks', 10000, 'Tablet', 'KON'),
+('Laktulosa', 7500, 'Pil', 'LAK'),
+('Lanolin', 5000, 'Kapsul', 'LAN'),
+('Mastin', 4000, 'Kaplet', 'MAS'),
+('Morfin', 15000, 'Tablet', 'MOR'),
+('Orphen', 7500, 'Pil', 'ORP'),
+('Panadol', 7500, 'Tablet', 'PAN'),
+('Paracetamol', 5000, 'Tablet', 'PAR'),
+('Promag', 5000, 'Tablet', 'PRO');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `opname`
+--
+
+CREATE TABLE `opname` (
+  `kode_opname` varchar(99) NOT NULL,
+  `kode_obat` varchar(99) NOT NULL,
+  `hilang` int(11) NOT NULL,
+  `rusak` int(11) NOT NULL,
+  `dipinjam` int(11) NOT NULL,
+  `status` enum('Belum Sesuai','Sesuai') NOT NULL,
+  `catatan` text NOT NULL,
+  `tanggal` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `opname`
+--
+
+INSERT INTO `opname` (`kode_opname`, `kode_obat`, `hilang`, `rusak`, `dipinjam`, `status`, `catatan`, `tanggal`) VALUES
+('1', 'ALB', 3, 0, 0, 'Belum Sesuai', 'Hilang saat pengecekan', 20190518),
+('2', 'ASP', 0, 5, 0, 'Belum Sesuai', 'Rusak Saat pengecekan', 20190518),
+('3', 'HEP', 3, 2, 1, 'Belum Sesuai', 'Hilang dan rusak saat pengecekan, dipinjam oleh mail', 20190518);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `pasok`
+--
+
+CREATE TABLE `pasok` (
+  `kode_pasok` varchar(99) NOT NULL,
+  `kode_obat` varchar(99) NOT NULL,
+  `kode_supplier` varchar(99) NOT NULL,
+  `jumlah_pasok` int(99) NOT NULL,
+  `harga_beli` int(99) NOT NULL,
+  `tanggal_pasok` date NOT NULL,
+  `tanggal_kadaluarsa` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `pasok`
+--
+
+INSERT INTO `pasok` (`kode_pasok`, `kode_obat`, `kode_supplier`, `jumlah_pasok`, `harga_beli`, `tanggal_pasok`, `tanggal_kadaluarsa`) VALUES
+('KP1', 'AMO', 'ABD', 82, 7500, '2019-05-08', '2021-02-05'),
+('KP10', 'IBU', 'SUP', 100, 3500, '2019-05-15', '2022-05-07'),
+('KP11', 'ISO', 'MEG', 100, 4000, '2019-05-09', '2020-07-04'),
+('KP12', 'KON', 'DUN', 75, 5000, '2019-05-18', '2020-10-17'),
+('KP13', 'LAK', 'MIT', 50, 5000, '2019-05-11', '2021-04-03'),
+('KP14', 'LAN', 'JAY', 200, 2000, '2019-05-13', '2020-09-26'),
+('KP15', 'MOR', 'AIC', 100, 10000, '2019-05-08', '2021-02-06'),
+('KP16', 'ORP', 'MEG', 125, 5000, '2019-05-16', '2020-05-02'),
+('KP17', 'PAN', 'JAY', 150, 5000, '2019-05-10', '2021-06-05'),
+('KP18', 'PAR', 'SUP', 75, 4000, '2019-05-15', '2021-04-17'),
+('KP19', 'PAR', 'IND', 100, 2500, '2019-05-01', '2021-03-06'),
+('KP2', 'AMO', 'APM', 82, 5000, '2019-05-13', '2022-01-06'),
+('KP20', 'PRO', 'APM', 100, 2500, '2019-05-01', '2020-12-04'),
+('KP21', 'MAS', 'AIC', 45, 2500, '2019-02-14', '2021-07-31'),
+('KP22', 'KAL', 'IND', 65, 3000, '2019-01-19', '2021-06-30'),
+('KP23', 'KAL', 'IND', 30, 3000, '2019-01-20', '2021-06-30'),
+('KP24', 'ALB', 'IND', 45, 5000, '2019-03-05', '2020-10-03'),
+('KP25', 'AMO', 'IND', 20, 2000, '2019-04-15', '2020-04-07'),
+('KP26', 'AMO', 'IND', 47, 2000, '2019-03-06', '2020-03-06'),
+('KP27', 'AMO', 'AIC', 30, 3000, '2019-03-06', '2020-04-07'),
+('KP28', 'AMO', 'AIC', 45, 2000, '2019-05-25', '2020-04-07'),
+('KP3', 'ALB', 'DUN', 37, 5000, '2019-05-21', '2019-05-31'),
+('KP4', 'AMB', 'IND', 54, 5000, '2019-05-17', '2021-11-06'),
+('KP5', 'ANT', 'TAP', 150, 3000, '2019-05-01', '2021-05-01'),
+('KP6', 'ASP', 'DUN', 30, 7500, '2019-05-01', '2022-03-12'),
+('KP7', 'BRO', 'ADI', 45, 2500, '2019-04-17', '2020-11-06'),
+('KP8', 'DEX', 'JAY', 200, 5000, '2019-05-16', '2021-03-06'),
+('KP9', 'HEP', 'JAY', 150, 4000, '2019-05-13', '2020-10-03');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `retur`
+--
+
+CREATE TABLE `retur` (
+  `kode_retur` varchar(99) NOT NULL,
+  `kode_obat` varchar(99) NOT NULL,
+  `rusak` int(11) NOT NULL,
+  `tanggal` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `stok`
+--
+
+CREATE TABLE `stok` (
+  `kode_obat` int(11) NOT NULL,
+  `stok_obat` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -142,79 +269,95 @@ INSERT INTO `obat` (`nama_obat`, `harga_obat`, `kode_obat`, `dosis_obat`, `kode_
 --
 
 CREATE TABLE `supplier` (
-  `nama_pemasok` varchar(15) NOT NULL,
-  `kode_obat` int(10) NOT NULL,
-  `jumlah_pasok` int(10) NOT NULL,
-  `nomer_telepon_supp` varchar(15) NOT NULL,
-  `kode_pasok` int(10) NOT NULL,
-  `harga_beli` int(11) NOT NULL,
-  `tanggal_pasok` date NOT NULL,
-  `Alamat` varchar(20) NOT NULL
+  `nama_pemasok` text NOT NULL,
+  `nomor_telepon` varchar(20) NOT NULL,
+  `alamat` varchar(99) NOT NULL,
+  `contact_person` varchar(20) NOT NULL,
+  `kode_supplier` varchar(99) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `supplier`
 --
 
-INSERT INTO `supplier` (`nama_pemasok`, `kode_obat`, `jumlah_pasok`, `nomer_telepon_supp`, `kode_pasok`, `harga_beli`, `tanggal_pasok`, `Alamat`) VALUES
-('PT Daya Sembada', 7, 30, '(024) 8449568', 901, 3000, '2019-01-29', 'Jl Simpang Lima 1'),
-('PT Dexa Medica', 2, 25, '(021) 54200134', 902, 1700, '2019-01-29', 'Jl Kelapa Gading'),
-('PT Interbat', 1, 50, '(021) 55768884', 903, 1500, '2019-01-01', 'Jl Imam Bonjol'),
-('PT Metro Pillar', 5, 30, '(021) 88357528', 904, 2000, '2019-01-01', 'Jl Cempaka Km 37'),
-('PT Brayat Sehat', 8, 20, '(0778) 7022453', 905, 3500, '2018-12-26', 'Jl Bukit Indah I 7 K'),
-('PT Sejahtera', 3, 30, '(021) 5529035', 906, 2500, '2018-12-26', 'Jl Honoris Raya'),
-('PT Trimitra Med', 4, 30, '(031) 5686161', 907, 2500, '2018-12-26', 'Jl Kapuas 2 Surabaya'),
-('PT Mandara Medi', 6, 30, '(021) 5881090', 908, 4000, '2018-12-27', 'Jl Pantai Indah'),
-('PT Kimia Farma', 9, 30, '(021) 3847709', 909, 1000, '2018-12-28', 'Jl. Veteran No. 9'),
-('PT Brayat Sehat', 10, 30, '(0778) 7022453', 910, 2000, '2018-12-29', 'Jl Bukit Indah I 7 K'),
-('PT Interbat', 11, 30, '(021) 55768884', 911, 4500, '2018-12-30', 'Jl Imam Bonjol'),
-('PT Mandara Medi', 12, 30, '(021) 5881090', 912, 2000, '2018-12-31', 'Jl Kapuas 2 Surabaya'),
-('PT Daya Sembada', 13, 30, '(024) 8449568', 913, 3000, '2018-12-26', 'Jl Simpang Lima 1'),
-('PT Metro Pillar', 14, 30, '(021) 88357528', 914, 5500, '2019-03-18', 'Jl Cempaka Km 37'),
-('PT Sejahtera', 15, 30, '(021) 5529035', 915, 4500, '2019-04-01', 'Jl Honoris Raya');
+INSERT INTO `supplier` (`nama_pemasok`, `nomor_telepon`, `alamat`, `contact_person`, `kode_supplier`) VALUES
+('PT Abadi Jaya', '0218768932', 'Jl Magelang Selatan', '087654231827', 'ABD'),
+('PT Aditarwan', '08217475938', 'Jl Klaten ', '089635478921', 'ADI'),
+('PT Aica Indonesia', '0823475891', 'Jl Solo KM 15', '085763897213', 'AIC'),
+('PT Adijaya Perdana Mandiri', '0217684903', 'Jl Sleman Barat', '087862548562', 'APM'),
+('PT Asianagro Abadi', '0217465782', 'Jl Yogyakarta KM 30', '089645367891', 'ASI'),
+('PT Dunia Express', '0821746657', 'Jl KulonProgo', '087826154678', 'DUN'),
+(' PT Dwi Prima Sembada', '0213546789', 'Jl Kaliurang', '085764536726', 'DWI'),
+('PT Hasil Jaya Industri', '08217445938', 'Jl Sleman Utara', '085667367891', 'HAS'),
+('PT. Indoherbal', '0216454673', 'Jl Ring Road Utara', '08763547637', 'IND'),
+('PT Jaya Mandiri', '0821787659', 'Jl Bantul Selatan', '087839186290', 'JAY'),
+('PT Mega Kemiraya', '0821676453', 'Jl Adisucipto', '085674893647', 'MEG'),
+('PT Mitra Infoparama', '08216455938', 'Jl Wonosari', '0857685367891', 'MIT'),
+('PT Supramatra Abadi', '08217475456', 'Jl Maguwoharjo', '089645365791', 'SUP'),
+(' PT Tapian Nadenggan', '0213427893', 'Jl Panembahan', '085674873657', 'TAP');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indeks untuk tabel `jenis_obat`
---
-ALTER TABLE `jenis_obat`
-  ADD PRIMARY KEY (`kode_jenis`);
-
---
 -- Indeks untuk tabel `obat`
 --
 ALTER TABLE `obat`
-  ADD PRIMARY KEY (`kode_obat`),
-  ADD KEY `kode_jenis` (`kode_jenis`);
+  ADD PRIMARY KEY (`kode_obat`);
+
+--
+-- Indeks untuk tabel `opname`
+--
+ALTER TABLE `opname`
+  ADD PRIMARY KEY (`kode_opname`),
+  ADD KEY `kode_obat` (`kode_obat`);
+
+--
+-- Indeks untuk tabel `pasok`
+--
+ALTER TABLE `pasok`
+  ADD PRIMARY KEY (`kode_pasok`),
+  ADD KEY `kode_obat` (`kode_obat`),
+  ADD KEY `kode_supplier` (`kode_supplier`);
+
+--
+-- Indeks untuk tabel `retur`
+--
+ALTER TABLE `retur`
+  ADD PRIMARY KEY (`kode_retur`),
+  ADD KEY `kode_obat` (`kode_obat`);
 
 --
 -- Indeks untuk tabel `supplier`
 --
 ALTER TABLE `supplier`
-  ADD PRIMARY KEY (`kode_pasok`),
-  ADD KEY `kode_obat` (`kode_obat`);
+  ADD PRIMARY KEY (`kode_supplier`);
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
 --
 
 --
--- Ketidakleluasaan untuk tabel `obat`
+-- Ketidakleluasaan untuk tabel `opname`
 --
-ALTER TABLE `obat`
-  ADD CONSTRAINT `obat_ibfk_1` FOREIGN KEY (`kode_jenis`) REFERENCES `jenis_obat` (`kode_jenis`);
+ALTER TABLE `opname`
+  ADD CONSTRAINT `opname_ibfk_1` FOREIGN KEY (`kode_obat`) REFERENCES `obat` (`kode_obat`);
 
 --
--- Ketidakleluasaan untuk tabel `supplier`
+-- Ketidakleluasaan untuk tabel `pasok`
 --
-ALTER TABLE `supplier`
-  ADD CONSTRAINT `supplier_ibfk_1` FOREIGN KEY (`kode_obat`) REFERENCES `obat` (`kode_obat`);
+ALTER TABLE `pasok`
+  ADD CONSTRAINT `pasok_ibfk_1` FOREIGN KEY (`kode_obat`) REFERENCES `obat` (`kode_obat`),
+  ADD CONSTRAINT `pasok_ibfk_2` FOREIGN KEY (`kode_supplier`) REFERENCES `supplier` (`kode_supplier`);
+
+--
+-- Ketidakleluasaan untuk tabel `retur`
+--
+ALTER TABLE `retur`
+  ADD CONSTRAINT `retur_ibfk_1` FOREIGN KEY (`kode_obat`) REFERENCES `obat` (`kode_obat`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-
