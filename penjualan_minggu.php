@@ -1,5 +1,6 @@
-<!--FEBRI SUSENO-->
-<!--1600018078-->
+<!-- THOBIE ZATONI -->
+<!-- 1700018241-->
+
 <!-- Penjelasan class :
   Dalam keuangan kami membuat beberapa function seperti cashflow, data pembelian,
   data penjualan, dan total keuntungan. cashflow gambaran mengenai jumlah uang yang masuk dan keluar. 
@@ -8,24 +9,24 @@
   total keuntungan menampilkan keuntungan dari harga jual tiap barang dikurangi harga beli dari suplier.
    -->
 <?php
-	session_start();// untuk melakukan aktifitas yang berhubungan dengan interaksi user pada sebuah web server php.
+  session_start();
 
-if (!isset($_SESSION["login1"])) { //jika login gagal maka kembali ke login.php
-    	  header("location: http://localhost/apotik-keuangan/login.php");//link untuk login
+if (!isset($_SESSION["login1"])) {//jika login gagal maka kembali login.php
+        header("location: http://localhost/apotik-keuangan/login.php");//link untuk login.php
       exit;
     }
       
   
-	include "connection/db.php";
-	$QuerySql = "SELECT *,sum(harga_obat) as harga_obat,harga_obat*jumlah_terjual as total FROM `tabel_penjualan`, `obat` WHERE tabel_penjualan.kode_obat=obat.kode_obat GROUP BY  week(tanggal_terjual)";//fungsi untuk menampilkan jumlah obat berdsarkan minggu
+  include "connection/db.php";
+  $QuerySql = "SELECT *,sum(jumlah) as jumlah,sum(obat.harga) as harga_obat,sum(obat.harga)*sum(jumlah) as total FROM `jualbeli`, `obat` WHERE jualbeli.kodeobat=obat.kode_obat and jualbeli.jenis='debit' group by week(tanggal)";//fungsi untuk memanggil [total jumlah terjual , harga jual , harga obat berdasarkan bulan terjual
 
-	$SQL = mysqli_query($connect, $QuerySql); //untuk menghubungkan mysql
+  $SQL = mysqli_query($connect, $QuerySql); //inisialisasi SQL
 ?> 
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Tampil Data Obat</title>
-	<link rel="stylesheet" href="bulma.min.css">
+  <title>Tampil Data Obat</title>
+  <link rel="stylesheet" href="bulma.min.css">
 </head>
 <body>
 <?php 
@@ -34,23 +35,21 @@ if (!isset($_SESSION["login1"])) { //jika login gagal maka kembali ke login.php
 <table class="table is-fullwidth" >
   <thead>
     <tr>
-      <th scope="col">TANGGAL</th>
-      <th scope="col">HARGA OBAT</th>
+      <th scope="col">TANGGAL/MINGGU</th>
       <th scope="col">JUMLAH TERJUAL</th>
       <th scope="col">TOTAL PENJUALAN</th>
     </tr>
   </thead>
-		<?php
-			foreach ($SQL as $key) {
-				echo "<tr>
-						<td>$key[tanggal_terjual]</td>
-						<td>$key[harga_obat]</td>
-						<td>$key[jumlah_terjual]</td>
-						<td>$key[total]</td>
-				</tr>";//untuk menampilkan isi dari atribut di dalam tabel
-                	
-				}
-		?>
+    <?php
+      foreach ($SQL as $key) {
+        echo "<tr>
+            <td>$key[tanggal]</td>
+            <td>$key[jumlah]</td>
+            <td>$key[total]</td>
+        </tr>";//menampilkan isi dari atribut - atribut di dalam tabel
+                  
+        }
+    ?>
 </table>
 </body>
 </html>

@@ -1,6 +1,6 @@
 <?php
 $username = "root";
-$database = "SIM-Apotik";
+$database = "kasawal";
 $password = "";
 $server = "localhost";
 

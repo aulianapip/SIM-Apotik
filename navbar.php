@@ -47,7 +47,7 @@ Penjelasan class :
           <a class="navbar-item" href="data_penjualan.php"> <!--Hyperlink ke bagian data penjualan-->
             Data Penjualan <!--isi dari daftar-->
           </a>
-          <a class="navbar-item" href="total_keuntungan.php"> <!--Hyperlink ke bagian total keuntungan-->
+          <a class="navbar-item" href="laporan keuntungan.php"> <!--Hyperlink ke bagian total keuntungan-->
             Total Keuntungan <!--isi dari daftar-->
           </a>
                     </a>

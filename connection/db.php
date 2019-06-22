@@ -1,6 +1,6 @@
 <!--Aditya Gusti Mandala Putra-->
 <?php
 
-	$connect = new mysqli("localhost", "root", "", "keuangan");
+	$connect = new mysqli("localhost", "root", "", "kasawal");
 
 ?>

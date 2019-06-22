@@ -1,23 +1,13 @@
 <!--OKZATUL REVANKA-->
-<!--1700018267-->
-<!--
-Penjelasan class :
-  Dalam keuangan kami membuat beberapa function seperti cashflow, data pembelian,
-  data penjualan, dan total keuntungan. cashflow gambaran mengenai jumlah uang yang masuk dan keluar. 
-  data pembelian hanya menampilkan data pembelian barang dari suplier. 
-  data penjualan gambaran informasi data-data penjualan yang dihasilkan dari penjualan kasir.
-  total keuntungan menampilkan keuntungan dari harga jual tiap barang dikurangi harga beli dari suplier.
--->
 <?php
 	session_start();
 
 if (!isset($_SESSION["login1"])) {
-	//jika kita belum maka akan masuk ke fungsi login
     	  header("location: http://localhost/apotik-keuangan/login.php");
       exit;
     }
-	include "connection/db.php";
-	$QuerySql = "SELECT *,harga_beli*jumlah_obat AS total FROM `supplier`, `obat` WHERE supplier.kode_obat=obat.kode_obat ORDER BY supplier.harga_beli ASC ";//function mensorting  jumlah harga beli berdasarkan harga
+	require_once('database/deb.php');
+	$QuerySql = "SELECT *,harga_beli*jumlah_pasok AS total FROM `pasok`, `obat` WHERE pasok.kode_obat = obat.kode_obat ORDER BY pasok.harga_beli ASC ";
 
 	$SQL = mysqli_query($connect, $QuerySql); 
 ?> 
@@ -34,7 +24,6 @@ if (!isset($_SESSION["login1"])) {
 <table class="table is-fullwidth" >
   <thead>
     <tr>
-    	<!--untuk mensorting harga dari jumlah beli kita harus panggil atribut-atribut sebagai berikut-->
       <th scope="col"><a href="s_pembelian_supplier.php"> ID PEMBELIAN</a></th>
       <th scope="col"><a href="s_pembelian_tanggal.php">TANGGAL PEMBELIAN</a></th>
       <th scope="col"><a href="s_pembelian_ko.php">KODE OBAT</a></th>
@@ -47,14 +36,13 @@ if (!isset($_SESSION["login1"])) {
   </thead>
 		<?php
 			foreach ($SQL as $key) {
-				//pemanggilan  atribut di php
 				echo "<tr>
-						<td>$key[kode_supplier]</td>
-						<td>$key[tanggal_beli]</td>
+						<td>$key[kode_pasok]</td>
+						<td>$key[tanggal_pasok]</td>
 						<td>$key[kode_obat]</td>
 						<td>$key[nama_obat]</td>
 						<td>$key[harga_beli]</td>
-						<td>$key[jumlah_obat]</td>
+						<td>$key[jumlah_pasok]</td>
 						<td>$key[total]</td>
 						<td>$key[tanggal_kadaluarsa]</td>
 				</tr>";

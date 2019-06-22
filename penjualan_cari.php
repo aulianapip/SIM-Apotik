@@ -1,27 +1,18 @@
-<!--LUSSY IKA-->
-<!--1700018261-->
-<!--
-Penjelasan class Nomer UTS 1 :
-  Dalam keuangan kami membuat beberapa function seperti cashflow, data pembelian,
-  data penjualan, dan total keuntungan. cashflow gambaran mengenai jumlah uang yang masuk dan keluar. 
-  data pembelian hanya menampilkan data pembelian barang dari suplier. 
-  data penjualan gambaran informasi data-data penjualan yang dihasilkan dari penjualan kasir.
-  total keuntungan menampilkan keuntungan dari harga jual tiap barang dikurangi harga beli dari suplier.
--->
-<?php
-	session_start();//untuk memulai eksekusi session pada server dan menyimpan pada browser
+<!--LUSSY IKA--><?php
+	session_start();
 
-if (!isset($_SESSION["login1"])) {//jika belum melakukan login akan di lempar ke header
-    	  header("location: http://localhost/apotik-keuangan/login.php");//link untuk kembali ke home
-      exit;//keluar
+if (!isset($_SESSION["login1"])) {
+    	  header("location: http://localhost/apotik-keuangan/login.php");
+      exit;
     }
       
- 	include "connection/db.php"; // untuk mengkoneksikan ke database
- 	//fungsi pencarian penjualan berdasarkan hari
-	$cari = $_POST['cari'];
-	$QuerySql = "SELECT *,harga_obat*jumlah_terjual as total FROM `tabel_penjualan`, `obat` WHERE tabel_penjualan.kode_obat=obat.kode_obat AND obat.nama_obat LIKE '%$cari%'";
+  
+	include "connection/db.php";
 
-	$SQL = mysqli_query($connect, $QuerySql);// untuk menghubungkan mysql database
+	$cari = $_POST['cari'];
+	$QuerySql = "SELECT * , obat.harga*jumlah as total FROM `jualbeli`, `obat` WHERE jualbeli.kodeobat=obat.kode_obat AND obat.nama_obat  LIKE '%$cari%' and jualbeli.jenis='debit'";
+ 
+	$SQL = mysqli_query($connect, $QuerySql); 
 ?> 
 <!DOCTYPE html>
 <html>
@@ -48,12 +39,12 @@ if (!isset($_SESSION["login1"])) {//jika belum melakukan login akan di lempar ke
 		<?php
 			foreach ($SQL as $key) {
 				echo "<tr>
-						<td>$key[id_penjualan]</td>
-						<td>$key[tanggal_terjual]</td>
-						<td>$key[kode_obat]</td>
+						<td>$key[id]</td>
+						<td>$key[tanggal]</td>
+						<td>$key[kodeobat]</td>
 						<td>$key[nama_obat]</td>
-						<td>$key[harga_obat]</td>
-						<td>$key[jumlah_terjual]</td>
+						<td>$key[harga]</td>
+						<td>$key[jumlah]</td>
 						<td>$key[total]</td>
 				</tr>";
                 	

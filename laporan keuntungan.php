@@ -1,16 +1,15 @@
  <!--AMANDA FAHMIDYNA 1700018273 -->
  <?php 
-require_once('database/db.php');
+require_once('database/deb.php');
 include "navbar_cashflow.php";
 
 
-$q = "SELECT sum(tabel_penjualan.subotal) AS keluar  FROM transaksi,tabel_penjualan WHERE transaksi.id_penjualan=tabel_penjualan.id_penjualan AND transaksi.jenis= 'kredit'";
-$sql = mysqli_query($connect,$q);
-$q = "SELECT sum(tabel_penjualan.subotal) AS masuk  FROM transaksi,tabel_penjualan WHERE transaksi.id_penjualan=tabel_penjualan.id_penjualan AND transaksi.jenis= 'debit'";
-$sql1 = mysqli_query($connect,$q);
 
-$q="SELECT jumlah  from kasawal";
-$sql2 = mysqli_query($connect,$q);
+
+ $q = "SELECT sum(jualbeli.jumlah*obat.harga) AS masuk  FROM obat,jualbeli WHERE jualbeli.kodeobat=obat.kode_obat AND jualbeli.jenis= 'debit'";
+$sql = mysqli_query($connect,$q);
+$q = "SELECT sum(jualbeli.jumlah*jualbeli.harga) AS keluar  FROM jualbeli WHERE jualbeli.jenis= 'kredit'";
+$sql1 = mysqli_query($connect,$q);
 
  ?>
 
@@ -30,45 +29,37 @@ $sql2 = mysqli_query($connect,$q);
 
 
 <body>
+
 	<table class="table">
 <thead>
  <!--tabel cashflow-->
- <th>Total Pemasukan</th>
+ <th>Pemasukan kotor</th>
 
- <th>Total Pengeluaran</th>
-
- <th>Pemasukan Bersih</th>
+ <th>Pengeluaran</th>
 
  <th>Keuntungan</th>
+
  </thead>
 
 
 <?php
  foreach ($sql as $data) {}
 
- foreach ($sql2 as $data2) {}
-
  foreach ($sql1 as $data1) {}
  ?>
  <tr>
  <td>
- <?php echo $data1['masuk'];
+ <?php echo "Rp ". $data['masuk'];
  ?>
  </td>
  <td>
- <?php echo $data['keluar'];
- ?>
- </td>
- <td>
- <?php
- echo $data1 ['masuk'] - $data['keluar']; //jika tidak maka tidak akan dikalikan
+ <?php echo "Rp ". $data1['keluar'];
  ?>
  </td>
  <td>
  <?php
- echo ($data1 ['masuk'] - $data['keluar'])-$data2['jumlah'];
+ echo  "Rp ". ($data ['masuk'] - $data1['keluar']); //jika tidak maka tidak akan dikalikan
  ?>
  </td>
-</table>
 </body>
 </html>

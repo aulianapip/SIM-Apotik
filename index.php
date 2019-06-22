@@ -1,5 +1,5 @@
 <?php
-require_once('database/db.php');
+require_once('database/deb.php');
 include "navbar_cashflow.php";
 
 if (isset($_GET['filter']) and $_GET['filter'] != 'tanggal' ) {
@@ -7,19 +7,19 @@ if (isset($_GET['filter']) and $_GET['filter'] != 'tanggal' ) {
 
  switch ($filter) {
  case 'semua':
- $q = "SELECT tabel_penjualan.tanggal_terjual as tanggal, tabel_penjualan.kode_obat as transaksi, tabel_penjualan.lain as trans, tabel_penjualan.jumlah_terjual as jumlah, tabel_penjualan.harga as harga, transaksi.jenis, obat.nama_obat as nama from tabel_penjualan join transaksi on tabel_penjualan.id_penjualan = transaksi.id_penjualan left join obat on obat.kode_obat = tabel_penjualan.kode_obat order by tabel_penjualan.tanggal_terjual asc";
+ $q = "SELECT jualbeli.tanggal as tanggal, jualbeli.kodeobat as transaksi, jualbeli.lainnya as trans, jualbeli.jumlah as jumlah, jualbeli.harga as hargaa, transaksi.jenis, obat.harga,obat.nama_obat as nama from jualbeli join transaksi on jualbeli.id = transaksi.id left join obat on obat.kode_obat = jualbeli.kodeobat order by jualbeli.tanggal asc";
  break;
  case 'hari':
- $q = "SELECT tabel_penjualan.tanggal_terjual as tanggal, tabel_penjualan.kode_obat as transaksi, tabel_penjualan.lain as trans, tabel_penjualan.jumlah_terjual as jumlah, tabel_penjualan.harga as harga, transaksi.jenis, obat.nama_obat as nama from tabel_penjualan join transaksi on tabel_penjualan.id_penjualan = transaksi.id_penjualan left join obat on obat.kode_obat = tabel_penjualan.kode_obat where tabel_penjualan.tanggal_terjual = curdate() order by tabel_penjualan.tanggal_terjual asc";
+ $q = "SELECT jualbeli.tanggal as tanggal, jualbeli.kodeobat as transaksi, jualbeli.lainnya as trans, jualbeli.jumlah as jumlah, jualbeli.harga as hargaa, transaksi.jenis, obat.harga, obat.nama_obat as nama from jualbeli join transaksi on jualbeli.id = transaksi.id left join obat on obat.kode_obat = jualbeli.kodeobat where jualbeli.tanggal = curdate() order by jualbeli.tanggal asc";
  break;
  case 'pekan':
- $q = "SELECT tabel_penjualan.tanggal_terjual as tanggal, tabel_penjualan.kode_obat as transaksi, tabel_penjualan.lain as trans, tabel_penjualan.jumlah_terjual as jumlah, tabel_penjualan.harga as harga, transaksi.jenis, obat.nama_obat as nama from tabel_penjualan join transaksi on tabel_penjualan.id_penjualan = transaksi.id_penjualan left join obat on obat.kode_obat = tabel_penjualan.kode_obat where WEEK(tabel_penjualan.tanggal_terjual) = WEEK(curdate()) order by tabel_penjualan.tanggal_terjual asc";
+ $q = "SELECT jualbeli.tanggal as tanggal, jualbeli.kodeobat as transaksi, jualbeli.lainnya as trans, jualbeli.jumlah as jumlah, jualbeli.harga as hargaa, transaksi.jenis, obat.harga, obat.nama_obat as nama from jualbeli join transaksi on jualbeli.id = transaksi.id left join obat on obat.kode_obat = jualbeli.kodeobat where WEEK(jualbeli.tanggal) = WEEK(curdate()) order by jualbeli.tanggal asc";
  break;
  case 'bulan':
- $q = "SELECT tabel_penjualan.tanggal_terjual as tanggal, tabel_penjualan.kode_obat as transaksi, tabel_penjualan.lain as trans, tabel_penjualan.jumlah_terjual as jumlah, tabel_penjualan.harga as harga, transaksi.jenis, obat.nama_obat as nama from tabel_penjualan join transaksi on tabel_penjualan.id_penjualan = transaksi.id_penjualan left join obat on obat.kode_obat = tabel_penjualan.kode_obat where month(tabel_penjualan.tanggal_terjual) = month(curdate()) order by tabel_penjualan.tanggal_terjual asc";
+ $q = "SELECT jualbeli.tanggal as tanggal, jualbeli.kodeobat as transaksi, jualbeli.lainnya as trans, jualbeli.jumlah as jumlah, jualbeli.harga as hargaa, transaksi.jenis, obat.harga, obat.nama_obat as nama from jualbeli join transaksi on jualbeli.id = transaksi.id left join obat on obat.kode_obat = jualbeli.kodeobat where month(jualbeli.tanggal) = month(curdate()) order by jualbeli.tanggal asc";
  break;
  case 'tahun':
- $q = "SELECT tabel_penjualan.tanggal_terjual as tanggal, tabel_penjualan.kode_obat as transaksi, tabel_penjualan.lain as trans, tabel_penjualan.jumlah_terjual as jumlah, tabel_penjualan.harga as harga, transaksi.jenis, obat.nama_obat as nama from tabel_penjualan join transaksi on tabel_penjualan.id_penjualan = transaksi.id_penjualan left join obat on obat.kode_obat = tabel_penjualan.kode_obat where year(tabel_penjualan.tanggal_terjual) = year(curdate()) order by tabel_penjualan.tanggal_terjual asc";
+ $q = "SELECT jualbeli.tanggal as tanggal, jualbeli.kodeobat as transaksi, jualbeli.lainnya as trans, jualbeli.jumlah as jumlah, jualbeli.harga as hargaa, transaksi.jenis, obat.harga,obat.nama_obat as nama from jualbeli join transaksi on jualbeli.id = transaksi.id left join obat on obat.kode_obat = jualbeli.kodeobat where year(jualbeli.tanggal) = year(curdate()) order by jualbeli.tanggal asc";
  break;
  }
  $sql = mysqli_query($connect, $q);
@@ -33,7 +33,7 @@ if (isset($_GET['filter']) and $_GET['filter'] != 'tanggal' ) {
  if (isset($_GET['tanggal_awal']) and isset($_GET['tanggal_akhir'])) { //untuk mengeksekusi bahwa variabel tanggal_awal dan tanggal_akhir bernilai true jika sudah diisi dan false jika kosong
  $awal = $_GET['tanggal_awal']; //deklarasi bahwa variabel awal = variabel tanggal_awal 
  $akhir = $_GET['tanggal_akhir']; //deklarasi akhir = tanggal_akhir 
- $q = "SELECT tabel_penjualan.tanggal_terjual as tanggal, tabel_penjualan.kode_obat as transaksi, tabel_penjualan.lain as trans, tabel_penjualan.jumlah_terjual as jumlah, tabel_penjualan.harga as harga, transaksi.jenis, obat.nama_obat as nama from tabel_penjualan join transaksi on tabel_penjualan.id_penjualan = transaksi.id_penjualan left join obat on obat.kode_obat = tabel_penjualan.kode_obat where tabel_penjualan.tanggal_terjual between '$awal' and '$akhir' order by tabel_penjualan.tanggal_terjual asc"; // query untuk menampilkan data dalam database pada tabel tabel_penjualan,obat,dan transaksi
+ $q = "SELECT jualbeli.tanggal as tanggal, jualbeli.kodeobat as transaksi, jualbeli.lainnya as trans, jualbeli.jumlah as jumlah, jualbeli.harga as hargaa, transaksi.jenis, obat.nama_obat as nama from jualbeli join transaksi on jualbeli.id = transaksi.id left join obat on obat.kode_obat = jualbeli.kodeobat where jualbeli.tanggal between '$awal' and '$akhir' order by jualbeli.tanggal asc";  // query untuk menampilkan data dalam database pada tabel tabel_penjualan,obat,dan transaksi
  $sql = mysqli_query($connect, $q); //syntax untuk menyambungkan dengan database agar oquery dapat digunakan
 
 
@@ -43,7 +43,7 @@ if (isset($_GET['filter']) and $_GET['filter'] != 'tanggal' ) {
  $modal = $res->kas; //pemindahan nilai 
  $kas = $modal;
  } else {
- $q = "SELECT tabel_penjualan.tanggal_terjual as tanggal, tabel_penjualan.kode_obat as transaksi, tabel_penjualan.lain as trans, tabel_penjualan.jumlah_terjual as jumlah, tabel_penjualan.harga as harga, transaksi.jenis, obat.nama_obat as nama from tabel_penjualan join transaksi on tabel_penjualan.id_penjualan = transaksi.id_penjualan left join obat on obat.kode_obat = tabel_penjualan.kode_obat or tabel_penjualan.lain = NULL where tabel_penjualan.tanggal_terjual = curdate() order by tabel_penjualan.tanggal_terjual asc";
+ $q = "SELECT jualbeli.tanggal as tanggal, jualbeli.kodeobat as transaksi, jualbeli.lainnya as trans, jualbeli.jumlah as jumlah, jualbeli.harga as hargaa, transaksi.jenis, obat.nama_obat as nama, obat.harga from jualbeli join transaksi on jualbeli.id = transaksi.id left join obat on obat.kode_obat = jualbeli.kodeobat or jualbeli.lainnya = NULL where jualbeli.tanggal= curdate() order by jualbeli.tanggal asc";
  $sql = mysqli_query($connect, $q);
  $q = "SELECT jumlah as kas from kasawal";
  $sql3 = mysqli_query($connect, $q);
@@ -180,14 +180,19 @@ if (isset($_GET['filter']) and $_GET['filter'] != 'tanggal' ) {
  </td>
  <td>
  <?php
- if ($data['jenis'] == "kredit")
- echo "Rp " . $data['harga'];
+ if ($data['jenis'] == "kredit" )
+ echo "Rp " . $data['hargaa'];
  else
  echo '0';
  ?>
  </td>
  <td><?php
- echo "Rp " . $data['jumlah'] * $data['harga'];
+  if ($data['jenis'] == "kredit" ){
+ echo "Rp " . $data['jumlah'] * $data['hargaa'];}
+ else{
+  echo "Rp " . $data['jumlah'] * $data['harga'];	
+ }
+
  ?></td>
  <td>
  <?php //agar jumlah kas bisa bertambah secara otomatis apabila jenis transaksi debitdan berkurang otomatis apabila jenis transaksi kredit
@@ -195,6 +200,7 @@ if (isset($_GET['filter']) and $_GET['filter'] != 'tanggal' ) {
  $kas += $data['harga'] * $data['jumlah'];
  } else {
  $kas -= $data['harga'] * $data['jumlah'];
+ $kas -= $data['hargaa'] * $data['jumlah'];
  }
 
  echo "Rp " . $kas; //menampilkan hasil kalkulasi di atas. sisa saldonya
