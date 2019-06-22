@@ -37,7 +37,7 @@ $sql2 = mysqli_query($connect,$q);
 
  <th>Total Pengeluaran</th>
 
- <th>Pendapatan Bersih</th>
+ <th>Pemasukan Bersih</th>
 
  <th>Keuntungan</th>
  </thead>

@@ -1,4 +1,3 @@
-<!-- Amanda Fahmidyna 170008273 -->
 <?php
 require_once('database/db.php');
 include "navbar_cashflow.php";
