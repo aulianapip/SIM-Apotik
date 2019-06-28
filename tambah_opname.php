@@ -10,7 +10,8 @@
       //TAMPIL DI FORM INPUT
       $query = "SELECT kode_obat from obat ";
       $cekobat = mysqli_query($connect,$query);
-      $barcode = "SELECT kode_barcode from barcode ORDER BY nomor_pasok ASC";
+      $kode_obatB = $_POST['kode_obat'];
+      $barcode = "SELECT kode_barcode from barcode WHERE kode_obat = '$kode_obatB' ORDER BY nomor_pasok ASC";
       $cekbarcode = mysqli_query($connect,$barcode);
       //AMBIL DATA DI FORM INPUT
       $kode_barcode = $_POST['kode_barcode'];
@@ -39,7 +40,8 @@
     }elseif (isset($_POST['cek'])) {
       $query = "SELECT kode_obat from obat ";
       $cekobat = mysqli_query($connect,$query);
-      $barcode = "SELECT kode_barcode from barcode ORDER BY nomor_pasok ASC";
+      $kode_obatB = $_POST['kode_obat'];
+      $barcode = "SELECT kode_barcode from barcode WHERE kode_obat = '$kode_obatB' ORDER BY nomor_pasok ASC";
       $cekbarcode = mysqli_query($connect,$barcode);
     }elseif (isset($_POST['refresh'])) {
       header("location: tambah_opname.php");
