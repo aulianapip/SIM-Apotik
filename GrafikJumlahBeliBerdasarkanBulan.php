@@ -1,4 +1,5 @@
 <?php
+<!--Meliya Kurniasari- 1700018244-->
 $connect = mysqli_connect("localhost", "root", "", "sim-apotek-fix");
 $bulan_penjualan = mysqli_query($connect, "SELECT MONTHName(tgl_penjualan) as bulan_penjualan FROM penjualan GROUP BY MONTHName(tgl_penjualan)");
 $jumlah_penjualanBulan = mysqli_query($connect, "SELECT SUM(total_penjualan) as jumlah_penjualanBulan FROM penjualan GROUP BY MONTHName(tgl_penjualan)");
