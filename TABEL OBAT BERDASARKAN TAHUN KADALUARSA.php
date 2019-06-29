@@ -6,9 +6,12 @@
 <!--
 	Cendani Wukir Asih - 1700018249 -
 	-->
-
 <?php
 $koneksi = mysqli_connect("localhost", "root", "", "sim-apotek");
+error_reporting(0); 
+	$pilihan = $_POST['area'];// variabel pilihan untuk memilih grafik apa yang akan digunakan
+	if (isset($_POST['submit'])) { 
+	}
 ?>
 <!DOCTYPE html>
 <html>
@@ -66,26 +69,26 @@ $koneksi = mysqli_connect("localhost", "root", "", "sim-apotek");
 	<table border="1">
 		<thead>
 			<tr>
-				<th>No</th>
-				<th>Nama Obat</th>
-				<th>Tanggal Kadaluarsa</th>
-				<th>Bulan Kadaluarsa</th>
-				<th>Tahun Kadaluarsa</th>				
+				<th>KodeObat</th>
+				<th>jumlah pasok</th>
+				<th>tanggal pasok</th>
+				<th>Tahun Kadaluarsa</th>
+						
 			</tr>
 		</thead>
 		<tbody>
 
 			<?php 
 			$no = 1;
-			$data = mysqli_query($koneksi,"select * from obat ORDER BY `tahun_kadaluarsa` ASC");
+			$data = mysqli_query($koneksi,"SELECT kode_obat,jumlah_pasok,tanggal_pasok,YEAR(tanggal_kadaluarsa) as TahunKadaluarsa FROM pasok");
 			while($d=mysqli_fetch_array($data)){
 				?>
 				<tr>
-					<td><?php echo $no++; ?></td>
-					<td><?php echo $d['nama_obat']; ?></td>
-					<td><?php echo $d['tanggal_kadaluarsa']; ?></td>
-					<td><?php echo $d['bulan_kadaluarsa']; ?></td>
-					<td><?php echo $d['tahun_kadaluarsa']; ?></td>
+					
+					<td><?php echo $d['kode_obat']; ?></td>
+					<td><?php echo $d['jumlah_pasok']; ?></td>
+					<td><?php echo $d['tanggal_pasok']; ?></td>
+					<td><?php echo $d['TahunKadaluarsa']; ?></td>
 					
 				</tr>
 				<?php 
@@ -94,57 +97,32 @@ $koneksi = mysqli_connect("localhost", "root", "", "sim-apotek");
 		</tbody>
 	</table>
 
-	<?php
-	$pilihan = $_POST['area'];// variabel pilihan untuk memilih grafik apa yang akan digunakan
-	if (isset($_POST['submit'])) { 
-		echo '<li>Lokasi: ' . $pilihan . '</li>';//fungsi untuk memanggil
-	}?>
 	<script>
-		var ctx = document.getElementById("myChart").getContext('2d'); //variabel untuk memanggil data grafiknya
+		var ctx = document.getElementById("myChart").getContext('2d');
 		var myChart = new Chart(ctx, {
-			type:"<?php echo $pilihan ?>",
-						data: {
-
-	
-	//Funtion membuat grafik tahun Kadaluarsa 
-	//Alya Masitha - 1700018236 -
-				
-				labels: ["2018", "2019", "2020"],//menampilkan tahun kadaluarsa pada sumbu x
-				datasets: [{ // untuk menampilkan jumlah obat kadaluarsa berdasarkan tahun pada sumbu y
-					label: '',
-					data: [
-					//Query data untuk menampilkan jumlah obat kadaluarsa pada tahun 2018
-					<?php 
-					$jumlah_1= mysqli_query($koneksi, "SELECT * from obat where  tahun_kadaluarsa='2018'");
-					echo mysqli_num_rows($jumlah_1);
-					?>,
-					//Query data untuk menampilkan jumlah obat kadaluarsa pada tahun 2019
-					<?php 
-					$jumlah_2= mysqli_query($koneksi, "SELECT * from obat where  tahun_kadaluarsa='2019'");
-					echo mysqli_num_rows($jumlah_2);
-					?>,
-					//Query data untuk menampilkan jumlah obat kadaluarsa pada tahun 2020
-					<?php 
-					$jumlah_3= mysqli_query($koneksi, "SELECT * from obat where  tahun_kadaluarsa='2020'");
-					echo mysqli_num_rows($jumlah_3);
-					?>
-					
+			type: '<?php echo $pilihan ?>',
+			data: {
+				labels: [<?php 
+					$TahunKadaluarsa= mysqli_query($koneksi, "SELECT YEAR(tanggal_kadaluarsa) as TahunKadaluarsa from pasok");
+				while ($b = mysqli_fetch_array($TahunKadaluarsa)) { echo '"' . $b['TahunKadaluarsa'] . '",';} ?>
 					],
-					//untuk memberikan warna pada grafik
-					backgroundColor: [
+				datasets: [{
+					label: '',
+					data: [<?php $jumlah_pasok = mysqli_query($koneksi, "SELECT jumlah_pasok from pasok");
+while ($p = mysqli_fetch_array($jumlah_pasok)) { echo '"' . $p['jumlah_pasok'] . '",';}?>],
+                            backgroundColor: [
 					'rgba(255, 99, 132, 0.2)',
 					'rgba(54, 162, 235, 0.2)',
 					'rgba(255, 206, 86, 0.2)',
 					'rgba(75, 192, 192, 0.2)'
 					],
-					//untuk memberikan warna pada grafik
 					borderColor: [
 					'rgba(255,99,132,1)',
 					'rgba(54, 162, 235, 1)',
 					'rgba(255, 206, 86, 1)',
 					'rgba(75, 192, 192, 1)'
 					],
-					borderWidth: 1 //untuk menampilkan ketebalan pada garis
+					borderWidth: 1
 				}]
 			},
 			options: {

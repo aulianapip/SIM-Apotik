@@ -12,8 +12,8 @@ hasil analisa tersebut juga dapat juga dapat membantu kita untuk mengambil keput
 
 <?php
 $connect = mysqli_connect("localhost", "root", "", "sim-apotek"); //untuk mengkoneksikan database sim-apotek.
-$nama_pemasok = mysqli_query($connect, "SELECT nama_pemasok FROM supplier order by kode_pasok asc"); //mengambil data nama pemasok dari tabel supplier
-$jumlah_pasok= mysqli_query($connect, "SELECT jumlah_pasok FROM supplier order by kode_pasok asc");  //mengambil data jumlah dari tabel supplier
+$nama_pemasok = mysqli_query($connect, "SELECT nama_pemasok FROM supplier,pasok WHERE supplier.kode_supplier=pasok.kode_supplier order by kode_pasok asc"); //mengambil data nama pemasok dari tabel supplier
+$jumlah_pasok= mysqli_query($connect, "SELECT jumlah_pasok FROM supplier,pasok WHERE supplier.kode_supplier=pasok.kode_supplier order by kode_pasok asc");  //mengambil data jumlah dari tabel supplier
 ?>
 <html>
     <head>
@@ -48,16 +48,16 @@ $jumlah_pasok= mysqli_query($connect, "SELECT jumlah_pasok FROM supplier order b
                 <th>Nama Pemasok</th>
                 <th>Kode Obat</th>
                 <th>Jumlah Pasok</th>
-                <th>Nomor telepon</th>
                 <th>Kode_pasok</th>
                 <th>harga Beli</th>
                 <th>Tanggal Pasok</th>
+                <th>Tanggal Kadaluarsa</th>
             </tr>
         </thead>
         <tbody>
             <?php 
             $no = 1;
-            $data = mysqli_query($connect,"SELECT * from supplier"); //Memanggil seluruh data yang ada dalam supplier
+            $data = mysqli_query($connect,"SELECT * FROM supplier,pasok WHERE supplier.kode_supplier=pasok.kode_supplier"); //Memanggil seluruh data yang ada dalam supplier
             while($d=mysqli_fetch_array($data)){ //mengambil data dari array database
                 ?>
                 <tr> <!-- menjadikan data yang dipanggil kedalam kolom -->
@@ -65,10 +65,10 @@ $jumlah_pasok= mysqli_query($connect, "SELECT jumlah_pasok FROM supplier order b
                     <td><?php echo $d['nama_pemasok']; ?></td>
                     <td><?php echo $d['kode_obat']; ?></td>
                     <td><?php echo $d['jumlah_pasok']; ?></td>
-                    <td><?php echo $d['nomer_telepon_supp']; ?></td>
                     <td><?php echo $d['kode_pasok']; ?></td>
                     <td><?php echo $d['harga_beli']; ?></td>
                     <td><?php echo $d['tanggal_pasok']; ?></td>
+                    <td><?php echo $d['tanggal_kadaluarsa']; ?></td>
                     </tr>
                 <?php 
             }

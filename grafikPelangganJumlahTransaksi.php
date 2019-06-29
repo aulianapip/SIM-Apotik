@@ -22,7 +22,7 @@
 
 
 <?php
-$koneksi = mysqli_connect("localhost", "root", "", "crm");
+$koneksi = mysqli_connect("localhost", "root", "", "sim-apotek-fix");
 ?>
 
 	<div style="width: 800px;margin: 0px auto;">
@@ -36,32 +36,23 @@ $koneksi = mysqli_connect("localhost", "root", "", "crm");
 		<thead>
 			<tr>
 				<th>No</th>
-				<th>Tgl_daftar</th>
-				<th>ID</th>
 				<th>Nama Pelanggan</th>
-				<th>JK</th>
-				<th>No HP</th>
-				<th>Email</th>
-				<th>Alamat</th>
+				<th>ID</th>
+				<th>Jumlah Transaksi</th>
 				
 			</tr>
 		</thead>
 		<tbody>
 			<?php 
 			$no = 1;
-			$data = mysqli_query($koneksi,"select * from pelanggan");
+			$data = mysqli_query($koneksi,"SELECT pelanggan.Nama as nama, pelanggan.ID as id, COUNT(penjualan.id_pelanggan) AS jumlah_transaksi FROM penjualan, pelanggan WHERE pelanggan.ID=penjualan.id_pelanggan GROUP BY penjualan.id_pelanggan");
 			while($d=mysqli_fetch_array($data)){
 				?>
 				<tr>
 					<td><?php echo $no++; ?></td>
-					<td><?php echo $d['tgl_daftar']; ?></td>
-					<td><?php echo $d['ID']; ?></td>
-					<td><?php echo $d['Nama']; ?></td>
-					<td><?php echo $d['Jk']; ?></td>
-					<td><?php echo $d['NoHp']; ?></td>
-					<td><?php echo $d['Email']; ?></td>
-					<td><?php echo $d['Alamat']; ?></td>
-					
+					<td><?php echo $d['nama']; ?></td>
+					<td><?php echo $d['id']; ?></td>
+					<td><?php echo $d['jumlah_transaksi']; ?></td>					
 				</tr>
 				<?php 
 			}
@@ -76,13 +67,13 @@ $koneksi = mysqli_connect("localhost", "root", "", "crm");
 			type: 'bar',
 			data: {
 				labels: [<?php 
-					$alamat= mysqli_query($koneksi, "SELECT alamat from pelanggan GROUP BY ALAMAt");
-				while ($b = mysqli_fetch_array($alamat)) { echo '"' . $b['alamat'] . '",';} ?>
+					$nama= mysqli_query($koneksi, "SELECT pelanggan.Nama as nama FROM penjualan, pelanggan WHERE pelanggan.ID=penjualan.id_pelanggan GROUP BY penjualan.id_pelanggan");
+				while ($b = mysqli_fetch_array($nama)) { echo '"' . $b['nama'] . '",';} ?>
 					],
 				datasets: [{
 					label: '',
-					data: [<?php $kota = mysqli_query($koneksi, "SELECT COUNT(alamat) as jumlah_alamat FROM pelanggan GROUP BY Alamat");
-while ($p = mysqli_fetch_array($kota)) { echo '"' . $p['jumlah_alamat'] . '",';}?>],
+					data: [<?php $jumlah_transaksi = mysqli_query($koneksi, "SELECT COUNT(penjualan.id_pelanggan) as jumlah_transaksi FROM penjualan, pelanggan WHERE pelanggan.ID=penjualan.id_pelanggan GROUP BY penjualan.id_pelanggan");
+while ($p = mysqli_fetch_array($jumlah_transaksi)) { echo '"' . $p['jumlah_transaksi'] . '",';}?>],
                             backgroundColor: [
 					'rgba(255, 99, 132, 0.2)',
 					'rgba(54, 162, 235, 0.2)',

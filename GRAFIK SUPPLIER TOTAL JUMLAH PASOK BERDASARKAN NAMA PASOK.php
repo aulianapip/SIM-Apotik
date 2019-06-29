@@ -17,7 +17,7 @@
 */
 
 
-$connect = mysqli_connect("localhost", "root", "", "sim-apotek"); //Memanggil database yang telah kita buat
+$connect = mysqli_connect("localhost", "root", "", "sim-apotek-fix"); //Memanggil database yang telah kita buat
 error_reporting(0); //untuk menghilangkan notif error pada program
     $nama = $_POST['area']; //membuat area nama
     if (isset($_POST['submit'])) { // untuk mensubmite post area
@@ -61,12 +61,12 @@ error_reporting(0); //untuk menghilangkan notif error pada program
 
 
     <center>
-    <h1>GRAFIK SUPPLIER TOTAL JUMLAH PASOK BERDASARKAN NAMA PASOK
+    <h3>GRAFIK SUPPLIER TOTAL JUMLAH PASOK BERDASARKAN NAMA PASOK
         <?php 
             echo ' '.$nama.'';
          ?>
         
-    </h1></center>
+    </h3></center>
     <div style="width: 800px;margin: 0px auto;">
         <canvas id="myChart"></canvas>
     </div>
@@ -78,8 +78,10 @@ error_reporting(0); //untuk menghilangkan notif error pada program
 <label>PILIH DAHULU NAMA PASOK</label><br>
         <label>Pilih Nama</label>
        <div class="input-field col s12" >
-            <select class="browser-default" name="area">
-                <?php $options = array('-','Terobat', 'Hexobat', 'Naobat', 'Faobat','Riobat', 'Farmasi Indones'); // menampilkan nama pada opsi area 
+            <select class="browser-default" name="area"">
+                <?php
+                $nama_pemasok = mysqli_query($connect, "SELECT nama_pemasok FROM supplier,pasok WHERE supplier.kode_supplier=pasok.kode_supplier order by kode_pasok asc");
+                 $options = mysqli_fetch_array($nama_pemasok); // menampilkan nama pada opsi area 
                 foreach ($options as $area) { // opsi pada form area
                     $selected = @$_POST['area'] == $area ? ' selected="selected"' : ''; // fungsi memeilih opsi area
                     echo '<option value="' . $area . '"' . $selected . '>' . $area . '</option>'; // untuk membuat tabel dari nama nama pada opsi
@@ -108,7 +110,7 @@ error_reporting(0); //untuk menghilangkan notif error pada program
         <tbody>
             <?php
             $no = 1; //fungsi deklarasi memberi urut nomor
-            $data = mysqli_query($connect,"SELECT * from supplier WHERE nama_pemasok='$nama' ORDER BY `supplier`.`tanggal_pasok` ASC"); // query untuk menampilkan data suplier berdasarkan nama_pasok dan tanggal_pasok
+            $data = mysqli_query($connect,"SELECT * FROM supplier,pasok WHERE supplier.kode_supplier=pasok.kode_supplier and nama_pemasok='$nama'"); // query untuk menampilkan data suplier berdasarkan nama_pasok dan tanggal_pasok
             while($d=mysqli_fetch_array($data)){
                 ?>
                 <tr>
@@ -130,8 +132,8 @@ error_reporting(0); //untuk menghilangkan notif error pada program
    
 
     <?php
-    $tanggal_pasok = mysqli_query($connect, "SELECT tanggal_pasok FROM supplier WHERE nama_pemasok='$nama' ORDER BY `supplier`.`tanggal_pasok` ASC"); // query untuk grafik tanggal pasok berdasarkan nama_pasok
-    $jumlah_pasok = mysqli_query($connect, "SELECT jumlah_pasok FROM supplier WHERE nama_pemasok='$nama' ORDER BY `supplier`.`tanggal_pasok` ASC"); // query untuk grafik jumlah pasok berdasarkan nama_pasok
+    $tanggal_pasok = mysqli_query($connect, "SELECT tanggal_pasok FROM supplier,pasok WHERE supplier.kode_supplier=pasok.kode_supplier and nama_pemasok='$nama' order by tanggal_pasok asc"); // query untuk grafik tanggal pasok berdasarkan nama_pasok
+    $jumlah_pasok = mysqli_query($connect, "SELECT jumlah_pasok FROM supplier,pasok WHERE supplier.kode_supplier=pasok.kode_supplier and nama_pemasok='$nama' order by tanggal_pasok asc"); // query untuk grafik jumlah pasok berdasarkan nama_pasok
     ?>
 
 

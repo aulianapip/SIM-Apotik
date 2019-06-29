@@ -54,24 +54,26 @@ $connect = mysqli_connect("localhost", "root", "", "sim-apotek");//Memanggil dat
 		<thead>
 			<tr>
 				<th>No</th>
-				<th>Nama</th>
+				<th>Nama Obat</th>
 				<th>Tanggal Kadaluarsa</th>
 				<th>Bulan Kadaluarsa</th>
 				<th>Tahun Kadaluarsa</th>				
 			</tr>
 		</thead>
 		<tbody>
+
 			<?php 
-			$no = 1;//fungsi deklarasi memberi urut nomor
-			$data = mysqli_query($connect,"select * from obat where tahun_kadaluarsa='2019'");//query untuk menampilkan obat berdasarkan tahun kadaluarsa
+			$no = 1;
+			$data = mysqli_query($connect,"select obat.nama_obat as nama_obat, day(tanggal_kadaluarsa) as tgl_kadaluarsa, MONTH(tanggal_kadaluarsa) as bulan_kadaluarsa, YEAR(tanggal_kadaluarsa) as tahun_kadaluarsa from pasok,obat WHERE obat.kode_obat=pasok.kode_obat ORDER BY YEAR(tanggal_kadaluarsa) ASC");
 			while($d=mysqli_fetch_array($data)){
 				?>
 				<tr>
 					<td><?php echo $no++; ?></td>
-					<td><?php echo $d['nama_obat'];//menampilkan isi dari atribut nama_obat ?></td>
-					<td><?php echo $d['tanggal_kadaluarsa'];//menampilkan isi dari atribut tanggal_kadaluarsa ?></td>
-					<td><?php echo $d['bulan_kadaluarsa'];//menampilkan isi dari atribut bulan_kadauarsa ?></td>
-					<td><?php echo $d['tahun_kadaluarsa']; //menampilkan isi dari atribut tahun_kadauarsa ?></td>
+					<td><?php echo $d['nama_obat']; ?></td>
+					<td><?php echo $d['tgl_kadaluarsa']; ?></td>
+					<td><?php echo $d['bulan_kadaluarsa']; ?></td>
+					<td><?php echo $d['tahun_kadaluarsa']; ?></td>
+					
 				</tr>
 				<?php 
 			}
@@ -92,62 +94,62 @@ $connect = mysqli_connect("localhost", "root", "", "sim-apotek");//Memanggil dat
 					data: [
 					//query untuk menampilkan jumlah obat kadaluarsa bulan januari 2019
 					<?php 
-					$jumlah_1= mysqli_query($connect, "SELECT * from obat where  bulan_kadaluarsa='Januari' and tahun_kadaluarsa='2019'");
+					$jumlah_1= mysqli_query($connect, "SELECT * from pasok where  MONTH(tanggal_kadaluarsa)='1'");
 					echo mysqli_num_rows($jumlah_1);
 					?>,
 					//query untuk menampilkan jumlah obat kadaluarsa bulan februari 2019
 					<?php  
-					$jumlah_2= mysqli_query($connect, "SELECT * from obat where  bulan_kadaluarsa='Februari'  and tahun_kadaluarsa='2019'");
+					$jumlah_2= mysqli_query($connect, "SELECT * from pasok where  MONTH(tanggal_kadaluarsa)='2'");
 					echo mysqli_num_rows($jumlah_2);
 					?>,
 					//query untuk menampilkan jumlah obat kadaluarsa bulan maret 2019
 					<?php 
-					$jumlah_3= mysqli_query($connect, "SELECT * from obat where  bulan_kadaluarsa='Maret'  and tahun_kadaluarsa='2019'");
+					$jumlah_3= mysqli_query($connect, "SELECT * from pasok where  MONTH(tanggal_kadaluarsa)='3'");
 					echo mysqli_num_rows($jumlah_3);
 					?>,
 					//query untuk menampilkan jumlah obat kadaluarsa bulan april 2019
 					<?php 
-					$jumlah_4= mysqli_query($connect, "SELECT * from obat where  bulan_kadaluarsa='April'  and tahun_kadaluarsa='2019'");
+					$jumlah_4= mysqli_query($connect, "SELECT * from pasok where  MONTH(tanggal_kadaluarsa)='4'");
 					echo mysqli_num_rows($jumlah_4);
 					?>,
 					//query untuk menampilkan jumlah obat kadaluarsa bulan mei 2019
 					<?php 
-					$jumlah_5= mysqli_query($connect, "SELECT * from obat where  bulan_kadaluarsa='Mei'  and tahun_kadaluarsa='2019'");
+					$jumlah_5= mysqli_query($connect, "SELECT * from pasok where  MONTH(tanggal_kadaluarsa)='5'");
 					echo mysqli_num_rows($jumlah_5);
 					?>,
 					//query untuk menampilkan jumlah obat kadaluarsa bulan juni 2019
 					<?php 
-					$jumlah_6= mysqli_query($connect, "SELECT * from obat where  bulan_kadaluarsa='Juni'  and tahun_kadaluarsa='2019'");
+					$jumlah_6= mysqli_query($connect, "SELECT * from pasok where  MONTH(tanggal_kadaluarsa)='6'");
 					echo mysqli_num_rows($jumlah_6);
 					?>,
 					//query untuk menampilkan jumlah obat kadaluarsa bulan juli 2019
 					<?php 
-					$jumlah_7= mysqli_query($connect, "SELECT * from obat where  bulan_kadaluarsa='Juli'  and tahun_kadaluarsa='2019'");
+					$jumlah_7= mysqli_query($connect, "SELECT * from pasok where  MONTH(tanggal_kadaluarsa)='7'");
 					echo mysqli_num_rows($jumlah_7);
 					?>,
 					//query untuk menampilkan jumlah obat kadaluarsa bulan agutus 2019
 					<?php 
-					$jumlah_8= mysqli_query($connect, "SELECT * from obat where  bulan_kadaluarsa='Agustus'  and tahun_kadaluarsa='2019'");
+					$jumlah_8= mysqli_query($connect, "SELECT * from pasok where  MONTH(tanggal_kadaluarsa)='8'");
 					echo mysqli_num_rows($jumlah_8);
 					?>,
 					//query untuk menampilkan jumlah obat kadaluarsa bulan september 2019
 					<?php 
-					$jumlah_9= mysqli_query($connect, "SELECT * from obat where  bulan_kadaluarsa='September'  and tahun_kadaluarsa='2019'");
+					$jumlah_9= mysqli_query($connect, "SELECT * from pasok where  MONTH(tanggal_kadaluarsa)='9'");
 					echo mysqli_num_rows($jumlah_9);
 					?>,
 					//query untuk menampilkan jumlah obat kadaluarsa bulan oktober 2019
 					<?php 
-					$jumlah_10= mysqli_query($connect, "SELECT * from obat where  bulan_kadaluarsa='Oktober'  and tahun_kadaluarsa='2019'");
+					$jumlah_10= mysqli_query($connect, "SELECT * from pasok where  MONTH(tanggal_kadaluarsa)='10'");
 					echo mysqli_num_rows($jumlah_10);
 					?>,
 					//query untuk menampilkan jumlah obat kadaluarsa bulan november 2019
 					<?php 
-					$jumlah_11= mysqli_query($connect, "SELECT * from obat where  bulan_kadaluarsa='November'  and tahun_kadaluarsa='2019'");
+					$jumlah_11= mysqli_query($connect, "SELECT * from pasok where  MONTH(tanggal_kadaluarsa)='11'");
 					echo mysqli_num_rows($jumlah_11);
 					?>,
 					//query untuk menampilkan jumlah obat kadaluarsa bulan desember 2019
 					<?php 
-					$jumlah_12= mysqli_query($connect, "SELECT * from obat where  bulan_kadaluarsa='Desember'  and tahun_kadaluarsa='2019'");
+					$jumlah_12= mysqli_query($connect, "SELECT * from pasok where  MONTH(tanggal_kadaluarsa)='12'");
 					echo mysqli_num_rows($jumlah_12);
 					?>
 					

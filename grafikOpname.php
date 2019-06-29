@@ -2,7 +2,7 @@
 <html>
 
 <head>
-	<title>GRAFIK STOCK DARI KESELURUHAN SUPPLIER</title>
+	<title>GRAFIK Opname</title>
 	<script type="text/javascript" src="Chart.js/Chart.js"></script>
     <link rel="stylesheet" href="materialize.min.css">
 </head>
@@ -18,11 +18,11 @@
     </div>
   </nav>
 
-		<h1><center>GRAFIK PELANGGAN BERDASARKAN KOTA</center></h1>
+		<h1><center>GRAFIK Opname</center></h1>
 
 
 <?php
-$koneksi = mysqli_connect("localhost", "root", "", "crm");
+$koneksi = mysqli_connect("localhost", "root", "", "sim-apotek-fix");
 ?>
 
 	<div style="width: 800px;margin: 0px auto;">
@@ -35,33 +35,22 @@ $koneksi = mysqli_connect("localhost", "root", "", "crm");
 	<table border="1">
 		<thead>
 			<tr>
-				<th>No</th>
-				<th>Tgl_daftar</th>
-				<th>ID</th>
-				<th>Nama Pelanggan</th>
-				<th>JK</th>
-				<th>No HP</th>
-				<th>Email</th>
-				<th>Alamat</th>
+				<th>status</th>
+				<th>jumlah</th>
 				
 			</tr>
 		</thead>
 		<tbody>
 			<?php 
 			$no = 1;
-			$data = mysqli_query($koneksi,"select * from pelanggan");
+			$data = mysqli_query($koneksi,"SELECT status,COUNT(status) as jumlah FROM `opname`GROUP BY status");
 			while($d=mysqli_fetch_array($data)){
 				?>
 				<tr>
-					<td><?php echo $no++; ?></td>
-					<td><?php echo $d['tgl_daftar']; ?></td>
-					<td><?php echo $d['ID']; ?></td>
-					<td><?php echo $d['Nama']; ?></td>
-					<td><?php echo $d['Jk']; ?></td>
-					<td><?php echo $d['NoHp']; ?></td>
-					<td><?php echo $d['Email']; ?></td>
-					<td><?php echo $d['Alamat']; ?></td>
 					
+					<td><?php echo $d['status']; ?></td>
+					<td><?php echo $d['jumlah']; ?></td>
+									
 				</tr>
 				<?php 
 			}
@@ -73,16 +62,16 @@ $koneksi = mysqli_connect("localhost", "root", "", "crm");
 	<script>
 		var ctx = document.getElementById("myChart").getContext('2d');
 		var myChart = new Chart(ctx, {
-			type: 'bar',
+			type: 'line',
 			data: {
 				labels: [<?php 
-					$alamat= mysqli_query($koneksi, "SELECT alamat from pelanggan GROUP BY ALAMAt");
-				while ($b = mysqli_fetch_array($alamat)) { echo '"' . $b['alamat'] . '",';} ?>
+					$status= mysqli_query($koneksi, "SELECT status FROM `opname`GROUP BY status");
+				while ($b = mysqli_fetch_array($status)) { echo '"' . $b['status'] . '",';} ?>
 					],
 				datasets: [{
 					label: '',
-					data: [<?php $kota = mysqli_query($koneksi, "SELECT COUNT(alamat) as jumlah_alamat FROM pelanggan GROUP BY Alamat");
-while ($p = mysqli_fetch_array($kota)) { echo '"' . $p['jumlah_alamat'] . '",';}?>],
+					data: [<?php $jumlah = mysqli_query($koneksi, "SELECT COUNT(status) as jumlah FROM `opname`GROUP BY status");
+while ($p = mysqli_fetch_array($jumlah)) { echo '"' . $p['jumlah'] . '",';}?>],
                             backgroundColor: [
 					'rgba(255, 99, 132, 0.2)',
 					'rgba(54, 162, 235, 0.2)',
