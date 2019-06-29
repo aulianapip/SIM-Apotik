@@ -1,10 +1,10 @@
-
 <!--
   @changelog:
-    Amanda Fahmidyna v 1.0.2 (Memperbaiki fitur)
-    Az kharisma v 1.0.1 (Membuat fitur)
+    Amanda Fahmidyna v 1.0.2 (Pembuat fitur)
+    Wais Alqorni
 -->
 <?php
+
 require_once('database/deb.php');
 // include "navbar_cashflow.php";
 
@@ -17,20 +17,20 @@ if (isset($_GET['filter']) and $_GET['filter'] != 'tanggal') {
 			$query = "SELECT * FROM jualbeli";
 			break;
 		case 'hari':
-			$q = "SELECT jualbeli.tanggal as tanggal, jualbeli.kodeobat as transaksi, jualbeli.lainnya as trans, jualbeli.jumlah as jumlah, jualbeli.harga as hargaa, transaksi.jenis, obat.harga, obat.nama_obat as nama from jualbeli join transaksi on jualbeli.id = transaksi.id left join obat on obat.kode_obat = jualbeli.kodeobat where jualbeli.tanggal = curdate() order by jualbeli.tanggal asc";
+			$q1 = "SELECT * FROM penjualan where tgl_penjualan=curdate() order by tgl_penjualan asc";
 			$query = "SELECT * FROM jualbeli where tanggal = curdate()";
 			break;
 		case 'pekan':
-			$q = "SELECT jualbeli.tanggal as tanggal, jualbeli.kodeobat as transaksi, jualbeli.lainnya as trans, jualbeli.jumlah as jumlah, jualbeli.harga as hargaa, transaksi.jenis, obat.harga, obat.nama_obat as nama from jualbeli join transaksi on jualbeli.id = transaksi.id left join obat on obat.kode_obat = jualbeli.kodeobat where WEEK(jualbeli.tanggal) = WEEK(curdate()) order by jualbeli.tanggal asc";
+			$q1 = "SELECT * FROM penjualan where tgl_penjualan=week(curdate()) order by tgl_penjualan asc";
 			$query = "SELECT * FROM jualbeli where WEEK(tanggal) = WEEK(curdate())";
 			break;
 		case 'bulan':
-			$q = "SELECT jualbeli.tanggal as tanggal, jualbeli.kodeobat as transaksi, jualbeli.lainnya as trans, jualbeli.jumlah as jumlah, jualbeli.harga as hargaa, transaksi.jenis, obat.harga, obat.nama_obat as nama from jualbeli join transaksi on jualbeli.id = transaksi.id left join obat on obat.kode_obat = jualbeli.kodeobat where month(jualbeli.tanggal) = month(curdate()) order by jualbeli.tanggal asc";
-			$query = "SELECT * FROM jualbeli where month(tanggal) = month(curdate))";
+		$q1 = "SELECT * FROM penjualan where tgl_penjualan=month(curdate()) order by tgl_penjualan asc";
+			$query = "SELECT * FROM jualbeli where month(tanggal) = month(curdate())";
 			break;
 		case 'tahun':
-			$q = "SELECT jualbeli.tanggal as tanggal, jualbeli.kodeobat as transaksi, jualbeli.lainnya as trans, jualbeli.jumlah as jumlah, jualbeli.harga as hargaa, transaksi.jenis, obat.harga,obat.nama_obat as nama from jualbeli join transaksi on jualbeli.id = transaksi.id left join obat on obat.kode_obat = jualbeli.kodeobat where year(jualbeli.tanggal) = year(curdate()) order by jualbeli.tanggal asc";
-			$query = "SELECT * FROM jualbeli where year(tanggal) = year(curdate))";
+		$q1 = "SELECT * FROM penjualan where tgl_penjualan=year(curdate()) order by tgl_penjualan asc";
+			$query = "SELECT * FROM jualbeli where year(tanggal) = year(curdate())";
 			break;
 	}
 	$sql = mysqli_query($connect, $q1);
@@ -45,21 +45,9 @@ if (isset($_GET['filter']) and $_GET['filter'] != 'tanggal') {
 	if (isset($_GET['tanggal_awal']) and isset($_GET['tanggal_akhir'])) { //untuk mengeksekusi bahwa variabel tanggal_awal dan tanggal_akhir bernilai true jika sudah diisi dan false jika kosong
 		$awal = $_GET['tanggal_awal']; //deklarasi bahwa variabel awal = variabel tanggal_awal 
 		$akhir = $_GET['tanggal_akhir']; //deklarasi akhir = tanggal_akhir 
-		// $q = "SELECT jualbeli.tanggal as tanggal, jualbeli.kodeobat as transaksi, jualbeli.lainnya as trans, jualbeli.jumlah as jumlah, jualbeli.harga as hargaa, transaksi.jenis, obat.nama_obat as nama from jualbeli join transaksi on jualbeli.id = transaksi.id left join obat on obat.kode_obat = jualbeli.kodeobat where jualbeli.tanggal between '$awal' and '$akhir' order by jualbeli.tanggal asc";  // query untuk menampilkan data dalam database pada tabel tabel_penjualan,obat,dan transaksi
-		// $sql = mysqli_query($connect, $q); //syntax untuk menyambungkan dengan database agar oquery dapat digunakan
-
-		//aulia code test
-
 
 		$q1 = "SELECT * FROM penjualan where tgl_penjualan between '$awal' and '$akhir' order by tgl_penjualan asc";
 		$sql = mysqli_query($connect, $q1);
-
-
-
-		//end of aulia code test
-
-
-
 
 
 		$q = "SELECT jumlah as kas from kasawal"; // query untuk menampilkan data pada tabel kasawal
@@ -68,8 +56,7 @@ if (isset($_GET['filter']) and $_GET['filter'] != 'tanggal') {
 		$modal = $res->kas; //pemindahan nilai 
 		$kas = $modal;
 	} else {
-		// $q = "SELECT jualbeli.tanggal as tanggal, jualbeli.kodeobat as transaksi, jualbeli.lainnya as trans, jualbeli.jumlah as jumlah, jualbeli.harga as hargaa, transaksi.jenis, obat.nama_obat as nama, obat.harga from jualbeli join transaksi on jualbeli.id = transaksi.id left join obat on obat.kode_obat = jualbeli.kodeobat or jualbeli.lainnya = NULL where jualbeli.tanggal= curdate() order by jualbeli.tanggal asc";
-		// $sql = mysqli_query($connect, $q);
+	
 		$q = "SELECT jumlah as kas from kasawal";
 		$sql3 = mysqli_query($connect, $q);
 		$res = mysqli_fetch_object($sql3);
@@ -80,7 +67,8 @@ if (isset($_GET['filter']) and $_GET['filter'] != 'tanggal') {
 
 
 		//aulia code test
-
+$query = "SELECT * FROM jualbeli where tanggal = curdate()";
+$sql_jb = mysqli_query($connect, $query);
 		$q1 = "SELECT * FROM penjualan where tgl_penjualan=curdate() order by tgl_penjualan asc";
 		$sql = mysqli_query($connect, $q1);
 

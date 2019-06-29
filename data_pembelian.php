@@ -3,8 +3,10 @@
 
 <!--
   @changelog:
-    Amanda Fahmidyna v 1.0.2 (Memperbaiki fitur)
+    Amanda Fahmidyna v 1.0.4 (Memperbaiki fitur)
     Airla Ismail v 1.0.1 (Membuat fitur)
+    Aldiansyah Darmawan 1.0.2 (Memperbaiki)
+    Okzatul Revanka 1.0.3 (Memperbaiki)
 -->
 
 <?php

@@ -1,8 +1,10 @@
 <!--AZ KHARISMA P-->
 <!--
   @changelog:
-    Amanda Fahmidyna v 1.0.2 (Memperbaiki fitur)
+    Amanda Fahmidyna v 1.0.4 (Memperbaiki fitur)
     Az kharisma v 1.0.1 (Membuat fitur)
+    Fadli Oei 1.0.3 (Memperbaiki Fitur)
+    Sahlan 1.0.2 (Memperbaiki fitur)
 -->
 
 <?php
