@@ -22,7 +22,7 @@
 
 
 <?php
-$koneksi = mysqli_connect("localhost", "root", "", "crm");
+$koneksi = mysqli_connect("localhost", "root", "", "sim-apotek-fix");
 ?>
 
 	<div style="width: 800px;margin: 0px auto;">
