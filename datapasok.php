@@ -2,7 +2,7 @@
 	include 'db.php';
 	$QuerySql = "SELECT `kode_pasok`, `kode_obat`, `kode_supplier`, `jumlah_pasok`, `harga_beli`, `tanggal_pasok`, `tanggal_kadaluarsa` FROM pasok";
 	$SQL = mysqli_query($connect, $QuerySql); 
-?> <!--Arindra Wahyu-->
+?> <!--Arindra Wahyu yang membuat -->
 <!DOCTYPE html>
 <html>
 <head>
