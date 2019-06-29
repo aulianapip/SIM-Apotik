@@ -18,7 +18,7 @@
     </div>
   </nav>
 
-		<h1><center>GRAFIK PELANGGAN BERDASARKAN KOTA</center></h1>
+		<h1><center>GRAFIK PELANGGAN BERDASARKAN JUMLAH BELI OBAT</center></h1>
 
 
 <?php

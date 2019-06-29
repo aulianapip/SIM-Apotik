@@ -1,5 +1,5 @@
 <?php
-$connect = mysqli_connect("localhost", "root", "", "sim-apotek");
+$connect = mysqli_connect("localhost", "root", "", "sim-apotek-fix");
 $nama_obat = mysqli_query($connect, "SELECT nama_obat FROM obat ORDER BY kode_obat ASC");
 $Stock_Obat = mysqli_query($connect, "SELECT jumlah_pasok FROM pasok ORDER BY kode_obat ASC");
 ?>
@@ -40,14 +40,14 @@ $Stock_Obat = mysqli_query($connect, "SELECT jumlah_pasok FROM pasok ORDER BY ko
                 <th>Jenis</th>
                 <th>Tanggal Kadaluarsa</th>
                 <th>Bulan Kadaluarsa</th>
-				<th>Tahun Kadaluarsa</th>
+		<th>Tahun Kadaluarsa</th>
                 <th>Stok Obat</th>
             </tr>
         </thead>
         <tbody>
             <?php 
             $no = 1;
-            $data = mysqli_query($connect,"SELECT obat.nama_obat, obat.harga, obat.kode_obat, obat.jenis, DAY(tanggal_kadaluarsa) as tgl_kadaluarsa, MONTH(tanggal_kadaluarsa) as bulan_kadaluarsa, YEAR(tanggal_kadaluarsa) as tahun_kadaluarsa, pasok.jumlah_pasok from obat,pasok");
+            $data = mysqli_query($connect,"SELECT obat.nama_obat, obat.harga, obat.kode_obat, obat.jenis, DAY(tanggal_kadaluarsa) as tgl_kadaluarsa, MONTH(tanggal_kadaluarsa) as bulan_kadaluarsa, YEAR(tanggal_kadaluarsa) as tahun_kadaluarsa, pasok.jumlah_pasok from obat,pasok GROUP BY pasok.kode_pasok");
             while($d=mysqli_fetch_array($data)){
                 ?>
                 <tr>
@@ -58,7 +58,7 @@ $Stock_Obat = mysqli_query($connect, "SELECT jumlah_pasok FROM pasok ORDER BY ko
                     <td><?php echo $d['jenis']; ?></td>
                     <td><?php echo $d['tgl_kadaluarsa']; ?></td>
                     <td><?php echo $d['bulan_kadaluarsa']; ?></td>
-		            <td><?php echo $d['tahun_kadaluarsa']; ?></td>
+		    <td><?php echo $d['tahun_kadaluarsa']; ?></td>
                     <td><?php echo $d['jumlah_pasok']; ?></td>
                     </tr>
                 <?php 

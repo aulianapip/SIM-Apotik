@@ -48,21 +48,21 @@ $data_penjualan = mysqli_query($connect, "SELECT * FROM penjualan ");
             $no = 1;
             $data = mysqli_query($connect,$data_penjualan);
             while($d=mysqli_fetch_array($data)){
-                ?>
                 <tr>
-		    <td><?php echo $d['id_pelanggan']; ?></td>
-<td><?php echo $d['id']; ?></td>
-<td><?php echo $d['no_transaksi']; ?></td>
-<td><?php echo $d['no_faktur']; ?></td>
-<td><?php echo $d['tgl_penjualan']; ?></td>
-<td><?php echo $d['total_penjualan']; ?></td>
-                    <td><?php echo $d['user']; ?></td>
-                    <td><?php echo $d['tipe']; ?></td>
+                    <td><?php echo $d['id']; ?></td>
+                    <td><?php echo $d['no_transaksi']; ?></td>
+                    <td><?php echo $d['no_faktur']; ?></td>
+                    <td><?php echo $d['tgl_penjualan']; ?></td>
+		    <td><?php echo $d['total_penjualan']; ?></td>
+		    <td><?php echo $d['user']; ?></td>
+		   <td><?php echo $d['tipe']; ?></td>
 <td><?php echo $d['jenis']; ?></td>
+<td><?php echo $d['id_pelanggan']; ?></td>
+<td><?php echo $d['user']; ?></td>
                     </tr>
-                <?php 
-            }
+}
             ?>
+
         <div class="container">
             <canvas id="myChart" width="100" height="100"></canvas>
         </div>
