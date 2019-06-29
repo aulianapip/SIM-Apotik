@@ -1,7 +1,7 @@
 <html>
     <head>
-    	//Nama : Baharuddin Izha Al Sya'na
-        //Nim  : 1700018257
+    	<!-- Nama : Baharuddin Izha Al Sya'na
+        Nim  : 1700018257 -->
         
 
         <title></title>
