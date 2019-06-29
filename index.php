@@ -1,9 +1,8 @@
 <html>
     <head>
-    <!--UI DESIGNER
-    	Nama : Baharuddin Izha Al Sya'na
-        Nim  : 1700018257
-        ---------------->
+    	//Nama : Baharuddin Izha Al Sya'na
+        //Nim  : 1700018257
+        
 
         <title></title>
         <script type="text/javascript" src="materialize.js"></script>
@@ -17,7 +16,7 @@
     <!--Membuat Navbar --------------------------------------->
 <nav class="nav-extended">
     <div class="nav-wrapper">
-<a href="#" class="brand-logo center">ANALITIK</a>
+<a href="#" class="brand-logo center">-ANALITIK-</a>
 </div>
 </nav>
 </div>

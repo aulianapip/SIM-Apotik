@@ -7,8 +7,8 @@
     <link rel="stylesheet" href="materialize.min.css">
 </head>
 <body>
-<!--Nama : Baharuddin Izha Al Sya'na
-    Nim	 : 1700018257-->
+//Nama : Baharuddin Izha Al Sya'na
+//Nim  : 1700018257
 <nav class="nav-extended">
     <div class="nav-wrapper">
       <a href="#" class="brand-logo">&nbsp;ANALITIK</a>
