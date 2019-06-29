@@ -1,5 +1,6 @@
 <?php
-//Yosalfa Bima Reynaldi, 1700018229
+// NAMAA : Yosalfa Bima Reynaldi
+// NIM	 : 1700018229
 $connect = mysqli_connect("localhost", "root", "", "sim-apotek");
 $tanggal = mysqli_query($connect, "SELECT MONTH(tanggal_pasok)as tanggal FROM pasok, supplier WHERE supplier.kode_supplier=pasok.kode_supplier ");
 $jumlah = mysqli_query($connect, "SELECT count(nama_pemasok) as jumlah FROM pasok, supplier WHERE supplier.kode_supplier=pasok.kode_supplier"); //

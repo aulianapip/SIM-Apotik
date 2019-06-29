@@ -1,5 +1,6 @@
 <?php
-//Yoga Firza Sabbihisma - 1700018253
+//NAMA	: Yoga Firza Sabbihisma
+//NIM	: 1700018253
 $connect = mysqli_connect("localhost", "root", "", "sim-apotek");
 $tanggal = mysqli_query($connect, "SELECT DAY(tanggal_pasok)as tanggal FROM pasok, supplier WHERE supplier.kode_supplier=pasok.kode_supplier ");
 $jumlah = mysqli_query($connect, "SELECT count(nama_pemasok) as jumlah FROM pasok, supplier WHERE supplier.kode_supplier=pasok.kode_supplier"); //
