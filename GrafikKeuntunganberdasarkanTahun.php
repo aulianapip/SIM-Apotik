@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-
+//Shanty P 
 <head>
 	<title>GRAFIK Opname</title>
 	<script type="text/javascript" src="Chart.js/Chart.js"></script>
