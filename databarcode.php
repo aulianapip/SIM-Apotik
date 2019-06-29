@@ -16,8 +16,6 @@
 <body>
 <nav class="navbar is-success" role="navigation" aria-label="main navigation">
   <div class="navbar-brand">
-   
-
     <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
       <span aria-hidden="true"></span>
       <span aria-hidden="true"></span>
@@ -111,33 +109,27 @@
           </a>
 </div>
 </div>
-
-
-
-  <a class="navbar-item" href="inputobat.php">
+      <a class="navbar-item" href="inputobat.php">
        Tambah Obat
       </a>
-            <a class="navbar-item" href="inputpasokobat.php">
+          <a class="navbar-item" href="inputpasokobat.php">
        Pasok Obat
       </a>
-       <a class="navbar-item" href="inputsupiler.php">
+          <a class="navbar-item" href="inputsupiler.php">
        Tambah Suppiler
       </a>
-      <a class="navbar-item">
+          <a class="navbar-item">
         <form action="cariobat.php" method="post">
         <div class="control">
-          <input class="input" type="text" placeholder="CARI OBAT" name="cari"> 
+        <input class="input" type="text" placeholder="CARI OBAT" name="cari"> 
         </div>
 </div>
         </form>
   </a>
-  </div>
 </div>
-    </div>
-
-    
-  </div>
-
+</div>
+</div> 
+</div>
 </nav>
 <table class="table is-fullwidth" >
   <thead>
