@@ -24,7 +24,6 @@
   	//Aditya Gusti Mandala Putra 1700018256  
 ?>
 <!--Aditya Gusti Mandala Putra-->
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,15 +33,12 @@
 <body>
 <nav class="navbar is-success" role="navigation" aria-label="main navigation">
   <div class="navbar-brand">
-   
-
     <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
       <span aria-hidden="true"></span>
       <span aria-hidden="true"></span>
       <span aria-hidden="true"></span>
     </a>
   </div>
-
   <div id="navbarBasicExample" class="navbar-menu">
     <div class="navbar-start">
       <a class="navbar-item" href="login.html">
@@ -53,26 +49,20 @@
         <a class="navbar-link">
           Daftar Tabel
         </a>
-
         <div class="navbar-dropdown">
-          
-          <a class="navbar-item" href="dataobat.php">
-            Obat
-          </a>
-          <a class="navbar-item" href="datasupiler.php">
-            Supiler
-          </a>
-    
+        <a class="navbar-item" href="dataobat.php">
+          Obat
+        </a>
+        <a class="navbar-item" href="datasupiler.php">
+          Supiler
+        </a>    
         </div>
       </div>
-
       <div class="navbar-item has-dropdown is-hoverable">
         <a class="navbar-link">
           Sort By
         </a>
-
         <div class="navbar-dropdown">
-          
           <a class="navbar-item" href="dataobattanggal.php">
             Tanggal
           </a>
@@ -87,8 +77,6 @@
           </a>
         </div>
       </div>
-
-
   <a class="navbar-item" href="inputobat.php">
        Tambah Obat
       </a>
@@ -101,15 +89,12 @@
           <input class="input" type="text" placeholder="CARI OBAT" name="cari"> 
         </div>
 </div>
-        </form>
+  </form>
   </a>
   </div>
 </div>
-    </div>
-
-    
+    </div>  
   </div>
-
 </nav>
 <table class="table is-fullwidth" >
   <thead>
@@ -134,8 +119,7 @@
 						<td>$key[tanggal_kadaluarsa]</td>
 						<td>$key[bulan_kadaluarsa]</td>
 						<td>$key[tahun_kadaluarsa]</td>
-						<td>$key[Stok_Obat]</td>
-						
+						<td>$key[Stok_Obat]</td>		
 				</tr>";
 			}
 		?>
