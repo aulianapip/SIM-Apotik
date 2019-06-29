@@ -1,4 +1,12 @@
 <!--AIRLA ISMAIL -->
+<!--Amanda fahmdiyna -->
+
+<!--
+  @changelog:
+    Amanda Fahmidyna v 1.0.2 (Memperbaiki fitur)
+    Airla Ismail v 1.0.1 (Membuat fitur)
+-->
+
 <?php
   session_start();
 

@@ -8,6 +8,12 @@
   data penjualan gambaran informasi data-data penjualan yang dihasilkan dari penjualan kasir.
   total keuntungan menampilkan keuntungan dari harga jual tiap barang dikurangi harga beli dari suplier.
    -->
+   <!--
+  @changelog:
+    Amanda Fahmidyna v 1.0.2 (Memperbaiki fitur)
+    Tobi Zatoni v 1.0.1 (Membuat fitur)
+-->
+
 <?php
   session_start();
 
