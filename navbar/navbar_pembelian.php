@@ -24,23 +24,23 @@
           Total Pembelian Berdasarkan Periode
         </a>
         <div class="navbar-dropdown">
-          <a class="navbar-item" href="http://localhost/apotik-keuangan/Administration/pembelian_hari.php">
+          <a class="navbar-item" href="http://localhost/Keuangan/Administration/pembelian_hari.php">
             Hari
           </a>
-          <a class="navbar-item" href="http://localhost/apotik-keuangan/Administration/pembelian_minggu.php">
+          <a class="navbar-item" href="http://localhost/Keuangan/Administration/pembelian_minggu.php">
             Minggu
           </a>
-          <a class="navbar-item" href="http://localhost/apotik-keuangan/Administration/pembelian_bulan.php">
+          <a class="navbar-item" href="http://localhost/Keuangan/Administration/pembelian_bulan.php">
             Bulan
           </a>
-          <a class="navbar-item" href="http://localhost/apotik-keuangan/Administration/pembelian_tahun.php">
+          <a class="navbar-item" href="http://localhost/Keuangan/Administration/pembelian_tahun.php">
             Tahun
           </a>
         </div>
       </div>
 
     <a class="navbar-item">
-        <form action="http://localhost/apotik-keuangan/Administration/pembelian_cari.php" method="post">
+        <form action="http://localhost/Keuangan/Administration/pembelian_cari.php" method="post">
         <div class="control">
           <input class="input" type="text" placeholder="Cari Obat" name="cari"> 
         </div>

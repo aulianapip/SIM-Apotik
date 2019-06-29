@@ -12,23 +12,19 @@ if (isset($_GET['filter']) and $_GET['filter'] != 'tanggal') {
 			break;
 		case 'hari':
 			$q = "SELECT jualbeli.tanggal as tanggal, jualbeli.kodeobat as transaksi, jualbeli.lainnya as trans, jualbeli.jumlah as jumlah, jualbeli.harga as hargaa, transaksi.jenis, obat.harga, obat.nama_obat as nama from jualbeli join transaksi on jualbeli.id = transaksi.id left join obat on obat.kode_obat = jualbeli.kodeobat where jualbeli.tanggal = curdate() order by jualbeli.tanggal asc";
-			$q1 = "SELECT * FROM penjualan where tgl_penjualan=curdate() order by tgl_penjualan asc";
 			$query = "SELECT * FROM jualbeli where tanggal = curdate()";
 			break;
 		case 'pekan':
-			
-			$q1 = "SELECT * FROM penjualan where WEEK(tgl_penjualan)=WEEK(curdate()) order by tgl_penjualan asc";
+			$q = "SELECT jualbeli.tanggal as tanggal, jualbeli.kodeobat as transaksi, jualbeli.lainnya as trans, jualbeli.jumlah as jumlah, jualbeli.harga as hargaa, transaksi.jenis, obat.harga, obat.nama_obat as nama from jualbeli join transaksi on jualbeli.id = transaksi.id left join obat on obat.kode_obat = jualbeli.kodeobat where WEEK(jualbeli.tanggal) = WEEK(curdate()) order by jualbeli.tanggal asc";
 			$query = "SELECT * FROM jualbeli where WEEK(tanggal) = WEEK(curdate())";
 			break;
 		case 'bulan':
-	
-			$q1 = "SELECT * FROM penjualan where MONTH(tgl_penjualan)=MONTH(curdate()) order by tgl_penjualan asc";
-			$query = "SELECT * FROM jualbeli where month(tanggal) = month(curdate())";
+			$q = "SELECT jualbeli.tanggal as tanggal, jualbeli.kodeobat as transaksi, jualbeli.lainnya as trans, jualbeli.jumlah as jumlah, jualbeli.harga as hargaa, transaksi.jenis, obat.harga, obat.nama_obat as nama from jualbeli join transaksi on jualbeli.id = transaksi.id left join obat on obat.kode_obat = jualbeli.kodeobat where month(jualbeli.tanggal) = month(curdate()) order by jualbeli.tanggal asc";
+			$query = "SELECT * FROM jualbeli where month(tanggal) = month(curdate))";
 			break;
 		case 'tahun':
 			$q = "SELECT jualbeli.tanggal as tanggal, jualbeli.kodeobat as transaksi, jualbeli.lainnya as trans, jualbeli.jumlah as jumlah, jualbeli.harga as hargaa, transaksi.jenis, obat.harga,obat.nama_obat as nama from jualbeli join transaksi on jualbeli.id = transaksi.id left join obat on obat.kode_obat = jualbeli.kodeobat where year(jualbeli.tanggal) = year(curdate()) order by jualbeli.tanggal asc";
-			$q1 = "SELECT * FROM penjualan where year(tgl_penjualan)=year(curdate()) order by tgl_penjualan asc";
-			$query = "SELECT * FROM jualbeli where year(tanggal) = year(curdate())";
+			$query = "SELECT * FROM jualbeli where year(tanggal) = year(curdate))";
 			break;
 	}
 	$sql = mysqli_query($connect, $q1);
@@ -87,6 +83,9 @@ if (isset($_GET['filter']) and $_GET['filter'] != 'tanggal') {
 
 	}
 }
+
+$total_kredit = 0;
+$total_debit = 0;
 
 ?>
 <html lang="en">
@@ -158,7 +157,7 @@ if (isset($_GET['filter']) and $_GET['filter'] != 'tanggal') {
 						<th>Debit</th>
 						<th>Kredit</th>
 						<th>Subtotal</th>
-						<th>Saldo</th>
+						<!-- <th>Saldo</th> -->
 					</thead>
 					<tbody>
 						<tr>
@@ -172,30 +171,28 @@ if (isset($_GET['filter']) and $_GET['filter'] != 'tanggal') {
 							<td>-</td>
 							<td>-</td>
 							<td>-</td>
-							<td>
-								<?php echo "Rp " . $kas;
-
-
-								?>
-							</td>
+							<!-- <td>
+								<?php $total = $kas; ?>
+							</td> -->
 						</tr>
 						<?php
 						// foreach ($sql_jb as $jb) {
 						// 	$result[] = $jb;
 						// }
-						foreach ($sql_jb as $jb) {
-							?>
-							<tr>
-								<td><?= $jb['tanggal']; ?></td>
-								<td><?= ($jb['kodeobat']) ? $jb['kodeobat'] : $jb['lainnya']; ?></td>
-								<td><?= $jb['jumlah']; ?></td>
-								<td> - </td>
-								<td><?= "Rp ".$jb['harga'] ?></td>
-								<td><?= "Rp ".$jb['harga'] * $jb['jumlah'] ?></td>
-								<td> <?= $kas-=$jb['jumlah']*$jb['harga']  ?></td>
-							</tr>
-						<?php
-
+						if ($sql_jb) {
+							foreach ($sql_jb as $jb) {
+								?>
+								<tr>
+									<td><?= $jb['tanggal']; ?></td>
+									<td><?= ($jb['kodeobat']) ? $jb['kodeobat'] : $jb['lainnya']; ?></td>
+									<td><?= $jb['jumlah']; ?></td>
+									<td> - </td>
+									<td><?= $jb['harga'] ?></td>
+									<td><?="Rp " . $jb['harga'] * $jb['jumlah'] ?></td>
+									<?php $total_kredit += $jb['harga'] * $jb['jumlah'] ?>
+								</tr>
+							<?php
+						}
 					}
 
 
@@ -210,7 +207,7 @@ if (isset($_GET['filter']) and $_GET['filter'] != 'tanggal') {
 						// die;
 
 						$qw = "SELECT * FROM penjualan_detail where no_transaksi='$no_transaksi'";
-						$sql_qw = mysqli_query($connect, $qw);
+						$sql_qw = mysqli_query($connect, $qw);;
 
 						foreach ($sql_qw as $data_qw) {
 							// print_r($data_qw);
@@ -235,6 +232,12 @@ if (isset($_GET['filter']) and $_GET['filter'] != 'tanggal') {
 
 												echo $data_obat['nama_obat']; // maka transaksi akan diambil dari data obat
 
+
+											else if ($data_obat['jenis'] == 'kredit') { //apabila jenis transaksi kredit
+
+												echo $data['trans']; //maka akan diambil dari data transaksi lain
+												echo $data_obat['nama_obat']; //dan diambil dari data suplier(pembelian obat)
+											}
 											?>
 										</td>
 
@@ -252,22 +255,25 @@ if (isset($_GET['filter']) and $_GET['filter'] != 'tanggal') {
 										</td>
 										<td>
 											<?php
-											
+											if ($data['jenis'] == "kredit")
+												echo "Rp " . $data['hargaa'];
+											else
+												echo '0';
 											?>
 										</td>
 										<td><?php
-												if ($data['jenis'] == "debit") {
+												if ($data['jenis'] == "kredit") {
 													echo "Rp " . $data_qw['jumlah'] * $data_qw['harga'];
-												} 
+												} else {
+													echo "Rp " . $data_qw['jumlah'] * $data_qw['harga'];
+												}
 
 												?></td>
 										<td>
 											<?php //agar jumlah kas bisa bertambah secara otomatis apabila jenis transaksi debitdan berkurang otomatis apabila jenis transaksi kredit
 											if ($data['jenis'] == "debit") {
-												$kas += $data_qw['harga'] * $data_qw['jumlah'];
-											} 
-
-											echo "Rp " . $kas; //menampilkan hasil kalkulasi di atas. sisa saldonya
+												$total_debit += $data_qw['harga'] * $data_qw['jumlah'];
+											} //menampilkan hasil kalkulasi di atas. sisa saldonya
 											?>
 										</td>
 									</tr>
@@ -283,6 +289,37 @@ if (isset($_GET['filter']) and $_GET['filter'] != 'tanggal') {
 				</table>
 			</div>
 			<div class="col-1"></div>
+		</div>
+		<div class="row">
+			<div class="col-lg-10 mx-auto">
+				<div class="card container">
+					<div class="card-title">
+						Total Kas
+					</div>
+					<div class="card-body">
+						<table class="table table-hover">
+							<thead>
+								<tr class="table-primary">
+									<th class="text-left">KAS Awal</th>
+									<td class="text-right"><?= "Rp ". $kas; ?></td>
+								</tr>
+								<tr class="table-danger">
+									<th class="text-left">Total Kredit</th>
+									<td class="text-right">Rp <?= $total_kredit; ?></td>
+								</tr>
+								<tr class="table-info">
+									<th class="text-left">Total Debit</th>
+									<td class="text-right">Rp <?= $total_debit; ?></td>
+								</tr>
+								<tr class="table-success">
+									<th class="text-left">KAS Sekarang</th>
+									<td class="text-right">Rp <?= $kas + $total_debit - $total_kredit; ?></td>
+								</tr>
+							</thead>
+						</table>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>

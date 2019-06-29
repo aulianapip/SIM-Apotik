@@ -3,13 +3,13 @@
 	session_start();
 
 if (!isset($_SESSION["login1"])) {
-    	  header("location: http://localhost/apotik-keuangan/login.php");
+    	  header("location: http://localhost/Keuangan/login.php");
       exit;
     }
       
   
 	include "connection/db.php";
-	$QuerySql = "SELECT *,harga_obat*jumlah_terjual as total FROM `tabel_penjualan`, `obat` WHERE tabel_penjualan.kode_obat=obat.kode_obat";
+	$QuerySql = "SELECT * from penjualan order by tgl_penjualan";
 
 	$SQL = mysqli_query($connect, $QuerySql); 
 ?> 
@@ -36,18 +36,71 @@ if (!isset($_SESSION["login1"])) {
     </tr>
   </thead>
 		<?php
-			foreach ($SQL as $key) {
-				echo "<tr>
-						<td>$key[id_penjualan]</td>
-						<td>$key[tanggal_terjual]</td>
-						<td>$key[kode_obat]</td>
-						<td>$key[nama_obat]</td>
-						<td>$key[harga_obat]</td>
-						<td>$key[jumlah_terjual]</td>
-						<td>$key[total]</td>
-				</tr>";
-                	
-				}
+foreach ($SQL as $data) {
+
+						$no_transaksi = $data['no_transaksi'];
+						$qw = "SELECT *, sum(jumlah) as jumlah FROM penjualan_detail where no_transaksi='$no_transaksi'";
+						$sql_qw = mysqli_query($connect, $qw);
+
+						foreach ($sql_qw as $data_qw) {
+					
+							$kode_obat = $data_qw['kode_obat'];
+
+							$q_obat = "SELECT * FROM obat where kode_obat='$kode_obat'";
+							$sql_obat = mysqli_query($connect, $q_obat);
+
+							foreach ($sql_obat as $data_obat) {
+
+								?>
+									<tr>
+										<td> <?php echo $data['id'] ?></td>
+										<td>
+										<?php
+										if($data['jenis']=="debit")
+											 echo $data['tgl_penjualan'];
+										
+											?>
+										</td>
+										<td><?php echo $data_qw['kode_obat'] ?></td>
+										<td>
+											<?php
+											if ($data['jenis'] == 'debit') // apabila jenis transaksinya debit
+
+												echo $data_obat['nama_obat']; // maka transaksi akan diambil dari data obat
+									
+											?>
+										</td>
+
+										<td>
+											<?php 
+											if($data['jenis']=="debit")
+											echo "Rp" . $data_qw['harga'];
+										
+											?>
+										</td>
+										<td>
+											<?php
+											if ($data['jenis'] == "debit") //jika jenis debit
+												echo $data_qw['jumlah']; //maka jumlah akan dikalikan harga barang
+											
+											else
+												echo '0'; //jika tidak maka tidak akan dikalikan
+											?>
+										</td>
+									
+										<td><?php
+												if ($data['jenis'] == "debit") {
+													echo "Rp " . $data_qw['jumlah'] * $data_qw['harga'];
+												} 
+
+												?></td>
+									</tr>
+								<?php
+
+							}
+						}
+					}	
+		
 		?>
 </table>
 </body>

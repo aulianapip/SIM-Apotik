@@ -24,7 +24,7 @@
       <a class="navbar-item" href="home.php">
        Kembali
       </a>
-     <a class="navbar-item" href="http://localhost/apotik-keuangan/Administration/data_pembelian.php">
+     <a class="navbar-item" href="http://localhost/Keuangan/Administration/data_pembelian.php">
        Cek obat yang telah dibeli
       </a>
       
