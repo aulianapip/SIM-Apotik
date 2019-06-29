@@ -17,7 +17,7 @@ if (!isset($_SESSION["login1"])) {
       exit;
     }
   require_once ('database/deb.php');
-  $QuerySql = "SELECT * from jualbeli";
+  $QuerySql = "SELECT *, (jumlah*harga) as harg from jualbeli";
 
   $SQL = mysqli_query($connect, $QuerySql); 
 ?> 
@@ -50,7 +50,7 @@ if (!isset($_SESSION["login1"])) {
              <td> $key[lainnya]</td>
             <td>$key[harga]</td>
             <td>$key[jumlah]</td>
-            <td>$key[harga] </td>
+            <td>$key[harg] </td>
         </tr>";
                   
         }
