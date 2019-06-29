@@ -1,5 +1,5 @@
 <?php
-<!-- Cendani Wukir Asih-1700018249-->
+//Cendani Wukir Asih-1700018249
 $connect = mysqli_connect("localhost", "root", "", "sim-apotek-fix");
 $tahun_penjualan = mysqli_query($connect, "SELECT YEAR(tgl_penjualan) as tahun_penjualan FROM penjualan GROUP BY YEAR(tgl_penjualan)");
 $jumlah_penjualanTahun = mysqli_query($connect, "SELECT SUM(total_penjualan) as jumlah_penjualanTahun FROM penjualan GROUP BY YEAR(tgl_penjualan)");

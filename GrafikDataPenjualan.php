@@ -1,6 +1,8 @@
 <?php
+//Alya Masitha - 1700018236
 $connect = mysqli_connect("localhost", "root", "", "sim-apotek-fix");
-$data_penjualan = mysqli_query($connect, "SELECT * FROM penjualan ");
+$hari_penjualan = mysqli_query($connect, "SELECT DATE(tgl_penjualan) as hari_penjualan FROM penjualan GROUP BY DATE(tgl_penjualan)");
+$jumlah_penjualanHari = mysqli_query($connect, "SELECT SUM(total_penjualan) as jumlah_penjualanHari FROM penjualan GROUP BY DATE(tgl_penjualan)");
 ?>
 <html>
     <head>
@@ -27,42 +29,28 @@ $data_penjualan = mysqli_query($connect, "SELECT * FROM penjualan ");
   </nav>
   
         <center>
-        <h2>GRAFIK DATA PENJUALAN OBAT</h2>
+        <h2>GRAFIK PENJUALAN OBAT BEDASARKAN TANGGAL</h2>
     
     <table border="1">
         <thead>
             <tr>
-		<th>ID Pelanggan</th>
-                <th>ID</th>
-		<th>NO Transaksi</th>
-		<th>NO Faktur</th>
-                <th>Tanggal Penjualan</th>
-		<th>Total Penjualan</th>
-		<th>User</th>
-		<th>Tipe</th>
-		<th>Jenis</th>
+                <th>tanggal</th>
+                <th>jumlah</th>
             </tr>
         </thead>
         <tbody>
             <?php 
             $no = 1;
-            $data = mysqli_query($connect,$data_penjualan);
+            $data = mysqli_query($connect,"SELECT DATE(tgl_penjualan) as tanggal, SUM(total_penjualan) as jumlah FROM penjualan WHERE tgl_penjualan GROUP BY DATE(tgl_penjualan)");
             while($d=mysqli_fetch_array($data)){
+                ?>
                 <tr>
-                    <td><?php echo $d['id']; ?></td>
-                    <td><?php echo $d['no_transaksi']; ?></td>
-                    <td><?php echo $d['no_faktur']; ?></td>
-                    <td><?php echo $d['tgl_penjualan']; ?></td>
-		    <td><?php echo $d['total_penjualan']; ?></td>
-		    <td><?php echo $d['user']; ?></td>
-		   <td><?php echo $d['tipe']; ?></td>
-<td><?php echo $d['jenis']; ?></td>
-<td><?php echo $d['id_pelanggan']; ?></td>
-<td><?php echo $d['user']; ?></td>
+                    <td><?php echo $d['tanggal']; ?></td>
+                    <td><?php echo $d['jumlah']; ?></td>
                     </tr>
-}
+                <?php 
+            }
             ?>
-
         <div class="container">
             <canvas id="myChart" width="100" height="100"></canvas>
         </div>
@@ -71,10 +59,10 @@ $data_penjualan = mysqli_query($connect, "SELECT * FROM penjualan ");
             var myChart = new Chart(ctx, {
                 type: 'bar',
                 data: {
-                    labels: [<?php while ($b = mysqli_fetch_array($hari_penjualan)) { echo '"' . $b['$data_penjualan'] . '",';}?>],
+                    labels: [<?php while ($b = mysqli_fetch_array($hari_penjualan)) { echo '"' . $b['hari_penjualan'] . '",';}?>],
                     datasets: [{
                             label: '# of Votes',
-                            data: [<?php while ($p = mysqli_fetch_array($jumlah_penjualanHari)) { echo '"' . $p['$data_penjualan'] . '",';}?>],
+                            data: [<?php while ($p = mysqli_fetch_array($jumlah_penjualanHari)) { echo '"' . $p['jumlah_penjualanHari'] . '",';}?>],
                             backgroundColor: [
                                 'rgba(255, 99, 132, 0.2)',
                                 'rgba(54, 162, 235, 0.2)',
