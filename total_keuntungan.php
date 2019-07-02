@@ -1,4 +1,7 @@
 <!--ALWAN ZAKI-->
+<!--Vikri Ammar-->
+<!--A.Z Kharisma-->
+<!--Leonka Pellu-->
 <?php
 	session_start();
 
@@ -17,7 +20,7 @@ if (!isset($_SESSION["login1"])) {
 <!DOCTYPE html>
 <html>
 <head>
-	<title>DATA KEUNTUNGAN</title>
+	<title>DATA KEUNTUNGAN PENJUALAN</title>
 	<link rel="stylesheet" href="bulma.min.css">
 </head>
 <body>
