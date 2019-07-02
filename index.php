@@ -1,5 +1,5 @@
-/* @Changelog :
-Amanda Fahmidyna 1700018273 1.0.1 - latest version */
+<!-- @Changelog :
+Amanda Fahmidyna 1700018273 1.0.1 - latest version -->
 <?php
 require_once('database/deb.php');
 // include "navbar_cashflow.php";
