@@ -1,6 +1,7 @@
  <!--AMANDA FAHMIDYNA 1700018273
 	Siti Barkah Pellu 1700018235
-	Vikri Ammar 
+	Vikri Ammar 1700018243
+	aris padang
  	 -->
  <?php 
 require_once('database/deb.php');
