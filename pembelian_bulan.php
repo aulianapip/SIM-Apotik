@@ -3,6 +3,7 @@
   @changelog:
     Amanda Fahmidyna v 1.0.2 (Memperbaiki fitur)
     Airla Ismail v 1.0.1 (Membuat fitur)
+    okzatul revanka (memperbaiki fitur)
 -->
 <?php
   session_start();
@@ -32,7 +33,7 @@ if (!isset($_SESSION["login1"])) {
       <th scope="col"><a href="s_pembelian_tanggal.php">WAKTU PEMBELIAN</a></th>
       <th scope="col"><a href="s_pembelian_harga.php">JUMLAH BELI</a></th>
  
-      <th scope="col"><a href="s_pembelian_total.php">HARGA TOTAL</a></th>
+      <th scope="col"><a href="s_pembelian_total.php">JUMLAH HARGA</a></th>
     </tr>
   </thead>
     <?php
