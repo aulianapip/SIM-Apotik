@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 29, 2019 at 02:44 AM
+-- Generation Time: Jun 21, 2019 at 04:33 AM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 7.2.3
 
@@ -145,6 +145,13 @@ CREATE TABLE `login` (
   `user` varchar(20) NOT NULL,
   `password` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `login`
+--
+
+INSERT INTO `login` (`user`, `password`) VALUES
+('admin', 'karyawan');
 
 -- --------------------------------------------------------
 
@@ -364,7 +371,8 @@ INSERT INTO `penjualan` (`id`, `no_transaksi`, `no_faktur`, `tgl_penjualan`, `to
 (36, 28, '19062300028', '2019-06-23', 5000, 'UID005', '', 'debit', '1011'),
 (37, 29, '19062400029', '2019-06-24', 5000, 'UID005', '', 'debit', '1013'),
 (38, 30, '19062400030', '2019-06-24', 5000, 'UID005', '', 'debit', '1013'),
-(39, 31, '19062400031', '2019-06-24', 5000, 'UID005', '', 'debit', '1003');
+(39, 31, '19062400031', '2019-06-24', 5000, 'UID005', '', 'debit', '1003'),
+(40, 40, '19062400032', '2019-07-01', 30000, 'UID005', '', 'debit', '1005');
 
 -- --------------------------------------------------------
 
@@ -438,7 +446,8 @@ INSERT INTO `penjualan_detail` (`id`, `no_transaksi`, `kode_obat`, `jumlah`, `ha
 (52, 28, 'BRO', 1, 5000, 5000, 0, ''),
 (53, 29, 'PRO', 1, 5000, 5000, 0, ''),
 (54, 30, 'BRO', 1, 5000, 5000, 0, ''),
-(55, 31, 'PRO', 1, 5000, 5000, 0, '');
+(55, 31, 'PRO', 1, 5000, 5000, 0, ''),
+(56, 32, 'PRO', 6, 5000, 60000, 0, '');
 
 -- --------------------------------------------------------
 
@@ -679,13 +688,13 @@ ALTER TABLE `pelanggan`
 -- AUTO_INCREMENT for table `penjualan`
 --
 ALTER TABLE `penjualan`
-  MODIFY `id` double NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `id` double NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT for table `penjualan_detail`
 --
 ALTER TABLE `penjualan_detail`
-  MODIFY `id` double NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
+  MODIFY `id` double NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 
 --
 -- Constraints for dumped tables
