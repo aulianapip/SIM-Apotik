@@ -59,7 +59,7 @@
 }
 
 ?>
- <!--Dimas Restu Maulana-->
+ <!--Wais Alqorni-->
 
 
 
@@ -67,7 +67,7 @@
 <head>
 <title>SIM-APOTIK</title>
 </head>
-	<!--Dimas Restu Maulana-->
+	<!--Wais Alqorni-->
 <body background="bgw.jpg">
 <center>
 <table width=100% height=100%>
@@ -79,6 +79,11 @@
  <tr>
 <td bgcolor=white align=center  height=25& colspan=3>
 <font face="serif" color="black" size="5">Sistem Informasi Apotik</font>
+</td>
+</tr>
+<tr>
+<td bgcolor=white align=center  height=25& colspan=3>
+<font face="serif" color="black" size="5"><br><br>LOGIN KEUANGAN</font>
 </td>
 </tr>
 
