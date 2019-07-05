@@ -37,7 +37,7 @@ if (isset($_GET['filter']) and $_GET['filter'] != 'tanggal') {
 			break;
 		case 'tahun':
 		
-			$query = "SELECT * FROM jualbeli where year(tanggal) = year(curdate))";
+			$query = "SELECT * FROM jualbeli where year(tanggal) = year(curdate())";
 				$kueri = "SELECT * FROM penjualan where year(tgl_penjualan) = year(curdate())";
 			// $sql_jb = mysqli_query($connect, $query);
 			break;
