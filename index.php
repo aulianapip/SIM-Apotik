@@ -1,4 +1,5 @@
 <!-- @Changelog :
+Wais Alqorny (Analisator)
 Amanda Fahmidyna 1700018273 1.0.1 - latest version -->
 <?php
 require_once('database/deb.php');
