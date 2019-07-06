@@ -47,7 +47,7 @@ $sql1 = mysqli_query($connect,$q);
 
  foreach ($sql1 as $data1) {}
  ?>
- <tr>
+ <tr class="table-primary">
  <td>
  <?php echo "Rp ". $data['masuk'];
  ?>
