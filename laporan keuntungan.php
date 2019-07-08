@@ -1,6 +1,6 @@
  <!--AMANDA FAHMIDYNA 1700018273
 	Siti Barkah Pellu 1700018235
-	Vikri Ammar 1700018243
+	Vikri Ammar Kholis 1700018243
 	aris padang
  	 -->
  <?php 
@@ -10,11 +10,12 @@ include "navbar_cashflow.php";
 
 
 
- $q = "SELECT sum(jumlah*harga) as masuk from penjualan_detail";
+$q = "SELECT sum(total_penjualan) as masuk from penjualan";
 $sql = mysqli_query($connect,$q);
 $q = "SELECT sum(jualbeli.jumlah*jualbeli.harga) AS keluar  FROM jualbeli WHERE jualbeli.jenis= 'kredit'";
 $sql1 = mysqli_query($connect,$q);
-
+$q = "SELECT sum(jualbeli.jumlah*jualbeli.harga) AS Gaji  FROM jualbeli WHERE jualbeli.lainnya= 'Gaji Karyawan'";
+$sql2 = mysqli_query($connect,$q);
  ?>
 
 <!DOCTYPE html>
@@ -37,7 +38,9 @@ $sql1 = mysqli_query($connect,$q);
 	<table class="table">
 <thead>
  <!--tabel cashflow-->
- <th>Pemasukan kotor</th>
+  <th>Pemasukan kotor</th>
+
+ <th>Gaji Karyawan</th>
 
  <th>Pengeluaran</th>
 
@@ -50,10 +53,18 @@ $sql1 = mysqli_query($connect,$q);
  foreach ($sql as $data) {}
 
  foreach ($sql1 as $data1) {}
+
+ foreach ($sql2 as $data2) {}
  ?>
- <tr>
+ <tr class = "table-primary">
  <td>
- <?php echo "Rp ". $data['masuk'];
+ <?php
+ echo "Rp ". $data['masuk'];
+ ?>
+ </td>
+ <td>
+ <?php
+ echo "Rp ". $data2['Gaji'];
  ?>
  </td>
  <td>
@@ -62,8 +73,9 @@ $sql1 = mysqli_query($connect,$q);
  </td>
  <td>
  <?php
- echo  "Rp ". ($data ['masuk'] - $data1['keluar']); //jika tidak maka tidak akan dikalikan
+ echo  "Rp ". ($data ['masuk'] - $data2['Gaji'] - $data1['keluar']); //jika tidak maka tidak akan dikalikan
  ?>
  </td>
+ 
 </body>
 </html>
