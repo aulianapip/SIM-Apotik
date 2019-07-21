@@ -7,20 +7,20 @@
     <link rel="stylesheet" href="materialize.min.css">
 </head>
 <body>
-//Nama : Baharuddin Izha Al Sya'na
-//Nim  : 1700018257
+<!--Nama : Baharuddin Izha Al Sya'na
+Nim  : 1700018257-->
 <nav class="nav-extended">
     <div class="nav-wrapper">
-      <a href="#" class="brand-logo">&nbsp;ANALITIK</a>
+      <a href="index.php" class="brand-logo">&nbsp;ANALITIK</a>
       <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
       <ul id="nav-mobile" class="right">
       	<li><a href="index.php">Menu</a></li>
-        <li><a href="index.php">Back</a></li>
+        <li><a href="grafikKeuntungan.php">Back</a></li>
       </ul>
     </div>
   </nav>
 
-		<h1><center>GRAFIK Opname</center></h1>
+		<h1><center>GRAFIK KEUNTUNGAN PENJUALAN BERDASARKAN BULAN</center></h1>
 
 
 <?php
@@ -80,7 +80,7 @@ $koneksi = mysqli_connect("localhost", "root", "", "sim-apotek-fix");
 				datasets: [{
 					label: '',
 					data: [<?php $keuntungan = mysqli_query($koneksi, "SELECT penjualan_detail.harga-pasok.harga_beli as keuntungan FROM obat, penjualan_detail, pasok, penjualan WHERE obat.kode_obat=pasok.kode_obat and obat.kode_obat=penjualan_detail.kode_obat GROUP BY pasok.kode_obat");
-while ($p = mysqli_fetch_array($keuntungan)) { echo '"' . $p['keuntungan'] . '",';}?>],
+					while ($p = mysqli_fetch_array($keuntungan)) { echo '"' . $p['keuntungan'] . '",';}?>],
                             backgroundColor: [
 					'rgba(255, 99, 132, 0.2)',
 					'rgba(54, 162, 235, 0.2)',

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-//Shanty P 
+<!--Shanty P--> 
 <head>
 	<title>GRAFIK Opname</title>
 	<script type="text/javascript" src="Chart.js/Chart.js"></script>
@@ -9,11 +9,11 @@
 <body>
 <nav class="nav-extended">
     <div class="nav-wrapper">
-      <a href="#" class="brand-logo">&nbsp;ANALITIK</a>
+      <a href="index.php" class="brand-logo">&nbsp;ANALITIK</a>
       <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
       <ul id="nav-mobile" class="right">
       	<li><a href="index.php">Menu</a></li>
-        <li><a href="index.php">Back</a></li>
+        <li><a href="grafikKeuntungan.php">Back</a></li>
       </ul>
     </div>
   </nav>

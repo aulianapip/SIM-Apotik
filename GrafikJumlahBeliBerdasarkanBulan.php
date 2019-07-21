@@ -21,10 +21,10 @@ $jumlah_penjualanBulan = mysqli_query($connect, "SELECT SUM(total_penjualan) as 
     <body>
 <nav class="nav-extended">
     <div class="nav-wrapper">
-      <a href="#" class="brand-logo">&nbsp;ANALITIK</a>
+      <a href="index.php" class="brand-logo">&nbsp;ANALITIK</a>
       <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
       <ul id="nav-mobile" class="right">
-        <li><a href="index.php">Back</a></li>
+        <li><a href="GrafikDataPenjualan.php">Back</a></li>
       </ul>
     </div>
   </nav>
