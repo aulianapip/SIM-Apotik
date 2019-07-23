@@ -58,10 +58,11 @@ $(document).ready(function(){
 	//simpan data penjualan
 	$("#btnJualSimpan").click(function(){
 		var noFaktur = $('#inpNoFaktur').val();
+		var noMember = $('#inpMember').val();
 			$.ajax({
 					type:"POST",
 					url:"kasir/penjualan_proses.php",
-					data:{simpanJual:'',noFaktur:noFaktur},
+					data:{simpanJual:'',noFaktur:noFaktur, noMember:noMember},
 					dataType: "json",
 					success:function(resp){
 						$("#alertMsg").html(resp.msg1);

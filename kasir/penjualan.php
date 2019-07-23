@@ -68,6 +68,7 @@ if(!isset($_SESSION['SES_LOGIN'])){
 
   	<?php 
   	$iden=0;
+  	$nama1='';
 
 
   						if (isset($_POST['inpMember'])) {
@@ -76,10 +77,7 @@ if(!isset($_SESSION['SES_LOGIN'])){
 							$hsl3=querydb($qri3);
 							while($rek3=arraydb($hsl3)){
 								
-								echo "<br>";
-								echo $rek3['ID'];
-								echo "<br>"; 
-								echo $rek3['Nama'];
+								
 								
 
 
@@ -102,14 +100,11 @@ if(!isset($_SESSION['SES_LOGIN'])){
 							$hsl3=querydb($qri3);
 							while($rek3=arraydb($hsl3)){
 								
-								echo "<br>";
-								echo $rek3['ID'];
-								echo "<br>"; 
-								echo $rek3['Nama'];
-								echo $rek3['tipe'];
+								
 
 
 								$iden=$rek3['ID'];
+								$nama1=$rek3['Nama'];
 								$Member=$rek3['tipe'];
 							}
 
@@ -121,7 +116,9 @@ if(!isset($_SESSION['SES_LOGIN'])){
     <div class="panel panel-primary alert-info" id="panelPenjualan1">
 			<div class="panel-body">
 				<form class="form-horizontal" name="formNoFaktur" method="POST" action="penjualan.php">
+					
 					<p>Invoice&nbsp;&nbsp;: <input type="text" value="<?php echo $noFaktur4?>" name="inpNoFaktur" id="inpNoFaktur" readonly="readonly"></p>
+					<p>Member&nbsp;&nbsp;: <input type="text" value="<?php echo $iden?>" name="inpMember" id="inpMember" readonly="readonly"></p>
 					<p>Kode Barang&nbsp;&nbsp;&nbsp;: <input type="text" name="inpKodeBarang" id="inpKodeBarang" data-toggle="tooltip" data-placement="right" title="isi kode barang lalu tekan ENTER" ></p>
 					<!-- <p>Jumlah&nbsp;&nbsp;&nbsp;: <input type="text" name="inpJumlahBeli" id="inpJumlahBeli" data-toggle="tooltip" data-placement="right" title="isi jumlah barang"></p> -->
 				</form>
@@ -147,12 +144,12 @@ if(!isset($_SESSION['SES_LOGIN'])){
 						<?php 
 							//$jmlbeli=$_POST['inpJumlahBeli'];
 							$ttlItem=0;$ttlJual=0;
-							$qri="SELECT a.*,b.nm_barang FROM penjualan_tmp a LEFT JOIN nama_obat b ON b.kd_barang=a.kd_barang WHERE a.user='$user_id'";
+							$qri="SELECT a.*,b.nama_obat FROM penjualan_tmp a LEFT JOIN obat b ON b.kode_obat=a.kode_obat WHERE a.user='$user_id'";
 							$hsl=querydb($qri);
 							while($rek=arraydb($hsl)){
 								echo "<tr>";
-								echo "<td>".$rek['kd_barang']."</td>";
-								echo "<td>".$rek['nm_barang']."</td>";
+								echo "<td>".$rek['kode_obat']."</td>";
+								echo "<td>".$rek['nama_obat']."</td>";
 								echo "<td align='center'>".number_format($rek['harga'],0,",",".")."</td>";
 								echo "<td align='center'>".$rek['jumlah']."</td>";
 								echo "<td align='right'>".number_format($rek['sub_total'],0,",",".")."</td>";
@@ -168,8 +165,9 @@ if(!isset($_SESSION['SES_LOGIN'])){
 						<?php  
 
 						$m='m';
-							
-						if ($ttlJual>30000 && $idmember>=1 ) {
+						$i = strlen($nama1);
+						
+						if ($ttlJual>30000 && $i>0 ) {
 										$ttlJual=($ttlJual-($ttlJual*0.2));
 									 }
 									else {
@@ -184,12 +182,15 @@ if(!isset($_SESSION['SES_LOGIN'])){
 							
 							$m='m';
 							$cash=$_POST['cash'];
-
-							if ($ttlJual>30000 && $m==$Member ) {
+							$i = strlen($nama1);
+							
+							if ($ttlJual>30000 && $i>0) {
 										$kembali=$cash-($ttlJual-($ttlJual*0.2));
+										echo "masuk";
 									 }
 									else {
 										$kembali=$cash-$ttlJual;
+										echo "tidak masuk";
 									}
 										
 							}			
@@ -200,6 +201,9 @@ if(!isset($_SESSION['SES_LOGIN'])){
 
 				</table>
 				<div class="table-responsive">
+					
+
+
 
 				<table class="table table-condensed" id="tblKasir">
 					<tr>
@@ -211,12 +215,12 @@ if(!isset($_SESSION['SES_LOGIN'])){
 					<tr>
 						<td><h3>KEMBALI</h3></td>
 						<td align="right"><h3>Rp</h3></td>
-						<td align="right"><h3><?php echo number_format($kembali,0,",",".")?></h3></td>
+						<td align="right"><h3><div id="kembalian"></h3></td>
 					</tr>
 				</table>
 				</div>
 				<form name="formKembali" id="formKembali" action="" method="POST">
-				Cash <input type="text" name="cash" id="cash">&nbsp;<input type="submit" name="btnKembali" id="btnKembali" class="btn btn-xs btn-info" value="hitung">
+				Cash <input type="text" name="cash" id="cash" onkeyup="hitung();" />&nbsp;<input type="submit" name="btnKembali" id="btnKembali" class="btn btn-xs btn-info" value="hitung">
 				</form>
 				<input type="button" value="Print Nota" id="btnCetakFaktur" class="btn btn-xs btn-info" onclick="popup()">&nbsp;&nbsp;<input type="button" value="Selesai" name="btnJualSimpan" id="btnJualSimpan" class="btn btn-xs btn-primary">
 				<br>
@@ -267,4 +271,15 @@ if(!isset($_SESSION['SES_LOGIN'])){
 var mywin; 
 function popup(){
 mywin=window.open("kasir/faktur_penjualan.php?no_faktur=<?php echo $noFaktur4; ?>&cash=<?php echo $cash; ?>","_blank",	"toolbar=yes,location=yes,menubar=yes,copyhistory=yes,directories=no,status=no,resizable=no,width=500, height=400"); mywin.moveTo(100,100);}
+</script>
+
+<script>
+function hitung() {
+      var total = "<?php echo ($ttlJual)?>";
+      var cash = document.getElementById('cash').value;
+      var result = parseInt(cash) - parseInt(total);
+      if (!isNaN(result)) {
+         document.getElementById('kembalian').innerHTML= result;
+      }
+}
 </script>

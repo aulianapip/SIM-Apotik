@@ -4,7 +4,7 @@
 $myHost	= "localhost";
 $myUser	= "root";
 $myPass	= "";
-$myDbs	= "SIM-Apotek-Pos-Test";
+$myDbs	= "sim-apotek-analitik";
 
 //192.168.43.114
 function opendb(){

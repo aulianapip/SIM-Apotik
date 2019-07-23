@@ -17,7 +17,7 @@ if(isset($_POST['cariBarang'])){
 	
 	$errMsg="";
 	
-	$qri = "SELECT * FROM nama_obat WHERE kd_barang='$kdBarang' AND active='Y'";
+	$qri = "SELECT * FROM obat WHERE kode_obat='$kdBarang' ";
 	$hsl = querydb($qri);
 	$row = numrows($hsl);
 	if($row>=1){
@@ -28,9 +28,9 @@ if(isset($_POST['cariBarang'])){
 			$rek2 = arraydb($hsl2);
 				$hrgAvg = $rek2['hrg_beli_rata2'];
 			
-			$subTtl = $rek['hrg_jual'] * 1;
+			$subTtl = $rek['harga'] * 1;
 			$id = buatKode("penjualan_tmp","");
-			$qri3 = "INSERT INTO penjualan_tmp (id,no_faktur,kd_barang,jumlah,harga,sub_total,hrg_pokok,user) VALUES ('$id','$noFaktur','$rek[kd_barang]','1','$rek[hrg_jual]','$subTtl','$hrgAvg','$user_id')";
+			$qri3 = "INSERT INTO penjualan_tmp (id,no_faktur,kode_obat,jumlah,harga,sub_total,hrg_pokok,user) VALUES ('$id','$noFaktur','$rek[kode_obat]','1','$rek[harga]','$subTtl','$hrgAvg','$user_id')";
 			$hsl3 = querydb($qri3);	
 		
 		}
@@ -70,6 +70,7 @@ if(isset($_POST['hapusJual'])){
 if(isset($_POST['simpanJual'])){
 	
 	$noFaktur = trim($_POST['noFaktur']);
+	$noMember = trim($_POST['noMember']);
 	$tgl = date("Y-m-d");
 	$errMsg="";
 	
@@ -88,14 +89,14 @@ if(isset($_POST['simpanJual'])){
 				$subTtl = $rek['sub_total'];
 						
 				if($c==1){
-					$qri2 = "INSERT INTO penjualan_detail (no_transaksi,kd_barang,jumlah,harga,sub_total,hrg_pokok) 
-					VALUES ('$noTrans', '$rek[kd_barang]','$rek[jumlah]','$rek[harga]','$subTtl','$rek[hrg_pokok]');";
+					$qri2 = "INSERT INTO penjualan_detail (no_transaksi,kode_obat,jumlah,harga,sub_total,hrg_pokok) 
+					VALUES ('$noTrans', '$rek[kode_obat]','$rek[jumlah]','$rek[harga]','$subTtl','$rek[hrg_pokok]');";
 				}elseif($c<$row){
-					$qri2 .= "INSERT INTO penjualan_detail (no_transaksi,kd_barang,jumlah,harga,sub_total,hrg_pokok) 
-					VALUES ('$noTrans', '$rek[kd_barang]','$rek[jumlah]','$rek[harga]','$subTtl','$rek[hrg_pokok]');";
+					$qri2 .= "INSERT INTO penjualan_detail (no_transaksi,kode_obat,jumlah,harga,sub_total,hrg_pokok) 
+					VALUES ('$noTrans', '$rek[kode_obat]','$rek[jumlah]','$rek[harga]','$subTtl','$rek[hrg_pokok]');";
 				}else{
-					$qri2 .= "INSERT INTO penjualan_detail (no_transaksi,kd_barang,jumlah,harga,sub_total,hrg_pokok) 
-					VALUES ('$noTrans', '$rek[kd_barang]','$rek[jumlah]','$rek[harga]','$subTtl','$rek[hrg_pokok]')";
+					$qri2 .= "INSERT INTO penjualan_detail (no_transaksi,kode_obat,jumlah,harga,sub_total,hrg_pokok) 
+					VALUES ('$noTrans', '$rek[kode_obat]','$rek[jumlah]','$rek[harga]','$subTtl','$rek[hrg_pokok]')";
 				}	
 				$c++;	
 				$ttlJual = $ttlJual + $subTtl;
@@ -114,8 +115,8 @@ if(isset($_POST['simpanJual'])){
 				//insert data ke tabel penjualan. 
 					//$id=buatKode("penjualan","");
 					
-					$qri3="INSERT INTO penjualan (no_transaksi,no_faktur,tgl_penjualan,total_penjualan,user) 
-						VALUES('$noTrans','$noFaktur',now(),'$ttlJual','$user_id')";
+					$qri3="INSERT INTO penjualan (no_transaksi,no_faktur,tgl_penjualan,total_penjualan,user,id_pelanggan) 
+						VALUES('$noTrans','$noFaktur',now(),'$ttlJual','$user_id','$noMember')";
 					$res3=$mysqli->query($qri3);
 					if(!$res3){$errors[] = $mysqli->error;}
 					
