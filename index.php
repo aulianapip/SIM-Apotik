@@ -278,15 +278,20 @@ body {                        /*desain body*/
                     <td><?= $data['NoHp'] ?></td>
                     <td><?= $data['Email'] ?></td>
                     <td><?= $data['Alamat'] ?></td>
-                    <td><a href='formedit.php?ID=<?php echo $data['ID']; ?>'><input type="image" src="edit.png" width="20" height="20"/></a>
-                        <!-- dibuat oleh Alfian Noor 1700018233 -->
+                    <td>
+<!-- script model validasi edit -->
+<!-- dibuat oleh Alfian Noor 1700018233 -->
+                     <a href="fromedit.php?ID=<?php echo $data['ID'];?>" onclick="return confirm('Yakin mau ingin mengedit data?');"><input type="image" src="edit.png" width="20" height="20" /a>
+<!-- script model validasi delete -->
+<!-- dibuat oleh Alfian Noor 1700018233 -->
                      <a href="hapus.php?ID=<?php echo $data['ID'];?>" onclick="return confirm('Yakin mau di hapus?');"><input type="image" src="delete.png" width="20" height="20" /a>
-                        <!-- dibuat oleh Alfian Noor 1700018233 -->
-                     <a href='cetak.php?ID=<?php echo $data['ID']; ?>'><input type="image" src="cetak.png" width="25" height="25"/></a>
-                    <div>
+
+<!-- script model validasi cetak -->                      
+     <!-- dibuat oleh Alfian Noor 1700018233 -->
+                     <a href="cetak.php?ID=<?php echo $data['ID'];?>" onclick="return confirm('Yakin mau ingin cetak data?');"><input type="image" src="cetak.png" width="20" height="20" /a>
                      <!-- dibuat oleh Alfian Noor 1700018233 -->
                      <a href="index.php"> 
-                 <button onClick="window.print();" ><input type="image" src="print.jpg"width="20" height="20"></button> 
+                </button> 
                    </a>
      
 
