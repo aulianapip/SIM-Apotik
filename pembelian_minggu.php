@@ -12,7 +12,8 @@ if (!isset($_SESSION["login1"])) {
       exit;
     }
   require_once ('database/deb.php');
-  $QuerySql = "SELECT *, tanggal,sum(jumlah) as jumlah_pasok,sum(harga*jumlah) AS total FROM jualbeli group by week(tanggal) ASC";
+  //Amanda Fahmidyna 1700018273
+  $QuerySql = "SELECT *, tanggal,sum(jumlah) as jumlah_pasok,sum(harga*jumlah) AS total FROM jualbeli group by week(tanggal) ASC";// //mengambil data berdasarkan mingguan dari tabel jualbeli(pengeluaran)
 
   $SQL = mysqli_query($connect, $QuerySql); 
 ?> 

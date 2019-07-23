@@ -1,7 +1,7 @@
- <!--AMANDA FAHMIDYNA 1700018273
-	Siti Barkah Pellu 1700018235
-	Vikri Ammar Kholis 1700018243
-	aris padang
+ <!--AMANDA FAHMIDYNA 1700018273 (Pembuat fitur)
+	Siti Barkah Pellu 1700018235 
+	Vikri Ammar Kholis 1700018243 (Menambah fitur dan memperbaiki fitur)
+	
  	 -->
  <?php 
 require_once('database/deb.php');
@@ -9,10 +9,10 @@ include "navbar_cashflow.php";
 
 
 
-
+// Vikri Ammar Kholis 1700018243
 $q = "SELECT sum(total_penjualan) as masuk from penjualan";
 $sql = mysqli_query($connect,$q);
-$q = "SELECT sum(jualbeli.jumlah*jualbeli.harga) AS keluar  FROM jualbeli WHERE jualbeli.jenis= 'kredit'";
+$q = "SELECT sum(jualbeli.jumlah*jualbeli.harga) AS keluar  FROM jualbeli WHERE jualbeli.jenis= 'kredit'"; 
 $sql1 = mysqli_query($connect,$q);
 $q = "SELECT sum(jualbeli.jumlah*jualbeli.harga) AS Gaji  FROM jualbeli WHERE jualbeli.lainnya= 'Gaji Karyawan'";
 $sql2 = mysqli_query($connect,$q);

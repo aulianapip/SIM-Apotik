@@ -13,8 +13,9 @@ if (!isset($_SESSION["login1"])) {
     }
     
   require_once ('database/deb.php');
+  //Amanda Fahmidyna 1700018273
+  //Aldiansyah Darmawan
   $QuerySql = "SELECT *, tanggal , SUM(jumlah) as jumlah_pasok,SUM(harga*jumlah) AS total FROM jualbeli group by day(tanggal) ASC";
-
   $SQL = mysqli_query($connect, $QuerySql); 
  ?> 
 
@@ -32,7 +33,7 @@ if (!isset($_SESSION["login1"])) {
 
 <table class="table is-fullwidth" >
   
-  <thead>
+  <thead><!--Aldiansyah Darmawan -->
     <tr>
       <th scope="col" ><a href="s_pembelian_tanggal.php"> WAKTU PEMBELIAN</a></th>
       <th scope="col" ><a href="s_pembelian_harga.php">   JUMLAH BELI</a></th>

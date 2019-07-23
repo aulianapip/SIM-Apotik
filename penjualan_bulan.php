@@ -25,7 +25,8 @@ if (!isset($_SESSION["login1"])) {//jika login gagal maka kembali login.php
       
   
   include "connection/db.php";
-  $QuerySql = "select penjualan.tgl_penjualan, sum(penjualan_detail.jumlah) as jumlah, sum(penjualan_detail.sub_total) as total from penjualan join penjualan_detail on penjualan.no_transaksi = penjualan_detail.no_transaksi  group by year(penjualan.tgl_penjualan) asc";
+  //Amanda Fahmidyna 1700018273
+  $QuerySql = "SELECT penjualan.tgl_penjualan, sum(penjualan_detail.jumlah) as jumlah, sum(penjualan_detail.sub_total) as total from penjualan join penjualan_detail on penjualan.no_transaksi = penjualan_detail.no_transaksi  group by year(penjualan.tgl_penjualan) asc"; //menampilkan dari tabelpenjualan dan penjualan detail
 
   $SQL = mysqli_query($connect, $QuerySql); 
 ?> 

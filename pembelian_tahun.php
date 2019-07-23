@@ -12,7 +12,8 @@ if (!isset($_SESSION["login1"])) {
       exit;
     }
   require_once ('database/deb.php');
-  $QuerySql = "SELECT *, year(tanggal) as tanggal,sum(jumlah) as jumlah_pasok,sum(harga*jumlah) AS total FROM jualbeli group by year(tanggal) ASC";
+  //Amanda Fahmidyna 1700018273
+  $QuerySql = "SELECT *, year(tanggal) as tanggal,sum(jumlah) as jumlah_pasok,sum(harga*jumlah) AS total FROM jualbeli group by year(tanggal) ASC";//mengambil data berdasarkan tahun dari tabel jualbeli(pengeluaran)
 
   $SQL = mysqli_query($connect, $QuerySql); 
 ?> 

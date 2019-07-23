@@ -17,6 +17,7 @@ if (!isset($_SESSION["login1"])) {
       exit;
     }
   require_once ('database/deb.php');
+  //Amanda Fahmidyna 1700018273
   $QuerySql = "SELECT *, (jumlah*harga) as harg from jualbeli";
 
   $SQL = mysqli_query($connect, $QuerySql); 
@@ -33,7 +34,8 @@ if (!isset($_SESSION["login1"])) {
  ?>
 <table class="table is-fullwidth" >
   <thead>
-    <tr>
+    <tr><!-- Aldiansyah Darmawan
+    Okzatul Revanka -->
       <th scope="col"><a href="s_pembelian_tanggal.php">WAKTU PEMBELIAN</a></th>
             <th scope="col"><a href="s_pembelian_tanggal.php">KODE OBAT</a></th>
                <th scope="col"><a href="s_pembelian_tanggal.php">LAINNYA</a></th>

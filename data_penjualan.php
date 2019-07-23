@@ -15,7 +15,7 @@ if (!isset($_SESSION["login1"])) {
       exit;
     }
       
-  
+  //Amanda Fahmidyna 1700018273
 	include "connection/db.php";
 	$QuerySql = "SELECT * from penjualan order by tgl_penjualan";
 
@@ -33,7 +33,9 @@ if (!isset($_SESSION["login1"])) {
  ?>
 <table class="table is-fullwidth" >
   <thead>
-    <tr>
+    <tr><!-- Az kharisma v 1.0.1 (Membuat fitur)
+    Fadli Muhammad Oei 1.0.3 (1600018057) (Memperbaiki Fitur)
+    Sahlan 1.0.2 (Memperbaiki fitur)-->
       <th scope="col"><a href="s_penjualan_id.php"> ID PENJUALAN</a></th>
       <th scope="col"><a href="s_penjualan_tanggal.php">TANGGAL TERJUAL</a></th>
       <th scope="col"><a href="s_penjualan_ko.php">KODE OBAT</a></th>

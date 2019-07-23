@@ -1,44 +1,45 @@
 <!-- @Changelog :
-Wais Alqorny (Analisator)
+Wais Alqorni (Analisator)
 Amanda Fahmidyna 1700018273 1.0.1 - latest version -->
 <?php
 require_once('database/deb.php');
 // include "navbar_cashflow.php";
 
-if (isset($_GET['filter']) and $_GET['filter'] != 'tanggal') {
+//Amanda Fahmidyna 1700018273
+if (isset($_GET['filter']) and $_GET['filter'] != 'tanggal') {//jika yang di filter selain berdasarkan tanggal
 	$filter = $_GET['filter'];
 
 	switch ($filter) {
-		case 'semua':
-			$kueri = "SELECT * FROM penjualan order by tgl_penjualan asc";
-			$query = "SELECT * FROM jualbeli";
+		case 'semua'://filter semuanya
+			$kueri = "SELECT * FROM penjualan order by tgl_penjualan asc";//mengambil data dari tabel penjualan secara urut berdasarkan tanggal
+			$query = "SELECT * FROM jualbeli";//mengambil data dari tabel jualbeli terdiri dari pengeluaran pembelian obat dan pengeluaran lainnya
 
-			$sql_jb = mysqli_query($connect, $query);
+			$sql_jb = mysqli_query($connect, $query);//menkoneksikan database dengan kueri di atas
 			break;
 		case 'hari':
 		
-			$query = "SELECT * FROM jualbeli where tanggal = curdate()";
-			$kueri = "SELECT * FROM penjualan where tgl_penjualan=curdate()";
+			$query = "SELECT * FROM jualbeli where tanggal = curdate()"; //mengambil data dari tabel penjualan secara urut berdasarkan tanggal hari ini
+			$kueri = "SELECT * FROM penjualan where tgl_penjualan=curdate()";//mengambil data dari tabel jualbeli berdasar data hari ini
 			// $sql_jb = mysqli_query($connect, $query);
 			break;
 
-			$query = "SELECT * FROM jualbeli where WEEK(tanggal) = WEEK(curdate())";
-			$kueri = "SELECT * FROM penjualan where WEEK(tgl_penjualan) = WEEK(curdate())";
+			$query = "SELECT * FROM jualbeli where WEEK(tanggal) = WEEK(curdate())";//mengambil data dari tabel penjualan secara urut berdasarkan tanggal minggu ini
+			$kueri = "SELECT * FROM penjualan where WEEK(tgl_penjualan) = WEEK(curdate())";//mengambil data dari tabel jualbeli berdasar data minggu ini
 
 			// $sql_jb = mysqli_query($connect, $query);
 			break;
 		case 'bulan':
 		
-			$query = "SELECT * FROM jualbeli where month(tanggal) = month(curdate())";
-			$kueri = "SELECT * FROM penjualan where month(tgl_penjualan) = month(curdate())";
+			$query = "SELECT * FROM jualbeli where month(tanggal) = month(curdate())"; //mengambil data dari tabel penjualan secara urut berdasarkan tanggal bulan ini
+			$kueri = "SELECT * FROM penjualan where month(tgl_penjualan) = month(curdate())";//mengambil data dari tabel jualbeli berdasar data bulan ini
 
 
 			// $sql_jb = mysqli_query($connect, $query);
 			break;
 		case 'tahun':
 		
-			$query = "SELECT * FROM jualbeli where year(tanggal) = year(curdate())";
-				$kueri = "SELECT * FROM penjualan where year(tgl_penjualan) = year(curdate())";
+			$query = "SELECT * FROM jualbeli where year(tanggal) = year(curdate())"; //mengambil data dari tabel penjualan secara urut berdasarkan tanggal tahun ini
+				$kueri = "SELECT * FROM penjualan where year(tgl_penjualan) = year(curdate())"; //mengambil data dari tabel jualbeli berdasar data tahun ini
 			// $sql_jb = mysqli_query($connect, $query);
 			break;
 	}
@@ -59,12 +60,12 @@ if (isset($_GET['filter']) and $_GET['filter'] != 'tanggal') {
 		//aulia code test
 
 
-		$q1 = "SELECT * FROM penjualan where tgl_penjualan between '$awal' and '$akhir' order by tgl_penjualan asc";
+		$q1 = "SELECT * FROM penjualan where tgl_penjualan between '$awal' and '$akhir' order by tgl_penjualan asc"; //mengambil data dari tabel penjualan saat pemfilteran tanggal yang telah ditentukan di filter dari tangal sekian(awal) hingga tanggal akhir
 		$sql = mysqli_query($connect, $q1);
 
 		//end of aulia code test
 
-		$query = "SELECT * FROM jualbeli where tanggal between '$awal' and '$akhir'";
+		$query = "SELECT * FROM jualbeli where tanggal between '$awal' and '$akhir'"; //mengambil data dari tabel jualbeli saat pemfilteran tanggal yang telah ditentukan di filter dari tangal sekian(awal) hingga tanggal akhir
 		$sql_jb = mysqli_query($connect, $query);
 
 
@@ -74,7 +75,7 @@ if (isset($_GET['filter']) and $_GET['filter'] != 'tanggal') {
 		$modal = $res->kas; //pemindahan nilai 
 		$kas = $modal;
 	} else {
-		$q = "SELECT jumlah as kas from kasawal";
+		$q = "SELECT jumlah as kas from kasawal";//mengambil data dari tabel kasawal untukmenentukan saldo awal
 		$sql3 = mysqli_query($connect, $q);
 		$res = mysqli_fetch_object($sql3);
 		// echo var_dump($res);
@@ -96,8 +97,8 @@ if (isset($_GET['filter']) and $_GET['filter'] != 'tanggal') {
 	}
 }
 
-$total_kredit = 0;
-$total_debit = 0;
+$total_kredit = 0;// variabel total kredit yang bernilai 0 untuk menentukan hasil perhitungan 
+$total_debit = 0;//variabel total debit bernilai 0 untuk menentukan hasil perhitungan
 
 ?>
 <html lang="en">
@@ -191,17 +192,17 @@ $total_debit = 0;
 						// foreach ($sql_jb as $jb) {
 						// 	$result[] = $jb;
 						// }
-						if ($sql_jb) {
+						if ($sql_jb) { //sql_jb merupakan penamaan dari data diatas yang digunakan untuk memanggil data dari database
 							foreach ($sql_jb as $jb) {
 								?>
 								<tr>
-									<td><?= $jb['tanggal']; ?></td>
-									<td><?= ($jb['kodeobat']) ? $jb['kodeobat'] : $jb['lainnya']; ?></td>
-									<td><?= $jb['jumlah']; ?></td>
+									<td><?= $jb['tanggal']; ?></td><!-- mengoutputkan tanggal-->
+									<td><?= ($jb['kodeobat']) ? $jb['kodeobat'] : $jb['lainnya']; ?></td> <!-- mengoutputkan pengeluaran-->
+									<td><?= $jb['jumlah']; ?></td><!-- mengoutputkan jumlah barang -->
 									<td> - </td>
-									<td>Rp <?= $jb['harga'] ?></td>
-									<td>Rp <?= $jb['harga'] * $jb['jumlah'] ?></td>
-									<?php $total_kredit += $jb['harga'] * $jb['jumlah'] ?>
+									<td>Rp <?= $jb['harga'] ?></td><!-- mengoutputkan harga barang-->
+									<td>Rp <?= $jb['harga'] * $jb['jumlah'] ?></td> <!-- mengoutputkan total harga barang-->
+									<?php $total_kredit += $jb['harga'] * $jb['jumlah'] ?><!-- mengoutputkan sisa saldo-->
 								</tr>
 							<?php
 						}
@@ -209,20 +210,20 @@ $total_debit = 0;
 
 
 					foreach ($sql as $data) {
+					
+						if (array_key_exists('no_transaksi', $data)) {//deklarasi no transaksi
+							$no_transaksi = $data['no_transaksi']; //deklarasi dijadikan yang utama untuk memaggiil no transaksi
 
-						if (array_key_exists('no_transaksi', $data)) {
-							$no_transaksi = $data['no_transaksi'];
-
-							$qw = "SELECT * FROM penjualan_detail where no_transaksi='$no_transaksi'";
+							$qw = "SELECT * FROM penjualan_detail where no_transaksi='$no_transaksi'";//mengambil dari penjualan detail berdasar no transaksi
 							$sql_qw = mysqli_query($connect, $qw);;
 
 							foreach ($sql_qw as $data_qw) {
 								// print_r($data_qw);
 								// die;
 
-								$kode_obat = $data_qw['kode_obat'];
+								$kode_obat = $data_qw['kode_obat'];//untuk memanggil nama obat 
 
-								$q_obat = "SELECT * FROM obat where kode_obat='$kode_obat'";
+								$q_obat = "SELECT * FROM obat where kode_obat='$kode_obat'";//query memanggil data obat
 								$sql_obat = mysqli_query($connect, $q_obat);
 
 								foreach ($sql_obat as $data_obat) {
@@ -230,26 +231,26 @@ $total_debit = 0;
 									?>
 										<tr>
 											<td>
-												<?php echo $data['tgl_penjualan'];
+												<?php echo $data['tgl_penjualan'];//mnampilkan tanggal penjualan
 												?>
 											</td>
 											<td>
 												<?php
 												if ($data['jenis'] == 'debit') // apabila jenis transaksinya debit
 
-													echo $data_obat['nama_obat']; // maka transaksi akan diambil dari data obat
+													echo $data_obat['nama_obat']; // maka transaksi akan diambil dari penjualan menampilkan data penjualan dan nama obatnya
 
 
 												else if ($data_obat['jenis'] == 'kredit') { //apabila jenis transaksi kredit
 
 													echo $data['trans']; //maka akan diambil dari data transaksi lain
-													echo $data_obat['nama_obat']; //dan diambil dari data suplier(pembelian obat)
+													echo $data_obat['nama_obat']; //dan diambil dari data pembelian obat
 												}
 												?>
 											</td>
 
 											<td>
-												<?php echo $data_qw['jumlah'];
+												<?php echo $data_qw['jumlah'];//menampilkan jumlah barang
 												?>
 											</td>
 											<td>
@@ -262,25 +263,25 @@ $total_debit = 0;
 											</td>
 											<td>
 												<?php
-												if ($data['jenis'] == "kredit")
-													echo "Rp " . $data['hargaa'];
+												if ($data['jenis'] == "kredit")//jika kredit
+													echo "Rp " . $data['hargaa'];//menampilkan harga barang dari tabel jualbeli(pengeluaran)
 												else
 													echo '-';
 												?>
 											</td>
 											<td><?php
 													if ($data['jenis'] == "kredit") {
-														echo "Rp " . $data_qw['jumlah'] * $data_qw['harga'];
+														echo "Rp " . $data_qw['jumlah'] * $data_qw['harga'];//untuk menghitung total harga pengeluaran
 													} else {
-														echo "Rp " . $data_qw['jumlah'] * $data_qw['harga'];
+														echo "Rp " . $data_qw['jumlah'] * $data_qw['harga'];//menghitung total harga penjualan atau pemasukan
 													}
 
 													?></td>
 											<td>
-												<?php //agar jumlah kas bisa bertambah secara otomatis apabila jenis transaksi debitdan berkurang otomatis apabila jenis transaksi kredit
+												<?php 
 												if ($data['jenis'] == "debit") {
-													$total_debit += $data_qw['harga'] * $data_qw['jumlah'];
-												} //menampilkan hasil kalkulasi di atas. sisa saldonya
+													$total_debit += $data_qw['harga'] * $data_qw['jumlah'];//kalkulasi total harga penjualan
+												} 
 												?>
 											</td>
 										</tr>
@@ -309,19 +310,19 @@ $total_debit = 0;
 							<thead>
 								<tr class="table-primary">
 									<th class="text-left">KAS Awal</th>
-									<td class="text-right"><?= $kas; ?></td>
+									<td class="text-right"><?= $kas; ?></td><!--akan menampilkan saldo awal-->
 								</tr>
 								<tr class="table-danger">
 									<th class="text-left">Total Kredit</th>
-									<td class="text-right"><?= $total_kredit; ?></td>
+									<td class="text-right"><?= $total_kredit; ?></td><!--akan menampilkan total kredit-->
 								</tr>
 								<tr class="table-info">
 									<th class="text-left">Total Debit</th>
-									<td class="text-right"><?= $total_debit; ?></td>
+									<td class="text-right"><?= $total_debit; ?></td><!--akan menampilkan total debit-->
 								</tr>
 								<tr class="table-success">
 									<th class="text-left">KAS Sekarang</th>
-									<td class="text-right"><?= $kas + $total_debit - $total_kredit; ?></td>
+									<td class="text-right"><?= $kas + $total_debit - $total_kredit; ?></td><!--menampilkan sisa saldo-->
 								</tr>
 							</thead>
 						</table>
@@ -334,7 +335,7 @@ $total_debit = 0;
 	<script>
 		let awal = document.getElementById('awal'); //pendeklarasian awal untuk variabel awal 
 		let akhir = document.getElementById('akhir'); //deklarasi akhir untuk variabel akhir
-		let ngefilter = document.getElementById('filter');
+		let ngefilter = document.getElementById('filter');//untuk memfilter pada button filter
 
 		const isValid = () => { //data filter bersifat valid dan bernilai true karena terisi
 			if (ngefilter.value == "all") {
@@ -357,11 +358,11 @@ $total_debit = 0;
 	</script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
 	</script>
-	<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+	<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script><!--script pembukuannya harus menggunakan internet agar functionnya bisa berjalan-->
 
 	<script>
 		$(document).ready(function() {
-			$('#myTable').DataTable();
+			$('#myTable').DataTable();//pembukuan agar lebih rapih dan bagus
 		});
 	</script>
 
