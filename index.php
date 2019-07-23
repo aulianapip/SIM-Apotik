@@ -1,10 +1,14 @@
-<!-- 1. Fitur CRM atau disebut pelanggan. fitur ini digunakan untuk menginputkan data member yang akan digunakan di bagian kasir. jika pelanggan tersebut adalah member maka akan di kenakan diskon. -->
+<!-- 1. Fitur CRM atau disebut pelanggan. fitur ini digunakan untuk menginputkan data member yang akan digunakan di bagian kasir. jika pelanggan tersebut adalah member maka akan di kenakan diskon.-->
 <?php 
     include('conect.php');
 
     
    if (isset($_POST['Cari'])) {
+/*dikerjakan oleh ADITYA AZIZ SAPUTRA 1700018264*/
 
+/*selain fungsi ui yg lain copast dari file rekan*/
+
+/*alert untuk peringatan berhasil dihapus dan diupdate*/
   if(isset($_GET['pesan'])){
     $pesan=$_GET['pesan'];
     if($pesan=="Hapus"){
@@ -21,7 +25,8 @@
 
     }
   }
-   
+  /*function mennentukan tanggal awal dan tanggal lahir*/
+    include 'fungsi_indotgl.php';
     $tgl_awal= $_POST['tgl_awal'];
     $tgl_akhir= $_POST['tgl_akhir'];
 
@@ -107,7 +112,7 @@ body{
   width: 100%;
 }
 
- td {                           /mdesain baris/
+ td {                           /*mdesain baris*/
   border: 1px solid #ddd;
   padding: 8px;
   
@@ -120,13 +125,13 @@ body{
     border-color: pink;
 }
 
-label {                         /desain label/
+label {                         /*desain label*/
     display: inline-block;
     margin-top: 1rem;
     margin-bottom: .5rem;
 }
 
- tr:nth-child(even){background-color: #f2f2f2;}   /desain kolom/
+ tr:nth-child(even){background-color: #f2f2f2;}   /*desain kolom*/
 
  tr:hover {background-color: #ddd;}
 
@@ -138,8 +143,8 @@ label {                         /desain label/
     <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
 * {box-sizing: border-box;}
-
-body {                       
+/*Mengatur Layout Dengan CSS*/
+body {                        /*desain body*/
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
 }
@@ -149,8 +154,8 @@ body {
 .btn-primary.active, .btn-primary:active, .open>.dropdown-toggle.btn-primary {  
     color: black;
     background-color: pink;
-    background-image: none;
-    border-color: #ddd; 
+    background-image: none; /*untuk menentukan warna back ground*/
+    border-color: #ddd; /*untuk warna pebatas*/
 }
 /*ini merupakan fungsi dan query membuat bagian Navbar */
 .header {
@@ -158,60 +163,59 @@ body {
   background-color: pink;
   padding: 20px 10px;
 }
-.header a {   
+.header a {   /*fungsi untuk bagian header tampilan*/
   float: left;
-  color: black; 
-  text-align: center;
+  color: black; /*untuk bagian  warna : hitam*/
+  text-align: center; /*untuk perataan texs : tengah*/
   padding: 12px;    
-  text-decoration: none; /  font-size: 18px;  
-  line-height: 25px;  
-  border-radius: 4px; 
+  text-decoration: none; /*untuk teks-dekorasi : tidak ada*/
+  font-size: 18px;  /*untuk ukuran huruf*/
+  line-height: 25px;  /*garis tinggi*/
+  border-radius: 4px; /*batas-rasius*/
 }
 
-.header a.logo {
+.header a.logo {/*bagian logo kepala*/
   font-size: 25px;
   font-weight: bold;
 }
 
-.header a:hover {
+.header a:hover {/*hover kepala*/
   background-color: #ddd;
   color: black;
 }
 
-.header a.active [type=submit]:hover {
+.header a.active [type=submit]:hover {/*supmit hover pada kepala*/
   background-color: pink;
 }
 
-.header-right {
+.header-right {/*kepala bagian kanan*/
   float: right;
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 500px) {/*tampilan layar*/
   .header a {
     float: none;
     display: block;
     text-align: left;
   }
   
-  .header-right {
+  .header-right {/*kepala kanan*/
     float: none;
   }
 }
 </style>
-  </head>  </head>
+  </head>
   <body>
 
-<!-- kepala --><div class="header">
+<!-- kepala -->
+<div class="header">
   <a href="#default" class="logo">CRM APOTEK</a>
   <div class="header-right">
     <a class="active" href="index.php">Home</a>
     <a href="inputdata.php">Input Data</a>
-    <a href="riwayat.php">Riwayat pembelian</a>
-<div>
 </div>
 </div>
 </div>
-
 
     <!-- Badan -->
     <div>
@@ -268,14 +272,24 @@ body {
             <?php   while($data = mysqli_fetch_array($SQL)){ ?>
                 <tr>
                     <td><?= $data['tgl_daftar'] ?></td>
-                    <td><?= $data['tipe'] ?><?= $data['ID'] ?></td>
+                    <td><?= $data['ID'] ?></td>
                     <td><?= $data['Nama'] ?></td>
                     <td><?= $data['Jk'] ?></td>
                     <td><?= $data['NoHp'] ?></td>
                     <td><?= $data['Email'] ?></td>
                     <td><?= $data['Alamat'] ?></td>
                     <td><a href='formedit.php?ID=<?php echo $data['ID']; ?>'><input type="image" src="edit.png" width="20" height="20"/></a>
-                    <a href='hapus.php?ID=<?php echo $data['ID']; ?>'><input type="image" src="delete.png" width="20" height="20"/></a>
+                        <!-- dibuat oleh Alfian Noor 1700018233 -->
+                     <a href="hapus.php?ID=<?php echo $data['ID'];?>" onclick="return confirm('Yakin mau di hapus?');"><input type="image" src="delete.png" width="20" height="20" /a>
+                        <!-- dibuat oleh Alfian Noor 1700018233 -->
+                     <a href='cetak.php?ID=<?php echo $data['ID']; ?>'><input type="image" src="cetak.png" width="25" height="25"/></a>
+                    <div>
+                     <!-- dibuat oleh Alfian Noor 1700018233 -->
+                     <a href="index.php"> 
+                 <button onClick="window.print();" ><input type="image" src="print.jpg"width="20" height="20"></button> 
+                   </a>
+     
+
                     </td>
                 </tr>
             <?php } ?>
