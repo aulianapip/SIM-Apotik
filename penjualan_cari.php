@@ -1,4 +1,6 @@
-<!--LUSSY IKA--><?php
+<!--LUSSY IKA-->
+<!--Siti Barkah Pellu 1700018235(Menambahkan dan memperbaiki fitur)-->
+<?php
 	session_start();
 
 if (!isset($_SESSION["login1"])) {
@@ -10,9 +12,9 @@ if (!isset($_SESSION["login1"])) {
 	include "connection/db.php";
 
 	$cari = $_POST['cari'];
-	$QuerySql = "SELECT *,harga_obat*jumlah_terjual as total FROM `tabel_penjualan`, `obat` WHERE tabel_penjualan.kode_obat=obat.kode_obat AND obat.nama_obat LIKE '%$cari%'";
+	$QuerySql = "SELECT *,harga_obat*jumlah_terjual as total FROM `tabel_penjualan`, `obat` WHERE tabel_penjualan.kode_obat=obat.kode_obat AND obat.nama_obat LIKE '%$cari%'"; //fungsi untuk menampilkan tabel hraga_obat, jumlah terjual dai tabel penjualan obat
 
-	$SQL = mysqli_query($connect, $QuerySql); 
+	$SQL = mysqli_query($connect, $QuerySql); //memanggil database
 ?> 
 <!DOCTYPE html>
 <html>
@@ -46,7 +48,8 @@ if (!isset($_SESSION["login1"])) {
 						<td>$key[harga_obat]</td>
 						<td>$key[jumlah_terjual]</td>
 						<td>$key[total]</td>
-				</tr>";
+				</tr>";//menampilkan isi dari atribut - atribut di dalam tabel
+                  
                 	
 				}
 		?>
