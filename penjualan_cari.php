@@ -1,10 +1,11 @@
-<!--LUSSY IKA-->
 <!--Siti Barkah Pellu 1700018235(Menambahkan dan memperbaiki fitur)-->
+<!--LUSSY IKA-->
+
 <?php
 	session_start();
 
-if (!isset($_SESSION["login1"])) {
-    	  header("location: http://localhost/apotik-keuangan/login.php");
+if (!isset($_SESSION["login1"])) {//jika login gagal maka kembali login.php
+    	  header("location: http://localhost/apotik-keuangan/login.php");//link untuk login.php
       exit;
     }
       
@@ -12,7 +13,7 @@ if (!isset($_SESSION["login1"])) {
 	include "connection/db.php";
 
 	$cari = $_POST['cari'];
-	$QuerySql = "SELECT *,harga_obat*jumlah_terjual as total FROM `tabel_penjualan`, `obat` WHERE tabel_penjualan.kode_obat=obat.kode_obat AND obat.nama_obat LIKE '%$cari%'"; //fungsi untuk menampilkan tabel hraga_obat, jumlah terjual dai tabel penjualan obat
+	$QuerySql = "SELECT *,harga_obat*jumlah_terjual as total FROM `tabel_penjualan`, `obat` WHERE tabel_penjualan.kode_obat=obat.kode_obat AND obat.nama_obat LIKE '%$cari%'"; //fungsi untuk menampilkan tabel hraga_obat, jumlah terjual dari tabel penjualan obat
 
 	$SQL = mysqli_query($connect, $QuerySql); //memanggil database
 ?> 
@@ -20,26 +21,26 @@ if (!isset($_SESSION["login1"])) {
 <html>
 <head>
 	<title>Tampil Data Obat</title>
-	<link rel="stylesheet" href="bulma.min.css">
+	<link rel="stylesheet" href="bulma.min.css"><!-- untuk connect ke CSS -->
 </head>
 <body>
 <?php 
-  include "navbar/navbar_penjualan.php";
+  include "navbar/navbar_penjualan.php";//ditampil kan di file navbar_pembelian.php
  ?>
-<table class="table is-fullwidth" >
+<table class="table is-fullwidth" > <!--untuk membuat tampilan berupa tabel -->
   <thead>
     <tr>
-      <th scope="col"><a href="s_penjualan_id.php"> ID PENJUALAN</a></th>
-      <th scope="col"><a href="s_penjualan_tanggal.php">TANGGAL TERJUAL</a></th>
-      <th scope="col"><a href="s_penjualan_ko.php">KODE OBAT</a></th>
-      <th scope="col"><a href="s_penjualan_nama.php">NAMA OBAT</a></th>
-      <th scope="col"><a href="s_penjualan_harga.php">HARGA OBAT</a></th>
-      <th scope="col"><a href="s_penjualan_jumlah.php">JUMLAH TERJUAL</a></th>
-      <th scope="col"><a href="s_penjualan_total.php">HARGA TOTAL</a></th>
+      <th scope="col"><a href="s_penjualan_id.php"> ID PENJUALAN</a></th> <!--isi tabel-->
+      <th scope="col"><a href="s_penjualan_tanggal.php">TANGGAL TERJUAL</a></th> <!--isi tabel-->
+      <th scope="col"><a href="s_penjualan_ko.php">KODE OBAT</a></th> <!--isi tabel-->
+      <th scope="col"><a href="s_penjualan_nama.php">NAMA OBAT</a></th> <!--isi tabel-->
+      <th scope="col"><a href="s_penjualan_harga.php">HARGA OBAT</a></th> <!--isi tabel-->
+      <th scope="col"><a href="s_penjualan_jumlah.php">JUMLAH TERJUAL</a></th> <!--isi tabel-->
+      <th scope="col"><a href="s_penjualan_total.php">HARGA TOTAL</a></th> <!--isi tabel-->
     </tr>
   </thead>
 		<?php
-			foreach ($SQL as $key) {
+			foreach ($SQL as $key) {// untuk mengonect kan query
 				echo "<tr>
 						<td>$key[id_penjualan]</td>
 						<td>$key[tanggal_terjual]</td>
