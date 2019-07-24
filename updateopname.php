@@ -1,7 +1,8 @@
-<!-- Nur Muthmainah 1700018276 !-->
+ <!-- Nur Muthmainah 1700018276 !-->
  <!-- Fadhil Abigail Alvast 1700018252 !-->
  <!-- Reka Rachmadi 1700018237 !-->
-  <!--uas no 1. Stock Opname adalah kegiatan perhitungan secara fisik atas persediaan barang di gudang 
+ <!-- Alwan Zaki 1700018259 !-->
+<!--uas no 1. Stock Opname adalah kegiatan perhitungan secara fisik atas persediaan barang di gudang 
 secara fisik atas persedian barang di gudang yang akan dijual.Pada fitur yang kami buat
 kami menginputkan status kondisi barang yang berada ditoko, status antara lain adalah digudang rusak, hilang ,di pinjam , dan terjual. jika terjadi kesalahan input status maka dapat diubah dengan fitur edit, dan bila barang telah kembali atau di ganti atau telah di konfirmasi oleh pihak gudang dan kasir maka data opname dapat di hapus dengan fitur delete  -->
 <!DOCTYPE html>
@@ -44,7 +45,7 @@ kami menginputkan status kondisi barang yang berada ditoko, status antara lain a
       $total_obat=$total_obat-$totalopname;
       mysqli_query($koneksi,"UPDATE pasok SET jumlah_pasok='$total_obat' WHERE kode_obat='$kode_obat'");
 
-      mysqli_query($koneksi,"UPDATE opname SET kode_opname='$kode_opname', kode_obat='$kode_obat', hilang='$hilang', rusak='$rusak', dipinjam='$dipinjam', status='$status', catatan='$catatan', tanggal=curdate() WHERE kode_opname='$kode_opname'");
+      mysqli_query($koneksi,"UPDATE opname SET kode_opname='$kode_opname', kode_obat='$kode_obat', hilang='$hilang', rusak='$rusak', dipinjam='$dipinjam', status='$status', catatan='$catatan', tanggal=curdate() WHERE kode_opname='$kode_opname'");//update data opname sesuai dengan value 'kirim' (zaki)
       header("location: dataopname.php");
     } else{
        include "koneksi.php";
