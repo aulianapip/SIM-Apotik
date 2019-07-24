@@ -1,3 +1,7 @@
+<!--Nurmutmainah 1700018276 -->
+<!--no1. Stock Opname adalah kegiatan perhitungan secara fisik atas persediaan barang di gudang 
+secara fisik atas persedian barang di gudang yang akan dijual.Pada fitur yang kami buat
+kami menginputkan status kondisi barang yang berada ditoko, status antara lain adalah digudang rusak, hilang ,di pinjam , dan terjual. jika terjadi kesalahan input status maka dapat diubah dengan fitur edit, dan bila barang telah kembali atau di ganti atau telah di konfirmasi oleh pihak gudang dan kasir maka data opname dapat di hapus dengan fitur delete  -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -114,8 +118,8 @@
 		<?php
 			include "db.php";
 
-      $query = mysqli_query($connect,"SELECT barcode.kode_obat AS kode_obat,opname.kode_barcode AS kode_barcode,opname.status AS status,catatan,tanggal from opname INNER JOIN barcode where opname.kode_barcode = barcode.kode_barcode ORDER BY kode_barcode ASC");
-			foreach ($query as $data) {
+      $query = mysqli_query($connect,"SELECT barcode.kode_obat AS kode_obat,opname.kode_barcode AS kode_barcode,opname.status AS status,catatan,tanggal from opname INNER JOIN barcode where opname.kode_barcode = barcode.kode_barcode ORDER BY kode_barcode ASC"); // menampilkan data opname berdasarkan urutan kode obat 
+			foreach ($query as $data) { 
 				echo "<tr>
                 <td>$data[kode_obat]</td>
                 <td>$data[kode_barcode]</td>
