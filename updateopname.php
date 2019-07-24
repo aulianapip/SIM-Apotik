@@ -32,7 +32,10 @@
       $kurang_rusak1=$kurang_rusak-$rusak;
       $totalopname = $kurang_rusak1 + $kurang_dipinjam1 + $kurang_hilang1 ;
 
- 
+      $query1 =mysqli_query($koneksi,"SELECT * FROM pasok WHERE kode_obat = '$kode_obat' ");
+      $row1 = mysqli_fetch_array($query1);
+
+     
    ?>
    <form class="from-horizontal" action="updateopname.php" method="POST" role="form" >
  <div class="form-group">
