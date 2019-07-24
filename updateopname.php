@@ -1,5 +1,6 @@
 <!-- Nur Muthmainah 1700018276 !-->
-<!--uas no 1. Stock Opname adalah kegiatan perhitungan secara fisik atas persediaan barang di gudang 
+ <!-- Fadhil Abigail Alvast 1700018252 !-->
+  <!--uas no 1. Stock Opname adalah kegiatan perhitungan secara fisik atas persediaan barang di gudang 
 secara fisik atas persedian barang di gudang yang akan dijual.Pada fitur yang kami buat
 kami menginputkan status kondisi barang yang berada ditoko, status antara lain adalah digudang rusak, hilang ,di pinjam , dan terjual. jika terjadi kesalahan input status maka dapat diubah dengan fitur edit, dan bila barang telah kembali atau di ganti atau telah di konfirmasi oleh pihak gudang dan kasir maka data opname dapat di hapus dengan fitur delete  -->
 <!DOCTYPE html>
@@ -10,21 +11,21 @@ kami menginputkan status kondisi barang yang berada ditoko, status antara lain a
 <body>
   <?php
     include "koneksi.php";
-    if (isset($_POST['kirim'])) {
-      $kode_opname = $_POST['kode_opname'];
-      $kode_obat = $_POST['kode_obat'];
-      $hilang = $_POST['hilang'];
-      $rusak = $_POST['rusak'];
-      $dipinjam = $_POST['dipinjam'];
-      if($rusak == 0 && $hilang == 0 && $dipinjam == 0 ){
-        $status = "Sesuai";
-      }else{
-        $status = "Belum Sesuai";
-      }
-      $catatan = $_POST['catatan'];
-      $tanggal = $_POST['tanggal'];
+    if (isset($_POST['kirim'])) { //mengambil data dari value 'kirim' (Nina)
+       $kode_opname = $_POST['kode_opname'];
+       $kode_obat = $_POST['kode_obat'];
+       $hilang = $_POST['hilang'];
+       $rusak = $_POST['rusak'];
+       $dipinjam = $_POST['dipinjam'];
+       if($rusak == 0 && $hilang == 0 && $dipinjam == 0 ){
+         $status = "Sesuai";
+       }else{
+         $status = "Belum Sesuai";
+       }
+       $catatan = $_POST['catatan'];
+       $tanggal = $_POST['tanggal'];
 
-      $query =mysqli_query($koneksi,"SELECT * FROM opname WHERE kode_opname = '$kode_opname'");
+      $query =mysqli_query($koneksi,"SELECT * FROM opname WHERE kode_opname = '$kode_opname'");//memilih data yang akan diupdate (Fadhil)
       $row = mysqli_fetch_array($query);
 
       $kurang_hilang = $row['hilang'];
