@@ -3,8 +3,8 @@
 // NIM   : 1700018238
 // Kelas : E
 $connect = mysqli_connect("localhost", "root", "", "sim-apotek");
-$tanggal = mysqli_query($connect, "SELECT YEAR(tanggal_pasok)as tanggal FROM pasok, supplier WHERE supplier.kode_supplier=pasok.kode_supplier ");
-$jumlah = mysqli_query($connect, "SELECT count(nama_pemasok) as jumlah FROM pasok, supplier WHERE supplier.kode_supplier=pasok.kode_supplier"); //
+$tgl = mysqli_query($connect, "SELECT YEAR(tanggal_pasok)as tanggal FROM pasok, supplier WHERE supplier.kode_supplier=pasok.kode_supplier ");
+$jml = mysqli_query($connect, "SELECT count(nama_pemasok) as jumlah FROM pasok, supplier WHERE supplier.kode_supplier=pasok.kode_supplier"); //
 ?>
 <html>
     <head>
@@ -65,10 +65,10 @@ $jumlah = mysqli_query($connect, "SELECT count(nama_pemasok) as jumlah FROM paso
             var myChart = new Chart(ctx, {
                 type: 'bar',
                 data: {
-                    labels: [<?php while ($b = mysqli_fetch_array($tanggal)) { echo '"' . $b['tanggal'] . '",';}?>],
+                    labels: [<?php while ($b = mysqli_fetch_array($tgl)) { echo '"' . $b['tanggal'] . '",';}?>],
                     datasets: [{
                             label: '# of Votes',
-                            data: [<?php while ($p = mysqli_fetch_array($jumlah)) { echo '"' . $p['jumlah'] . '",';}?>],
+                            data: [<?php while ($p = mysqli_fetch_array($jml)) { echo '"' . $p['jumlah'] . '",';}?>],
                             backgroundColor: [
                                 'rgba(255, 99, 132, 0.2)',
                                 'rgba(54, 162, 235, 0.2)',
