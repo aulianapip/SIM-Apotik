@@ -10,6 +10,7 @@
 $koneksi = mysqli_connect("localhost", "root", "", "sim-apotek");
 error_reporting(0); 
 	$pilihan = $_POST['area'];// variabel pilihan untuk memilih grafik apa yang akan digunakan
+	$urutan = $_POST['area2'];//membuat area nama --Yoga Firza Sabbihisma -1700018253--
 	if (isset($_POST['submit'])) { 
 	}
 ?>
@@ -60,7 +61,20 @@ error_reporting(0);
 					echo '<option value="' . $area . '"' . $selected . '>' . $area . '</option>';
 				}?>
 			</select>
-            
+		</div>
+		<!--
+	Funtion membuat pilihan grafik tahun Kadaluarsa 
+	Yoga Firza Sabbihisma - 1700018253 -
+	-->
+		<label>Pilih Urutan</label>
+		<div class="input-field col s12" > 
+			<select class="browser-default" name="area2">
+				<?php $options2 = array('ASC', 'DESC'); //pilihan grafiknya
+				foreach ($options2 as $area2) { //untuk perulangan
+					$selected = @$_POST['area2'] == $area2 ? ' selected2="selected2"' : '';				//menampilkan pilihan yang sudah dipilih 
+					echo '<option value="' . $area2 . '"' . $selected2 . '>' . $area2 . '</option>';
+				}?>
+			</select>
 		</div>
         <input class="waves-effect waves-light btn-small" type="submit" name="submit" value="Simpan"/>		<!-- untuk menyimpan apa yang sudah dipilih --->
 	</form>
@@ -80,15 +94,15 @@ error_reporting(0);
 
 			<?php 
 			$no = 1;
-			$data = mysqli_query($koneksi,"SELECT kode_obat,jumlah_pasok,tanggal_pasok,YEAR(tanggal_kadaluarsa) as TahunKadaluarsa FROM pasok");
+			$data = mysqli_query($koneksi,"SELECT kode_obat, jumlah_pasok, tanggal_pasok, YEAR(tanggal_kadaluarsa)as TahunKadaluarsa FROM pasok ORDER BY tanggal_kadaluarsa $urutan ");
 			while($d=mysqli_fetch_array($data)){
 				?>
 				<tr>
-					
+					<!--Yoga Firza Sabbihisma - 1700018253-->
 					<td><?php echo $d['kode_obat']; ?></td>
-					<td><?php echo $d['jumlah_pasok']; ?></td>
-					<td><?php echo $d['tanggal_pasok']; ?></td>
-					<td><?php echo $d['TahunKadaluarsa']; ?></td>
+					<td><?php echo $d['jumlah_pasok']; //untuk menampilkan jumlah pasok ?></td>
+					<td><?php echo $d['tanggal_pasok']; //untuk menampilkan tanggal pasok?></td>
+					<td><?php echo $d['TahunKadaluarsa']; //untuk menampilkan tahun pasok?></td>
 					
 				</tr>
 				<?php 
@@ -103,12 +117,12 @@ error_reporting(0);
 			type: '<?php echo $pilihan ?>',
 			data: {
 				labels: [<?php 
-					$TahunKadaluarsa= mysqli_query($koneksi, "SELECT YEAR(tanggal_kadaluarsa) as TahunKadaluarsa from pasok");
+					$TahunKadaluarsa= mysqli_query($koneksi, "SELECT YEAR(tanggal_kadaluarsa) as TahunKadaluarsa from pasok ORDER BY tanggal_kadaluarsa $urutan");//Memanggil tahun kadaluarsa  -Yoga Firza Sabbihisma -1700018253 -
 				while ($b = mysqli_fetch_array($TahunKadaluarsa)) { echo '"' . $b['TahunKadaluarsa'] . '",';} ?>
 					],
 				datasets: [{
 					label: '',
-					data: [<?php $jumlah_pasok = mysqli_query($koneksi, "SELECT jumlah_pasok from pasok");
+					data: [<?php $jumlah_pasok = mysqli_query($koneksi, "SELECT jumlah_pasok from pasok ORDER BY tanggal_kadaluarsa $urutan");//Memanggil Jumlah Pasok  -Yoga Firza Sabbihisma -1700018253-
 while ($p = mysqli_fetch_array($jumlah_pasok)) { echo '"' . $p['jumlah_pasok'] . '",';}?>],
                             backgroundColor: [
 					'rgba(255, 99, 132, 0.2)',
