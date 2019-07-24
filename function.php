@@ -1,5 +1,6 @@
 <?php 
 	//di index.php
+	//dikerjakan carto ardiyanto 1700018283
 	function tampil_berdasarkan_tanggal(){
 	$q1="SELECT * from pelanggan where tgl_daftar between '$tgl_awal' and '$tgl_akhir'";
 		$SQL=mysqli_query($connect,$q1);
