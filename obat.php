@@ -1,7 +1,14 @@
 <?php
 $connect = mysqli_connect("localhost", "root", "", "sim-apotek");
-$nama_obat = mysqli_query($connect, "SELECT nama_obat FROM obat ORDER BY kode_obat ASC");
-$Stock_Obat = mysqli_query($connect, "SELECT jumlah_pasok FROM pasok ORDER BY kode_obat ASC");
+error_reporting(0); //untuk menghilangkan notif error pada program
+    $bulan = $_POST['area']; 
+    $tahun = $_POST['area2'];
+    $pilihan = $_POST['area3'];
+    $urutan = $_POST['area4'];//membuat area nama
+    if (isset($_POST['submit'])) { // untuk mensubmite post area
+    }
+$nama_obat = mysqli_query($connect, "SELECT obat.nama_obat FROM obat,pasok WHERE obat.kode_obat=pasok.kode_obat ORDER BY obat.kode_obat='$urutan'");
+$Stock_Obat = mysqli_query($connect, "SELECT pasok.jumlah_pasok FROM obat,pasok WHERE obat.kode_obat=pasok.kode_obat ORDER BY obat.kode_obat='$urutan'");
 ?>
 <html>
     <head>
@@ -27,8 +34,13 @@ $Stock_Obat = mysqli_query($connect, "SELECT jumlah_pasok FROM pasok ORDER BY ko
     </div>
   </nav>
   
-        <center>
-        <h2>GRAFIK STOK OBAT</h2>
+<center>
+    <h3>GRAFIK KEUNTUNGAN BERDASARKAN TANGGAL
+        <?php 
+            echo ' URUTAN'. ' '.$urutan.'';
+         ?>
+        
+    </h3></center>
     
     <table border="1">
         <thead>
@@ -40,14 +52,14 @@ $Stock_Obat = mysqli_query($connect, "SELECT jumlah_pasok FROM pasok ORDER BY ko
                 <th>Jenis</th>
                 <th>Tanggal Kadaluarsa</th>
                 <th>Bulan Kadaluarsa</th>
-				<th>Tahun Kadaluarsa</th>
+                <th>Tahun Kadaluarsa</th>
                 <th>Stok Obat</th>
             </tr>
         </thead>
         <tbody>
             <?php 
             $no = 1;
-            $data = mysqli_query($connect,"SELECT obat.nama_obat, obat.harga, obat.kode_obat, obat.jenis, DAY(tanggal_kadaluarsa) as tgl_kadaluarsa, MONTH(tanggal_kadaluarsa) as bulan_kadaluarsa, YEAR(tanggal_kadaluarsa) as tahun_kadaluarsa, pasok.jumlah_pasok from obat,pasok");
+            $data = mysqli_query($connect,"SELECT obat.nama_obat, obat.harga, obat.kode_obat, obat.jenis, DAY(tanggal_kadaluarsa) as tgl_kadaluarsa, MONTH(tanggal_kadaluarsa) as bulan_kadaluarsa, YEAR(tanggal_kadaluarsa) as tahun_kadaluarsa, pasok.jumlah_pasok from obat,pasok WHERE obat.kode_obat=pasok.kode_obat GROUP BY obat.nama_obat");
             while($d=mysqli_fetch_array($data)){
                 ?>
                 <tr>
@@ -58,7 +70,7 @@ $Stock_Obat = mysqli_query($connect, "SELECT jumlah_pasok FROM pasok ORDER BY ko
                     <td><?php echo $d['jenis']; ?></td>
                     <td><?php echo $d['tgl_kadaluarsa']; ?></td>
                     <td><?php echo $d['bulan_kadaluarsa']; ?></td>
-		            <td><?php echo $d['tahun_kadaluarsa']; ?></td>
+                    <td><?php echo $d['tahun_kadaluarsa']; ?></td>
                     <td><?php echo $d['jumlah_pasok']; ?></td>
                     </tr>
                 <?php 
@@ -70,7 +82,7 @@ $Stock_Obat = mysqli_query($connect, "SELECT jumlah_pasok FROM pasok ORDER BY ko
         <script>
             var ctx = document.getElementById("myChart");
             var myChart = new Chart(ctx, {
-                type: 'bar',
+                type: '<?php echo $pilihan ?>',
                 data: {
                     labels: [<?php while ($b = mysqli_fetch_array($nama_obat)) { echo '"' . $b['nama_obat'] . '",';}?>],
                     datasets: [{
@@ -89,7 +101,7 @@ $Stock_Obat = mysqli_query($connect, "SELECT jumlah_pasok FROM pasok ORDER BY ko
                                 'rgba(75, 192, 192, 0.2)',
                                 'rgba(153, 102, 255, 0.2)',
                                 'rgba(255, 159, 64, 0.2)',
-								'rgba(255, 99, 132, 0.2)',
+                                'rgba(255, 99, 132, 0.2)',
                                 'rgba(54, 162, 235, 0.2)',
                                 'rgba(255, 206, 86, 0.2)',
                                 'rgba(75, 192, 192, 0.2)',
@@ -101,18 +113,6 @@ $Stock_Obat = mysqli_query($connect, "SELECT jumlah_pasok FROM pasok ORDER BY ko
                                 'rgba(75, 192, 192, 0.2)',
                                 'rgba(153, 102, 255, 0.2)',
                                 'rgba(255, 159, 64, 0.2)',
-								'rgba(153, 102, 255, 0.2)',
-                                'rgba(255, 159, 64, 0.2)',
-                                'rgba(255, 99, 132, 0.2)',
-                                'rgba(54, 162, 235, 0.2)',
-                                'rgba(255, 206, 86, 0.2)',
-                                'rgba(75, 192, 192, 0.2)',
-                                'rgba(153, 102, 255, 0.2)',
-                                'rgba(255, 159, 64, 0.2)',
-								 'rgba(255, 99, 132, 0.2)',
-                                'rgba(54, 162, 235, 0.2)',
-                                'rgba(255, 206, 86, 0.2)',
-                                'rgba(75, 192, 192, 0.2)',
                                 'rgba(153, 102, 255, 0.2)',
                                 'rgba(255, 159, 64, 0.2)',
                                 'rgba(255, 99, 132, 0.2)',
@@ -121,7 +121,7 @@ $Stock_Obat = mysqli_query($connect, "SELECT jumlah_pasok FROM pasok ORDER BY ko
                                 'rgba(75, 192, 192, 0.2)',
                                 'rgba(153, 102, 255, 0.2)',
                                 'rgba(255, 159, 64, 0.2)',
-								'rgba(255, 99, 132, 0.2)',
+                                 'rgba(255, 99, 132, 0.2)',
                                 'rgba(54, 162, 235, 0.2)',
                                 'rgba(255, 206, 86, 0.2)',
                                 'rgba(75, 192, 192, 0.2)',
@@ -133,7 +133,19 @@ $Stock_Obat = mysqli_query($connect, "SELECT jumlah_pasok FROM pasok ORDER BY ko
                                 'rgba(75, 192, 192, 0.2)',
                                 'rgba(153, 102, 255, 0.2)',
                                 'rgba(255, 159, 64, 0.2)',
-								'rgba(153, 102, 255, 0.2)',
+                                'rgba(255, 99, 132, 0.2)',
+                                'rgba(54, 162, 235, 0.2)',
+                                'rgba(255, 206, 86, 0.2)',
+                                'rgba(75, 192, 192, 0.2)',
+                                'rgba(153, 102, 255, 0.2)',
+                                'rgba(255, 159, 64, 0.2)',
+                                'rgba(255, 99, 132, 0.2)',
+                                'rgba(54, 162, 235, 0.2)',
+                                'rgba(255, 206, 86, 0.2)',
+                                'rgba(75, 192, 192, 0.2)',
+                                'rgba(153, 102, 255, 0.2)',
+                                'rgba(255, 159, 64, 0.2)',
+                                'rgba(153, 102, 255, 0.2)',
                                 'rgba(255, 159, 64, 0.2)',
                                 'rgba(255, 99, 132, 0.2)',
                                 'rgba(54, 162, 235, 0.2)',
@@ -155,7 +167,7 @@ $Stock_Obat = mysqli_query($connect, "SELECT jumlah_pasok FROM pasok ORDER BY ko
                                 'rgba(75, 192, 192, 0.2)',
                                 'rgba(153, 102, 255, 0.2)',
                                 'rgba(255, 159, 64, 0.2)',
-								'rgba(255,99,132,1)',
+                                'rgba(255,99,132,1)',
                                 'rgba(54, 162, 235, 1)',
                                 'rgba(255, 206, 86, 1)',
                                 'rgba(75, 192, 192, 1)',
@@ -167,13 +179,13 @@ $Stock_Obat = mysqli_query($connect, "SELECT jumlah_pasok FROM pasok ORDER BY ko
                                 'rgba(75, 192, 192, 0.2)',
                                 'rgba(153, 102, 255, 0.2)',
                                 'rgba(255, 159, 64, 0.2)',
-								'rgba(255, 99, 132, 0.2)',
+                                'rgba(255, 99, 132, 0.2)',
                                 'rgba(54, 162, 235, 0.2)',
                                 'rgba(255, 206, 86, 0.2)',
                                 'rgba(75, 192, 192, 0.2)',
                                 'rgba(153, 102, 255, 0.2)',
                                 'rgba(255, 159, 64, 0.2)',
-								'rgba(255,99,132,1)',
+                                'rgba(255,99,132,1)',
                                 'rgba(54, 162, 235, 1)',
                                 'rgba(255, 206, 86, 1)',
                                 'rgba(75, 192, 192, 1)',
@@ -185,7 +197,7 @@ $Stock_Obat = mysqli_query($connect, "SELECT jumlah_pasok FROM pasok ORDER BY ko
                                 'rgba(75, 192, 192, 0.2)',
                                 'rgba(153, 102, 255, 0.2)',
                                 'rgba(255, 159, 64, 0.2)',
-								'rgba(255,99,132,1)',
+                                'rgba(255,99,132,1)',
                                 'rgba(54, 162, 235, 1)',
                                 'rgba(255, 206, 86, 1)',
                                 'rgba(75, 192, 192, 1)',
@@ -197,7 +209,7 @@ $Stock_Obat = mysqli_query($connect, "SELECT jumlah_pasok FROM pasok ORDER BY ko
                                 'rgba(75, 192, 192, 0.2)',
                                 'rgba(153, 102, 255, 0.2)',
                                 'rgba(255, 159, 64, 0.2)',
-								'rgba(255, 99, 132, 0.2)',
+                                'rgba(255, 99, 132, 0.2)',
                                 'rgba(54, 162, 235, 0.2)',
                                 'rgba(255, 206, 86, 0.2)',
                                 'rgba(75, 192, 192, 0.2)',
@@ -218,6 +230,31 @@ $Stock_Obat = mysqli_query($connect, "SELECT jumlah_pasok FROM pasok ORDER BY ko
                 }
             });
         </script>
+         <form action="" method="post">
+        <label>Pilih Chart</label>
+        <div class="input-field col s12" > 
+            <select class="browser-default" name="area3">
+                <?php $options3 = array('pie', 'bar', 'line'); //pilihan grafiknya
+                foreach ($options3 as $area3) { //untuk perulangan
+                    $selected = @$_POST['area3'] == $area3 ? ' selected3="selected3"' : '';             //menampilkan pilihan yang sudah dipilih 
+                    echo '<option value="' . $area3 . '"' . $selected3 . '>' . $area3 . '</option>';
+                }?>
+            </select>
+        </div>
+        <label>Pilih Urutan</label>
+        <div class="input-field col s12" > 
+            <select class="browser-default" name="area4">
+                <?php $options4 = array('ASC', 'DESC'); //pilihan grafiknya
+                foreach ($options4 as $area4) { //untuk perulangan
+                    $selected = @$_POST['area4'] == $area4 ? ' selected4="selected4"' : '';             //menampilkan pilihan yang sudah dipilih 
+                    echo '<option value="' . $area4 . '"' . $selected4 . '>' . $area4 . '</option>';
+                }?>
+            </select>
+        </div>
+        <div class="row">
+            <input class="waves-effect waves-light btn-small" type="submit" name="submit" value="oke"/>
+        </div>
+    </form>
         
     </body>
 </html>
