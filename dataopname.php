@@ -1,3 +1,7 @@
+<!-- AIRLA ISMAIL APRI RAHMAT 1700018261-->
+<!--uas no 1. Stock Opname adalah kegiatan perhitungan secara fisik atas persediaan barang di gudang 
+secara fisik atas persedian barang di gudang yang akan dijual.Pada fitur yang kami buat
+kami menginputkan status kondisi barang yang berada ditoko, status antara lain adalah digudang rusak, hilang ,di pinjam , dan terjual. jika terjadi kesalahan input status maka dapat diubah dengan fitur edit, dan bila barang telah kembali atau di ganti atau telah di konfirmasi oleh pihak gudang dan kasir maka data opname dapat di hapus dengan fitur delete  -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,26 +28,26 @@
 
       <div class="navbar-item has-dropdown is-hoverable">
         <a class="navbar-link">
-          Daftar Tabel
+           Daftar Tabel
         </a>
 
         <div class="navbar-dropdown">
           
           <a class="navbar-item" href="dataobat.php">
-            Obat
+             Obat
           </a>
           <a class="navbar-item" href="datasupiler.php">
-            Supplier
+             Supplier
           </a>
           <a class="navbar-item" href="dataopname.php">
-            Opname
+             Opname
           </a>
     
         </div>
       </div>
 
   	  <a class="navbar-item" href="tambah_opname.php">
-       Tambah Opname
+        Tambah Opname
       </a>
   </div>
 </div>
@@ -69,7 +73,7 @@
 		<?php
 			include "db.php";
 
-      $query = mysqli_query($connect,"SELECT barcode.kode_obat AS kode_obat,opname.kode_barcode AS kode_barcode,opname.status AS status,catatan,tanggal from opname INNER JOIN barcode where opname.kode_barcode = barcode.kode_barcode ORDER BY nomor_pasok ASC");
+      $query = mysqli_query($connect,"SELECT barcode.kode_obat AS kode_obat,opname.kode_barcode AS kode_barcode,opname.status AS status,catatan,tanggal from opname INNER JOIN barcode where opname.kode_barcode = barcode.kode_barcode ORDER BY nomor_pasok ASC"); //Menampilkan data opname berdasarkan asc, atas kebawah astu sebaliknya. Ini mengambl database  dari barcode dan opnamr  yang di tampilkan ( kode obat, kode barcot, status, catatan dan tanggal )
 			foreach ($query as $data) {
 				echo "<tr>
                 <td>$data[kode_barcode]</td>
