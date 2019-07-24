@@ -3,8 +3,8 @@
 // NIM   : 1700018249
 // Kelas : E
 $connect = mysqli_connect("localhost", "root", "", "sim-apotek");
-$tahun_penjualan = mysqli_query($connect, "SELECT YEAR(tgl_penjualan) as tahun_penjualan FROM penjualan GROUP BY YEAR(tgl_penjualan)");
-$jumlah_penjualanTahun = mysqli_query($connect, "SELECT SUM(total_penjualan) as jumlah_penjualanTahun FROM penjualan GROUP BY YEAR(tgl_penjualan)");
+$thn_beli = mysqli_query($connect, "SELECT YEAR(tgl_penjualan) as tahun_penjualan FROM penjualan GROUP BY YEAR(tgl_penjualan)");
+$jml_beliThn = mysqli_query($connect, "SELECT SUM(total_penjualan) as jumlah_penjualanTahun FROM penjualan GROUP BY YEAR(tgl_penjualan)");
 ?>
 <html>
     <head>
@@ -61,10 +61,10 @@ $jumlah_penjualanTahun = mysqli_query($connect, "SELECT SUM(total_penjualan) as 
             var myChart = new Chart(ctx, {
                 type: 'bar',
                 data: {
-                    labels: [<?php while ($b = mysqli_fetch_array($tahun_penjualan)) { echo '"' . $b['tahun_penjualan'] . '",';}?>],
+                    labels: [<?php while ($b = mysqli_fetch_array($thn_beli)) { echo '"' . $b['tahun_penjualan'] . '",';}?>],
                     datasets: [{
                             label: '# of Votes',
-                            data: [<?php while ($p = mysqli_fetch_array($jumlah_penjualanTahun)) { echo '"' . $p['jumlah_penjualanTahun'] . '",';}?>],
+                            data: [<?php while ($p = mysqli_fetch_array($jml_beliThn)) { echo '"' . $p['jumlah_penjualanTahun'] . '",';}?>],
                             backgroundColor: [
                                 'rgba(255, 99, 132, 0.2)',
                                 'rgba(54, 162, 235, 0.2)',
