@@ -96,7 +96,7 @@ $koneksi = mysqli_connect("localhost", "root", "", "sim-apotek");
 		<tbody>
 			<?php 
 			$no = 1;
-			$data = mysqli_query($koneksi,"SELECT status,COUNT(status) as jumlah FROM `opname`GROUP BY status");
+			$data = mysqli_query($koneksi,"SELECT status,COUNT(status) as jumlah FROM `opname`GROUP BY status ORDER BY COUNT(status)  $urutan ");  //Query untuk menampilkan dan menjumlahkan status  dari opname bedasarkan status secara update - Yoga Firza Sabbihisma
 			while($d=mysqli_fetch_array($data)){
 				?>
 				<tr>
@@ -119,12 +119,12 @@ $koneksi = mysqli_connect("localhost", "root", "", "sim-apotek");
 			type: '<?php echo $pilihan ?>',
 			data: {
 				labels: [<?php 
-					$status= mysqli_query($koneksi, "SELECT status FROM `opname`GROUP BY status");
+					$status= mysqli_query($koneksi, "SELECT status FROM `opname`GROUP BY status ORDER BY COUNT(status) $urutan ");//Memanggil Status  -Yoga Firza Sabbihisma -1700018253-
 				while ($b = mysqli_fetch_array($status)) { echo '"' . $b['status'] . '",';} ?>
 					],
 				datasets: [{
 					label: '',
-					data: [<?php $jumlah = mysqli_query($koneksi, "SELECT COUNT(status) as jumlah FROM `opname`GROUP BY status");
+					data: [<?php $jumlah = mysqli_query($koneksi, "SELECT COUNT(status) as jumlah FROM `opname`GROUP BY status ORDER BY COUNT(status) $urutan");//Memanggil Jumlah Status  -Yoga Firza Sabbihisma -1700018253-
 while ($p = mysqli_fetch_array($jumlah)) { echo '"' . $p['jumlah'] . '",';}?>],
                             backgroundColor: [
 					'rgba(255, 99, 132, 0.2)',
