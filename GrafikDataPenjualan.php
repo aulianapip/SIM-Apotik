@@ -1,6 +1,7 @@
 <?php
 //Baharuddin Izha Al Sya'na
 //1700018257
+//E
 //function untuk menampilkan seluruh data penjualan obat 
 $connect = mysqli_connect("localhost", "root", "", "sim-apotek"); //connect ke database
 $hari_penjualan = mysqli_query($connect, "SELECT DATE(tgl_penjualan) as hari_penjualan FROM penjualan GROUP BY DATE(tgl_penjualan)");//menampilkan data penjualan 
