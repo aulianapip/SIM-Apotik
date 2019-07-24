@@ -1,4 +1,7 @@
 <?php
+// Nama  : Meliya Kurniasari
+// NIM   : 1700018244
+// Kelas : E
 $connect = mysqli_connect("localhost", "root", "", "sim-apotek");
 $bulan_penjualan = mysqli_query($connect, "SELECT MONTHName(tgl_penjualan) as bulan_penjualan FROM penjualan GROUP BY MONTHName(tgl_penjualan)");
 $jumlah_penjualanBulan = mysqli_query($connect, "SELECT SUM(total_penjualan) as jumlah_penjualanBulan FROM penjualan GROUP BY MONTHName(tgl_penjualan)");
