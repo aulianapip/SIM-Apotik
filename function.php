@@ -6,8 +6,12 @@
 		return $SQL;
 	}
 	//diindex.php
-	function tampil(){
-		//yang order by
+	function tampil(){//Aditya Aziz Saputra 1700018264
+
+		include "connect.php" //--> database
+		
+		 $SQL = mysqli_query($connect, "SELECT * FROM pelanggan ORDER BY Nama DESC"); //-->menjalankan/memanggil data pelanggan dengan nama 
+	
 		return
 	}
 
