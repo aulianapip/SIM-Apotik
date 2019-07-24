@@ -1,9 +1,4 @@
 <?php
-// Nama  : Cendani Wukir Asih
-// NIM   : 1700018249
-// Kelas : E
-/*1. Fitur Analitik 
-    Fitur untuk menganalisa data dari seluruh fitur yang ada di sistem Informasi Apotik. untuk menganalisa dibuatlah berbagai macam grafik untuk membantu merepresentasi hasil analisa yang telah dibuat. hasil analisa tersebut juga dapat membantu kita untuk mengambil keputusan dimasa yang akan datang.*/
 
 $koneksi = mysqli_connect("localhost", "root", "", "sim-apotek"); //Memanggil database yang telah kita buat
 error_reporting(0); //untuk menghilangkan notif error pada program
@@ -35,7 +30,8 @@ error_reporting(0); //untuk menghilangkan notif error pada program
       <a href="#" class="brand-logo">&nbsp;ANALITIK</a>
       <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
       <ul id="nav-mobile" class="right">
-        <li><a href="index.php">Back</a></li>
+        <li><a href="index.php">Menu</a></li>
+        <li><a href="supply.php">Back</a></li>
       </ul>
     </div>
   </nav>
@@ -53,9 +49,9 @@ error_reporting(0); //untuk menghilangkan notif error pada program
 
 
     <center>
-    <h3>GRAFIK KEUNTUNGAN BERDASARKAN TANGGAL 
+    <h3>GRAFIK KEUNTUNGAN BERDASARKAN TANGGAL
         <?php 
-            echo 'PADA BULAN'. ' '.$bulan.''; 
+            echo 'PADA BULAN'. ' '.$bulan.'';
             echo ' PADA TAHUN'. ' '.$tahun.'';
             echo ' URUTAN'. ' '.$urutan.'';
          ?>
@@ -69,11 +65,11 @@ error_reporting(0); //untuk menghilangkan notif error pada program
     <br/>
 
 <form action="" method="post">
-        <label>Pilih Bulan</label> 
+        <label>Pilih Bulan</label>
        <div class="input-field col s12" >
             <select class="browser-default" name="area"">
                 <?php
-                $bulan_jual = mysqli_query($koneksi, "SELECT MONTH(tgl_penjualan) as bulan_jual FROM obat, penjualan_detail, pasok, penjualan WHERE obat.kode_obat=pasok.kode_obat and obat.kode_obat=penjualan_detail.kode_obat GROUP BY pasok.kode_obat"); //untuk menampilkan pilihan bulan yang telah dipilih
+                $bulan_jual = mysqli_query($koneksi, "SELECT MONTH(tgl_penjualan) as bulan_jual FROM obat, penjualan_detail, pasok, penjualan WHERE obat.kode_obat=pasok.kode_obat and obat.kode_obat=penjualan_detail.kode_obat GROUP BY pasok.kode_obat");
                  $options = mysqli_fetch_array($bulan_jual); // menampilkan nama pada opsi area 
                 foreach ($options as $area) { // opsi pada form area
                     $selected = @$_POST['area'] == $area ? ' selected="selected"' : ''; // fungsi memeilih opsi area
@@ -85,7 +81,7 @@ error_reporting(0); //untuk menghilangkan notif error pada program
        <div class="input-field col s12" >
             <select class="browser-default" name="area2"">
                 <?php
-                $tahun_jual = mysqli_query($koneksi, "SELECT YEAR(tgl_penjualan) as tahun_jual FROM obat, penjualan_detail, pasok, penjualan WHERE obat.kode_obat=pasok.kode_obat and obat.kode_obat=penjualan_detail.kode_obat GROUP BY pasok.kode_obat");//untuk menampilkan pilihan tahun yang telah dipilih
+                $tahun_jual = mysqli_query($koneksi, "SELECT YEAR(tgl_penjualan) as tahun_jual FROM obat, penjualan_detail, pasok, penjualan WHERE obat.kode_obat=pasok.kode_obat and obat.kode_obat=penjualan_detail.kode_obat GROUP BY pasok.kode_obat");
                  $options2 = mysqli_fetch_array($tahun_jual); // menampilkan nama pada opsi area 
                 foreach ($options2 as $area2) { // opsi pada form area
                     $selected2 = @$_POST['area2'] == $area2 ? ' selected2="selected2"' : ''; // fungsi memeilih opsi area
@@ -136,20 +132,19 @@ error_reporting(0); //untuk menghilangkan notif error pada program
 		<tbody>
 			<?php 
 			$no = 1;
-			$data = mysqli_query($koneksi,"SELECT obat.nama_obat as nama, pasok.kode_obat as kode, pasok.harga_beli as harga_beli ,penjualan_detail.harga as harga_jual, penjualan_detail.harga-pasok.harga_beli as keuntungan, Day(tgl_penjualan) as tanggal_jual, MONTH(tgl_penjualan) as bulan_jual, YEAR(tgl_penjualan) as tahun_jual FROM obat, penjualan_detail, pasok, penjualan WHERE obat.kode_obat=pasok.kode_obat and obat.kode_obat=penjualan_detail.kode_obat and MONTH(tgl_penjualan)='$bulan' and YEAR(tgl_penjualan)='$tahun' GROUP BY pasok.kode_obat ORDER BY keuntungan='$urutan'");
-			//untuk menampilkan data pada tabel keterangan yang ada dibawah grafik
+			$data = mysqli_query($koneksi,"SELECT obat.nama_obat as nama, pasok.kode_obat as kode, pasok.harga_beli as harga_beli ,penjualan_detail.harga as harga_jual, penjualan_detail.harga-pasok.harga_beli as keuntungan, Day(tgl_penjualan) as tanggal_jual, MONTH(tgl_penjualan) as bulan_jual, YEAR(tgl_penjualan) as tahun_jual FROM obat, penjualan_detail, pasok, penjualan WHERE obat.kode_obat=pasok.kode_obat and obat.kode_obat=penjualan_detail.kode_obat and MONTH(tgl_penjualan)='$bulan' and YEAR(tgl_penjualan)='$tahun' GROUP BY pasok.kode_obat ORDER BY keuntungan $urutan");
 			while($d=mysqli_fetch_array($data)){
 				?>
 				<tr>
 					<td><?php echo $no++; ?></td>
-					<td><?php echo $d['nama']; //untuk memanggil nama pada tabel?></td>
-					<td><?php echo $d['kode']; //untuk memanggil kode pada tabel?></td>
-					<td><?php echo $d['harga_beli']; //untuk memanggil harga beli pada tabel ?></td>
-					<td><?php echo $d['harga_jual']; //untuk memanggil harga jual pada tabel?></td>
-					<td><?php echo $d['keuntungan']; //untuk memanggil keuntungan pada tabel?></td>
-					<td><?php echo $d['tanggal_jual']; //untuk memanggil tanggal jual pada tabel?></td>	
-					<td><?php echo $d['bulan_jual']; //untuk memanggil bulan jual pada tabel?></td>
-					<td><?php echo $d['tahun_jual']; //untuk memanggil tahun jual pada tabel?></td>			
+					<td><?php echo $d['nama']; ?></td>
+					<td><?php echo $d['kode']; ?></td>
+					<td><?php echo $d['harga_beli']; ?></td>
+					<td><?php echo $d['harga_jual']; ?></td>
+					<td><?php echo $d['keuntungan']; ?></td>
+					<td><?php echo $d['tanggal_jual']; ?></td>	
+					<td><?php echo $d['bulan_jual']; ?></td>
+					<td><?php echo $d['tahun_jual']; ?></td>			
 				</tr>
 				<?php 
 			}
@@ -159,17 +154,17 @@ error_reporting(0); //untuk menghilangkan notif error pada program
 
 
 	<script>
-		var ctx = document.getElementById("myChart").getContext('2d');//menampilkan chart
-		var myChart = new Chart(ctx, { 
+		var ctx = document.getElementById("myChart").getContext('2d');
+		var myChart = new Chart(ctx, {
 			type: '<?php echo $pilihan ?>',
 			data: {
 				labels: [<?php 
-					$tanggal_jual= mysqli_query($koneksi, "SELECT Day(tgl_penjualan) as tanggal_jual FROM obat, penjualan_detail, pasok, penjualan WHERE obat.kode_obat=pasok.kode_obat and obat.kode_obat=penjualan_detail.kode_obat and MONTH(tgl_penjualan)='$bulan' and YEAR(tgl_penjualan)='$tahun' GROUP BY pasok.kode_obat ORDER BY keuntungan='$urutan'"); //menampilkan tanggal jual
+					$tanggal_jual= mysqli_query($koneksi, "SELECT Day(tgl_penjualan) as tanggal_jual FROM obat, penjualan_detail, pasok, penjualan WHERE obat.kode_obat=pasok.kode_obat and obat.kode_obat=penjualan_detail.kode_obat and MONTH(tgl_penjualan)='$bulan' and YEAR(tgl_penjualan)='$tahun' GROUP BY pasok.kode_obat ORDER BY keuntungan $urutan");
 				while ($b = mysqli_fetch_array($tanggal_jual)) { echo '"' . $b['tanggal_jual'] . '",';} ?>
 					],
 				datasets: [{
 					label: '',
-					data: [<?php $keuntungan = mysqli_query($koneksi, "SELECT penjualan_detail.harga-pasok.harga_beli as keuntungan FROM obat, penjualan_detail, pasok, penjualan WHERE obat.kode_obat=pasok.kode_obat and obat.kode_obat=penjualan_detail.kode_obat and MONTH(tgl_penjualan)='$bulan' and YEAR(tgl_penjualan)='$tahun' GROUP BY pasok.kode_obat ORDER BY keuntungan='$urutan'"); //menampilkan keuntungan
+					data: [<?php $keuntungan = mysqli_query($koneksi, "SELECT penjualan_detail.harga-pasok.harga_beli as keuntungan FROM obat, penjualan_detail, pasok, penjualan WHERE obat.kode_obat=pasok.kode_obat and obat.kode_obat=penjualan_detail.kode_obat and MONTH(tgl_penjualan)='$bulan' and YEAR(tgl_penjualan)='$tahun' GROUP BY pasok.kode_obat ORDER BY keuntungan $urutan");
 while ($p = mysqli_fetch_array($keuntungan)) { echo '"' . $p['keuntungan'] . '",';}?>],
                             backgroundColor: [
 					'rgba(255, 99, 132, 0.2)',
