@@ -281,16 +281,21 @@ body {                        /*desain body*/
                     <td>
 <!-- script model validasi edit -->
 <!-- dibuat oleh Alfian Noor 1700018233 -->
+
+<!-- Script fromedit.php ini digunakan untuk mengedit sebuah data yang sudah kita input data didalam file index dan melakukan perintah konfirmasi validasi apakah ingin mengedit  data -->
                      <a href="fromedit.php?ID=<?php echo $data['ID'];?>" onclick="return confirm('Yakin mau ingin mengedit data?');"><input type="image" src="edit.png" width="20" height="20" /a>
 <!-- script model validasi delete -->
 <!-- dibuat oleh Alfian Noor 1700018233 -->
+
+<!-- Script hapus.php ini digunakan untuk menghapus data index yang telah diinput  dan melakukan perintah konfirmasi validasi apakah ingin menghapus data? -->
                      <a href="hapus.php?ID=<?php echo $data['ID'];?>" onclick="return confirm('Yakin mau di hapus?');"><input type="image" src="delete.png" width="20" height="20" /a>
 
 <!-- script model validasi cetak -->                      
      <!-- dibuat oleh Alfian Noor 1700018233 -->
+
+        <!-- Script cetak.php ini digunakan untuk mencetak data didalam file index dan melakukan perintah konfirmasi validasi apakah ingin mencetak  data-->
                      <a href="cetak.php?ID=<?php echo $data['ID'];?>" onclick="return confirm('Yakin mau ingin cetak data?');"><input type="image" src="cetak.png" width="20" height="20" /a>
-                     <!-- dibuat oleh Alfian Noor 1700018233 -->
-                     <a href="index.php"> 
+                     <!-- dibuat oleh Alfian Noor 1700018233 -->  
                 </button> 
                    </a>
      
