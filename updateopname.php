@@ -1,5 +1,6 @@
 <!-- Nur Muthmainah 1700018276 !-->
  <!-- Fadhil Abigail Alvast 1700018252 !-->
+ <!-- Reka Rachmadi 1700018237 !-->
   <!--uas no 1. Stock Opname adalah kegiatan perhitungan secara fisik atas persediaan barang di gudang 
 secara fisik atas persedian barang di gudang yang akan dijual.Pada fitur yang kami buat
 kami menginputkan status kondisi barang yang berada ditoko, status antara lain adalah digudang rusak, hilang ,di pinjam , dan terjual. jika terjadi kesalahan input status maka dapat diubah dengan fitur edit, dan bila barang telah kembali atau di ganti atau telah di konfirmasi oleh pihak gudang dan kasir maka data opname dapat di hapus dengan fitur delete  -->
@@ -36,7 +37,7 @@ kami menginputkan status kondisi barang yang berada ditoko, status antara lain a
       $kurang_rusak1=$kurang_rusak-$rusak;
       $totalopname = $kurang_rusak1 + $kurang_dipinjam1 + $kurang_hilang1 ;
 
-      $query1 =mysqli_query($koneksi,"SELECT * FROM pasok WHERE kode_obat = '$kode_obat' ");
+      $query1 =mysqli_query($koneksi,"SELECT * FROM pasok WHERE kode_obat = '$kode_obat' ");// memilih kode obat yang akan diupdate (Reka)
       $row1 = mysqli_fetch_array($query1);
 
       $total_obat = $row1['jumlah_pasok'];
