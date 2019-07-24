@@ -1,11 +1,12 @@
+<!-- febrisuseno.1600018078 -->
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Tampil Data Obat</title>
-	<link rel="stylesheet" href="bulma.min.css">
+	<title>Tampil Data Obat</title> 
+	<link rel="stylesheet" href="bulma.min.css"> 
 </head>
 <body>
-<nav class="navbar is-success" role="navigation" aria-label="main navigation">
+<nav class="navbar is-success" role="navigation" aria-label="main navigation"> 
   <div class="navbar-brand">
    
 
@@ -18,7 +19,7 @@
 
   <div id="navbarBasicExample" class="navbar-menu">
     <div class="navbar-start">
-      <a class="navbar-item" href="login.html">
+      <a class="navbar-item" href="login.html"> 
     <img src="logut.png"></img>
       </a>
 
@@ -103,19 +104,19 @@
 <table class="table is-fullwidth" >
   <thead>
     <tr>
-      <th scope="col"><a href="sorting_kodeobat.php">Kode Obat</th>
-      <th scope="col">Kode Barcode</th>
-      <th scope="col">Status</th>
-      <th scope="col">Catatan</th>
-      <th scope="col">Tanggal</th>
-      <th scope="col">ACTION</th>
+      <th scope="col"><a href="sorting_kodeobat.php">Kode Obat</th> //kode obat data gudang
+      <th scope="col">Kode Barcode</th> //kode barcode 
+      <th scope="col">Status</th> //cek status 
+      <th scope="col">Catatan</th> //catatan kehilang atau kerusakan
+      <th scope="col">Tanggal</th> //tanggal 
+      <th scope="col">ACTION</th> //action 
     </tr>
   </thead>
 		<?php
 			include "db.php";
 
       $query = mysqli_query($connect,"SELECT barcode.kode_obat AS kode_obat,opname.kode_barcode AS kode_barcode,opname.status AS status,catatan,tanggal from opname INNER JOIN barcode where opname.kode_barcode = barcode.kode_barcode ORDER BY nomor_pasok ASC");
-			foreach ($query as $data) {
+			foreach ($query as $data) { //printah query menampikan data opname bedasarkan tanggal
 				echo "<tr>
                 <td>$data[kode_obat]</td>
                 <td>$data[kode_barcode]</td>
