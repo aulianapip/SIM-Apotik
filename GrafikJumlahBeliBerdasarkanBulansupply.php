@@ -1,5 +1,13 @@
 <?php
 $connect = mysqli_connect("localhost", "root", "", "sim-apotek");
+error_reporting(0); //untuk menghilangkan notif error pada program
+    $bulan = $_POST['area']; 
+    $tahun = $_POST['area2'];
+    $pilihan = $_POST['area3'];
+    $urutan = $_POST['area4'];//membuat area nama
+    if (isset($_POST['submit'])) { // untuk mensubmite post area
+    }
+
 $tanggal = mysqli_query($connect, "SELECT MONTH(tanggal_pasok)as tanggal FROM pasok, supplier WHERE supplier.kode_supplier=pasok.kode_supplier ");
 $jumlah = mysqli_query($connect, "SELECT count(nama_pemasok) as jumlah FROM pasok, supplier WHERE supplier.kode_supplier=pasok.kode_supplier"); //
 ?>
@@ -26,9 +34,14 @@ $jumlah = mysqli_query($connect, "SELECT count(nama_pemasok) as jumlah FROM paso
       </ul>
     </div>
   </nav>
-  
-        <center>
-        <h2>Grafik Jumlah Pasok Bulan</h2>
+  <center>
+    <h3>GRAFIK KEUNTUNGAN BERDASARKAN TANGGAL
+        <?php 
+            echo ' PADA TAHUN'. ' '.$tahun.'';
+            echo ' URUTAN'. ' '.$urutan.'';
+         ?>
+        
+    </h3></center>
     
     <table border="1">
         <thead>
@@ -60,7 +73,7 @@ $jumlah = mysqli_query($connect, "SELECT count(nama_pemasok) as jumlah FROM paso
         <script>
             var ctx = document.getElementById("myChart");
             var myChart = new Chart(ctx, {
-                type: 'bar',
+                type: '<?php echo $pilihan ?>',
                 data: {
                     labels: [<?php while ($b = mysqli_fetch_array($tanggal)) { echo '"' . $b['tanggal'] . '",';}?>],
                     datasets: [{
@@ -208,6 +221,43 @@ $jumlah = mysqli_query($connect, "SELECT count(nama_pemasok) as jumlah FROM paso
                 }
             });
         </script>
+        <form action="" method="post">
+       <label>Pilih Tahun</label>
+       <div class="input-field col s12" >
+            <select class="browser-default" name="area2"">
+                <?php
+                $tahun_pasok = mysqli_query($connect, "SELECT YEAR(tanggal_pasok) as tahun_pasok FROM pasok, supplier WHERE supplier.kode_supplier=pasok.kode_supplier ");
+                 $options2 = mysqli_fetch_array($tahun_pasok); // menampilkan nama pada opsi area 
+                foreach ($options2 as $area2) { // opsi pada form area
+                    $selected2 = @$_POST['area2'] == $area2 ? ' selected2="selected2"' : ''; // fungsi memeilih opsi area
+                    echo '<option value="' . $area2 . '"' . $selected2 . '>' . $area2 . '</option>'; // untuk membuat tabel dari nama nama pada opsi
+                }?>
+            </select>
+        </div>
+        <label>Pilih Chart</label>
+        <div class="input-field col s12" > 
+            <select class="browser-default" name="area3">
+                <?php $options3 = array('pie', 'bar', 'line'); //pilihan grafiknya
+                foreach ($options3 as $area3) { //untuk perulangan
+                    $selected = @$_POST['area3'] == $area3 ? ' selected3="selected3"' : '';             //menampilkan pilihan yang sudah dipilih 
+                    echo '<option value="' . $area3 . '"' . $selected3 . '>' . $area3 . '</option>';
+                }?>
+            </select>
+        </div>
+        <label>Pilih Urutan</label>
+        <div class="input-field col s12" > 
+            <select class="browser-default" name="area4">
+                <?php $options4 = array('ASC', 'DESC'); //pilihan grafiknya
+                foreach ($options4 as $area4) { //untuk perulangan
+                    $selected = @$_POST['area4'] == $area4 ? ' selected4="selected4"' : '';             //menampilkan pilihan yang sudah dipilih 
+                    echo '<option value="' . $area4 . '"' . $selected4 . '>' . $area4 . '</option>';
+                }?>
+            </select>
+        </div>
+        <div class="row">
+            <input class="waves-effect waves-light btn-small" type="submit" name="submit" value="oke"/>
+        </div>
+    </form>
         
     </body>
 </html>
