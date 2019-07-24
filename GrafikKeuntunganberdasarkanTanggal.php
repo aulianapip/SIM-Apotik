@@ -81,7 +81,7 @@ error_reporting(0); //untuk menghilangkan notif error pada program
        <div class="input-field col s12" >
             <select class="browser-default" name="area2"">
                 <?php
-                $tahun_jual = mysqli_query($koneksi, "SELECT YEAR(tgl_penjualan) as bulan_jual FROM obat, penjualan_detail, pasok, penjualan WHERE obat.kode_obat=pasok.kode_obat and obat.kode_obat=penjualan_detail.kode_obat GROUP BY pasok.kode_obat");
+                $tahun_jual = mysqli_query($koneksi, "SELECT YEAR(tgl_penjualan) as tahun_jual FROM obat, penjualan_detail, pasok, penjualan WHERE obat.kode_obat=pasok.kode_obat and obat.kode_obat=penjualan_detail.kode_obat GROUP BY pasok.kode_obat");
                  $options2 = mysqli_fetch_array($tahun_jual); // menampilkan nama pada opsi area 
                 foreach ($options2 as $area2) { // opsi pada form area
                     $selected2 = @$_POST['area2'] == $area2 ? ' selected2="selected2"' : ''; // fungsi memeilih opsi area
