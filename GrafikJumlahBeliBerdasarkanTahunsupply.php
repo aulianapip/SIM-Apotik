@@ -3,6 +3,14 @@
 // NIM   : 1700018238
 // Kelas : E
 $connect = mysqli_connect("localhost", "root", "", "sim-apotek");
+error_reporting(0); //untuk menghilangkan notif error pada program
+    $bulan = $_POST['area']; 
+    $tahun = $_POST['area2'];
+    $pilihan = $_POST['area3'];
+    $urutan = $_POST['area4'];//membuat area nama
+    if (isset($_POST['submit'])) { // untuk mensubmite post area
+    }
+$connect = mysqli_connect("localhost", "root", "", "sim-apotek");
 $tgl = mysqli_query($connect, "SELECT YEAR(tanggal_pasok)as tanggal FROM pasok, supplier WHERE supplier.kode_supplier=pasok.kode_supplier ");
 $jml = mysqli_query($connect, "SELECT count(nama_pemasok) as jumlah FROM pasok, supplier WHERE supplier.kode_supplier=pasok.kode_supplier"); //
 ?>
@@ -31,7 +39,12 @@ $jml = mysqli_query($connect, "SELECT count(nama_pemasok) as jumlah FROM pasok, 
   </nav>
   
         <center>
-        <h2>Grafik Jumlah Pasok Tahun</h2>
+    <h3>GRAFIK KEUNTUNGAN BERDASARKAN TANGGAL
+        <?php 
+            echo ' URUTAN'. ' '.$urutan.'';
+         ?>
+        
+    </h3></center>
     
     <table border="1">
         <thead>
@@ -63,7 +76,7 @@ $jml = mysqli_query($connect, "SELECT count(nama_pemasok) as jumlah FROM pasok, 
         <script>
             var ctx = document.getElementById("myChart");
             var myChart = new Chart(ctx, {
-                type: 'bar',
+                type: '<?php echo $pilihan ?>',
                 data: {
                     labels: [<?php while ($b = mysqli_fetch_array($tgl)) { echo '"' . $b['tanggal'] . '",';}?>],
                     datasets: [{
@@ -211,6 +224,31 @@ $jml = mysqli_query($connect, "SELECT count(nama_pemasok) as jumlah FROM pasok, 
                 }
             });
         </script>
+ <form action="" method="post">
+        <label>Pilih Chart</label>
+        <div class="input-field col s12" > 
+            <select class="browser-default" name="area3">
+                <?php $options3 = array('pie', 'bar', 'line'); //pilihan grafiknya
+                foreach ($options3 as $area3) { //untuk perulangan
+                    $selected = @$_POST['area3'] == $area3 ? ' selected3="selected3"' : '';             //menampilkan pilihan yang sudah dipilih 
+                    echo '<option value="' . $area3 . '"' . $selected3 . '>' . $area3 . '</option>';
+                }?>
+            </select>
+        </div>
+        <label>Pilih Urutan</label>
+        <div class="input-field col s12" > 
+            <select class="browser-default" name="area4">
+                <?php $options4 = array('ASC', 'DESC'); //pilihan grafiknya
+                foreach ($options4 as $area4) { //untuk perulangan
+                    $selected = @$_POST['area4'] == $area4 ? ' selected4="selected4"' : '';             //menampilkan pilihan yang sudah dipilih 
+                    echo '<option value="' . $area4 . '"' . $selected4 . '>' . $area4 . '</option>';
+                }?>
+            </select>
+        </div>
+        <div class="row">
+            <input class="waves-effect waves-light btn-small" type="submit" name="submit" value="oke"/>
+        </div>
+    </form>
         
     </body>
 </html>
