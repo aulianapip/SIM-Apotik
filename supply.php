@@ -11,7 +11,7 @@ hasil analisa tersebut juga dapat juga dapat membantu kita untuk mengambil keput
 -->
 
 <?php
-$connect = mysqli_connect("localhost", "root", "", "sim-apotek-fix"); //untuk mengkoneksikan database sim-apotek.
+$connect = mysqli_connect("localhost", "root", "", "sim-apotek"); //untuk mengkoneksikan database sim-apotek.
 $nama_pemasok = mysqli_query($connect, "SELECT nama_pemasok FROM supplier,pasok WHERE supplier.kode_supplier=pasok.kode_supplier order by kode_pasok asc"); //mengambil data nama pemasok dari tabel supplier
 $jumlah_pasok= mysqli_query($connect, "SELECT jumlah_pasok FROM supplier,pasok WHERE supplier.kode_supplier=pasok.kode_supplier order by kode_pasok asc");  //mengambil data jumlah dari tabel supplier
 ?>
@@ -129,45 +129,6 @@ $jumlah_pasok= mysqli_query($connect, "SELECT jumlah_pasok FROM supplier,pasok W
                 }
             });
         </script>
-        <center>
-<div class="row">
-    <div class="col s4 ">
-      <div class="card ">
-        <div class="card-content black-text">
-          <center><i class="medium material-icons"></i><span class="card-title"><b>Supplier Harian</b></span>
-           <a class="waves-effect waves-light btn" href="GrafikJumlahBeliBerdasarkanHarisupply.php">Hari</a>
-        </div>
-        <div class="card-action">
-            </div>
-      </div>
-    </div>
-
-    <center>
-<div class="row">
-    <div class="col s4 ">
-      <div class="card ">
-        <div class="card-content black-text">
-          <center><i class="medium material-icons"></i><span class="card-title"><b>Supplier Bulanan</b></span>
-           <a class="waves-effect waves-light btn" href="GrafikJumlahBeliBerdasarkanBulansupply.php">Hari</a>
-        </div>
-        <div class="card-action">
-            </div>
-      </div>
-    </div>
-
-    <center>
-<div class="row">
-    <div class="col s4 ">
-      <div class="card ">
-        <div class="card-content black-text">
-          <center><i class="medium material-icons"></i><span class="card-title"><b>Suplier Tahunan</b></span>
-           <a class="waves-effect waves-light btn" href="GrafikJumlahBeliBerdasarkanTahunsupply.php">Hari</a>
-        </div>
-        <div class="card-action">
-            </div>
-      </div>
-    </div>
-</center>
        
     </body>
 </html>

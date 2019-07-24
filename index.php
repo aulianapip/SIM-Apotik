@@ -1,8 +1,9 @@
 <html>
     <head>
-    	<!-- Nama : Baharuddin Izha Al Sya'na
-        Nim  : 1700018257 -->
-        
+    <!--UI DESIGNER
+    	Nama : Baharuddin Izha Al Sya'na
+        Nim  : 1700018257
+        ---------------->
 
         <title></title>
         <script type="text/javascript" src="materialize.js"></script>
@@ -16,7 +17,7 @@
     <!--Membuat Navbar --------------------------------------->
 <nav class="nav-extended">
     <div class="nav-wrapper">
-<a href="#" class="brand-logo center">-ANALITIK-</a>
+<a href="#" class="brand-logo center">ANALITIK</a>
 </div>
 </nav>
 </div>
@@ -32,7 +33,16 @@
         <div class="card-action">
           <center>
         <a href="GrafikDataPenjualan.php" class="waves-effect waves-light btn-small">Grafik Penjualan</a>
+        <br></br>
+        <a href="GrafikJumlahBeliBerdasarkanHari.php" class="waves-effect waves-light btn-small">Grafik Penjualan Harian</a>
+	<a href="GrafikJumlahBeliBerdasarkanBulan.php" class="waves-effect waves-light btn-small">Grafik Penjualan Bulanan</a>
+	<a href="GrafikJumlahBeliBerdasarkanTahun.php" class="waves-effect waves-light btn-small">Grafik Penjualan Tahunan</a>
+  <br></br>
           <a href="grafikKeuntungan.php" class="waves-effect waves-light btn-small">Grafik Keuntungan</a>
+        <br></br>
+          <a href="GrafikKeuntunganberdasarkanTanggal.php" class="waves-effect waves-light btn-small">Grafik Keuntungan Harian</a>
+  <a href="GrafikKeuntunganberdasarkanbulan.php" class="waves-effect waves-light btn-small">Grafik Keuntungan Bulanan</a>
+  <a href="GrafikKeuntunganberdasarkanTahun.php" class="waves-effect waves-light btn-small">Grafik Keuntungan Tahunan</a>
   </center>
         </div>
       </div>
@@ -49,6 +59,10 @@
         <div class="card-action">
           <center>
         <a href="supply.php" class="waves-effect waves-light btn-small">Grafik Data Supplier</a>
+        <br></br>
+        <a href="GrafikJumlahBeliBerdasarkanHarisupply.php" class="waves-effect waves-light btn-small">Grafik Supplier Harian</a>
+        <a href="GrafikJumlahBeliBerdasarkanBulansupply.php" class="waves-effect waves-light btn-small">Grafik Supplier Bulanan</a>
+        <a href="GrafikJumlahBeliBerdasarkanTahunsupply.php" class="waves-effect waves-light btn-small">Grafik Supplier Tahunan</a>
 	</center>
         </div>
       </div>

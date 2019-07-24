@@ -1,7 +1,9 @@
 <?php
 $connect = mysqli_connect("localhost", "root", "", "sim-apotek");
-$tanggal = mysqli_query($connect, "SELECT MONTH(tanggal_pasok)as tanggal FROM pasok, supplier WHERE supplier.kode_supplier=pasok.kode_supplier ");
-$jumlah = mysqli_query($connect, "SELECT count(nama_pemasok) as jumlah FROM pasok, supplier WHERE supplier.kode_supplier=pasok.kode_supplier"); //
+$hari_penjualan = mysqli_query($connect, "SELECT DAY(tgl_penjualan) as hari_penjualan FROM penjualan GROUP BY DAY(tgl_penjualan)");
+$jumlah_penjualanHari = mysqli_query($connect, "SELECT SUM(total_penjualan) as jumlah_penjualanHari FROM penjualan GROUP BY DAY(tgl_penjualan)");
+$tanggal_jual= mysqli_query($connect, "SELECT DAY(tgl_penjualan) as tanggal_jual FROM obat, penjualan_detail, pasok, penjualan WHERE obat.kode_obat=pasok.kode_obat and obat.kode_obat=penjualan_detail.kode_obat GROUP BY pasok.kode_obat");
+$keuntungan = mysqli_query($connect, "SELECT penjualan_detail.harga-pasok.harga_beli as keuntungan FROM obat, penjualan_detail, pasok, penjualan WHERE obat.kode_obat=pasok.kode_obat and obat.kode_obat=penjualan_detail.kode_obat GROUP BY pasok.kode_obat");
 ?>
 <html>
     <head>
@@ -28,26 +30,22 @@ $jumlah = mysqli_query($connect, "SELECT count(nama_pemasok) as jumlah FROM paso
   </nav>
   
         <center>
-        <h2>Grafik Jumlah Pasok Bulan</h2>
+        <h2>GRAFIK PENJUALAN OBAT BEDASARKAN TANGGAL</h2>
     
     <table border="1">
         <thead>
             <tr>
-                <th>Nama Pemasok</th>
-                <th>Kode Supplier</th>
-                <th>Bulan</th>
+                <th>tanggal</th>
                 <th>jumlah</th>
             </tr>
         </thead>
         <tbody>
             <?php 
             $no = 1;
-            $data = mysqli_query($connect,"SELECT supplier.nama_pemasok, supplier.kode_supplier,MONTH(tanggal_pasok)as tanggal, count(nama_pemasok) as jumlah FROM pasok, supplier WHERE supplier.kode_supplier=pasok.kode_supplier ");
+            $data = mysqli_query($connect,"SELECT DAY(tgl_penjualan) as tanggal, SUM(total_penjualan) as jumlah FROM penjualan WHERE tgl_penjualan GROUP BY DAY(tgl_penjualan)");
             while($d=mysqli_fetch_array($data)){
                 ?>
                 <tr>
-                    <td><?php echo $d['nama_pemasok']; ?></td>
-                    <td><?php echo $d['kode_supplier']; ?></td>
                     <td><?php echo $d['tanggal']; ?></td>
                     <td><?php echo $d['jumlah']; ?></td>
                     </tr>
@@ -62,10 +60,10 @@ $jumlah = mysqli_query($connect, "SELECT count(nama_pemasok) as jumlah FROM paso
             var myChart = new Chart(ctx, {
                 type: 'bar',
                 data: {
-                    labels: [<?php while ($b = mysqli_fetch_array($tanggal)) { echo '"' . $b['tanggal'] . '",';}?>],
+                    labels: [<?php while ($b = mysqli_fetch_array($hari_penjualan)) { echo '"' . $b['hari_penjualan'] . '",';}?>],
                     datasets: [{
                             label: '# of Votes',
-                            data: [<?php while ($p = mysqli_fetch_array($jumlah)) { echo '"' . $p['jumlah'] . '",';}?>],
+                            data: [<?php while ($p = mysqli_fetch_array($jumlah_penjualanHari)) { echo '"' . $p['jumlah_penjualanHari'] . '",';}?>],
                             backgroundColor: [
                                 'rgba(255, 99, 132, 0.2)',
                                 'rgba(54, 162, 235, 0.2)',

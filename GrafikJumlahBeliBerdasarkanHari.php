@@ -1,7 +1,5 @@
 <?php
-//NAMA  : Alya Masitha
-//NIM	: 1700018236
-$connect = mysqli_connect("localhost", "root", "", "sim-apotek-fix");
+$connect = mysqli_connect("localhost", "root", "", "sim-apotek");
 $hari_penjualan = mysqli_query($connect, "SELECT DAY(tgl_penjualan) as hari_penjualan FROM penjualan GROUP BY DAY(tgl_penjualan)");
 $jumlah_penjualanHari = mysqli_query($connect, "SELECT SUM(total_penjualan) as jumlah_penjualanHari FROM penjualan GROUP BY DAY(tgl_penjualan)");
 ?>
@@ -21,10 +19,10 @@ $jumlah_penjualanHari = mysqli_query($connect, "SELECT SUM(total_penjualan) as j
     <body>
 <nav class="nav-extended">
     <div class="nav-wrapper">
-      <a href="index.php" class="brand-logo">&nbsp;ANALITIK</a>
+      <a href="#" class="brand-logo">&nbsp;ANALITIK</a>
       <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
       <ul id="nav-mobile" class="right">
-        <li><a href="GrafikDataPenjualan.php">Back</a></li>
+        <li><a href="index.php">Back</a></li>
       </ul>
     </div>
   </nav>

@@ -1,7 +1,5 @@
 <?php
-// Nama	: Meliya Kurniasari
-// NIM	: 1700018244
-$connect = mysqli_connect("localhost", "root", "", "sim-apotek-fix");
+$connect = mysqli_connect("localhost", "root", "", "sim-apotek");
 $bulan_penjualan = mysqli_query($connect, "SELECT MONTHName(tgl_penjualan) as bulan_penjualan FROM penjualan GROUP BY MONTHName(tgl_penjualan)");
 $jumlah_penjualanBulan = mysqli_query($connect, "SELECT SUM(total_penjualan) as jumlah_penjualanBulan FROM penjualan GROUP BY MONTHName(tgl_penjualan)");
 ?>
@@ -21,10 +19,10 @@ $jumlah_penjualanBulan = mysqli_query($connect, "SELECT SUM(total_penjualan) as 
     <body>
 <nav class="nav-extended">
     <div class="nav-wrapper">
-      <a href="index.php" class="brand-logo">&nbsp;ANALITIK</a>
+      <a href="#" class="brand-logo">&nbsp;ANALITIK</a>
       <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
       <ul id="nav-mobile" class="right">
-        <li><a href="GrafikDataPenjualan.php">Back</a></li>
+        <li><a href="index.php">Back</a></li>
       </ul>
     </div>
   </nav>

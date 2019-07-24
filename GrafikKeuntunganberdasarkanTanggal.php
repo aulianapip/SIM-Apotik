@@ -1,6 +1,6 @@
 <?php
 
-$koneksi = mysqli_connect("localhost", "root", "", "sim-apotek-fix"); //Memanggil database yang telah kita buat
+$koneksi = mysqli_connect("localhost", "root", "", "sim-apotek"); //Memanggil database yang telah kita buat
 error_reporting(0); //untuk menghilangkan notif error pada program
     $bulan = $_POST['area']; 
     $tahun = $_POST['area2'];
@@ -27,11 +27,11 @@ error_reporting(0); //untuk menghilangkan notif error pada program
     <body>
 <nav class="nav-extended">
     <div class="nav-wrapper">
-      <a href="index.php" class="brand-logo">&nbsp;ANALITIK</a>
+      <a href="#" class="brand-logo">&nbsp;ANALITIK</a>
       <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
       <ul id="nav-mobile" class="right">
         <li><a href="index.php">Menu</a></li>
-        <li><a href="grafikKeuntungan.php">Back</a></li>
+        <li><a href="supply.php">Back</a></li>
       </ul>
     </div>
   </nav>

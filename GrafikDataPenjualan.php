@@ -1,36 +1,14 @@
 <?php
-//Baharuddin Izha Al Sya'na- 1700018257
-$connect = mysqli_connect("localhost", "root", "", "sim-apotek-fix");
-$penjualan = mysqli_query($connect, "SELECT tgl_penjualan FROM penjualan ");
-$jumlah_penjualan = mysqli_query($connect, "SELECT total_penjualan FROM penjualan GROUP BY tgl_penjualan");
-$hari_penjualan = mysqli_query($connect, "SELECT DAY(tgl_penjualan) as hari_penjualan FROM penjualan GROUP BY DAY(tgl_penjualan)");
-$jumlah_penjualanHari = mysqli_query($connect, "SELECT SUM(total_penjualan) as jumlah_penjualanHari FROM penjualan GROUP BY DAY(tgl_penjualan)");
+//Alya Masitha - 1700018236
+$connect = mysqli_connect("localhost", "root", "", "sim-apotek");
+$hari_penjualan = mysqli_query($connect, "SELECT DATE(tgl_penjualan) as hari_penjualan FROM penjualan GROUP BY DATE(tgl_penjualan)");
+$jumlah_penjualanHari = mysqli_query($connect, "SELECT SUM(total_penjualan) as jumlah_penjualanHari FROM penjualan GROUP BY DATE(tgl_penjualan)");
 ?>
 <html>
     <head>
         <title></title>
         <script type="text/javascript" src="Chart.js/Chart.js"></script>
-
-        <script type="text/javascript" src="js/materialize.js"></script>
-        <script type="text/javascript" src="js/materialize.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
-        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <script type="text/javascript">$('.dropdown-trigger').dropdown();
-        </script>
-        <link rel = "stylesheet"
-         href = "https://fonts.googleapis.com/icon?family=Material+Icons">
-      <link rel = "stylesheet"
-         href = "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
-      <script type = "text/javascript"
-         src = "https://code.jquery.com/jquery-2.1.1.min.js"></script>           
-      <script src = "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js">
-      </script>
-
-        <link rel="stylesheet" href="materialize.css">
-        <link rel="stylesheet" href="materialize.min.css">
+<link rel="stylesheet" href="materialize.min.css">
  
         <style type="text/css">
             .container {
@@ -42,17 +20,17 @@ $jumlah_penjualanHari = mysqli_query($connect, "SELECT SUM(total_penjualan) as j
     <body>
 <nav class="nav-extended">
     <div class="nav-wrapper">
-      <a href="index.php" class="brand-logo">&nbsp;ANALITIK</a>
+      <a href="#" class="brand-logo">&nbsp;ANALITIK</a>
       <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
       <ul id="nav-mobile" class="right">
-        <li><a href="index.php">Menu</a></li>
+        <li><a href="index.php">Back</a></li>
       </ul>
     </div>
   </nav>
-</center>
+  
         <center>
-        <h2>GRAFIK PENJUALAN OBAT</h2>
-
+        <h2>GRAFIK PENJUALAN OBAT BEDASARKAN TANGGAL</h2>
+    
     <table border="1">
         <thead>
             <tr>
@@ -81,10 +59,10 @@ $jumlah_penjualanHari = mysqli_query($connect, "SELECT SUM(total_penjualan) as j
             var myChart = new Chart(ctx, {
                 type: 'bar',
                 data: {
-                    labels: [<?php while ($b = mysqli_fetch_array($penjualan)) { echo '"' . $b['tgl_penjualan'] . '",';}?>],
+                    labels: [<?php while ($b = mysqli_fetch_array($hari_penjualan)) { echo '"' . $b['hari_penjualan'] . '",';}?>],
                     datasets: [{
                             label: '# of Votes',
-                            data: [<?php while ($p = mysqli_fetch_array($jumlah_penjualan)) { echo '"' . $p['total_penjualan'] . '",';}?>],
+                            data: [<?php while ($p = mysqli_fetch_array($jumlah_penjualanHari)) { echo '"' . $p['jumlah_penjualanHari'] . '",';}?>],
                             backgroundColor: [
                                 'rgba(255, 99, 132, 0.2)',
                                 'rgba(54, 162, 235, 0.2)',
@@ -227,44 +205,6 @@ $jumlah_penjualanHari = mysqli_query($connect, "SELECT SUM(total_penjualan) as j
                 }
             });
         </script>
-        <center>
-<div class="row">
-    <div class="col s4 ">
-      <div class="card ">
-        <div class="card-content black-text">
-          <center><i class="medium material-icons"></i><span class="card-title"><b>Penjualan Harian</b></span>
-           <a class="waves-effect waves-light btn" href="GrafikJumlahBeliBerdasarkanHari.php">Hari</a>
-        </div>
-        <div class="card-action">
-            </div>
-      </div>
-    </div>
-
-    <div class="row">
-    <div class="col s4 ">
-      <div class="card ">
-        <div class="card-content black-text">
-          <center><i class="medium material-icons"></i><span class="card-title"><b>Penjualan Bulanan</b></span>
-            <a class="waves-effect waves-light btn" href="GrafikJumlahBeliBerdasarkanBulan.php">Bulan</a>
-        </div>
-        <div class="card-action">
-            </div>
-      </div>
-    </div>
-
-    <div class="row">
-    <div class="col s4 ">
-      <div class="card ">
-        <div class="card-content black-text">
-          <center><i class="medium material-icons"></i><span class="card-title"><b>Penjualan Tahunan</b></span>
-               <a class="waves-effect waves-light btn" href="GrafikJumlahBeliBerdasarkanTahun.php">Tahun</a>
-        </div>
-        <div class="card-action">
-            </div>
-      </div>
-    </div>
-  </div>
-  </div>
-  </div>
+        
     </body>
 </html>

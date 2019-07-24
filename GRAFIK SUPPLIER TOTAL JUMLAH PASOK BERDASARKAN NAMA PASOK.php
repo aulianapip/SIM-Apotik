@@ -17,7 +17,7 @@
 */
 
 
-$connect = mysqli_connect("localhost", "root", "", "sim-apotek-fix"); //Memanggil database yang telah kita buat
+$connect = mysqli_connect("localhost", "root", "", "sim-apotek"); //Memanggil database yang telah kita buat
 error_reporting(0); //untuk menghilangkan notif error pada program
     $nama = $_POST['area']; //membuat area nama
     if (isset($_POST['submit'])) { // untuk mensubmite post area

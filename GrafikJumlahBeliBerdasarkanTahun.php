@@ -1,6 +1,5 @@
 <?php
-//Cendani Wukir Asih-1700018249
-$connect = mysqli_connect("localhost", "root", "", "sim-apotek-fix");
+$connect = mysqli_connect("localhost", "root", "", "sim-apotek");
 $tahun_penjualan = mysqli_query($connect, "SELECT YEAR(tgl_penjualan) as tahun_penjualan FROM penjualan GROUP BY YEAR(tgl_penjualan)");
 $jumlah_penjualanTahun = mysqli_query($connect, "SELECT SUM(total_penjualan) as jumlah_penjualanTahun FROM penjualan GROUP BY YEAR(tgl_penjualan)");
 ?>
@@ -20,10 +19,10 @@ $jumlah_penjualanTahun = mysqli_query($connect, "SELECT SUM(total_penjualan) as 
     <body>
 <nav class="nav-extended">
     <div class="nav-wrapper">
-      <a href="index.php" class="brand-logo">&nbsp;ANALITIK</a>
+      <a href="#" class="brand-logo">&nbsp;ANALITIK</a>
       <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
       <ul id="nav-mobile" class="right">
-        <li><a href="GrafikDataPenjualan.php">Back</a></li>
+        <li><a href="index.php">Back</a></li>
       </ul>
     </div>
   </nav>

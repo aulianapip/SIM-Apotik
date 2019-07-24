@@ -18,11 +18,11 @@
     </div>
   </nav>
 
-		<h1><center>GRAFIK PELANGGAN BERDASARKAN JUMLAH TRANSAKSI</center></h1>
+		<h1><center>GRAFIK PELANGGAN BERDASARKAN KOTA</center></h1>
 
 
 <?php
-$koneksi = mysqli_connect("localhost", "root", "", "sim-apotek-fix");
+$koneksi = mysqli_connect("localhost", "root", "", "sim-apotek");
 ?>
 
 	<div style="width: 800px;margin: 0px auto;">
