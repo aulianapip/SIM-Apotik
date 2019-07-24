@@ -1,4 +1,7 @@
 <?php
+// Nama  : Azhaaruzddzikri Alfirdaus
+// NIM   : 1700018238
+// Kelas : E
 $connect = mysqli_connect("localhost", "root", "", "sim-apotek");
 $tanggal = mysqli_query($connect, "SELECT YEAR(tanggal_pasok)as tanggal FROM pasok, supplier WHERE supplier.kode_supplier=pasok.kode_supplier ");
 $jumlah = mysqli_query($connect, "SELECT count(nama_pemasok) as jumlah FROM pasok, supplier WHERE supplier.kode_supplier=pasok.kode_supplier"); //
