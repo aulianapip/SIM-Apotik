@@ -68,6 +68,7 @@
 <title>SIM-APOTIK</title>
 </head>
 	<!--Wais Alqorni-->
+    <!--Mempaercantik bagian login-->
 <body background="bgw.jpg">
 <center>
 <table width=100% height=100%>
@@ -115,6 +116,7 @@
     }
 	</center>
 </style>
+<!--Membuat form untuk pengisian username dan password-->
 <form class="col s12" method="post" action="login.php" align="center">
 <div class="container">
 <label for="uname"><center><b>USERNAME</b></center></label>
