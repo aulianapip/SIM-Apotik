@@ -2,7 +2,7 @@
 <html>
 
 <head>
-	<title>GRAFIK STOCK DARI KESELURUHAN SUPPLIER</title>
+	<title>GRAFIK PELANGGAN BERDASARKAN KOTA</title> 
 	<script type="text/javascript" src="Chart.js/Chart.js"></script>
     <link rel="stylesheet" href="materialize.min.css">
 </head>
@@ -18,11 +18,11 @@
     </div>
   </nav>
 
-		<h1><center>GRAFIK PELANGGAN BERDASARKAN KOTA</center></h1>
+		<h1><center>GRAFIK PELANGGAN BERDASARKAN KOTA</center></h1><!-- Menampilkan judul pada grafik pelanggan-->
 
 
 <?php
-$koneksi = mysqli_connect("localhost", "root", "", "sim-apotek");
+$koneksi = mysqli_connect("localhost", "root", "", "sim-apotek");//Menyambungkan ke database
 ?>
 
 	<div style="width: 800px;margin: 0px auto;">
@@ -49,18 +49,18 @@ $koneksi = mysqli_connect("localhost", "root", "", "sim-apotek");
 		<tbody>
 			<?php 
 			$no = 1;
-			$data = mysqli_query($koneksi,"select * from pelanggan");
+			$data = mysqli_query($koneksi,"select * from pelanggan");//Menampilkan data pada tabel keterangan yang ada dibawah grafik
 			while($d=mysqli_fetch_array($data)){
 				?>
 				<tr>
 					<td><?php echo $no++; ?></td>
-					<td><?php echo $d['tgl_daftar']; ?></td>
-					<td><?php echo $d['ID']; ?></td>
-					<td><?php echo $d['Nama']; ?></td>
-					<td><?php echo $d['Jk']; ?></td>
-					<td><?php echo $d['NoHp']; ?></td>
-					<td><?php echo $d['Email']; ?></td>
-					<td><?php echo $d['Alamat']; ?></td>
+					<td><?php echo $d['tgl_daftar'];//untuk memanggil tanggal daftar pada tabel keterangan?></td>
+					<td><?php echo $d['ID'];//untuk memanggil ID pelanggan pada tabel keterangan?></td>
+					<td><?php echo $d['Nama'];//untuk memanggil Nama pada tabel keterangan?></td>
+					<td><?php echo $d['Jk'];//untuk memanggil Jenis kelamin pada tabel keterangan?></td>
+					<td><?php echo $d['NoHp'];//untuk memanggil No Hp pada tabel keterangan?></td>
+					<td><?php echo $d['Email'];//untuk memanggil Email pada tabel keterangan?></td>
+					<td><?php echo $d['Alamat'];//untuk memanggil Alamat pada tabel keterangan?></td>
 					
 				</tr>
 				<?php 
@@ -71,18 +71,18 @@ $koneksi = mysqli_connect("localhost", "root", "", "sim-apotek");
 
 
 	<script>
-		var ctx = document.getElementById("myChart").getContext('2d');
+		var ctx = document.getElementById("myChart").getContext('2d');//Memanggil fungsi grafik 
 		var myChart = new Chart(ctx, {
-			type: 'bar',
+			type: 'bar',//Menggunakan tipe grafik dengan tipe bar
 			data: {
 				labels: [<?php 
 					$alamat= mysqli_query($koneksi, "SELECT alamat from pelanggan GROUP BY ALAMAt");
 				while ($b = mysqli_fetch_array($alamat)) { echo '"' . $b['alamat'] . '",';} ?>
-					],
+					],//menampilkan jumlah alamat pada grafik
 				datasets: [{
 					label: '',
 					data: [<?php $kota = mysqli_query($koneksi, "SELECT COUNT(alamat) as jumlah_alamat FROM pelanggan GROUP BY Alamat");
-while ($p = mysqli_fetch_array($kota)) { echo '"' . $p['jumlah_alamat'] . '",';}?>],
+while ($p = mysqli_fetch_array($kota)) { echo '"' . $p['jumlah_alamat'] . '",';}?>],//menampilkan jumlah kota pada grafik
                             backgroundColor: [
 					'rgba(255, 99, 132, 0.2)',
 					'rgba(54, 162, 235, 0.2)',

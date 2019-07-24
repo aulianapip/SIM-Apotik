@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
-
+<!--Cendani Wukir Asih- 1700018249-->
 <head>
-	<title>GRAFIK STOCK DARI KESELURUHAN SUPPLIER</title>
+	<title>GRAFIK PELANGGAN BERDASARKAN JENIS KELAMIN</title>
 	<script type="text/javascript" src="Chart.js/Chart.js"></script>
     <link rel="stylesheet" href="materialize.min.css">
 </head>
@@ -17,11 +17,11 @@
       </ul>
     </div>
   </nav>
-		<h1><center>GRAFIK PELANGGAN BERDASARKAN JENIS KELAMIN</center></h1>
+		<h1><center>GRAFIK PELANGGAN BERDASARKAN JENIS KELAMIN</center></h1> <!--menampilkan judul grafik-->
 
 
 <?php
-$koneksi = mysqli_connect("localhost", "root", "", "sim-apotek");
+$koneksi = mysqli_connect("localhost", "root", "", "sim-apotek"); //memanggil database yang telah kita buat
 ?>
 
 	<div style="width: 800px;margin: 0px auto;">
@@ -46,17 +46,17 @@ $koneksi = mysqli_connect("localhost", "root", "", "sim-apotek");
 		<tbody>
 			<?php 
 			$no = 1;
-			$data = mysqli_query($koneksi,"select * from pelanggan");
+			$data = mysqli_query($koneksi,"select * from pelanggan"); //menampilkan data pelanggan pada tabel yang ada dibawah grafik
 			while($d=mysqli_fetch_array($data)){
 				?>
 				<tr>
-					<td><?php echo $d['tgl_daftar']; ?></td>
-					<td><?php echo $d['ID']; ?></td>
-					<td><?php echo $d['Nama']; ?></td>
-					<td><?php echo $d['Jk']; ?></td>
-					<td><?php echo $d['NoHp']; ?></td>
-					<td><?php echo $d['Email']; ?></td>
-					<td><?php echo $d['Alamat']; ?></td>
+					<td><?php echo $d['tgl_daftar']; //untuk memanggil tanggal daftar pada tabel yang ada di tabel ?></td>
+					<td><?php echo $d['ID']; //untuk memanggil id pada tabel yang ada di tabel ?></td>
+					<td><?php echo $d['Nama']; //untuk memanggil nama pada tabel yang ada di tabel  ?></td>
+					<td><?php echo $d['Jk']; //untuk memanggil jenis kelamin pada tabel yang ada di tabel?></td>
+					<td><?php echo $d['NoHp']; //untuk memanggil nomor hp pada tabel yang ada di tabel ?></td>
+					<td><?php echo $d['Email']; //untuk memanggil email pada tabel yang ada di tabel ?></td>
+					<td><?php echo $d['Alamat']; //untuk memanggil alamat pada tabel yang ada di tabel ?></td>
 				</tr>
 				<?php 
 			}
@@ -76,11 +76,11 @@ $koneksi = mysqli_connect("localhost", "root", "", "sim-apotek");
 					data: [
 					<?php 
 					$jumlah_LakiLaki = mysqli_query($koneksi,"select Jk from pelanggan where Jk='Laki-Laki' ");
-					echo mysqli_num_rows($jumlah_LakiLaki);
+					echo mysqli_num_rows($jumlah_LakiLaki); //menampilkan grafik jumlah jenis kelamin laki-laki
 					?>, 
 					<?php 
 					$jumlah_Perempuan = mysqli_query($koneksi,"select * from pelanggan where Jk='Perempuan'");
-					echo mysqli_num_rows($jumlah_Perempuan);
+					echo mysqli_num_rows($jumlah_Perempuan); //menampilkan grafik jumlah jenis kelamin perempuan
 					?>
 					],
 					backgroundColor: [
