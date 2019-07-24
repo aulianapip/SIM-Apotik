@@ -49,7 +49,7 @@ kami menginputkan status kondisi barang yang berada ditoko, status antara lain a
       mysqli_query($koneksi,"UPDATE opname SET kode_opname='$kode_opname', kode_obat='$kode_obat', hilang='$hilang', rusak='$rusak', dipinjam='$dipinjam', status='$status', catatan='$catatan', tanggal=curdate() WHERE kode_opname='$kode_opname'");//update data opname sesuai dengan value 'kirim' (zaki)
       header("location: dataopname.php");
     } else{
-       include "koneksi.php";
+       include "koneksi.php";//koneksi database
      $opname =$_GET['kode_opname'];
      $query = mysqli_query($koneksi,"SELECT * FROM obat");
      $query2 = mysqli_query($koneksi,"SELECT * FROM opname WHERE kode_opname = $opname");//memilih kode opname dari tabel opname, sesuai kode opname yang dipilih untuk diupdate(Mail)
