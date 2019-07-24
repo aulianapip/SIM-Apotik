@@ -1,8 +1,23 @@
+<!--1. Fitur Analitik 
+	Fitur untuk menganalisa data dari seluruh fitur yang ada di sistem Informasi Apotik.
+	untuk menganalisa dibuatlah berbagai macam grafik untuk membantu merepresentasi hasil analisa yang telah dibuat.
+	hasil analisa tersebut juga dapat juga dapat membantu kita untuk mengambil keputusan dimasa yang akan datang.
+-->
+<?php
+//Nama : Yoga firza Sabbihisma
+//Nim : 1700018253
+//Kelas : E
+$koneksi = mysqli_connect("localhost", "root", "", "sim-apotek"); //Memanggil database yang telah kita buat
+error_reporting(0); //untuk menghilangkan notif error pada program
+$pilihan = $_POST['area1'];
+    $urutan = $_POST['area2'];//membuat area nama
+    if (isset($_POST['submit'])) { // untuk mensubmite post area
+    }
+    ?>
 <!DOCTYPE html>
 <html>
 
 <head>
-	<title>GRAFIK Opname</title>
 	<script type="text/javascript" src="Chart.js/Chart.js"></script>
     <link rel="stylesheet" href="materialize.min.css">
 </head>
@@ -12,25 +27,63 @@
       <a href="#" class="brand-logo">&nbsp;ANALITIK</a>
       <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
       <ul id="nav-mobile" class="right">
-      	<li><a href="index.php">Menu</a></li>
-        <li><a href="index.php">Back</a></li>
+      	<li><a href="index.php">Menu</a></li><!--untuk kembali ke menu-->
+        <li><a href="index.php">Back</a></li><!--untuk kembali ke pilihan sebelumnya-->
       </ul>
     </div>
   </nav>
+<style type="text/css">
+    body{
+        font-family: roboto;
+    }
 
-		<h1><center>GRAFIK Opname</center></h1>
+    table{
+        margin: 0px auto;
+    }
+    </style>
+    
+<!--Nama : Yoga firza Sabbihisma
+Nim : 1700018253
+Kelas : E -->
+     <center>
+    <h3>GRAFIK OPNAME
+        <?php 
+            echo ' URUTAN'. ' '.$urutan.'';
+         ?>
+         </h3></center>
+    <div style="width: 800px;margin: 0px auto;">
+        <canvas id="myChart"></canvas>
+    </div>
+    <form action="" method="post">
+        <label>Pilih Chart</label>
+		<div class="input-field col s12" > 
+			<select class="browser-default" name="area1">
+				<?php $options3 = array('pie', 'bar', 'line'); //pilihan grafiknya
+				foreach ($options3 as $area3) { //untuk perulangan
+					$selected = @$_POST['area3'] == $area3 ? ' selected3="selected3"' : '';				//menampilkan pilihan yang sudah dipilih 
+					echo '<option value="' . $area3 . '"' . $selected3 . '>' . $area3 . '</option>';
+				}?>
+			</select>
+		</div>
+		<label>Pilih Urutan</label>
+		<div class="input-field col s12" > 
+			<select class="browser-default" name="area2">
+				<?php $options4 = array('ASC', 'DESC'); //pilihan grafiknya
+				foreach ($options4 as $area4) { //untuk perulangan
+					$selected = @$_POST['area4'] == $area4 ? ' selected4="selected4"' : '';				//menampilkan pilihan yang sudah dipilih 
+					echo '<option value="' . $area4 . '"' . $selected4 . '>' . $area4 . '</option>';
+				}?>
+			</select>
+		</div>
+        <div class="row">
+            <input class="waves-effect waves-light btn-small" type="submit" name="submit" value="oke"/>
+        </div>
+    </form>
 
 
 <?php
 $koneksi = mysqli_connect("localhost", "root", "", "sim-apotek");
 ?>
-
-	<div style="width: 800px;margin: 0px auto;">
-		<canvas id="myChart"></canvas>
-	</div>
-
-	<br/>
-	<br/>
 
 	<table border="1">
 		<thead>
@@ -48,8 +101,8 @@ $koneksi = mysqli_connect("localhost", "root", "", "sim-apotek");
 				?>
 				<tr>
 					
-					<td><?php echo $d['status']; ?></td>
-					<td><?php echo $d['jumlah']; ?></td>
+					<td><?php echo $d['status']; //untuk menampilkan status?></td>
+					<td><?php echo $d['jumlah']; //untuk menampilkan jumlah?></td>
 									
 				</tr>
 				<?php 
@@ -57,12 +110,13 @@ $koneksi = mysqli_connect("localhost", "root", "", "sim-apotek");
 			?>
 		</tbody>
 	</table>
-
-
+	<div style="width: 800px;margin: 0px auto;">
+		<canvas id="myChart">
 	<script>
+
 		var ctx = document.getElementById("myChart").getContext('2d');
 		var myChart = new Chart(ctx, {
-			type: 'line',
+			type: '<?php echo $pilihan ?>',
 			data: {
 				labels: [<?php 
 					$status= mysqli_query($koneksi, "SELECT status FROM `opname`GROUP BY status");
@@ -98,5 +152,7 @@ while ($p = mysqli_fetch_array($jumlah)) { echo '"' . $p['jumlah'] . '",';}?>],
 			}
 		});
 	</script>
+	</canvas>
+	</div>
 </body>
 </html>
