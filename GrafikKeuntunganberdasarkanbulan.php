@@ -29,7 +29,7 @@ error_reporting(0); //untuk menghilangkan notif error pada program
     </div>
   </nav>
 
-		<h1><center>GRAFIK Opname</center></h1>
+		<h1><center>GRAFIK Keuntungan Berdasarkan Bulan</center></h1>
 
 	<div style="width: 800px;margin: 0px auto;">
 		<canvas id="myChart"></canvas>
