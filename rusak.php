@@ -1,3 +1,7 @@
+<!-- AIRLA ISMAIL APRI RAHMAT 1700018261-->
+<!--uas no 1. Stock Opname adalah kegiatan perhitungan secara fisik atas persediaan barang di gudang 
+secara fisik atas persedian barang di gudang yang akan dijual.Pada fitur yang kami buat
+kami menginputkan status kondisi barang yang berada ditoko, status antara lain adalah digudang rusak, hilang ,di pinjam , dan terjual. jika terjadi kesalahan input status maka dapat diubah dengan fitur edit, dan bila barang telah kembali atau di ganti atau telah di konfirmasi oleh pihak gudang dan kasir maka data opname dapat di hapus dengan fitur delete  -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -52,19 +56,19 @@
         <div class="navbar-dropdown">
           
           <a class="navbar-item" href="rusak.php">
-            Rusak
+              Rusak
           </a>
           <a class="navbar-item" href="hilang.php">
-            Hilang
+              Hilang
           </a>
           <a class="navbar-item" href="dipinjam.php">
-            Dipinjam
+              Dipinjam
           </a>
           <a class="navbar-item" href="terjual.php">
-            Digudang
+              Digudang
           </a>
           <a class="navbar-item" href="digudang.php">
-            Terjual
+              Terjual
           </a>
     
         </div>
@@ -72,16 +76,16 @@
 
       <div class="navbar-item has-dropdown is-hoverable">
         <a class="navbar-link">
-          FILTER
+            FILTER
         </a>
 
         <div class="navbar-dropdown">
           
           <a class="navbar-item" href="ascending.php">
-            Tanggal ++
+              Tanggal ++
           </a>
           <a class="navbar-item" href="descending.php">
-            Tanggal --
+              Tanggal --
           </a>
         
           
@@ -90,7 +94,7 @@
       </div>
 
   	  <a class="navbar-item" href="tambah_opname.php">
-       Tambah Opname
+         Tambah Opname
       </a>
   </div>
 </div>
@@ -102,8 +106,9 @@
 </nav>
 <table class="table is-fullwidth" >
   <thead>
+    menampilkan data kode obat, barcod, status dari barang, catatan, tangal berapa terjadi, acksi ma diapakan
     <tr>
-      <th scope="col">Kode Obat</th>
+      <th scope="col">Kode Obat</th> 
       <th scope="col">Kode Barcode</th>
       <th scope="col">Status</th>
       <th scope="col">Catatan</th>
@@ -112,10 +117,11 @@
     </tr>
   </thead>
 		<?php
-			include "db.php";
+			include "db.php";//koneksi ke database
 
-      $query = mysqli_query($connect,"SELECT barcode.kode_obat AS kode_obat,opname.kode_barcode AS kode_barcode,opname.status AS status,catatan,tanggal from opname INNER JOIN barcode where opname.kode_barcode = barcode.kode_barcode AND opname.status = 'RUSAK' ");
-			foreach ($query as $data) {
+      $query = mysqli_query($connect,"SELECT barcode.kode_obat AS kode_obat,opname.kode_barcode AS kode_barcode,opname.status AS status,catatan,tanggal from opname INNER JOIN barcode where opname.kode_barcode = barcode.kode_barcode AND opname.status = 'RUSAK' ");//queri untuk mengambil data opname  dari database dan di tampilkan ke php(ke web) dan menampilkan data / barang yang telah rusak. dimana barcode diambil dari database gudang
+      
+			foreach ($query as $data) {//query di inisialisasikan ke data
 				echo "<tr>
                 <td>$data[kode_obat]</td>
                 <td>$data[kode_barcode]</td>
