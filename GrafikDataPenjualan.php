@@ -205,6 +205,44 @@ $jumlah_penjualanHari = mysqli_query($connect, "SELECT SUM(total_penjualan) as j
                 }
             });
         </script>
-        
+         <center>
+<div class="row">
+    <div class="col s4 ">
+      <div class="card ">
+        <div class="card-content black-text">
+          <center><i class="medium material-icons"></i><span class="card-title"><b>Penjualan Harian</b></span>
+           <a class="waves-effect waves-light btn" href="GrafikJumlahBeliBerdasarkanHari.php">Hari</a>
+        </div>
+        <div class="card-action">
+            </div>
+      </div>
+    </div>
+
+    <div class="row">
+    <div class="col s4 ">
+      <div class="card ">
+        <div class="card-content black-text">
+          <center><i class="medium material-icons"></i><span class="card-title"><b>Penjualan Bulanan</b></span>
+            <a class="waves-effect waves-light btn" href="GrafikJumlahBeliBerdasarkanBulan.php">Bulan</a>
+        </div>
+        <div class="card-action">
+            </div>
+      </div>
+    </div>
+
+    <div class="row">
+    <div class="col s4 ">
+      <div class="card ">
+        <div class="card-content black-text">
+          <center><i class="medium material-icons"></i><span class="card-title"><b>Penjualan Tahunan</b></span>
+               <a class="waves-effect waves-light btn" href="GrafikJumlahBeliBerdasarkanTahun.php">Tahun</a>
+        </div>
+        <div class="card-action">
+            </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  </div>
     </body>
 </html>

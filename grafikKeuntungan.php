@@ -31,6 +31,45 @@ $koneksi = mysqli_connect("localhost", "root", "", "sim-apotek");
 
 	<br/>
 	<br/>
+<center>
+<div class="row">
+    <div class="col s4 ">
+      <div class="card ">
+        <div class="card-content black-text">
+          <center><i class="medium material-icons"></i><span class="card-title"><b>Keuntungan Harian</b></span>
+          	<a href="GrafikKeuntunganberdasarkanTanggal.php" class="waves-effect waves-light btn-small">Keuntungan Harian</a>
+        </div>
+        <div class="card-action">
+          	</div>
+      </div>
+    </div>
+
+    <div class="row">
+    <div class="col s4 ">
+      <div class="card ">
+        <div class="card-content black-text">
+          <center><i class="medium material-icons"></i><span class="card-title"><b>Keuntungan Bulanan</b></span>
+          	 <a href="GrafikKeuntunganberdasarkanbulan.php" class="waves-effect waves-light btn-small">Keuntungan Bulanan</a>
+        </div>
+        <div class="card-action">
+          	</div>
+      </div>
+    </div>
+
+    <div class="row">
+    <div class="col s4 ">
+      <div class="card ">
+        <div class="card-content black-text">
+          <center><i class="medium material-icons"></i><span class="card-title"><b>Keuntungan Tahunan</b></span>
+          	 <a href="GrafikKeuntunganberdasarkanTahun.php" class="waves-effect waves-light btn-small">Keuntungan Tahunan</a>
+        </div>
+        <div class="card-action">
+          	</div>
+      </div>
+    </div>
+  </div>
+  </div>
+  </div>
 
 	<table border="1">
 		<thead>
