@@ -28,7 +28,7 @@ Penjelasan class :
    
 
     <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span> <!-- Hyperlink tombol untuk membuka menu -->
       <span aria-hidden="true"></span>
       <span aria-hidden="true"></span>
     </a>
@@ -37,7 +37,7 @@ Penjelasan class :
   <div id="navbarBasicExample" class="navbar-menu">
     <div class="navbar-start">
       <a class="navbar-item" href="home.php"> <!--hyperlink untuk kembali ke home-->
-       Kembali
+        Back
       </a>
   </div>
 </div>
