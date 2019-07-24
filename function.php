@@ -12,9 +12,14 @@
 	}
 
 	//di formedit.php
-	function edit(){
+	function edit(){ //rizka arnanda 1700018248
 		//$edit
-		$SQL=mysqli_query($connect,$edit);
+		include('header.php');//pemanggilan untuk bagian header dengan nama file header.php
+
+		$connect = new mysqli("localhost", "root", "", "sim-apotek-pos-test");//untuk menghubungkan ke database
+
+		$ID=$_GET["ID"];//method untuk Menampilkan variabel
+		$edit="SELECT ID,Nama,Jk,NoHP,Email,Alamat FROM pelanggan where ID='$ID'";//perintah untuk menampilkan data
 		return
 	}
 
@@ -24,7 +29,7 @@
 		return 
 	}
 	//hapus.php
-	function hapus(){
+	function hapus(){ //Herni sartika M 1700018285
 		
 		
 	include 'conect.php'; //untuk menyambungkan ke database yang sudah dibuat dengan nama folder conect.php
@@ -36,7 +41,7 @@
 		return 
 	}
 	//deleteselect.php
-	function hapus_ceklis(){
+	function hapus_ceklis(){//Herni sartika M 1700018285
 
 		include 'conect.php'; //untuk menyambungkan ke database yang sudah dibuat dengan nama folder conect.php
 	$ID = $_POST['pilih']; //untuk memanggil saat multiple delete dipilih dengan opsi, mana saja data yang akan di delete
@@ -65,7 +70,7 @@ header("location:selectdelete.php"); // setelah berhasil di delete, maka akan ke
 		return
 	}
 
-	function riwayat_dua(){
+	function riwayat_dua(){//Adelia fitriawati z 1700018281
 		$SQL = mysqli_query($connect, "SELECT penjualan.tgl_penjualan AS waktu,penjualan.tipe as tipe,penjualan.id as id,pelanggan.Nama as nama, penjualan.no_transaksi as no_transaksi,penjualan_detail.kd_barang as kode_obat,penjualan_detail.jumlah as jumlah_beli, penjualan_detail.sub_total as total_beli from penjualan,pelanggan,penjualan_detail where penjualan.id=pelanggan.ID and penjualan.tipe=pelanggan.tipe and penjualan.tipe=penjualan_detail.tipe and penjualan.id=penjualan_detail.id and penjualan.no_transaksi=penjualan_detail.no_transaksi;"); //query function untuk melihat daftar pembelian member.
 		return
 	} //sampe line yang di sini
