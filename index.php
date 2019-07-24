@@ -50,10 +50,6 @@
         <div class="card-action">
           <center>
         <a href="supply.php" class="waves-effect waves-light btn-small">Grafik Data Supplier</a>
-        <br></br>
-        <a href="GrafikJumlahBeliBerdasarkanHarisupply.php" class="waves-effect waves-light btn-small">Grafik Supplier Harian</a>
-        <a href="GrafikJumlahBeliBerdasarkanBulansupply.php" class="waves-effect waves-light btn-small">Grafik Supplier Bulanan</a>
-        <a href="GrafikJumlahBeliBerdasarkanTahunsupply.php" class="waves-effect waves-light btn-small">Grafik Supplier Tahunan</a>
 	</center>
         </div>
       </div>

@@ -129,6 +129,44 @@ $jumlah_pasok= mysqli_query($connect, "SELECT jumlah_pasok FROM supplier,pasok W
                 }
             });
         </script>
-       
+       <center>
+<div class="row">
+    <div class="col s4 ">
+      <div class="card ">
+        <div class="card-content black-text">
+          <center><i class="medium material-icons"></i><span class="card-title"><b>Supply Harian</b></span>
+           <a class="waves-effect waves-light btn" href="GrafikJumlahBeliBerdasarkanBulansupply.php">Hari</a>
+        </div>
+        <div class="card-action">
+            </div>
+      </div>
+    </div>
+
+    <div class="row">
+    <div class="col s4 ">
+      <div class="card ">
+        <div class="card-content black-text">
+          <center><i class="medium material-icons"></i><span class="card-title"><b>Supply Bulanan</b></span>
+            <a class="waves-effect waves-light btn" href="GrafikJumlahBeliBerdasarkanBulansupply.php">Bulan</a>
+        </div>
+        <div class="card-action">
+            </div>
+      </div>
+    </div>
+
+    <div class="row">
+    <div class="col s4 ">
+      <div class="card ">
+        <div class="card-content black-text">
+          <center><i class="medium material-icons"></i><span class="card-title"><b>Supply Tahunan</b></span>
+               <a class="waves-effect waves-light btn" href="GrafikJumlahBeliBerdasarkanTahunsupply.php">Tahun</a>
+        </div>
+        <div class="card-action">
+            </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  </div>
     </body>
 </html>
