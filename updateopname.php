@@ -21,6 +21,18 @@
       $catatan = $_POST['catatan'];
       $tanggal = $_POST['tanggal'];
 
+      $query =mysqli_query($koneksi,"SELECT * FROM opname WHERE kode_opname = '$kode_opname'");
+      $row = mysqli_fetch_array($query);
+
+      $kurang_hilang = $row['hilang'];
+      $kurang_hilang1=$kurang_hilang-$hilang;
+      $kurang_dipinjam = $row['dipinjam'];
+      $kurang_dipinjam1=$kurang_dipinjam-$dipinjam;
+      $kurang_rusak = $row['rusak'];
+      $kurang_rusak1=$kurang_rusak-$rusak;
+      $totalopname = $kurang_rusak1 + $kurang_dipinjam1 + $kurang_hilang1 ;
+
+ 
    ?>
    <form class="from-horizontal" action="updateopname.php" method="POST" role="form" >
  <div class="form-group">
