@@ -1,3 +1,12 @@
+<?php
+
+$koneksi = mysqli_connect("localhost", "root", "", "sim-apotek"); //Memanggil database yang telah kita buat
+error_reporting(0); //untuk menghilangkan notif error pada program
+    $pilihan = $_POST['area3'];
+    $urutan = $_POST['area4'];//membuat area nama
+    if (isset($_POST['submit'])) { // untuk mensubmite post area
+    }
+    ?>
 <!DOCTYPE html>
 <html>
 
@@ -18,12 +27,19 @@
     </div>
   </nav>
 
-		<h1><center>GRAFIK KEUNTUNGAN PENJUALAN BERDASARKAN TAHUN</center></h1>
+	
 
 
 <?php
 $koneksi = mysqli_connect("localhost", "root", "", "sim-apotek");
 ?>
+<center> <h3>GRAFIK KEUNTUNGAN BERDASARKAN Tahun
+        <?php 
+      
+            echo ' URUTAN'. ' '.$urutan.'';
+         ?>
+        
+    </h3></center>
 
 	<div style="width: 800px;margin: 0px auto;">
 		<canvas id="myChart"></canvas>
@@ -31,6 +47,31 @@ $koneksi = mysqli_connect("localhost", "root", "", "sim-apotek");
 
 	<br/>
 	<br/>
+	<form action="" method="post">
+        <label>Pilih Chart</label>
+		<div class="input-field col s12" > 
+			<select class="browser-default" name="area3">
+				<?php $options3 = array('pie', 'bar', 'line'); //pilihan grafiknya
+				foreach ($options3 as $area3) { //untuk perulangan
+					$selected = @$_POST['area3'] == $area3 ? ' selected3="selected3"' : '';				//menampilkan pilihan yang sudah dipilih 
+					echo '<option value="' . $area3 . '"' . $selected3 . '>' . $area3 . '</option>';
+				}?>
+			</select>
+		</div>
+		<label>Pilih Urutan</label>
+		<div class="input-field col s12" > 
+			<select class="browser-default" name="area4">
+				<?php $options4 = array('ASC', 'DESC'); //pilihan grafiknya
+				foreach ($options4 as $area4) { //untuk perulangan
+					$selected = @$_POST['area4'] == $area4 ? ' selected4="selected4"' : '';				//menampilkan pilihan yang sudah dipilih 
+					echo '<option value="' . $area4 . '"' . $selected4 . '>' . $area4 . '</option>';
+				}?>
+			</select>
+		</div>
+        <div class="row">
+            <input class="waves-effect waves-light btn-small" type="submit" name="submit" value="oke"/>
+        </div>
+    </form>
 
 	<table border="1">
 		<thead>
@@ -47,7 +88,7 @@ $koneksi = mysqli_connect("localhost", "root", "", "sim-apotek");
 		<tbody>
 			<?php 
 			$no = 1;
-			$data = mysqli_query($koneksi,"SELECT obat.nama_obat as nama, pasok.kode_obat as kode, pasok.harga_beli as harga_beli ,penjualan_detail.harga as harga_jual, penjualan_detail.harga-pasok.harga_beli as keuntungan, YEAR(tgl_penjualan) as tanggal_jual FROM obat, penjualan_detail, pasok, penjualan WHERE obat.kode_obat=pasok.kode_obat and obat.kode_obat=penjualan_detail.kode_obat GROUP BY pasok.kode_obat");
+			$data = mysqli_query($koneksi,"SELECT obat.nama_obat as nama, pasok.kode_obat as kode, pasok.harga_beli as harga_beli ,penjualan_detail.harga as harga_jual, penjualan_detail.harga-pasok.harga_beli as keuntungan, MONTH(tgl_penjualan) as tanggal_jual FROM obat, penjualan_detail, pasok, penjualan WHERE obat.kode_obat=pasok.kode_obat and obat.kode_obat=penjualan_detail.kode_obat GROUP BY pasok.kode_obat ORDER BY keuntungan='$urutan'");
 			while($d=mysqli_fetch_array($data)){
 				?>
 				<tr>
@@ -69,7 +110,7 @@ $koneksi = mysqli_connect("localhost", "root", "", "sim-apotek");
 	<script>
 		var ctx = document.getElementById("myChart").getContext('2d');
 		var myChart = new Chart(ctx, {
-			type: 'bar',
+			type: '<?php echo $pilihan ?>',
 			data: {
 				labels: [<?php 
 					$tanggal_jual= mysqli_query($koneksi, "SELECT YEAR(tgl_penjualan) as tanggal_jual FROM obat, penjualan_detail, pasok, penjualan WHERE obat.kode_obat=pasok.kode_obat and obat.kode_obat=penjualan_detail.kode_obat GROUP BY pasok.kode_obat");
