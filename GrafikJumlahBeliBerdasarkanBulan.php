@@ -3,8 +3,8 @@
 // NIM   : 1700018244
 // Kelas : E
 $connect = mysqli_connect("localhost", "root", "", "sim-apotek");
-$bulan_penjualan = mysqli_query($connect, "SELECT MONTHName(tgl_penjualan) as bulan_penjualan FROM penjualan GROUP BY MONTHName(tgl_penjualan)");
-$jumlah_penjualanBulan = mysqli_query($connect, "SELECT SUM(total_penjualan) as jumlah_penjualanBulan FROM penjualan GROUP BY MONTHName(tgl_penjualan)");
+$bln_beli = mysqli_query($connect, "SELECT MONTHName(tgl_penjualan) as bulan_penjualan FROM penjualan GROUP BY MONTHName(tgl_penjualan)");
+$jml_belibln = mysqli_query($connect, "SELECT SUM(total_penjualan) as jumlah_penjualanBulan FROM penjualan GROUP BY MONTHName(tgl_penjualan)");
 ?>
 <html>
     <head>
@@ -61,10 +61,10 @@ $jumlah_penjualanBulan = mysqli_query($connect, "SELECT SUM(total_penjualan) as 
             var myChart = new Chart(ctx, {
                 type: 'bar',
                 data: {
-                    labels: [<?php while ($b = mysqli_fetch_array($bulan_penjualan)) { echo '"' . $b['bulan_penjualan'] . '",';}?>],
+                    labels: [<?php while ($b = mysqli_fetch_array($bln_beli)) { echo '"' . $b['bulan_penjualan'] . '",';}?>],
                     datasets: [{
                             label: '# of Votes',
-                            data: [<?php while ($p = mysqli_fetch_array($jumlah_penjualanBulan)) { echo '"' . $p['jumlah_penjualanBulan'] . '",';}?>],
+                            data: [<?php while ($p = mysqli_fetch_array($jml_belibln)) { echo '"' . $p['jumlah_penjualanBulan'] . '",';}?>],
                             backgroundColor: [
                                 'rgba(255, 99, 132, 0.2)',
                                 'rgba(54, 162, 235, 0.2)',
