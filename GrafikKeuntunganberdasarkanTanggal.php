@@ -30,8 +30,7 @@ error_reporting(0); //untuk menghilangkan notif error pada program
       <a href="#" class="brand-logo">&nbsp;ANALITIK</a>
       <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
       <ul id="nav-mobile" class="right">
-        <li><a href="index.php">Menu</a></li>
-        <li><a href="supply.php">Back</a></li>
+        <li><a href="index.php">Back</a></li>
       </ul>
     </div>
   </nav>
