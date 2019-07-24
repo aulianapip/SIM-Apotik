@@ -1,4 +1,4 @@
-<!--SITTI BARKAH PELLU-->
+<!--okzatul revanka 1700018267-->
 <?php
 	session_start();
 
@@ -7,9 +7,9 @@ if (!isset($_SESSION["login1"])) {
       exit;
     }
 	include "connection/db.php";
-	$QuerySql = "SELECT *,harga_beli*jumlah_obat AS total FROM `supplier`, `obat` WHERE supplier.kode_obat=obat.kode_obat ORDER BY supplier.harga_beli*supplier.jumlah_obat ASC ";
+	$QuerySql = "SELECT *,harga_beli*jumlah_obat AS total FROM `supplier`, `obat` WHERE supplier.kode_obat=obat.kode_obat ORDER BY supplier.harga_beli*supplier.jumlah_obat ASC ";  //menampilkan tabel harga beli dikalikan jumlah obat yang di beli dari suplier dan di order by harga beli di kali jumlah obat
 
-	$SQL = mysqli_query($connect, $QuerySql); 
+	$SQL = mysqli_query($connect, $QuerySql); //mengconnect query
 ?> 
 <!DOCTYPE html>
 <html>
@@ -23,7 +23,7 @@ if (!isset($_SESSION["login1"])) {
  ?>
 <table class="table is-fullwidth" >
   <thead>
-    <tr>
+    <tr> <!--menampilkan semua tabel pembelian -->
       <th scope="col"><a href="s_pembelian_supplier.php"> ID PEMBELIAN</a></th>
       <th scope="col"><a href="s_pembelian_tanggal.php">TANGGAL PEMBELIAN</a></th>
       <th scope="col"><a href="s_pembelian_ko.php">KODE OBAT</a></th>
@@ -35,7 +35,7 @@ if (!isset($_SESSION["login1"])) {
     </tr>
   </thead>
 		<?php
-			foreach ($SQL as $key) {
+			foreach ($SQL as $key) { //pemanggilan database
 				echo "<tr>
 						<td>$key[kode_supplier]</td>
 						<td>$key[tanggal_beli]</td>
