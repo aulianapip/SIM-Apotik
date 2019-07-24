@@ -3,6 +3,7 @@
     <!--UI DESIGNER
     	Nama : Baharuddin Izha Al Sya'na
         Nim  : 1700018257
+        Kelas : E
         ---------------->
 
         <title></title>
@@ -14,7 +15,7 @@
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     </head>
     <body>
-    <!--Membuat Navbar --------------------------------------->
+    <!--Membuat Navbar -->
 <nav class="nav-extended">
     <div class="nav-wrapper">
 <a href="#" class="brand-logo center">ANALITIK</a>
@@ -22,8 +23,8 @@
 </nav>
 </div>
 
-<!--Membuat Pilihan Data Yang Mau di Analisis ---------------->
-	<!--Supplier -------------------------------------------->
+<!--Membuat Pilihan Data Yang Mau di Analisis -->
+	<!--Supplier -->
 <div class="row">
     <div class="col s12 ">
       <div class="card ">
@@ -45,7 +46,7 @@
     <div class="col s12 ">
       <div class="card ">
         <div class="card-content black-text">
-          <center><i class="medium material-icons">archive</i><span class="card-title"><b>Supply</b></span>
+          <center><i class="medium material-icons">archive</i><span class="card-title"><b>Supply</b></span><!--Logo-->
         </div>
         <div class="card-action">
           <center>
@@ -57,7 +58,7 @@
   </div>
 </center>
 
-	<!--Obat ---------------------------------------------->
+	<!--Obat -->
 <div class="row">
     <div class="col s12 ">
       <div class="card ">
@@ -76,7 +77,7 @@
   </div>
 </center>
 
-	<!--Pelanggan ----------------------------------------->
+	<!--Pelanggan -->
 <div class="row">
     <div class="col s12 ">
       <div class="card ">
