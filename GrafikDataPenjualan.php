@@ -1,8 +1,10 @@
 <?php
-//Alya Masitha - 1700018236
-$connect = mysqli_connect("localhost", "root", "", "sim-apotek");
-$hari_penjualan = mysqli_query($connect, "SELECT DATE(tgl_penjualan) as hari_penjualan FROM penjualan GROUP BY DATE(tgl_penjualan)");
-$jumlah_penjualanHari = mysqli_query($connect, "SELECT SUM(total_penjualan) as jumlah_penjualanHari FROM penjualan GROUP BY DATE(tgl_penjualan)");
+//Baharuddin Izha Al Sya'na
+//1700018257
+//function untuk menampilkan seluruh data penjualan obat 
+$connect = mysqli_connect("localhost", "root", "", "sim-apotek"); //connect ke database
+$hari_penjualan = mysqli_query($connect, "SELECT DATE(tgl_penjualan) as hari_penjualan FROM penjualan GROUP BY DATE(tgl_penjualan)");//menampilkan data penjualan 
+$jumlah_penjualanHari = mysqli_query($connect, "SELECT SUM(total_penjualan) as jumlah_penjualanHari FROM penjualan GROUP BY DATE(tgl_penjualan)");//menampilkan data total penjualan
 ?>
 <html>
     <head>
@@ -29,24 +31,24 @@ $jumlah_penjualanHari = mysqli_query($connect, "SELECT SUM(total_penjualan) as j
   </nav>
   
         <center>
-        <h2>GRAFIK PENJUALAN OBAT BEDASARKAN TANGGAL</h2>
+        <h2>GRAFIK PENJUALAN OBAT</h2>
     
     <table border="1">
         <thead>
             <tr>
-                <th>tanggal</th>
-                <th>jumlah</th>
+                <th>Waktu</th><!--Untuk membuat nama atribut Waktu pada tabel yang ada di bawah grafik-->
+                <th>Jumlah</th><!--Untuk membuat nama atribut Jumlah Penjualan pada tabel yang ada di bawah grafik-->
             </tr>
         </thead>
         <tbody>
             <?php 
             $no = 1;
-            $data = mysqli_query($connect,"SELECT DATE(tgl_penjualan) as tanggal, SUM(total_penjualan) as jumlah FROM penjualan WHERE tgl_penjualan GROUP BY DATE(tgl_penjualan)");
+            $data = mysqli_query($connect,"SELECT DATE(tgl_penjualan) as tanggal, SUM(total_penjualan) as jumlah FROM penjualan WHERE tgl_penjualan GROUP BY DATE(tgl_penjualan)");// menampilkan tanggal dan jumlah
             while($d=mysqli_fetch_array($data)){
                 ?>
                 <tr>
-                    <td><?php echo $d['tanggal']; ?></td>
-                    <td><?php echo $d['jumlah']; ?></td>
+                    <td><?php echo $d['tanggal']; ?></td><!--Untuk membuat nama atribut Waktu pada tabel yang ada di bawah grafik-->
+                    <td><?php echo $d['jumlah']; ?></td><!--Untuk membuat nama atribut Jumlah Penjualan pada tabel yang ada di bawah grafik-->
                     </tr>
                 <?php 
             }
