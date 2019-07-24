@@ -3,8 +3,8 @@
 // NIM   : 1700018236
 // Kelas : E
 $connect = mysqli_connect("localhost", "root", "", "sim-apotek");
-$hari_penjualan = mysqli_query($connect, "SELECT DAY(tgl_penjualan) as hari_penjualan FROM penjualan GROUP BY DAY(tgl_penjualan)");
-$jumlah_penjualanHari = mysqli_query($connect, "SELECT SUM(total_penjualan) as jumlah_penjualanHari FROM penjualan GROUP BY DAY(tgl_penjualan)");
+$hri_beli = mysqli_query($connect, "SELECT DAY(tgl_penjualan) as hari_penjualan FROM penjualan GROUP BY DAY(tgl_penjualan)");
+$jml_belihri = mysqli_query($connect, "SELECT SUM(total_penjualan) as jumlah_penjualanHari FROM penjualan GROUP BY DAY(tgl_penjualan)");
 ?>
 <html>
     <head>
@@ -61,10 +61,10 @@ $jumlah_penjualanHari = mysqli_query($connect, "SELECT SUM(total_penjualan) as j
             var myChart = new Chart(ctx, {
                 type: 'bar',
                 data: {
-                    labels: [<?php while ($b = mysqli_fetch_array($hari_penjualan)) { echo '"' . $b['hari_penjualan'] . '",';}?>],
+                    labels: [<?php while ($b = mysqli_fetch_array($hri_beli)) { echo '"' . $b['hari_penjualan'] . '",';}?>],
                     datasets: [{
                             label: '# of Votes',
-                            data: [<?php while ($p = mysqli_fetch_array($jumlah_penjualanHari)) { echo '"' . $p['jumlah_penjualanHari'] . '",';}?>],
+                            data: [<?php while ($p = mysqli_fetch_array($jml_belihri)) { echo '"' . $p['jumlah_penjualanHari'] . '",';}?>],
                             backgroundColor: [
                                 'rgba(255, 99, 132, 0.2)',
                                 'rgba(54, 162, 235, 0.2)',
