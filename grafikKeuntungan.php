@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
-
+<!-- Baharuddin Izha Al Sya'na
+	1700018257
+	E -->
 <head>
 	<title>GRAFIK Opname</title>
 	<script type="text/javascript" src="Chart.js/Chart.js"></script>
@@ -22,7 +24,7 @@
 
 
 <?php
-$koneksi = mysqli_connect("localhost", "root", "", "sim-apotek");
+$koneksi = mysqli_connect("localhost", "root", "", "sim-apotek");//koneksi ke data base
 ?>
 
 	<div style="width: 800px;margin: 0px auto;">
@@ -71,7 +73,7 @@ $koneksi = mysqli_connect("localhost", "root", "", "sim-apotek");
   </div>
   </div>
 
-	<table border="1">
+	<table border="1"><!-- Menampilkan Tabel -->
 		<thead>
 			<tr>
 				<th>No</th>
@@ -86,7 +88,7 @@ $koneksi = mysqli_connect("localhost", "root", "", "sim-apotek");
 		<tbody>
 			<?php 
 			$no = 1;
-			$data = mysqli_query($koneksi,"SELECT obat.nama_obat as nama, pasok.kode_obat as kode, pasok.harga_beli as harga_beli ,penjualan_detail.harga as harga_jual, penjualan_detail.harga-pasok.harga_beli as keuntungan, penjualan.tgl_penjualan as tanggal_jual FROM obat, penjualan_detail, pasok, penjualan WHERE obat.kode_obat=pasok.kode_obat and obat.kode_obat=penjualan_detail.kode_obat GROUP BY pasok.kode_obat");
+			$data = mysqli_query($koneksi,"SELECT obat.nama_obat as nama, pasok.kode_obat as kode, pasok.harga_beli as harga_beli ,penjualan_detail.harga as harga_jual, penjualan_detail.harga-pasok.harga_beli as keuntungan, penjualan.tgl_penjualan as tanggal_jual FROM obat, penjualan_detail, pasok, penjualan WHERE obat.kode_obat=pasok.kode_obat and obat.kode_obat=penjualan_detail.kode_obat GROUP BY pasok.kode_obat");//Menampilkan Grafik Keuntungan
 			while($d=mysqli_fetch_array($data)){
 				?>
 				<tr>
@@ -112,12 +114,12 @@ $koneksi = mysqli_connect("localhost", "root", "", "sim-apotek");
 			type: 'bar',
 			data: {
 				labels: [<?php 
-					$tanggal_jual= mysqli_query($koneksi, "SELECT penjualan.tgl_penjualan as tanggal_jual FROM obat, penjualan_detail, pasok, penjualan WHERE obat.kode_obat=pasok.kode_obat and obat.kode_obat=penjualan_detail.kode_obat GROUP BY pasok.kode_obat");
+					$tanggal_jual= mysqli_query($koneksi, "SELECT penjualan.tgl_penjualan as tanggal_jual FROM obat, penjualan_detail, pasok, penjualan WHERE obat.kode_obat=pasok.kode_obat and obat.kode_obat=penjualan_detail.kode_obat GROUP BY pasok.kode_obat");//Menampilkan Tanggal Jual
 				while ($b = mysqli_fetch_array($tanggal_jual)) { echo '"' . $b['tanggal_jual'] . '",';} ?>
 					],
 				datasets: [{
 					label: '',
-					data: [<?php $keuntungan = mysqli_query($koneksi, "SELECT penjualan_detail.harga-pasok.harga_beli as keuntungan FROM obat, penjualan_detail, pasok, penjualan WHERE obat.kode_obat=pasok.kode_obat and obat.kode_obat=penjualan_detail.kode_obat GROUP BY pasok.kode_obat");
+					data: [<?php $keuntungan = mysqli_query($koneksi, "SELECT penjualan_detail.harga-pasok.harga_beli as keuntungan FROM obat, penjualan_detail, pasok, penjualan WHERE obat.kode_obat=pasok.kode_obat and obat.kode_obat=penjualan_detail.kode_obat GROUP BY pasok.kode_obat");//Menampilkan Keuntungan
 while ($p = mysqli_fetch_array($keuntungan)) { echo '"' . $p['keuntungan'] . '",';}?>],
                             backgroundColor: [
 					'rgba(255, 99, 132, 0.2)',
