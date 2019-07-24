@@ -29,7 +29,13 @@ error_reporting(0); //untuk menghilangkan notif error pada program
     </div>
   </nav>
 
-		<h1><center>GRAFIK Keuntungan Berdasarkan Bulan</center></h1>
+   <center> <h3>GRAFIK KEUNTUNGAN BERDASARKAN BULAN
+        <?php 
+            echo ' PADA TAHUN'. ' '.$tahun.'';
+            echo ' URUTAN'. ' '.$urutan.'';
+         ?>
+        
+    </h3></center>
 
 	<div style="width: 800px;margin: 0px auto;">
 		<canvas id="myChart"></canvas>
@@ -37,6 +43,43 @@ error_reporting(0); //untuk menghilangkan notif error pada program
 
 	<br/>
 	<br/>
+	<form action="" method="post">
+       <label>Pilih Tahun</label>
+       <div class="input-field col s12" >
+            <select class="browser-default" name="area2"">
+                <?php
+                $tahun_jual = mysqli_query($koneksi, "SELECT YEAR(tgl_penjualan) as bulan_jual FROM obat, penjualan_detail, pasok, penjualan WHERE obat.kode_obat=pasok.kode_obat and obat.kode_obat=penjualan_detail.kode_obat GROUP BY pasok.kode_obat");
+                 $options2 = mysqli_fetch_array($tahun_jual); // menampilkan nama pada opsi area 
+                foreach ($options2 as $area2) { // opsi pada form area
+                    $selected2 = @$_POST['area2'] == $area2 ? ' selected2="selected2"' : ''; // fungsi memeilih opsi area
+                    echo '<option value="' . $area2 . '"' . $selected2 . '>' . $area2 . '</option>'; // untuk membuat tabel dari nama nama pada opsi
+                }?>
+            </select>
+        </div>
+        <label>Pilih Chart</label>
+		<div class="input-field col s12" > 
+			<select class="browser-default" name="area3">
+				<?php $options3 = array('pie', 'bar', 'line'); //pilihan grafiknya
+				foreach ($options3 as $area3) { //untuk perulangan
+					$selected = @$_POST['area3'] == $area3 ? ' selected3="selected3"' : '';				//menampilkan pilihan yang sudah dipilih 
+					echo '<option value="' . $area3 . '"' . $selected3 . '>' . $area3 . '</option>';
+				}?>
+			</select>
+		</div>
+		<label>Pilih Urutan</label>
+		<div class="input-field col s12" > 
+			<select class="browser-default" name="area4">
+				<?php $options4 = array('ASC', 'DESC'); //pilihan grafiknya
+				foreach ($options4 as $area4) { //untuk perulangan
+					$selected = @$_POST['area4'] == $area4 ? ' selected4="selected4"' : '';				//menampilkan pilihan yang sudah dipilih 
+					echo '<option value="' . $area4 . '"' . $selected4 . '>' . $area4 . '</option>';
+				}?>
+			</select>
+		</div>
+        <div class="row">
+            <input class="waves-effect waves-light btn-small" type="submit" name="submit" value="oke"/>
+        </div>
+    </form>
 
 	<table border="1">
 		<thead>
@@ -53,7 +96,7 @@ error_reporting(0); //untuk menghilangkan notif error pada program
 		<tbody>
 			<?php 
 			$no = 1;
-			$data = mysqli_query($koneksi,"SELECT obat.nama_obat as nama, pasok.kode_obat as kode, pasok.harga_beli as harga_beli ,penjualan_detail.harga as harga_jual, penjualan_detail.harga-pasok.harga_beli as keuntungan, MONTH(tgl_penjualan) as tanggal_jual FROM obat, penjualan_detail, pasok, penjualan WHERE obat.kode_obat=pasok.kode_obat and obat.kode_obat=penjualan_detail.kode_obat GROUP BY pasok.kode_obat");
+			$data = mysqli_query($koneksi,"SELECT obat.nama_obat as nama, pasok.kode_obat as kode, pasok.harga_beli as harga_beli ,penjualan_detail.harga as harga_jual, penjualan_detail.harga-pasok.harga_beli as keuntungan, MONTH(tgl_penjualan) as tanggal_jual FROM obat, penjualan_detail, pasok, penjualan WHERE obat.kode_obat=pasok.kode_obat and obat.kode_obat=penjualan_detail.kode_obat and YEAR(tgl_penjualan)='$tahun' GROUP BY pasok.kode_obat ORDER BY keuntungan='$urutan'");
 			while($d=mysqli_fetch_array($data)){
 				?>
 				<tr>
@@ -78,12 +121,12 @@ error_reporting(0); //untuk menghilangkan notif error pada program
 			type: 'bar',
 			data: {
 				labels: [<?php 
-					$tanggal_jual= mysqli_query($koneksi, "SELECT MONTH(tgl_penjualan) as tanggal_jual FROM obat, penjualan_detail, pasok, penjualan WHERE obat.kode_obat=pasok.kode_obat and obat.kode_obat=penjualan_detail.kode_obat GROUP BY pasok.kode_obat");
+					$tanggal_jual= mysqli_query($koneksi, "SELECT MONTH(tgl_penjualan) as tanggal_jual FROM obat, penjualan_detail, pasok, penjualan WHERE obat.kode_obat=pasok.kode_obat and obat.kode_obat=penjualan_detail.kode_obat and YEAR(tgl_penjualan)='$tahun' GROUP BY pasok.kode_obat ORDER BY keuntungan='$urutan'");
 				while ($b = mysqli_fetch_array($tanggal_jual)) { echo '"' . $b['tanggal_jual'] . '",';} ?>
 					],
 				datasets: [{
 					label: '',
-					data: [<?php $keuntungan = mysqli_query($koneksi, "SELECT penjualan_detail.harga-pasok.harga_beli as keuntungan FROM obat, penjualan_detail, pasok, penjualan WHERE obat.kode_obat=pasok.kode_obat and obat.kode_obat=penjualan_detail.kode_obat GROUP BY pasok.kode_obat");
+					data: [<?php $keuntungan = mysqli_query($koneksi, "SELECT penjualan_detail.harga-pasok.harga_beli as keuntungan FROM obat, penjualan_detail, pasok, penjualan WHERE obat.kode_obat=pasok.kode_obat and obat.kode_obat=penjualan_detail.kode_obat and YEAR(tgl_penjualan)='$tahun' GROUP BY pasok.kode_obat ORDER BY keuntungan='$urutan'");
 while ($p = mysqli_fetch_array($keuntungan)) { echo '"' . $p['keuntungan'] . '",';}?>],
                             backgroundColor: [
 					'rgba(255, 99, 132, 0.2)',
