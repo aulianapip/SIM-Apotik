@@ -24,8 +24,15 @@
 	}
 
 	//edit.php 
-	function update(){
-
+	function update(){ //Tesya Pratiwi 1700018246
+		include 'conect.php'; //untuk menyambungkan ke database yang sudah dibuat dengan nama folder conect.php
+		$q1 = "UPDATE pelanggan SET Nama='$Nama',Jk='$jeniskelamin', NoHP='$NoHP', Email='$Email', Alamat='$Alamat' WHERE ID ='$ID'";
+		//query update berguna untuk mengedit atau mengupudate ke dalam data pelanggan.
+		
+		$SQL = mysqli_query($connect,$q1); //query ini berfungsi untuk memanggil fungsi conect untuk memberikan akses ke database dan inisialisasi dari querysql
+		echo "berhasil !"; //perintah php yang akan menampilkan deskripsi script alert
+		header("location:index.php?pesan=Edit");//jika berhasil maka akan membuka ke jendela lokasi file index.php
+		
 		return 
 	}
 	//hapus.php
