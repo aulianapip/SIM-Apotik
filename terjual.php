@@ -1,3 +1,4 @@
+<! - - LUSSY IKA SUKMAWATI 1700018261-->
 <!DOCTYPE html>
 <html>
 <head>
@@ -103,18 +104,19 @@
 <table class="table is-fullwidth" >
   <thead>
     <tr>
-      <th scope="col">Kode Obat</th>
-      <th scope="col">Kode Barcode</th>
-      <th scope="col">Status</th>
-      <th scope="col">Catatan</th>
-      <th scope="col">Tanggal</th>
-      <th scope="col">ACTION</th>
+      <th scope="col">Kode Obat</th> //menampilkan kode obat
+      <th scope="col">Kode Barcode</th> //menampilkan kode barcode
+      <th scope="col">Status</th> //cek status
+      <th scope="col">Catatan</th> //catatan untuk menampilkan kehilangan/ kerusakan/terjual
+      <th scope="col">Tanggal</th> menampilkan tanggal
+      <th scope="col">ACTION</th> menampilkan action
     </tr>
   </thead>
     <?php
       include "db.php";
 
-      $query = mysqli_query($connect,"SELECT barcode.kode_obat AS kode_obat,opname.kode_barcode AS kode_barcode,opname.status AS status,catatan,tanggal from opname INNER JOIN barcode where opname.kode_barcode = barcode.kode_barcode AND opname.status = 'TERJUAL' ");
+      $query = mysqli_query($connect,"SELECT barcode.kode_obat AS kode_obat,opname.kode_barcode AS kode_barcode,opname.status AS status,catatan,tanggal from opname INNER JOIN barcode where opname.kode_barcode = barcode.kode_barcode AND opname.status = 'TERJUAL' "); //query menampilkan data opname dengan status terjual
+
       foreach ($query as $data) {
         echo "<tr>
                 <td>$data[kode_obat]</td>
