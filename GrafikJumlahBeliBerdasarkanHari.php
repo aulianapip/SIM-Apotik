@@ -1,4 +1,7 @@
 <?php
+// Nama  : Alya Masitha
+// NIM   : 1700018236
+// Kelas : E
 $connect = mysqli_connect("localhost", "root", "", "sim-apotek");
 $hari_penjualan = mysqli_query($connect, "SELECT DAY(tgl_penjualan) as hari_penjualan FROM penjualan GROUP BY DAY(tgl_penjualan)");
 $jumlah_penjualanHari = mysqli_query($connect, "SELECT SUM(total_penjualan) as jumlah_penjualanHari FROM penjualan GROUP BY DAY(tgl_penjualan)");
