@@ -118,7 +118,7 @@ error_reporting(0); //untuk menghilangkan notif error pada program
 	<script>
 		var ctx = document.getElementById("myChart").getContext('2d');
 		var myChart = new Chart(ctx, {
-			type: 'bar',
+			type: '<?php echo $pilihan ?>',
 			data: {
 				labels: [<?php 
 					$tanggal_jual= mysqli_query($koneksi, "SELECT MONTH(tgl_penjualan) as tanggal_jual FROM obat, penjualan_detail, pasok, penjualan WHERE obat.kode_obat=pasok.kode_obat and obat.kode_obat=penjualan_detail.kode_obat and YEAR(tgl_penjualan)='$tahun' GROUP BY pasok.kode_obat ORDER BY keuntungan='$urutan'");
