@@ -1,4 +1,7 @@
 <?php
+// Nama  : Cendani Wukir Asih
+// NIM   : 1700018249
+// Kelas : E
 $connect = mysqli_connect("localhost", "root", "", "sim-apotek");
 $tahun_penjualan = mysqli_query($connect, "SELECT YEAR(tgl_penjualan) as tahun_penjualan FROM penjualan GROUP BY YEAR(tgl_penjualan)");
 $jumlah_penjualanTahun = mysqli_query($connect, "SELECT SUM(total_penjualan) as jumlah_penjualanTahun FROM penjualan GROUP BY YEAR(tgl_penjualan)");
