@@ -2,7 +2,7 @@
 <html>
 
 <head>
-	<title>GRAFIK PELANGGAN BERDASARKAN KOTA</title> 
+	<title>GRAFIK PELANGGAN BERDASARKAN KOTA</title> <!--menampilkan judul pada grafik-->
 	<script type="text/javascript" src="Chart.js/Chart.js"></script>
     <link rel="stylesheet" href="materialize.min.css">
 </head>
@@ -82,7 +82,7 @@ $koneksi = mysqli_connect("localhost", "root", "", "sim-apotek");//Menyambungkan
 				datasets: [{
 					label: '',
 					data: [<?php $kota = mysqli_query($koneksi, "SELECT COUNT(alamat) as jumlah_alamat FROM pelanggan GROUP BY Alamat");
-while ($p = mysqli_fetch_array($kota)) { echo '"' . $p['jumlah_alamat'] . '",';}?>],//menampilkan jumlah kota pada grafik
+while ($p = mysqli_fetch_array($kota)) { echo '"' . $p['jumlah_alamat'] . '",';}?>],//menampilkan jumlah kota pada grafik /
                             backgroundColor: [
 					'rgba(255, 99, 132, 0.2)',
 					'rgba(54, 162, 235, 0.2)',
