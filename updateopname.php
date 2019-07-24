@@ -38,16 +38,16 @@
       $total_obat = $row1['jumlah_pasok'];
       $total_obat=$total_obat-$totalopname;
       mysqli_query($koneksi,"UPDATE pasok SET jumlah_pasok='$total_obat' WHERE kode_obat='$kode_obat'");
-      
+
       mysqli_query($koneksi,"UPDATE opname SET kode_opname='$kode_opname', kode_obat='$kode_obat', hilang='$hilang', rusak='$rusak', dipinjam='$dipinjam', status='$status', catatan='$catatan', tanggal=curdate() WHERE kode_opname='$kode_opname'");
       header("location: dataopname.php");
-    }else{
-      include "koneksi.php";
-    $opname =$_GET['kode_opname'];
-    $query = mysqli_query($koneksi,"SELECT * FROM obat");
-    $query2 = mysqli_query($koneksi,"SELECT * FROM opname WHERE kode_opname = $opname");
-    $row = mysqli_fetch_array($query2);
-    }
+    } else{
+       include "koneksi.php";
+     $opname =$_GET['kode_opname'];
+     $query = mysqli_query($koneksi,"SELECT * FROM obat");
+     $query2 = mysqli_query($koneksi,"SELECT * FROM opname WHERE kode_opname = $opname");
+     $row = mysqli_fetch_array($query2);
+     }
    ?>
    <form class="from-horizontal" action="updateopname.php" method="POST" role="form" >
  <div class="form-group">
