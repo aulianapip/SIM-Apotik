@@ -12,7 +12,7 @@ Penjelasan class :
 
 
 <head>
-  <title>Tampil Data Obat</title>
+  <title>Tampil Data Obat Yang Dibeli dari suplier</title>
   <link rel="stylesheet" href="bulma.min.css"> <!--pemanggilan library css untuk mempercantik tampilan-->
 </head>
 <nav class="navbar is-success" role="navigation" aria-label="main navigation"> <!--fungsi untuk mempercantik tampilan navigasi bar di atas-->
@@ -21,7 +21,7 @@ Penjelasan class :
 
     <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
       <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span> <!-- Tombol untuk menu muncul atau ditutup-->
       <span aria-hidden="true"></span>
     </a>
   </div>
