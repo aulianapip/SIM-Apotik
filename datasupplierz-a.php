@@ -1,9 +1,12 @@
 <?php
-	include 'db.php';
-	$QuerySql = "SELECT * FROM `supplier` ORDER BY `nama_pemasok` DESC";
+	include 'db.php'; //2. untuk memasukan databasenya
+	$QuerySql = "SELECT * FROM `supplier` ORDER BY `kode_supplier` DESC"; //2. query yang digunakan untuk menampilkan data supplier nama dari Z-A berdasarkan kode supplier sesuai database nya
 	$SQL = mysqli_query($connect, $QuerySql);
 ?>
-<!--Mohamad rifky fajri yang buat file ini-->
+<!--Mohamad rifky fajri
+    1700018239
+    E
+1. function ini berfungsi untuk menampilkan data supplier nama dari Z-A berdasarkan kode supplier sesuai databasenya-->
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,28 +16,22 @@
 <body>
 <nav class="navbar is-success" role="navigation" aria-label="main navigation">
   <div class="navbar-brand">
-   
-
     <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
       <span aria-hidden="true"></span>
       <span aria-hidden="true"></span>
       <span aria-hidden="true"></span>
     </a>
   </div>
-
   <div id="navbarBasicExample" class="navbar-menu">
     <div class="navbar-start">
       <a class="navbar-item" href="login.html">
     <img src="logut.png"></img>
       </a>
-
       <div class="navbar-item has-dropdown is-hoverable">
         <a class="navbar-link">
           Daftar Tabel
         </a>
-
         <div class="navbar-dropdown">
-          
           <a class="navbar-item" href="dataobat.php">
             Obat
           </a>
@@ -44,20 +41,16 @@
           <a class="navbar-item" href="datasupiler.php">
             Supplier
           </a>
-        <a class="navbar-item" href="dataopname.php">
+          <a class="navbar-item" href="dataopname.php">
             Opname
           </a>
         </div>
       </div>
-
       <div class="navbar-item has-dropdown is-hoverable">
         <a class="navbar-link">
           Filter
         </a>
-
         <div class="navbar-dropdown">
-          
-          
           <a class="navbar-item" href="datasupilernama.php">
             Nama A-Z
           </a>
@@ -66,7 +59,7 @@
           </a>
         </div>
       </div>
-  <a class="navbar-item" href="inputobat.php">
+      <a class="navbar-item" href="inputobat.php">
        Tambah Obat
       </a>
        <a class="navbar-item" href="inputsupiler.php">
@@ -78,26 +71,21 @@
           <input class="input" type="text" placeholder="CARI SUPPILER" name="carisupp"> 
         </div>
 </div>
-        </form>
-  </a>
-  </div>
+</form>
+</a>
 </div>
-    </div>
-
-    
-  </div>
+</div>
+</div>
+</div>
 </nav>
-<table class="table is-fullwidth" >
-<thead>
+  <table class="table is-fullwidth" >
+  <thead>
     <tr>
       <th scope="col">Nama Pemasok</th>
       <th scope="col">Nomor Telepon</th>
       <th scope="col">Alamat</th>
       <th scope="col">Contact Person</th>
-      <th scope="col">Kode Supplier</th>
-     
-      
-     
+      <th scope="col">Kode Supplier</th>   
     </tr>
   </thead>
     <?php
@@ -108,8 +96,6 @@
             <td>$key[alamat]</td>
             <td>$key[contact_person]</td>
             <td>$key[kode_supplier]</td>
-            
-            
         </tr>";
       }
     ?>
