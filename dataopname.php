@@ -62,16 +62,16 @@ kami menginputkan status kondisi barang yang berada ditoko, status antara lain a
 <table class="table is-fullwidth" >
   <thead>
     <tr>
-      <th scope="col">Kode Barcode</th>
-      <th scope="col">Kode Kode Obat</th>
-      <th scope="col">Status</th>
-      <th scope="col">Tanggal</th>
-      <th scope="col">Catatan</th>
-      <th scope="col">Action</th>
+      <th scope="col">Kode Barcode</th>Insialisasi barcod
+      <th scope="col">Kode Kode Obat</th>inisialisasi kodeobat
+      <th scope="col">Status</th>inisialisasistatys
+      <th scope="col">Tanggal</th>inisialisasi tanggal
+      <th scope="col">Catatan</th>inisialisasi catatan
+      <th scope="col">Action</th>inisialisasi action
     </tr>
   </thead>
 		<?php
-			include "db.php";
+			include "db.php";//koneksi ke database
 
       $query = mysqli_query($connect,"SELECT barcode.kode_obat AS kode_obat,opname.kode_barcode AS kode_barcode,opname.status AS status,catatan,tanggal from opname INNER JOIN barcode where opname.kode_barcode = barcode.kode_barcode order by nomor_pasok ASC"); //Menampilkan data opname berdasarkan asc, atas kebawah astu sebaliknya. Ini mengambl database  dari barcode dan opname  yang di tampilkan ( kode obat, kode barcot, status, catatan dan tanggal )
 			foreach ($query as $data) {
@@ -84,7 +84,7 @@ kami menginputkan status kondisi barang yang berada ditoko, status antara lain a
                 <td><a href='edit_opname.php?kode_barcode=$data[kode_barcode]'>EDIT</a> | 
                 echo "<a href=\"delete_opname.php?kode_barcode=$data[kode_barcode]"\ onclick=\”return confirm(‘Yakin Hapus?’);\”>DELETE</a>"
             </td>
-              </tr>";//tombol validasi untuk menghapus data opname dengan status opname 
+              </tr>";//tombol validasi untuk menghapus data opname dengan status opname =>>VALIDASI
 			}
 		?>
 </table>

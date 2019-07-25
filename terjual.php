@@ -122,15 +122,15 @@ kami menginputkan status kondisi barang yang berada ditoko, status antara lain a
 
       foreach ($query as $data) {//query dinisialisasikan menjadi data
         echo "<tr>
-                <td>$data[kode_obat]</td>
+                <td>$data[kode_obat]</td 
                 <td>$data[kode_barcode]</td>
                 <td>$data[status]</td>
                 <td>$data[catatan]</td>
                 <td>$data[tanggal]</td>
-               <td><a href='edit_opname.php?kode_barcode=$data[kode_barcode]'>EDIT</a> | 
-                echo "<a href=\"delete_opname.php?kode_barcode=$data[kode_barcode]"\ onclick=\”return confirm(‘Yakin Hapus?’);\”>DELETE</a>"
+                <td><a href='edit_opname.php?kode_barcode=$data[kode_barcode]'>EDIT</a> | 
+                 echo "<a href=\"delete_opname.php?kode_barcode=$data[kode_barcode]"\ onclick=\”return confirm(‘Yakin Hapus?’);\”>DELETE</a>"
             </td>
-              </tr>";//tombol validasi untuk menghapus data opname dengan status opname terjual 
+              </tr>";//Tombol Validasi Untuk menghapus data opname dengan status opname terjual 
       }
     ?>
 </table>
