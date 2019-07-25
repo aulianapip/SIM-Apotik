@@ -1,7 +1,7 @@
 <?php
 // M SULTAN AGAM YANG BUAT
 	include 'db.php';
-	$QuerySql = "SELECT * FROM obat inner join jenis_obat on jenis_obat.kode_jenis=obat.kode_jenis where jenis_obat.nama_jenis='Tetes'";
+	$QuerySql = "SELECT  * FROM obat  where jenis='Tetes'";
 	$SQL = mysqli_query($connect, $QuerySql);
 ?>
 
@@ -15,7 +15,6 @@
 <nav class="navbar is-success" role="navigation" aria-label="main navigation">
   <div class="navbar-brand">
    
-
     <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
       <span aria-hidden="true"></span>
       <span aria-hidden="true"></span>
@@ -105,8 +104,6 @@
 </div>
 </div>
 
-
-
   <a class="navbar-item" href="inputobat.php">
        Tambah Obat
       </a>
@@ -119,14 +116,12 @@
           <input class="input" type="text" placeholder="CARI OBAT" name="cari"> 
         </div>
 </div>
-        </form>
-  </a>
-  </div>
+</form>
+</a>
 </div>
-    </div>
-
-    
-  </div>
+</div>
+</div>    
+</div>
 
 </nav>
 <table class="table is-fullwidth" >
@@ -134,36 +129,20 @@
     <tr>
       <th scope="col">Nama Obat</th>
       <th scope="col">Harga Obat</th>
-      <th scope="col">Kode Obat</th>
       <th scope="col">Jenis Obat</th>
-      <th scope="col">Kadaluarsa Obat</th>   <!--mohamad rifky fajri perbaiki tabel tanggal kadaluarsa-->
-      <th scope="col">Stok Obat</th>
+      <th scope="col">Kode Obat</th>
+      
     </tr>
   </thead>
     <?php
       foreach ($SQL as $key) {
-        if($key['Stok_Obat']<15){
-        echo "<tr>
-            <td bgcolor=red>$key[nama_obat]</td>
-            <td bgcolor=red>$key[harga_obat]</td>
-            <td bgcolor=red>$key[kode_obat]</td>
-            <td bgcolor=red>$key[nama_jenis]</td>
-            <td bgcolor=red>$key[kadaluarsa_obat]</td>
-            <td bgcolor=red>$key[Stok_Obat]</td>
-            
-        </tr>";
-      }
-      else{
         echo "<tr>
             <td>$key[nama_obat]</td>
-            <td>$key[harga_obat]</td>
+            <td>$key[harga]</td>
+            <td>$key[jenis]</td>
             <td>$key[kode_obat]</td>
-            <td>$key[nama_jenis]</td>
-            <td>$key[kadaluarsa_obat]</td>
-            <td>$key[Stok_Obat]</td>
             
         </tr>";
-      }
       }
     ?>
 </table>
