@@ -1,6 +1,12 @@
 <?php
  
- 
+ //NAMA : FALAKH BURHANUDDIN S
+//NIM : 1700018227
+//KELAS : PRPL -E
+
+//Fitur POS, fitur untuk menjalankan fungsi kasir dan operasional penjualan apotik 
+
+
 opendb();
 # Pengaturan tanggal komputer
 date_default_timezone_set("Asia/Jakarta");
@@ -87,7 +93,7 @@ function updateNoTrans($no){
 }	
 
 function no_id($tabel){
-	//Fungsi membuat no id dg menggunakan mysqlii_*
+	//Fungsi membuat no id dg menggunakan mysqlii
 	$hsl = querydb("SELECT * FROM $tabel LIMIT 1"); 
 	$klm = mysqli_fetch_field_direct($hsl,0);
 	$klmNama = $klm->name;
@@ -197,7 +203,7 @@ function form_tanggal($nama,$value=''){
 	";
 }
 
-function angkaTerbilang($x){
+function angkaTerbilang($x){// fungsi ini menampilkan angka dalam bentuk tulisan
   $abil = array("", "satu", "dua", "tiga", "empat", "lima", "enam", "tujuh", "delapan", "sembilan", "sepuluh", "sebelas");
   if ($x < 12)
     return " " . $abil[$x];
