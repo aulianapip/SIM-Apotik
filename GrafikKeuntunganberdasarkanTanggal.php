@@ -132,7 +132,7 @@ error_reporting(0); //untuk menghilangkan notif error pada program
 		<tbody>
 			<?php 
 			$no = 1;
-			$data = mysqli_query($koneksi,"SELECT obat.nama_obat as nama, pasok.kode_obat as kode, pasok.harga_beli as harga_beli ,penjualan_detail.harga as harga_jual, penjualan_detail.harga-pasok.harga_beli as keuntungan, Day(tgl_penjualan) as tanggal_jual, MONTH(tgl_penjualan) as bulan_jual, YEAR(tgl_penjualan) as tahun_jual FROM obat, penjualan_detail, pasok, penjualan WHERE obat.kode_obat=pasok.kode_obat and obat.kode_obat=penjualan_detail.kode_obat and MONTH(tgl_penjualan)='$bulan' and YEAR(tgl_penjualan)='$tahun' GROUP BY pasok.kode_obat ORDER BY keuntungan $urutan");
+			$data = mysqli_query($koneksi,"SELECT obat.nama_obat as nama, pasok.kode_obat as kode, pasok.harga_beli as harga_beli ,penjualan_detail.harga as harga_jual, penjualan_detail.harga-pasok.harga_beli as keuntungan, Day(tgl_penjualan) as tanggal_jual, MONTH(tgl_penjualan) as bulan_jual, YEAR(tgl_penjualan) as tahun_jual FROM obat, penjualan_detail, pasok, penjualan WHERE obat.kode_obat=pasok.kode_obat and obat.kode_obat=penjualan_detail.kode_obat and MONTH(tgl_penjualan)='$bulan' and YEAR(tgl_penjualan)='$tahun' and penjualan.no_transaksi=penjualan_detail.no_transaksi GROUP BY tgl_penjualan ORDER BY keuntungan $urutan");
 			while($d=mysqli_fetch_array($data)){
 				?>
 				<tr>
@@ -159,7 +159,7 @@ error_reporting(0); //untuk menghilangkan notif error pada program
 			type: '<?php echo $pilihan ?>',
 			data: {
 				labels: [<?php 
-					$tanggal_jual= mysqli_query($koneksi, "SELECT Day(tgl_penjualan) as tanggal_jual FROM obat, penjualan_detail, pasok, penjualan WHERE obat.kode_obat=pasok.kode_obat and obat.kode_obat=penjualan_detail.kode_obat and MONTH(tgl_penjualan)='$bulan' and YEAR(tgl_penjualan)='$tahun' GROUP BY pasok.kode_obat ORDER BY keuntungan $urutan");
+					$tanggal_jual= mysqli_query($koneksi, "SELECT Day(tgl_penjualan) as tanggal_jual FROM obat, penjualan_detail, pasok, penjualan WHERE obat.kode_obat=pasok.kode_obat and obat.kode_obat=penjualan_detail.kode_obat and MONTH(tgl_penjualan)='$bulan' and YEAR(tgl_penjualan)='$tahun' GROUP BY pasok.kode_obat ORDER BY penjualan_detail.harga-pasok.harga_beli $urutan");
 				while ($b = mysqli_fetch_array($tanggal_jual)) { echo '"' . $b['tanggal_jual'] . '",';} ?>
 					],
 				datasets: [{

@@ -8,8 +8,8 @@ error_reporting(0); //untuk menghilangkan notif error pada program
     if (isset($_POST['submit'])) { // untuk mensubmite post area
     }
 
-$tanggal = mysqli_query($connect, "SELECT DAY(tanggal_pasok)as tanggal FROM pasok, supplier WHERE supplier.kode_supplier=pasok.kode_supplier ");
-$jumlah = mysqli_query($connect, "SELECT count(nama_pemasok) as jumlah FROM pasok, supplier WHERE supplier.kode_supplier=pasok.kode_supplier"); 
+$tanggal = mysqli_query($connect, "SELECT DAY(tanggal_pasok) as tanggal FROM pasok, supplier WHERE supplier.kode_supplier=pasok.kode_supplier and MONTH(tanggal_pasok)='$bulan' and YEAR(tanggal_pasok)='$tahun' GROUP BY DAY(tanggal_pasok) ORDER BY jumlah_pasok $urutan");
+$jumlah = mysqli_query($connect, "SELECT jumlah_pasok as jumlah FROM pasok, supplier WHERE supplier.kode_supplier=pasok.kode_supplier and MONTH(tanggal_pasok)='$bulan' and YEAR(tanggal_pasok)='$tahun' GROUP BY DAY(tanggal_pasok) ORDER BY jumlah_pasok $urutan"); 
 
 ?>
 <html>
@@ -37,7 +37,7 @@ $jumlah = mysqli_query($connect, "SELECT count(nama_pemasok) as jumlah FROM paso
   </nav>
  
     <center>
-    <h3>GRAFIK KEUNTUNGAN BERDASARKAN TANGGAL
+    <h3>GRAFIK SUPPLY BERDASARKAN TANGGAL
         <?php 
             echo 'PADA BULAN'. ' '.$bulan.'';
             echo ' PADA TAHUN'. ' '.$tahun.'';
@@ -59,7 +59,7 @@ $jumlah = mysqli_query($connect, "SELECT count(nama_pemasok) as jumlah FROM paso
         <tbody>
             <?php 
             $no = 1;
-            $data = mysqli_query($connect,"SELECT supplier.nama_pemasok, supplier.kode_supplier,DAY(tanggal_pasok)as tanggal, count(nama_pemasok) as jumlah FROM pasok, supplier WHERE supplier.kode_supplier=pasok.kode_supplier ");
+            $data = mysqli_query($connect,"SELECT supplier.nama_pemasok, supplier.kode_supplier,DAY(tanggal_pasok)as tanggal, jumlah_pasok as jumlah FROM pasok, supplier WHERE supplier.kode_supplier=pasok.kode_supplier and MONTH(tanggal_pasok)='$bulan' and YEAR(tanggal_pasok)='$tahun' ORDER BY jumlah $urutan");
             while($d=mysqli_fetch_array($data)){
                 ?>
                 <tr>
@@ -231,10 +231,13 @@ $jumlah = mysqli_query($connect, "SELECT count(nama_pemasok) as jumlah FROM paso
             <select class="browser-default" name="area"">
                 <?php
                 $bulan_pasok = mysqli_query($connect, "SELECT MONTH(tanggal_pasok) as bulan_pasok FROM pasok, supplier WHERE supplier.kode_supplier=pasok.kode_supplier ");
-                 $options = mysqli_fetch_array($bulan_pasok); // menampilkan nama pada opsi area 
-                foreach ($options as $area) { // opsi pada form area
+                 while( $options = mysqli_fetch_assoc( $bulan_pasok)){
+                 foreach ($options as $area) { // opsi pada form area
                     $selected = @$_POST['area'] == $area ? ' selected="selected"' : ''; // fungsi memeilih opsi area
                     echo '<option value="' . $area . '"' . $selected . '>' . $area . '</option>'; // untuk membuat tabel dari nama nama pada opsi
+                }
+                  // menampilkan nama pada opsi area 
+
                 }?>
             </select>
         </div>

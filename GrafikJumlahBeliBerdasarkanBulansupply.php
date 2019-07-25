@@ -1,15 +1,15 @@
 <?php
 $connect = mysqli_connect("localhost", "root", "", "sim-apotek");
 error_reporting(0); //untuk menghilangkan notif error pada program
-    $bulan = $_POST['area']; 
     $tahun = $_POST['area2'];
     $pilihan = $_POST['area3'];
     $urutan = $_POST['area4'];//membuat area nama
     if (isset($_POST['submit'])) { // untuk mensubmite post area
     }
 
-$tanggal = mysqli_query($connect, "SELECT MONTH(tanggal_pasok)as tanggal FROM pasok, supplier WHERE supplier.kode_supplier=pasok.kode_supplier ");
-$jumlah = mysqli_query($connect, "SELECT count(nama_pemasok) as jumlah FROM pasok, supplier WHERE supplier.kode_supplier=pasok.kode_supplier"); //
+$bulan = mysqli_query($connect, "SELECT Month(tanggal_pasok) as bulan FROM pasok, supplier WHERE supplier.kode_supplier=pasok.kode_supplier and YEAR(tanggal_pasok)='$tahun' GROUP BY Month(tanggal_pasok) ORDER BY jumlah_pasok $urutan");
+$jumlah = mysqli_query($connect, "SELECT jumlah_pasok as jumlah FROM pasok, supplier WHERE supplier.kode_supplier=pasok.kode_supplier and YEAR(tanggal_pasok)='$tahun' GROUP BY Month(tanggal_pasok) ORDER BY jumlah_pasok $urutan"); 
+
 ?>
 <html>
     <head>
@@ -34,14 +34,16 @@ $jumlah = mysqli_query($connect, "SELECT count(nama_pemasok) as jumlah FROM paso
       </ul>
     </div>
   </nav>
-  <center>
-    <h3>GRAFIK KEUNTUNGAN BERDASARKAN TANGGAL
+ 
+    <center>
+    <h3>GRAFIK SUPPLY BERDASARKAN BULAN
         <?php 
             echo ' PADA TAHUN'. ' '.$tahun.'';
             echo ' URUTAN'. ' '.$urutan.'';
          ?>
         
     </h3></center>
+    
     
     <table border="1">
         <thead>
@@ -55,13 +57,13 @@ $jumlah = mysqli_query($connect, "SELECT count(nama_pemasok) as jumlah FROM paso
         <tbody>
             <?php 
             $no = 1;
-            $data = mysqli_query($connect,"SELECT supplier.nama_pemasok, supplier.kode_supplier,MONTH(tanggal_pasok)as tanggal, count(nama_pemasok) as jumlah FROM pasok, supplier WHERE supplier.kode_supplier=pasok.kode_supplier ");
+            $data = mysqli_query($connect,"SELECT supplier.nama_pemasok, supplier.kode_supplier,MONTH(tanggal_pasok) as bulan, jumlah_pasok as jumlah FROM pasok, supplier WHERE supplier.kode_supplier=pasok.kode_supplier and YEAR(tanggal_pasok)='$tahun' ORDER BY jumlah $urutan");
             while($d=mysqli_fetch_array($data)){
                 ?>
                 <tr>
                     <td><?php echo $d['nama_pemasok']; ?></td>
                     <td><?php echo $d['kode_supplier']; ?></td>
-                    <td><?php echo $d['tanggal']; ?></td>
+                    <td><?php echo $d['bulan']; ?></td>
                     <td><?php echo $d['jumlah']; ?></td>
                     </tr>
                 <?php 
@@ -75,7 +77,7 @@ $jumlah = mysqli_query($connect, "SELECT count(nama_pemasok) as jumlah FROM paso
             var myChart = new Chart(ctx, {
                 type: '<?php echo $pilihan ?>',
                 data: {
-                    labels: [<?php while ($b = mysqli_fetch_array($tanggal)) { echo '"' . $b['tanggal'] . '",';}?>],
+                    labels: [<?php while ($b = mysqli_fetch_array($bulan)) { echo '"' . $b['bulan'] . '",';}?>],
                     datasets: [{
                             label: '# of Votes',
                             data: [<?php while ($p = mysqli_fetch_array($jumlah)) { echo '"' . $p['jumlah'] . '",';}?>],
@@ -221,7 +223,7 @@ $jumlah = mysqli_query($connect, "SELECT count(nama_pemasok) as jumlah FROM paso
                 }
             });
         </script>
-        <form action="" method="post">
+         <form action="" method="post">
        <label>Pilih Tahun</label>
        <div class="input-field col s12" >
             <select class="browser-default" name="area2"">

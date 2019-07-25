@@ -82,13 +82,13 @@ $koneksi = mysqli_connect("localhost", "root", "", "sim-apotek");
 				<th>Harga Beli</th>
 				<th>Harga Jual</th>
 				<th>Keuntungan</th>
-				<th>Bulan</th>
+				<th>Tahun</th>
 			</tr>
 		</thead>
 		<tbody>
 			<?php 
 			$no = 1;
-			$data = mysqli_query($koneksi,"SELECT obat.nama_obat as nama, pasok.kode_obat as kode, pasok.harga_beli as harga_beli ,penjualan_detail.harga as harga_jual, penjualan_detail.harga-pasok.harga_beli as keuntungan, MONTH(tgl_penjualan) as tanggal_jual FROM obat, penjualan_detail, pasok, penjualan WHERE obat.kode_obat=pasok.kode_obat and obat.kode_obat=penjualan_detail.kode_obat GROUP BY pasok.kode_obat ORDER BY keuntungan $urutan");
+			$data = mysqli_query($koneksi,"SELECT obat.nama_obat as nama, pasok.kode_obat as kode, pasok.harga_beli as harga_beli ,penjualan_detail.harga as harga_jual, penjualan_detail.harga-pasok.harga_beli as keuntungan, YEAR(tgl_penjualan) as tahun_jual FROM obat, penjualan_detail, pasok, penjualan WHERE obat.kode_obat=pasok.kode_obat and obat.kode_obat=penjualan_detail.kode_obat GROUP BY pasok.kode_obat ORDER BY keuntungan $urutan");
 			while($d=mysqli_fetch_array($data)){
 				?>
 				<tr>
@@ -98,7 +98,7 @@ $koneksi = mysqli_connect("localhost", "root", "", "sim-apotek");
 					<td><?php echo $d['harga_beli']; ?></td>
 					<td><?php echo $d['harga_jual']; ?></td>
 					<td><?php echo $d['keuntungan']; ?></td>
-					<td><?php echo $d['tanggal_jual']; ?></td>				
+					<td><?php echo $d['tahun_jual']; ?></td>				
 				</tr>
 				<?php 
 			}
@@ -113,12 +113,12 @@ $koneksi = mysqli_connect("localhost", "root", "", "sim-apotek");
 			type: '<?php echo $pilihan ?>',
 			data: {
 				labels: [<?php 
-					$tanggal_jual= mysqli_query($koneksi, "SELECT YEAR(tgl_penjualan) as tanggal_jual FROM obat, penjualan_detail, pasok, penjualan WHERE obat.kode_obat=pasok.kode_obat and obat.kode_obat=penjualan_detail.kode_obat GROUP BY pasok.kode_obat");
+					$tanggal_jual= mysqli_query($koneksi, "SELECT YEAR(tgl_penjualan) as tanggal_jual FROM obat, penjualan_detail, pasok, penjualan WHERE obat.kode_obat=pasok.kode_obat and obat.kode_obat=penjualan_detail.kode_obat GROUP BY pasok.kode_obat ORDER BY penjualan_detail.harga-pasok.harga_beli $urutan");
 				while ($b = mysqli_fetch_array($tanggal_jual)) { echo '"' . $b['tanggal_jual'] . '",';} ?>
 					],
 				datasets: [{
 					label: '',
-					data: [<?php $keuntungan = mysqli_query($koneksi, "SELECT penjualan_detail.harga-pasok.harga_beli as keuntungan FROM obat, penjualan_detail, pasok, penjualan WHERE obat.kode_obat=pasok.kode_obat and obat.kode_obat=penjualan_detail.kode_obat GROUP BY pasok.kode_obat");
+					data: [<?php $keuntungan = mysqli_query($koneksi, "SELECT penjualan_detail.harga-pasok.harga_beli as keuntungan FROM obat, penjualan_detail, pasok, penjualan WHERE obat.kode_obat=pasok.kode_obat and obat.kode_obat=penjualan_detail.kode_obat GROUP BY pasok.kode_obat ORDER BY keuntungan $urutan");
 while ($p = mysqli_fetch_array($keuntungan)) { echo '"' . $p['keuntungan'] . '",';}?>],
                             backgroundColor: [
 					'rgba(255, 99, 132, 0.2)',

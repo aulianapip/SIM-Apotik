@@ -135,7 +135,7 @@ $jumlah_pasok= mysqli_query($connect, "SELECT jumlah_pasok FROM supplier,pasok W
       <div class="card ">
         <div class="card-content black-text">
           <center><i class="medium material-icons"></i><span class="card-title"><b>Supply Harian</b></span>
-           <a class="waves-effect waves-light btn" href="GrafikJumlahBeliBerdasarkanBulansupply.php">Hari</a>
+           <a class="waves-effect waves-light btn" href="GrafikJumlahBeliBerdasarkanHarisupply.php">Hari</a>
         </div>
         <div class="card-action">
             </div>
