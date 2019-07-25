@@ -1,8 +1,8 @@
 <?php
-  include 'db.php'; // untuk memasukan database nya
-  $carisupp = $_POST['carisupp']; // untuk variabel cari supplier
-  $QuerySql = "SELECT `nama_pemasok`,`nomor_telepon`,`alamat`,`contact_person`,`kode_supplier` FROM`supplier` WHERE nama_pemasok LIKE '%$carisupp%'"; // query mencari data supplier berdasarkan nama misal kita mencari nama supplier abadi maka muncul supplier yang namanya ada nama abadi nya
-  $SQL = mysqli_query($connect, $QuerySql); // untuk menkoneksi kan query dengan databasenya
+  include 'db.php'; //2. untuk memasukan database nya
+  $carisupp = $_POST['carisupp']; //2. untuk variabel cari supplier
+  $QuerySql = "SELECT `nama_pemasok`,`nomor_telepon`,`alamat`,`contact_person`,`kode_supplier` FROM`supplier` WHERE nama_pemasok LIKE '%$carisupp%'"; // 2. query mencari data supplier berdasarkan nama misal kita mencari nama supplier abadi maka muncul supplier yang namanya ada nama abadi nya
+  $SQL = mysqli_query($connect, $QuerySql); //2. untuk menkoneksi kan query dengan databasenya
       if(mysqli_num_rows($SQL)>0){
 ?>
 <!--Mohamad rifky fajri 
