@@ -1,11 +1,14 @@
 <?php
-  include 'db.php';
-  $cari = $_POST['cari'];
-  $QuerySql = "SELECT `nama_obat`,`harga`,`jenis`,`kode_obat` FROM `obat` WHERE nama_obat LIKE '%$cari%' ";
+  include 'db.php'; // 2. untuk memasukan database nya
+  $cari = $_POST['cari']; // 2. untuk variabel cari obat
+  $QuerySql = "SELECT `nama_obat`,`harga`,`jenis`,`kode_obat` FROM `obat` WHERE nama_obat LIKE '%$cari%' "; // 2. query untuk mencari data obat berdasarkan nama obatnya berdasarkan database
   $SQL = mysqli_query($connect, $QuerySql);
       if(mysqli_num_rows($SQL)>0){
 ?>
-<!--Mohamad rifky fajri membuat file ini-->
+<!--Mohamad rifky fajri 
+    1700018239
+    E
+1. function cari supplier ini berfungsi untuk mencari data supplier dengan mencari berdasarkan nama supplier nya -->
 <!DOCTYPE html>
 <html>
 <head>
