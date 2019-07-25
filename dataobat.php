@@ -1,24 +1,14 @@
-<!--1.  Pada kelompok gudang, kami telah membuat beberapa kelas yang mempunyai fungsi sebagai berikut:
-• Fungsi Sorting Nama Obat A-Z : fitur ini berfungsi mengurutkan nama obat sesuai alpabet dari awalan huruf A sampai awalan huruf Z.
-• Fungsi Sorting Jenis Obat Kapsul : fitur ini berfungsi mensorting obat yang berjenis kapsul untuk di tampilkan.
-• Fungsi Menampilkan seluruh data obat
-• Fungsi Tanggal pasok obat
-• Function Update Data Obat : Fitur ini berfungsi mengupdate perubahan yang telah kita tambah, Kurang, dan mengedit sesuai database
-• Function Stok Obat Menipis : Fitur ini berfungsi menandai tabel obat yang stoknya telah menipis
-• Function Pencarian  Data Tidak Ditemukan : fitur ini berfungsi  jika kita mencari obat atau supplier yang tidak ada didatabase
-• Function Sorting Tanggal Supplier : fitur ini berfungsi mensorting obat dengan tanggal pemasok supplier yang telah memasok obat dari tanggal terdahulu
-• Function Tambah Obat : fitur ini berfungsi untuk menambah data obat baru ke dalam tabel Obat
-• Function Tambah Supllier : fitur ini berfungsi untuk menambah data supllier baru ke tabel Supllier
-• Function Cari Obat : fitur ini berfungsi buat mencari data obat yang ada di tabel obat
-• Fuction Cari Supplier : fitur ini berfungsi mncari data supplier yang ada di tabel supplier
-• Function Sorting Nama Supplier A-Z : fitur ini berfungsi untuk mengurutkan nama supplier dari A-Z
-• Function data suplier : fitur ini berfungsi untuk menampilkan data suplier sesuai database
-• Function sorting obat mahal : fitur ini berfungsi untuk mengurutkan harga obat dari yang termahal
--->
+<!--
+   UAS PRPL
+NAMA : MUHAMMAD AFRIZAL
+NIM : 1700018231
+KELAS : E
+1. Dataobat = Fitur ini berfungsi untuk menampilkan data seluruh data obat, Dengan bisa mengurutkan dari yang terkecil sampai terbesar dari stok obat-->
+
 <?php
 	include 'db.php';
-	$QuerySql = "SELECT * FROM `obat`, `jenis_obat` WHERE jenis_obat.kode_jenis=obat.kode_jenis order by Stok_Obat asc";
-	$SQL = mysqli_query($connect, $QuerySql); 
+	$QuerySql = "SELECT * FROM `obat`, `jenis_obat` WHERE jenis_obat.kode_jenis=obat.kode_jenis order by Stok_Obat asc"; //2.Menampilkan Seluruh data obat yang ada
+	$SQL = mysqli_query($connect, $QuerySql);
 //Function untuk menampilkan seluruh data obat yang ada >UTS Muhammad afrizal 1700018231
 // Function Sorting Stok Obat : dengan mengurutkan dengan query  dari yang terkecil sampai terbesar dari stok obat  -->UTS Arindra Wahyu C. K 1700018279
 ?> <!--Aditya Gusti Mandala Putra perbaiki query db.php-->
@@ -124,7 +114,7 @@
     </tr>
   </thead>
 	<?php foreach ($SQL as $key){
-        if($key['Stok_Obat']<15){
+        if($key['Stok_Obat']<15){ //2.untuk memberikan peringatan dengan warna yg berbeda jika stok obat <15
 				echo "<tr>
 					<td bgcolor=red>$key[nama_obat]</td>
 					<td bgcolor=red>$key[harga_obat]</td>
@@ -150,9 +140,7 @@
 
       }
 	}
-	// Function Stok Obat Menipis : Menampilkan data obat Dengan Menandai Tabel dengan warna merah jika obat dibawah 15 stok agar menambah stok agar tidak kehabisan dengan kondisi Stok Obat dibawah 15 maka tabel baris akan diwarna merah dan Stok Obat diatas 15 maka tabel biasa --> Arindra Wahyu C.K 1700018279
-		?>
-    <!--Arindra Wahyu , menandai obat yang stok menipis dataobat.php-->
+	
 </table>
 </body>
 </html>
