@@ -22,47 +22,7 @@ kami menginputkan status kondisi barang yang berada ditoko, status antara lain a
        $dipinjam = $_POST['dipinjam'];//mengisi variabel $dipinjam menjadi dipinjam jika status obat diisi dipinjam
        $catatan = $_POST['catatan'];
        $tanggal = $_POST['tanggal'];//batas Airla Ismail
-       
-       //Alwan Zaki 1700018259
-       if($rusak == 0 && $hilang == 0 && $dipinjam == 0 ){
-         $status = "Sesuai";//jika barang yang rusak,hilang, dan dipinjam tidak ada maka status = sesuai jika tidak status = tidak sesuai
-       }else{
-         $status = "Belum Sesuai";
-       }// batas pengerjaan zaki
-
-      //Fadhil Abigail Alvast
-      $query =mysqli_query($koneksi,"SELECT * FROM opname WHERE kode_opname = '$kode_opname'");
-      //memilih data yang akan diupdate berdasarkan kode opname
-      $row = mysqli_fetch_array($query);
-
-      $kurang_hilang = $row['hilang'];
-      $kurang_hilang1=$kurang_hilang-$hilang;
-      $kurang_dipinjam = $row['dipinjam'];
-      $kurang_dipinjam1=$kurang_dipinjam-$dipinjam;
-      $kurang_rusak = $row['rusak'];
-      $kurang_rusak1=$kurang_rusak-$rusak;
-      $totalopname = $kurang_rusak1 + $kurang_dipinjam1 + $kurang_hilang1 ;
-      //batas pngerjaan fadhil abigail alvast
-
-      //Reka Rachmadi Apriansyah - 1700018237
-      //bagian awal
-      $query1 =mysqli_query($koneksi,"SELECT * FROM pasok WHERE kode_obat = '$kode_obat' ");// Menampilkan tabel pasok semua artibut yang ditampilkan berdasarkan artibut kode_obat yang diisi ke var $query1
-      $row1 = mysqli_fetch_array($query1); //memilih untuk ditampilkan berdasarkan artibut pada var $query1 yang diisikan ke var $row1
-      $total_obat = $row1['jumlah_pasok']; //menampilkan artbut jumlah_pasok dan diisikan ke var $total_obat
-      $total_obat=$total_obat-$totalopname; //var $total_obat di kurangi var $totalopname diisikan ke var $total_obat
-      mysqli_query($koneksi,"UPDATE pasok SET jumlah_pasok='$total_obat' WHERE kode_obat='$kode_obat'");//update pasok pada artibut jumlah_pasok di update dengan var $total_obat berdasarkan kode_obat
-      //batas akhir pengerjaan reka
-
-      //NurMutmainnah
-      mysqli_query($koneksi,"UPDATE opname SET kode_opname='$kode_opname', kode_obat='$kode_obat', hilang='$hilang', rusak='$rusak', dipinjam='$dipinjam', status='$status', catatan='$catatan', tanggal=curdate() WHERE kode_opname='$kode_opname'");//update data opname sesuai dengan value 'kirim' 
-      header("location: dataopname.php");
-    } else{
-       include "koneksi.php";//koneksi database
-     $opname =$_GET['kode_opname'];
-     $query = mysqli_query($koneksi,"SELECT * FROM obat");
-     $query2 = mysqli_query($koneksi,"SELECT * FROM opname WHERE kode_opname = $opname");//memilih kode opname dari tabel opname, sesuai kode opname yang dipilih untuk diupdate(Mail)
-     $row = mysqli_fetch_array($query2);
-     }//btas pengerjaan NurMutmainnah
+      
    ?>
    <form class="from-horizontal" action="updateopname.php" method="POST" role="form" >
  <div class="form-group">
