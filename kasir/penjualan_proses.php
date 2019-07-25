@@ -172,9 +172,16 @@ if(isset($_POST['simpanJual'])){
 	
 }	
 //data:{setoranKasir:'',tglAwal:tglAwal,blnAwal:blnAwal,thnAwal:thnAwal,tglAkhir:tglAkhir,blnAkhir:blnAkhir,thnAkhir:thnAkhir,user:user},
+
+//Nama	: Harun Setiaji 
+//Nim	: 1700018271
+//Kelas	: E
+
+//method ini digunakan sebagai pengambil data dari setoran kasir 
+
 if(isset($_POST['setoranKasir'])){
 
-	
+	// dan disini digunakan untuk menginput tanggal awal dan akhir dari data yang ingin di akses
 	$tglAwal = trim($_POST['tglAwal']);
 	$blnAwal = trim($_POST['blnAwal']);
 	$thnAwal = trim($_POST['thnAkhir']);
