@@ -11,7 +11,7 @@
 </head>
 <body>
 <nav class="navbar is-success" role="navigation" aria-label="main navigation">
-  <div class="navbar-brand">
+  <div class="navbar-brand"> 
     <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
       <span aria-hidden="true"></span>
       <span aria-hidden="true"></span>
@@ -28,17 +28,20 @@
           Daftar Tabel
         </a>
         <div class="navbar-dropdown">
+         
           <a class="navbar-item" href="dataobat.php">
             Obat
           </a>
-           <a class="navbar-item" href="inputpasokobat.php">
+          <a class="navbar-item" href="inputpasokobat.php">
        Pasok Obat
       </a>
-          <a class="navbar-item" href="datasupiler.php">
+         <a class="navbar-item" href="datasupiler.php">
             Supplier
-          </a>    
+          </a>
+ 
         </div>
       </div>
+
       <div class="navbar-item has-dropdown is-hoverable">
         <a class="navbar-link">
           Filter
@@ -113,7 +116,7 @@
   </a>
   </div>
 </div>
-    </div>
+    </div>  
   </div>
 </nav>
 <table class="table is-fullwidth" >
@@ -131,7 +134,8 @@
             <td>$key[nama_obat]</td>
             <td>$key[harga]</td>
             <td>$key[jenis]</td>
-            <td>$key[kode_obat]</td>            
+            <td>$key[kode_obat]</td>
+            
         </tr>";
       }
     ?>
