@@ -1,5 +1,5 @@
 <?php
-
+ 
  
 opendb();
 # Pengaturan tanggal komputer
@@ -19,8 +19,8 @@ function secure($inp) {
 function buatKode($tabel, $inisial){
 		
 	//Mencari nama dan panjang kolom pertama (kode)
-	$hsl1 = querydb("SELECT * FROM $tabel LIMIT 1"); 
-	$klm1 = mysqli_fetch_field_direct($hsl1,0);
+	$hasil1 = querydb("SELECT * FROM $tabel LIMIT 1"); 
+	$klm1 = mysqli_fetch_field_direct($hasil1,0);
 	//$hsl1 = $msysqli->query("SELECT * FROM $tabel LIMIT 1");
 	//$klm1 = $hsl1->fetch_fields_direct(0);
 	$klmNama1 = $klm1->name;
