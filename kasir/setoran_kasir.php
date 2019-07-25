@@ -1,5 +1,13 @@
 <?php
+//NAMA : FALAKH BURHANUDDIN S
+//NIM : 1700018227
+//KELAS : PRPL -E
+
+//Fitur POS, fitur untuk menjalankan fungsi kasir dan operasional penjualan apotik 
+
+//memulai sesion login
 if(session_status()!==2)session_start();//>=php 5.4
+
 if(!isset($_SESSION['SES_LOGIN'])){
 	header('location:../home');
  }
@@ -29,6 +37,7 @@ opendb();
             <!-- /widget-header -->
             <div class="widget-content">
               <div class="shortcuts"> 
+              	<!--//menampilkam tanggal awal dan akhir setoran-->
 
 				<form class="form-inline" name="formKasirSetoran" id="formKasirSetoran">
 							<div class="form-group">
@@ -92,7 +101,7 @@ opendb();
 										
 								</select>
 							</div>
-							
+							<!--tombol pencarian userid-->
 								<label for="tgl awal">User :</label>
 								<input type="text" class="form-control input-sm" name="user" id="user" value="<?php echo $user_id?>" size="5">
 							
@@ -102,6 +111,7 @@ opendb();
 
 						<div class="table-responsive">
 							<span id="tblPlaceHolder">
+								<!--menampilkan riwayat setoran kasir-->
 								<table class="table table-bordered table-condensed">
 									<tr>
 										<th>No</th>
