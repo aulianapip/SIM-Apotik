@@ -6,8 +6,6 @@
       $row    = mysqli_fetch_array($obat);
 ?>
 
-
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -127,8 +125,6 @@ function myFunction() {
   if (nilai<15){
        alert("STOK OBAT MENIPIS MOHON UNTUK MENAMBAH STOK");
   }
-  
- 
 }
 </script>
 
