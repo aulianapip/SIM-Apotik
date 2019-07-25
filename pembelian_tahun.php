@@ -14,6 +14,7 @@ if (!isset($_SESSION["login1"])) {
     }
   require_once ('database/deb.php');
   //Siti Barkah Pellu 1700018235
+  //Amanda Fahmidyna 170001873(perbaikan bug)
   $QuerySql = "SELECT *, year(tanggal) as tanggal,sum(jumlah) as jumlah_pasok,sum(harga*jumlah) AS total FROM jualbeli group by year(tanggal) ASC";//mengambil data berdasarkan tahun dari tabel jualbeli(pengeluaran)
 
   $SQL = mysqli_query($connect, $QuerySql); //memanggil database

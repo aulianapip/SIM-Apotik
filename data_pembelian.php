@@ -18,7 +18,7 @@ if (!isset($_SESSION["login1"])) {
     }
   require_once ('database/deb.php');
   //Amanda Fahmidyna 1700018273
-  $QuerySql = "SELECT *, (jumlah*harga) as harg from jualbeli";
+  $QuerySql = "SELECT *, (jumlah*harga) as harg from jualbeli"; //menampilkan total harga dari tabel jual beli(pengeluaran)
 
   $SQL = mysqli_query($connect, $QuerySql); 
 ?> 

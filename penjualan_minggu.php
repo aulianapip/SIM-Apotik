@@ -1,4 +1,3 @@
-<!-- Siti Barkah Pellu 1700018235(Menambahkan fitur)-->
 <!-- THOBIE ZATONI -->
 <!-- 1700018241-->
 
@@ -26,9 +25,9 @@ if (!isset($_SESSION["login1"])) {//jika login gagal maka kembali login.php
       exit;
     }
       
-  
+  //Amanda fahmidyna1700018273
   include "connection/db.php";
-   $QuerySql = "select penjualan.tgl_penjualan, sum(penjualan_detail.jumlah) as jumlah, sum(penjualan_detail.sub_total) as total from penjualan join penjualan_detail on penjualan.no_transaksi = penjualan_detail.no_transaksi  group by week(penjualan.tgl_penjualan) asc"; //fungsi menampilkan tabel dari penjualan minggu
+   $QuerySql = "SELECT penjualan.tgl_penjualan, sum(penjualan_detail.jumlah) as jumlah, sum(penjualan_detail.sub_total) as total from penjualan join penjualan_detail on penjualan.no_transaksi = penjualan_detail.no_transaksi  group by week(penjualan.tgl_penjualan) asc"; //menampilkan tanggal penjualan. jumlah penjualan, dan total harga penjualan dari tabel penjualan yang digabung dengan tabel penjualan_detail dikelompokkan berdasarkan mingguan
 
   $SQL = mysqli_query($connect, $QuerySql); //memanggil database
 ?> 

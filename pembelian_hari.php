@@ -14,8 +14,7 @@ if (!isset($_SESSION["login1"])) {
     
   require_once ('database/deb.php');
   //Amanda Fahmidyna 1700018273
-  //Aldiansyah Darmawan
-  $QuerySql = "SELECT *, tanggal , SUM(jumlah) as jumlah_pasok,SUM(harga*jumlah) AS total FROM jualbeli group by day(tanggal) ASC";
+  $QuerySql = "SELECT *, tanggal , SUM(jumlah) as jumlah_pasok,SUM(harga*jumlah) AS total FROM jualbeli group by day(tanggal) ASC";//query untuk menampilkan data pengeluaran berdasarkan hari berupa tangal, jumlah barang, dan total harga dari tabel jualbeli(pengeluaran)
   $SQL = mysqli_query($connect, $QuerySql); 
  ?> 
 
@@ -33,7 +32,7 @@ if (!isset($_SESSION["login1"])) {
 
 <table class="table is-fullwidth" >
   
-  <thead><!--Aldiansyah Darmawan -->
+  <thead>
     <tr>
       <th scope="col" ><a href="s_pembelian_tanggal.php"> WAKTU PEMBELIAN</a></th>
       <th scope="col" ><a href="s_pembelian_harga.php">   JUMLAH BELI</a></th>
@@ -43,7 +42,7 @@ if (!isset($_SESSION["login1"])) {
   </thead>
 
     <?php
-      foreach ($SQL as $key) {
+      foreach ($SQL as $key) {//pengoutputan
         echo "
         <tr>
             <td>$key[tanggal]</td>

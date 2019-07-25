@@ -136,7 +136,7 @@ $total_debit = 0;//variabel total debit bernilai 0 untuk menentukan hasil perhit
 							<input type="date" class="form-control" id="akhir" name="tanggal_akhir">
 						</div>
 					</div>
-					<div class="col-2 mb-3">
+					<div class="col-2 mb-3"><!--fitur filter -->
 						<label for="filter">Filter Tampilan</label>
 						<select name="filter" id="filter" class="form-control">
 							<option value="hari">Harian</option>
@@ -148,8 +148,8 @@ $total_debit = 0;//variabel total debit bernilai 0 untuk menentukan hasil perhit
 					</div>
 
 					<div class="col-4 mb-3">
-						<a href="laporan keuntungan.php" class="btn btn-danger float-right " style="margin-top: 33px">Laporan</a>
-						<a href="index.php?filter=semua" class="btn btn-success float-right mx-3" style="margin-top: 33px">Semua</a>
+						<a href="laporan keuntungan.php" class="btn btn-danger float-right " style="margin-top: 33px">Laporan</a><!--button untuk melihat laporan keuntungan -->
+						<a href="index.php?filter=semua" class="btn btn-success float-right mx-3" style="margin-top: 33px">Semua</a><!--fitur filter untuk menampilkan semua data -->
 
 						<!--ketika button semua diklik maka akan dialihkan ke halaman index.php dengan menampilkan semua hari aruskas(default page)-->
 						<button type="submit" class="btn btn-primary float-right" style="margin-top: 33px"> Cari berdasarkan filter</button>

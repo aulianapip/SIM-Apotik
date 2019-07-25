@@ -14,7 +14,7 @@ if (!isset($_SESSION["login1"])) {
     }
   require_once ('database/deb.php');
   //Amanda Fahidyna 1700018273 (Perbaikan Fitur)
-  //Okzatul Revanka
+
   $QuerySql = "SELECT *,month(tanggal) as bulan,year(tanggal) as tahun,sum(jumlah) as jumlah_pasok,sum(harga*jumlah) AS total FROM jualbeli group by month(tanggal) ASC"; //mengambil data berdasarkan bulan dari tabel jualbeli(pengeluaran)
 
   $SQL = mysqli_query($connect, $QuerySql); 
@@ -30,7 +30,7 @@ if (!isset($_SESSION["login1"])) {
   include "navbar/navbar_pembelian.php";
  ?>
 <table class="table is-fullwidth" >
-  <thead><!-- okzatul revanka (memperbaiki fitur) -->
+  <thead>
     <tr>
       <th scope="col"><a href="s_pembelian_tanggal.php">WAKTU PEMBELIAN</a></th>
       <th scope="col"><a href="s_pembelian_harga.php">JUMLAH BELI</a></th>
@@ -38,7 +38,7 @@ if (!isset($_SESSION["login1"])) {
       <th scope="col"><a href="s_pembelian_total.php">JUMLAH HARGA</a></th>
     </tr>
   </thead>
-    <?php // okzatul revanka (memperbaiki fitur)
+    <?php 
 
       foreach ($SQL as $key) {//pengoutputan 
         echo "<tr> 

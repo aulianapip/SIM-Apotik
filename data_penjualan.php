@@ -17,7 +17,7 @@ if (!isset($_SESSION["login1"])) {
       
   //Amanda Fahmidyna 1700018273
 	include "connection/db.php";
-	$QuerySql = "SELECT * from penjualan order by tgl_penjualan";
+	$QuerySql = "SELECT * from penjualan order by tgl_penjualan";//menampilkan seluruh data dari tabel penjualan berdasarkan tanggal penjualan
 
 	$SQL = mysqli_query($connect, $QuerySql); 
 ?> 
