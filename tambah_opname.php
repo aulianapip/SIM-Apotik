@@ -88,7 +88,24 @@ kami menginputkan status kondisi barang yang berada ditoko, status antara lain a
       $pas1 = "SELECT jumlah_pasok FROM pasok where kode_pasok='$kode_pasok'";//untuk pemanggilan/pencarian code pasok
       $pas2 = mysqli_query($connect,$pas1);
       $hehe = mysqli_fetch_array($pas2);
-     
+      if ($status != "DI GUDANG") {
+        $jumlah_pasok= $hehe['jumlah_pasok']-1;
+        $update_p = "UPDATE pasok SET jumlah_pasok='$jumlah_pasok' WHERE kode_pasok='$kode_pasok'";
+        mysqli_query($connect,$update_p);
+      }//update jumlah stok setelah stok dinyatakan di gudang(Nur)
+       header("location: dataopname.php");
+    }elseif (isset($_POST['cek'])) {
+      $query = "SELECT kode_obat from obat ";
+      $cekobat = mysqli_query($connect,$query);
+      $kode_obatB = $_POST['kode_obat'];
+      $barcode = "SELECT kode_barcode from barcode WHERE kode_obat = '$kode_obatB' ORDER BY nomor_pasok ASC";
+      $cekbarcode = mysqli_query($connect,$barcode);//memilih kode obat obat yang akan ditambah ke data opname(Mail)
+    }elseif (isset($_POST['refresh'])) {
+      header("location: tambah_opname.php");//refresh untuk memunculkan kembali kode obat(Febri)
+    }else{
+      $query = "SELECT kode_obat from obat ";
+      $cekobat = mysqli_query($connect,$query);
+    }//menampilkan kode_obat setelah di refresh(Lussy)
 
    ?>
 <table class="table is-fullwidth" >
