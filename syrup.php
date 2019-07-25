@@ -25,105 +25,60 @@
 
   <div id="navbarBasicExample" class="navbar-menu">
     <div class="navbar-start">
-      <a class="navbar-item" href="login.html">
+    <a class="navbar-item" href="login.html">
     <img src="logut.png"></img>
       </a>
 
       <div class="navbar-item has-dropdown is-hoverable">
-        <a class="navbar-link">
-          Daftar Tabel
-        </a>
-
+        <a class="navbar-link"> Daftar Tabel </a>
         <div class="navbar-dropdown">
-          
-          <a class="navbar-item" href="dataobat.php">
-            Obat
-          </a>
-          <a class="navbar-item" href="datasupiler.php">
-            Supplier
-          </a>
-    
-        </div>
+          <a class="navbar-item" href="dataobat.php"> Obat </a>
+          <a class="navbar-item" href="datasupiler.php"> Supplier </a> 
+       </div>
       </div>
 
       <div class="navbar-item has-dropdown is-hoverable">
-        <a class="navbar-link">
-          Filter
-        </a>
-    <div class="navbar-dropdown">
-          <a class="navbar-item" href="dataobattanggal.php">
-            Tanggal Pasok
-          </a>
+        <a class="navbar-link"> Filter </a>
+      <div class="navbar-dropdown">
+         <a class="navbar-item" href="dataobattanggal.php"> Tanggal Pasok </a>
           
-          <a class="navbar-item" href="dataobatnama.php">
-            Nama A-Z <!--Perbaiki redaksi Oleh Putra-->
-          </a>
-          <a class="navbar-item" href="dataobatnamaz-a.php">
-            Nama Z-A <!--Penambahan Oleh Putra-->
-          </a>
-          <a class="navbar-item" href="dataobatmurah.php">
-            Harga Termurah
-          </a>
-          <a class="navbar-item" href="dataobatmahal.php">
-            Harga Termahal
-          </a>
+          <a class="navbar-item" href="dataobatnama.php"> Nama A-Z </a>
+          <a class="navbar-item" href="dataobatnamaz-a.php"> Nama Z-A </a>
+          <a class="navbar-item" href="dataobatmurah.php"> Harga Termurah </a>
+          <a class="navbar-item" href="dataobatmahal.php"> Harga Termahal </a>
         </div>
-      </div>
+      	</div>
       <div class="navbar-item has-dropdown is-hoverable">
-        <a class="navbar-link">
-          Jenis
-        </a>
+        <a class="navbar-link"> Jenis </a>
         <div class="navbar-dropdown">
 
-<a class="navbar-item" href="kaplet.php">
-            Kaplet
-          </a>
-          <a class="navbar-item" href="kapsul.php">
-            Kapsul
-          </a>
-          <a class="navbar-item" href="pil.php">
-            Pil
-          </a>
-          <a class="navbar-item" href="salep.php">
-            Salep
-          </a>
-          <a class="navbar-item" href="serbuk.php">
-            Serbuk
-          </a>
-          <a class="navbar-item" href="suntik.php">
-            suntik
-          </a>
-          <a class="navbar-item" href="syrup.php">
-            Sirup
-          </a>
-          <a class="navbar-item" href="tablet.php">
-            Tablet
-          </a>
-          <a class="navbar-item" href="tetes.php">
-            Tetes
-          </a>
+	<a class="navbar-item" href="kaplet.php"> Kaplet </a>
+          <a class="navbar-item" href="kapsul.php"> Kapsul </a>
+          <a class="navbar-item" href="pil.php"> Pil </a>
+          <a class="navbar-item" href="salep.php"> Salep </a>
+          <a class="navbar-item" href="serbuk.php"> Serbuk </a>
+          <a class="navbar-item" href="suntik.php"> suntik</a>
+          <a class="navbar-item" href="syrup.php"> Sirup </a>
+          <a class="navbar-item" href="tablet.php"> Tablet </a>
+          <a class="navbar-item" href="tetes.php"> Tetes </a>
 </div>
 </div>
 
 
 
-  <a class="navbar-item" href="inputobat.php">
-       Tambah Obat
-      </a>
-       <a class="navbar-item" href="inputsupiler.php">
-       Tambah Suppiler
-      </a>
-      <a class="navbar-item">
+  <a class="navbar-item" href="inputobat.php"> Tambah Obat </a>
+       <a class="navbar-item" href="inputsupiler.php"> Tambah Suppiler </a>
+      	<a class="navbar-item">
         <form action="cariobat.php" method="post">
         <div class="control">
           <input class="input" type="text" placeholder="CARI OBAT" name="cari"> 
         </div>
-</div>
+	</div>
         </form>
-  </a>
-  </div>
-</div>
-    </div>
+  	</a>
+  	</div>
+	</div>
+    	</div>
 
     
   </div>
