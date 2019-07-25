@@ -211,7 +211,7 @@ body {                        /*desain body*/
   <div class="header-right">
     <a class="active" href="index.php">Home</a>
     <a href="inputdata.php">Input Data</a>
-     <a href="inputdata.php">Log Member</a>
+     <a href="riwayat.php">Log Member</a>
 </div>
 </div>
 </div>
