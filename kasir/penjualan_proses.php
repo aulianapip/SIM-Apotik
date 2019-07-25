@@ -1,3 +1,9 @@
+//Nama	: Nurul Ika Praptiwi
+//Nim	: 1700018254
+//Kelas	: E
+
+//Kelas ini digunakan sebagai bagian dari proses penjualan
+
 <?php
 error_reporting(0);
 if(session_status()!==2)session_start();//>=php 5.4
@@ -16,7 +22,7 @@ if(isset($_POST['cariBarang'])){
 	$noFaktur=trim($_POST['noFaktur']);
 	
 	$errMsg="";
-	
+//method untuk mencari kode obat berdasar kode yang di inputkan 
 	$qri = "SELECT * FROM obat WHERE kode_obat='$kdBarang' ";
 	$hsl = querydb($qri);
 	$row = numrows($hsl);
@@ -27,7 +33,7 @@ if(isset($_POST['cariBarang'])){
 			$hsl2 = querydb($qri2);
 			$rek2 = arraydb($hsl2);
 				$hrgAvg = $rek2['hrg_beli_rata2'];
-			
+			//method untuk menghitung sub total 
 			$subTtl = $rek['harga'] * 1;
 			$id = buatKode("penjualan_tmp","");
 			$qri3 = "INSERT INTO penjualan_tmp (id,no_faktur,kode_barcode,kode_obat,jumlah,harga,sub_total,hrg_pokok,user) VALUES ('$id','$noFaktur','$rek[kode_barcode]','$rek[kode_obat]','1','$rek[harga]','$subTtl','$hrgAvg','$user_id')";
