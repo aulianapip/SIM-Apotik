@@ -1,3 +1,5 @@
+<!--ARINDRA WAHYU  CANDRA KURNIAWAN  YANG BUAT INI -->
+
 <!--1.  Pada kelompok gudang, kami telah membuat beberapa kelas yang mempunyai fungsi sebagai berikut:
 • Fungsi Sorting Nama Obat A-Z : fitur ini berfungsi mengurutkan nama obat sesuai alpabet dari awalan huruf A sampai awalan huruf Z.
 • Fungsi Sorting Jenis Obat Kapsul : fitur ini berfungsi mensorting obat yang berjenis kapsul untuk di tampilkan.
@@ -15,13 +17,14 @@
 • Function data suplier : fitur ini berfungsi untuk menampilkan data suplier sesuai database
 • Function sorting obat mahal : fitur ini berfungsi untuk mengurutkan harga obat dari yang termahal
 -->
+
 <?php
 	include 'db.php';
 	$QuerySql = "SELECT * FROM beli";
 	$SQL = mysqli_query($connect, $QuerySql);
 //Function Pencarian Data Tidak Ditemukan : jika obat dan suplier yang dicari tidak sesuai dengan yang ada di database, maka akan menampilkan pencarian tidak ditemukan --> Arindra Wahyu Candra UTS 1700018279
 ?>
-<!--ARINDRA WAHYU  CANDRA KURNIAWAN  YANG BUAT INI -->
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -110,7 +113,7 @@
 
 </nav>
 <table class="table is-fullwidth" >
-<h3 align="center">TIDAK TERDAPAT DATA</h3>
+<h3 align="center"> TIDAK TERDAPAT DATA </h3>
 	<!--Menampilkan Tampilkan Pencarian yang tidak terdapat dalam pencarian obat maupun supplier  ARINDRA WAHYU  CANDRA K 1700018279 -->
 </body>
 </html>
