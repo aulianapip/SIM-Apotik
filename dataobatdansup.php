@@ -1,6 +1,9 @@
+<!-- UAS PRPL ARINDRA WAHYU CANDRA K 1700018279
+Function data obat dan supplier berfungsi untuk mengetahui jumlah obat yang dipasok oleh supplier -->
+<!--Arindra Wahyu , menambahkan sorting stok obat terkecil dataobat.php-->
 <!--Aditya Gusti Mandala Putra perbaiki query db.php-->
 <!--Muhammad Afrizal, membuat file function dataobat.php-->
-<!--Arindra Wahyu , menambahkan sorting stok obat terkecil dataobat.php--><!--1.  Pada kelompok gudang, kami telah membuat beberapa kelas yang mempunyai fungsi sebagai berikut:
+<!--1.  Pada kelompok gudang, kami telah membuat beberapa kelas yang mempunyai fungsi sebagai berikut:
 • Fungsi Sorting Nama Obat A-Z : fitur ini berfungsi mengurutkan nama obat sesuai alpabet dari awalan huruf A sampai awalan huruf Z.
 • Fungsi Sorting Jenis Obat Kapsul : fitur ini berfungsi mensorting obat yang berjenis kapsul untuk di tampilkan.
 • Fungsi Menampilkan seluruh data obat
