@@ -8,7 +8,7 @@
 <!--Mohamad rifky fajri 
     1700018239
     E
-1. function cari supplier ini berfungsi untuk mencari data supplier dengan mencari berdasarkan nama supplier nya -->
+1. function cari obat ini berfungsi untuk mencari data obat dengan mencari berdasarkan nama obatnya nya -->
 <!DOCTYPE html>
 <html>
 <head>
