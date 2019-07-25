@@ -12,13 +12,13 @@ kami menginputkan status kondisi barang yang berada ditoko, status antara lain a
   <?php 
        
     if (isset($_POST['tambah'])) {
-      include 'db.php';//koneksi database
-      $kode_barcode = $_POST['kode_barcode']; 
-      $status = $_POST['status'];
-      $catatan = $_POST['catatan'];
-      $query = "UPDATE opname SET status='$status',catatan='$catatan' WHERE kode_barcode='$kode_barcode'";//update status opname dari form input 
-      mysqli_query($connect, $query);
-      header("location: dataopname.php");//di update ke file dataopname.php
+      include 'db.php';//memanggil db.php untuk di panggil variabel $connect
+      $kode_barcode = $_POST['kode_barcode']; //variabel $kode_barcode menampung data dari form input dari html dan dipanggil dengan $_POST['kode_barcode']
+      $status = $_POST['status']; //variabel $status menampung data dari form input dari html dan dipanggil dengan $_POST['status']
+      $catatan = $_POST['catatan']; //variabel $catatan menampung data dari form input dari html dan dipanggil dengan $_POST['status']
+      $query = "UPDATE opname SET status='$status',catatan='$catatan' WHERE kode_barcode='$kode_barcode'";//update pada tabel opname dengan artbut yang di edit status di isi dengan var $status, catatan diisi dengan var $catatan dimana pada barisan kode_barcode yang diisi var $kode_barcode
+      mysqli_query($connect, $query);//update data dari php ke database
+      header("location: dataopname.php");//dilempar/masuk ke dataopname.php
     }else{
 
     }
