@@ -31,7 +31,7 @@ opendb();
 	while($rek = arraydb($hslf)){
 		$noFaktur = $rek['no_faktur'];
 	}
-//method untuk mendapatkan kode obat dari barcode
+//method untuk mendapatkan kode obat dari barcode scan android
 	$getcode = "SELECT kode_obat FROM barcode WHERE kode_barcode='$barcode'";
 	$hslcode = querydb($getcode);
 	$rowcode = numrows($hslcode);
