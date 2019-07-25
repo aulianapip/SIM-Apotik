@@ -153,6 +153,15 @@ if(isset($_POST['simpanJual'])){
 				$mysqli->close();
 
 	}else{
+		
+		
+//Nama	: Muhammad Rahmon Saputra
+//Nim	: 1700018245
+//Kelas	: E
+		
+		//Kelas ini digunakan untuk menjalankan proses penjualan
+		
+		//method digunakan untuk memberikan pesan error apabila item tidak ada atau belum di input
 
 		$pesanError[] = "Data Item Barang Tidak Ada, Silahkan Isi Terlebih Dahulu !";	
 		$errMsg  = "<div class=\"alert alert-danger alert-dismissible\" role=\"alert\">";
