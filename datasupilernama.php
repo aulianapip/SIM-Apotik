@@ -1,9 +1,12 @@
 <?php
-	include 'db.php';
-	$QuerySql = "SELECT * FROM `supplier` ORDER BY `kode_supplier` ASC";
+	include 'db.php'; // 2. untuk memasukan databasenya
+	$QuerySql = "SELECT * FROM `supplier` ORDER BY `kode_supplier` ASC"; // 2. query untuk menampilkan data supplier berdasarkan nama supplier dari A-Z dengan berpatok pada kode suppliernya sesuai databases
 	$SQL = mysqli_query($connect, $QuerySql);
 ?>
-<!--Mohamad rifky fajri yang buat file ini-->
+<!--Mohamad rifky fajri
+    1700018239
+    E
+1. function data supplier nama A-Z ini untuk menampilkan data supplier dari A-Z berdasarkan kode supplier yang berpatok pada databases nya-->
 
 <!DOCTYPE html>
 <html>
