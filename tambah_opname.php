@@ -77,6 +77,7 @@ kami menginputkan status kondisi barang yang berada ditoko, status antara lain a
       $kode_barcode = $_POST['kode_barcode'];//mengambil data dari form input(Lussy)
       $status = $_POST['status'];
       $catatan = $_POST['catatan'];
+      $tambah_opname = "INSERT INTO opname VALUES ('$kode_barcode','$status','$catatan',curdate())";//menambah data opname sesuai dengan form input(fadhil)
 
 
    ?>
