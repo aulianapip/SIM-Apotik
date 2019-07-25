@@ -6,7 +6,7 @@
 <body bgcolor="lightblue">
 <h1>Keuntungan Tahun 2017	</h1>
 
-<- Fitur POS, fitur untuk menjalankan fungsi kasir dan operasional penjualan apotik ->
+//kelas ini digunakan sebagai penampil hasil pencarian dari hasil penjualan di kasir
 
 // Nama  : Haykal Eka Putra Gultom
 // NIM   : 1700018226
@@ -45,6 +45,12 @@ $date2=$_POST['date2'];
 			<th>Sub Total</th>
 		</tr>
 <?php
+		
+//Nama	: Harun Setiaji
+//Nim	: 1700018271
+//Kelas	: E
+	
+		//method ini digunakan untuk menampilkan hasil penjualan yaitu berupa harga dan tanggal nya dan lainnya
 	foreach ($SQL as $data) {
 				echo "
 					<tr>
