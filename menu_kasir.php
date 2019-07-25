@@ -1,8 +1,3 @@
-//Nama	: Ardiansyah
-//Nim	: 1700018058
-//Kelas	: E
-
-//Kelas ini digunakan sebagai menu tampilan utama dari kasir nya 
 
 <?php 
  if(!isset($_SESSION['SES_LOGIN'])){
