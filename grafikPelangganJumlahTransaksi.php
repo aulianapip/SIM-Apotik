@@ -13,7 +13,7 @@ $pilihan = $_POST['area1'];
 <html>
 
 <head>
-	<title>GRAFIK STOCK DARI KESELURUHAN SUPPLIER</title>
+	<title>GRAFIK STOCK DARI KESELURUHAN SUPPLIER</title><!--menampilkan judul pada grafik-->
 	<script type="text/javascript" src="Chart.js/Chart.js"></script>
     <link rel="stylesheet" href="materialize.min.css">
 </head>
@@ -33,12 +33,12 @@ $pilihan = $_POST['area1'];
 <?php 
             echo ' URUTAN'. ' '.$urutan.'';
          ?>
-		</center></h1>
+		</center></h1><!-- Menampilkan judul pada grafik pelanggan-->
 		<div style="width: 800px;margin: 0px auto;">
         <canvas id="myChart"></canvas>
     </div>
     <form action="" method="post">
-    	
+    	<!--Azhaarudzdzikri Alfrdaus-1700018238-->
         <label>Pilih Chart</label>
 		<div class="input-field col s12" > 
 			<select class="browser-default" name="area1">
@@ -82,14 +82,14 @@ $koneksi = mysqli_connect("localhost", "root", "", "sim-apotek");
 		<tbody>
 			<?php 
 			$no = 1;
-			$data = mysqli_query($koneksi,"SELECT pelanggan.Nama as nama, pelanggan.ID as id, COUNT(penjualan.id_pelanggan) AS jumlah_transaksi FROM penjualan, pelanggan WHERE pelanggan.ID=penjualan.id_pelanggan GROUP BY penjualan.id_pelanggan  ORDER BY COUNT(penjualan.id_pelanggan) $urutan");
+			$data = mysqli_query($koneksi,"SELECT pelanggan.Nama as nama, pelanggan.ID as id, COUNT(penjualan.id_pelanggan) AS jumlah_transaksi FROM penjualan, pelanggan WHERE pelanggan.ID=penjualan.id_pelanggan GROUP BY penjualan.id_pelanggan  ORDER BY COUNT(penjualan.id_pelanggan) $urutan"); //Menampilkan data nama dan jumlah transaksi
 			while($d=mysqli_fetch_array($data)){
 				?>
 				<tr>
 					<td><?php echo $no++; ?></td>
-					<td><?php echo $d['nama']; ?></td>
-					<td><?php echo $d['id']; ?></td>
-					<td><?php echo $d['jumlah_transaksi']; ?></td>					
+					<td><?php echo $d['nama'];//untuk memanggil nama ?></td>
+					<td><?php echo $d['id'];//untuk memanggil id ?></td>
+					<td><?php echo $d['jumlah_transaksi'];//untuk memanggil jumlah_transaksi ?></td>					
 				</tr>
 				<?php 
 			}
@@ -99,17 +99,17 @@ $koneksi = mysqli_connect("localhost", "root", "", "sim-apotek");
 
 
 	<script>
-		var ctx = document.getElementById("myChart").getContext('2d');
+		var ctx = document.getElementById("myChart").getContext('2d');//Memanggil fungsi grafik 
 		var myChart = new Chart(ctx, {
-			type: '<?php echo $pilihan ?>',
+			type: '<?php echo $pilihan ?>',//untuk memasukan pilihan
 			data: {
 				labels: [<?php 
-					$nama= mysqli_query($koneksi, "SELECT pelanggan.Nama as nama FROM penjualan, pelanggan WHERE pelanggan.ID=penjualan.id_pelanggan GROUP BY penjualan.id_pelanggan ORDER BY COUNT(penjualan.id_pelanggan) $urutan");
+					$nama= mysqli_query($koneksi, "SELECT pelanggan.Nama as nama FROM penjualan, pelanggan WHERE pelanggan.ID=penjualan.id_pelanggan GROUP BY penjualan.id_pelanggan ORDER BY COUNT(penjualan.id_pelanggan) $urutan"); //Menampilkan Nama Pelanggan
 				while ($b = mysqli_fetch_array($nama)) { echo '"' . $b['nama'] . '",';} ?>
 					],
 				datasets: [{
 					label: '',
-					data: [<?php $jumlah_transaksi = mysqli_query($koneksi, "SELECT COUNT(penjualan.id_pelanggan) as jumlah_transaksi FROM penjualan, pelanggan WHERE pelanggan.ID=penjualan.id_pelanggan GROUP BY penjualan.id_pelanggan ORDER BY COUNT(penjualan.id_pelanggan) $urutan");
+					data: [<?php $jumlah_transaksi = mysqli_query($koneksi, "SELECT COUNT(penjualan.id_pelanggan) as jumlah_transaksi FROM penjualan, pelanggan WHERE pelanggan.ID=penjualan.id_pelanggan GROUP BY penjualan.id_pelanggan ORDER BY COUNT(penjualan.id_pelanggan) $urutan");// Menampilkan jumlah transaksi
 while ($p = mysqli_fetch_array($jumlah_transaksi)) { echo '"' . $p['jumlah_transaksi'] . '",';}?>],
                             backgroundColor: [
 					'rgba(255, 99, 132, 0.2)',
