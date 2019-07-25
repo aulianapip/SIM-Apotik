@@ -36,6 +36,7 @@
         </div>
         <div class="card-action">
           <center>
+            <!--Tombol Tombol yang ada di penjualan-->
         <a href="GrafikDataPenjualan.php" class="waves-effect waves-light btn-small">Grafik Penjualan</a>
           <a href="grafikKeuntungan.php" class="waves-effect waves-light btn-small">Grafik Keuntungan</a>
        </center>
@@ -53,6 +54,7 @@
         </div>
         <div class="card-action">
           <center>
+            <!--Tombol Tombol yang ada di Supplier-->
         <a href="supply.php" class="waves-effect waves-light btn-small">Grafik Data Supplier</a>
 	</center>
         </div>
@@ -72,6 +74,7 @@
           <center>
                     <a href="#" class="waves-effect waves-light btn-small">Grafik Obat</a>
         <br></br>
+        <!--Tombol Tombol yang ada di Obat-->
           		<a href="obat.php" class="waves-effect waves-light btn-small">Grafik Data Obat Berdasar Jumlah Pasok</a>
           		<a href="TABEL OBAT BERDASARKAN TAHUN KADALUARSA.php" class="waves-effect waves-light btn-small">Grafik Kadaluarsa</a>
         </div>
@@ -91,6 +94,7 @@
           <center>
                                 <a href="#" class="waves-effect waves-light btn-small">Grafik Pelanggan</a>
         <br></br>
+        <!--Tombol Tombol yang ada di Pelanggan-->
           		<a href="grafikPelangganJK.php" class="waves-effect waves-light btn-small">Grafik Data Pelanggan Berdasar Jenis Kelamin</a>
 			<a href="grafikPelangganKota.php" class="waves-effect waves-light btn-small">Grafik Data Pelanggan Berdasar Kota</a>
 			<a href="grafikPelangganBeli.php" class="waves-effect waves-light btn-small">Grafik Data Pelanggan Berdasar Jumlah Beli</a>
@@ -110,7 +114,8 @@
         </div>
         <div class="card-action">
           <center>
-                                            <a href="#" class="waves-effect waves-light btn-small">Grafik Opname</a>
+            <!--Tombol Tombol yang ada di Opname-->
+            <a href="#" class="waves-effect waves-light btn-small">Grafik Opname</a>
         <br></br>
           		<a href="grafikOpname.php" class="waves-effect waves-light btn-small">Grafik Data Opname Berdasar Status</a>
         </div>
