@@ -83,7 +83,13 @@ kami menginputkan status kondisi barang yang berada ditoko, status antara lain a
       mysqli_query($connect,$update_barcode);
       $barcode1 = "SELECT kode_pasok FROM barcode WHERE kode_barcode='$kode_barcode'";//untuk pemanggilan/pencarian code barcode
       $barcode2 = mysqli_query($connect,$barcode1);
-      
+      $bar1 = mysqli_fetch_array($barcode2);
+      $kode_pasok = $bar1['kode_pasok'];
+      $pas1 = "SELECT jumlah_pasok FROM pasok where kode_pasok='$kode_pasok'";//untuk pemanggilan/pencarian code pasok
+      $pas2 = mysqli_query($connect,$pas1);
+      $hehe = mysqli_fetch_array($pas2);
+     
+
    ?>
 <table class="table is-fullwidth" >
 <div class="container">
