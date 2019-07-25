@@ -1,61 +1,50 @@
-<<?php
-  include 'db.php';
-  $QuerySql = "SELECT * FROM obat inner join jenis_obat on jenis_obat.kode_jenis=obat.kode_jenis where jenis_obat.nama_jenis='Suntik'";
-  $SQL = mysqli_query($connect, $QuerySql);
+<?php
+//GIFARI NANDA UTAMA
+//1700018250
+//E
+//function obat suntik dibuat agar memudahkan mencari semua obat suntik yang ada di database
+	include 'db.php';//untuk memasukan database gudang
+	$QuerySql = "SELECT  * FROM obat  where jenis='Suntik'";//query mencari data obat dengan jenis obat suntik
+	$SQL = mysqli_query($connect, $QuerySql);//untuk menyambungkan query dengan database
 ?>
-<!--Gifari Nanda Utama membuat function sorting data obat suntik-->
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Tampil Data Obat</title>
-	<link rel="stylesheet" href="bulma.min.css">
+  <title>Tampil Data Obat</title>
+  <link rel="stylesheet" href="bulma.min.css">
 </head>
 <body>
 <nav class="navbar is-success" role="navigation" aria-label="main navigation">
   <div class="navbar-brand">
+   
+
     <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
       <span aria-hidden="true"></span>
       <span aria-hidden="true"></span>
       <span aria-hidden="true"></span>
     </a>
   </div>
+
   <div id="navbarBasicExample" class="navbar-menu">
     <div class="navbar-start">
       <a class="navbar-item" href="login.html">
-       <img src="logut.png"></img>
+    <img src="logut.png"></img>
       </a>
+
       <div class="navbar-item has-dropdown is-hoverable">
         <a class="navbar-link">
           Daftar Tabel
         </a>
+
         <div class="navbar-dropdown">
+          
           <a class="navbar-item" href="dataobat.php">
             Obat
           </a>
           <a class="navbar-item" href="datasupiler.php">
-            Supiler
-          </a>
-        </div>
-      </div>
-
-      <div class="navbar-item has-dropdown is-hoverable">
-        <a class="navbar-link">
-          Sort By
-        </a>
-
-        <div class="navbar-dropdown">
-          
-          <a class="navbar-item" href="dataobattanggal.php">
-            Tanggal
-          </a>
-          <a class="navbar-item" href="dataobatnama.php">
-            Nama
-          </a>
-          <a class="navbar-item" href="dataobatmurah.php">
-            Harga Termurah
-          </a>
-          <a class="navbar-item" href="dataobatmahal.php">
-            Harga Termahal
+            Supplier
           </a>
     
         </div>
@@ -63,22 +52,63 @@
 
       <div class="navbar-item has-dropdown is-hoverable">
         <a class="navbar-link">
-          Jenis Obat
+          Filter
         </a>
-
-        <div class="navbar-dropdown">
+    <div class="navbar-dropdown">
+          <a class="navbar-item" href="dataobattanggal.php">
+            Tanggal Pasok
+          </a>
           
-          <a class="navbar-item" href="obatsalep.php">
-            Salep
+          <a class="navbar-item" href="dataobatnama.php">
+            Nama A-Z <!--Perbaiki redaksi Oleh Putra-->
           </a>
-          <a class="navbar-item" href="obatpil.php">
-            Tablet
+          <a class="navbar-item" href="dataobatnamaz-a.php">
+            Nama Z-A <!--Penambahan Oleh Putra-->
           </a>
-          <a class="navbar-item" href="obatsun.php">
-            Syirup
+          <a class="navbar-item" href="dataobatmurah.php">
+            Harga Termurah
+          </a>
+          <a class="navbar-item" href="dataobatmahal.php">
+            Harga Termahal
           </a>
         </div>
       </div>
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          Jenis
+        </a>
+        <div class="navbar-dropdown">
+
+<a class="navbar-item" href="kaplet.php">
+            Kaplet
+          </a>
+          <a class="navbar-item" href="kapsul.php">
+            Kapsul
+          </a>
+          <a class="navbar-item" href="pil.php">
+            Pil
+          </a>
+          <a class="navbar-item" href="salep.php">
+            Salep
+          </a>
+          <a class="navbar-item" href="serbuk.php">
+            Serbuk
+          </a>
+          <a class="navbar-item" href="suntik.php">
+            suntik
+          </a>
+          <a class="navbar-item" href="syrup.php">
+            Sirup
+          </a>
+          <a class="navbar-item" href="tablet.php">
+            Tablet
+          </a>
+          <a class="navbar-item" href="tetes.php">
+            Tetes
+          </a>
+</div>
+</div>
+
 
 
   <a class="navbar-item" href="inputobat.php">
@@ -108,29 +138,22 @@
     <tr>
       <th scope="col">Nama Obat</th>
       <th scope="col">Harga Obat</th>
-      <th scope="col">Kode Obat</th>
       <th scope="col">Jenis Obat</th>
-      <th scope="col">Tanngal Kadaluarsa</th>
-      <th scope="col">Bulan Kadaluarsa</th>
-      <th scope="col">Tahun Kadaluarsa</th>
-      <th scope="col">Stok Obat</th>
+      <th scope="col">Kode Obat</th>
+      
     </tr>
   </thead>
-		<?php
-			foreach ($SQL as $key) {
-				echo "<tr>
-						<td>$key[nama_obat]</td>
-						<td>$key[harga_obat]</td>
-						<td>$key[kode_obat]</td>
-						<td>$key[nama_jenis]</td>
-						<td>$key[tanggal_kadaluarsa]</td>
-						<td>$key[bulan_kadaluarsa]</td>
-						<td>$key[tahun_kadaluarsa]</td>
-						<td>$key[Stok_Obat]</td>
-						
-				</tr>";
-			}
-		?>
+    <?php
+      foreach ($SQL as $key) {
+        echo "<tr>
+            <td>$key[nama_obat]</td>
+            <td>$key[harga]</td>
+            <td>$key[jenis]</td>
+            <td>$key[kode_obat]</td>
+            
+        </tr>";
+      }
+    ?>
 </table>
 </body>
 </html>
