@@ -1,3 +1,15 @@
+<!--
+UAS PRPRL
+NAMA : Aditya Gusti Mandala Putra
+NIM : 1700018256
+KELAS : E
+
+1. dataobatnamaz-a.php fitur ini berfungsi sebagai fitur untuk menampilkan obat berdasarkan urutan abjad dari Z-A
+
+
+
+2. query dibawah ini sebagai operasi pencarian obat sesuai dengan nama berdasarakan urutan abjad dari Z-A. dengan tetap menampilkan atribut obat yaitu nama obat, harga obat, jenis, dan kode obat dari tabel obat -->
+
 <?php
   include 'db.php';
   $QuerySql = "SELECT `nama_obat`,`harga`,`jenis`,`kode_obat` FROM `obat` ORDER BY `nama_obat` DESC";
