@@ -1,7 +1,16 @@
+<!--
+UAS PRPL
+NAMA : M. RAFIE SULTAN AGAM
+NIM : 1700018282
+KELAS : E
+
+1. tetes.php fitur ini berfungsi sebagai menampilkan jenis obat tetes. obat yang berjenis tetes akan di tampilkan apabila kita pilih fitur ini pada tampilan
+-->
+
 <?php
 // M SULTAN AGAM YANG BUAT
 	include 'db.php';
-	$QuerySql = "SELECT  * FROM obat  where jenis='Tetes'";
+	$QuerySql = "SELECT  * FROM obat  where jenis='Tetes'"; <--2. query di samping sebagai operasi untuk mencari obat yang berjenis tetes pada tabel obat-->
 	$SQL = mysqli_query($connect, $QuerySql);
 ?>
 
@@ -137,10 +146,10 @@
     <?php
       foreach ($SQL as $key) {
         echo "<tr>
-            <td>$key[nama_obat]</td>
-            <td>$key[harga]</td>
-            <td>$key[jenis]</td>
-            <td>$key[kode_obat]</td>
+            <td>$key[nama_obat]</td> <--2. Menampilkan obat pada tabel obat-->
+            <td>$key[harga]</td>     <--2. Menampilkan harga obat pada tabel obat-->
+            <td>$key[jenis]</td>     <--2, Menampilkan jenis obat pada tabel obat-->
+            <td>$key[kode_obat]</td> <--2. Menampilkan kode obat pada tabel obat-->
             
         </tr>";
       }
