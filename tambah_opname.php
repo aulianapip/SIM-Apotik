@@ -72,7 +72,8 @@ kami menginputkan status kondisi barang yang berada ditoko, status antara lain a
       $query = "SELECT kode_obat from obat ";//mengambil data kode_obat dari tabel obat(reka)
       $cekobat = mysqli_query($connect,$query);
       $kode_obatB = $_POST['kode_obat'];
-     
+      $barcode = "SELECT kode_barcode from barcode WHERE kode_obat = '$kode_obatB' ORDER BY nomor_pasok ASC";//menambah data opname sesuai kode obat yang diinputkan pada form(zaki)
+
 
    ?>
 <table class="table is-fullwidth" >
