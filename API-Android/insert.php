@@ -1,6 +1,6 @@
 <?php
 
-// Fitur POS, fitur untuk menjalankan fungsi kasir dan operasional penjualan apotik 
+// Kelas ini digunakan sebagai penghubung ke barcode android 
 
 // Nama  : Muhammad Ramon Saputra
 // NIM   : 1700018245
@@ -37,14 +37,16 @@ opendb();
 			$hsl2 = querydb($qri2);
 			$rek2 = arraydb($hsl2);
 				$hrgAvg = $rek2['hrg_beli_rata2'];
-			
+			//method untuk menghitung total jualnya
 			$subTtl = $rek['hrg_jual'] * 1;
 			$id = buatKode("penjualan_tmp","");
 			$qri3 = "INSERT INTO penjualan_tmp (id,no_faktur,kd_barang,jumlah,harga,sub_total,hrg_pokok,user) VALUES ('$id','$noFaktur','$rek[kd_barang]','1','$rek[hrg_jual]','$subTtl','$hrgAvg','$user_id')";
 			$hsl3 = querydb($qri3);	
 		
 		}
-	}else{
+	}else
+	//apabila data tidak ada didalam database
+	{
 		
 		$errMsg  = "<div class=\"alert alert-danger alert-dismissible\" role=\"alert\">";
 		$errMsg .= "<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>";
