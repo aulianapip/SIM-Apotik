@@ -1,3 +1,11 @@
+<?php
+$koneksi = mysqli_connect("localhost", "root", "", "sim-apotek"); //Memanggil database yang telah kita buat
+error_reporting(0); //untuk menghilangkan notif error pada program
+$pilihan = $_POST['area1'];
+    $urutan = $_POST['area2'];//membuat area nama
+    if (isset($_POST['submit'])) { // untuk mensubmite post area
+    }
+    ?>
 <!DOCTYPE html>
 <html>
 
@@ -18,7 +26,7 @@
     </div>
   </nav>
 
-		<h1><center>GRAFIK PELANGGAN BERDASARKAN KOTA</center></h1>
+		<h1><center>GRAFIK PELANGGAN BERDASARKAN JUMLAH BELI</center></h1>
 
 
 <?php
@@ -31,6 +39,24 @@ $koneksi = mysqli_connect("localhost", "root", "", "sim-apotek");
 
 	<br/>
 	<br/>
+
+	<form action="" method="post">
+    	<!--Alya Masitha 1700018236-->
+        
+		<label>Pilih Urutan</label>
+		<div class="input-field col s12" > 
+			<select class="browser-default" name="area2">
+				<?php $options4 = array('ASC', 'DESC'); //pilihan grafiknya
+				foreach ($options4 as $area4) { //untuk perulangan
+					$selected = @$_POST['area4'] == $area4 ? ' selected4="selected4"' : '';				//menampilkan pilihan yang sudah dipilih 
+					echo '<option value="' . $area4 . '"' . $selected4 . '>' . $area4 . '</option>';
+				}?>
+			</select>
+		</div>
+        <div class="row">
+            <input class="waves-effect waves-light btn-small" type="submit" name="submit" value="oke"/>
+        </div>
+    </form>
 
 	<table border="1">
 		<thead>
@@ -45,7 +71,7 @@ $koneksi = mysqli_connect("localhost", "root", "", "sim-apotek");
 		<tbody>
 			<?php 
 			$no = 1;
-			$data = mysqli_query($koneksi,"SELECT pelanggan.nama AS nama, pelanggan.ID as id ,SUM(penjualan.total_penjualan) as total_penjualan FROM penjualan, pelanggan where pelanggan.ID=penjualan.id_pelanggan GROUP BY pelanggan.ID ORDER BY SUM(penjualan.total_penjualan) DESC");
+			$data = mysqli_query($koneksi,"SELECT pelanggan.nama AS nama, pelanggan.ID as id ,SUM(penjualan.total_penjualan) as total_penjualan FROM penjualan, pelanggan where pelanggan.ID=penjualan.id_pelanggan GROUP BY pelanggan.ID ORDER BY SUM(penjualan.total_penjualan) $urutan");
 			while($d=mysqli_fetch_array($data)){
 				?>
 				<tr>
@@ -67,12 +93,12 @@ $koneksi = mysqli_connect("localhost", "root", "", "sim-apotek");
 			type: 'bar',
 			data: {
 				labels: [<?php 
-					$nama= mysqli_query($koneksi, "SELECT pelanggan.nama AS nama FROM penjualan, pelanggan where pelanggan.ID=penjualan.id_pelanggan GROUP BY pelanggan.ID ORDER BY SUM(penjualan.total_penjualan) DESC");
+					$nama= mysqli_query($koneksi, "SELECT pelanggan.nama AS nama FROM penjualan, pelanggan where pelanggan.ID=penjualan.id_pelanggan GROUP BY pelanggan.ID ORDER BY SUM(penjualan.total_penjualan) $urutan");
 				while ($b = mysqli_fetch_array($nama)) { echo '"' . $b['nama'] . '",';} ?>
 					],
 				datasets: [{
 					label: '',
-					data: [<?php $total_penjualan = mysqli_query($koneksi, "SELECT SUM(penjualan.total_penjualan) as total_penjualan FROM penjualan, pelanggan where pelanggan.ID=penjualan.id_pelanggan GROUP BY pelanggan.ID ORDER BY SUM(penjualan.total_penjualan) DESC");
+					data: [<?php $total_penjualan = mysqli_query($koneksi, "SELECT SUM(penjualan.total_penjualan) as total_penjualan FROM penjualan, pelanggan where pelanggan.ID=penjualan.id_pelanggan GROUP BY pelanggan.ID ORDER BY SUM(penjualan.total_penjualan) $urutan");
 while ($p = mysqli_fetch_array($total_penjualan)) { echo '"' . $p['total_penjualan'] . '",';}?>],
                             backgroundColor: [
 					'rgba(255, 99, 132, 0.2)',
