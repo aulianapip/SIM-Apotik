@@ -102,7 +102,10 @@ kami menginputkan status kondisi barang yang berada ditoko, status antara lain a
       $cekbarcode = mysqli_query($connect,$barcode);//memilih kode obat obat yang akan ditambah ke data opname(Mail)
     }elseif (isset($_POST['refresh'])) {
       header("location: tambah_opname.php");//refresh untuk memunculkan kembali kode obat(Febri)
-
+    }else{
+      $query = "SELECT kode_obat from obat ";
+      $cekobat = mysqli_query($connect,$query);
+    }//menampilkan kode_obat setelah di refresh(Lussy)
 
    ?>
 <table class="table is-fullwidth" >
