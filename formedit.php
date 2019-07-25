@@ -15,12 +15,10 @@ fitur ini berupa jika data member akan diedit user maka jendela akan beralih pad
 </head>
 <?php
 	include('header.php');//pemanggilan untuk bagian header dengan nama file header.php
-
-	$connect = new mysqli("localhost", "root", "", "sim-apotek-pos-test");//untuk menghubungkan ke database
-
-	$ID=$_GET["ID"];//method untuk Menampilkan variabel
-	$edit="SELECT ID,Nama,Jk,NoHP,Email,Alamat FROM pelanggan where ID='$ID'";//perintah untuk menampilkan data
-	foreach (mysqli_query($connect,$edit) as $a){	//merupakan sintak untuk perulangan menampilkan data pelanggan
+	//untuk menghubungkan ke database
+	include('function.php');
+	$ID=$_GET["ID"];
+	foreach (tampiledit($ID,$connect) as $a){	//merupakan sintak untuk perulangan menampilkan data pelanggan
 	
 ?>
 <link rel="stylesheet" type="text/css" href="style.css"> <!-- untuk memanggil script css-->

@@ -2,7 +2,7 @@
 <?php 
     include('conect.php');
 
-    
+include('function.php');
    if (isset($_POST['Cari'])) {
 /*dikerjakan oleh ADITYA AZIZ SAPUTRA 1700018264*/
 
@@ -26,13 +26,11 @@
     }
   }
   /*function mennentukan tanggal awal dan tanggal lahir*/
-    include 'fungsi_indotgl.php';
+    //include 'fungsi_indotgl.php';
     $tgl_awal= $_POST['tgl_awal'];
     $tgl_akhir= $_POST['tgl_akhir'];
 
-
-  $q1="SELECT * from pelanggan where tgl_daftar between '$tgl_awal' and '$tgl_akhir'";
-  $SQL=mysqli_query($connect,$q1);
+    $SQL=eksekusi(tampil_berdasarkan_tanggal($tgl_awal, $tgl_akhir,$connect),$connect);
   
   }
   else if(isset($_POST['Refresh'])){
@@ -57,8 +55,8 @@
     }
   }
 
-  $SQL = mysqli_query($connect, "SELECT * FROM pelanggan ORDER BY Nama DESC");
-    
+      
+ $SQL =eksekusi( tampil($connect),$connect);
   }
 
 ?>
@@ -213,6 +211,7 @@ body {                        /*desain body*/
   <div class="header-right">
     <a class="active" href="index.php">Home</a>
     <a href="inputdata.php">Input Data</a>
+     <a href="inputdata.php">Log Member</a>
 </div>
 </div>
 </div>
@@ -272,7 +271,8 @@ body {                        /*desain body*/
             <?php   while($data = mysqli_fetch_array($SQL)){ ?>
                 <tr>
                     <td><?= $data['tgl_daftar'] ?></td>
-                    <td><?= $data['ID'] ?></td>
+                    <td><?= $data['tipe'] ?>
+                    <?= $data['ID'] ?></td>
                     <td><?= $data['Nama'] ?></td>
                     <td><?= $data['Jk'] ?></td>
                     <td><?= $data['NoHp'] ?></td>
@@ -283,7 +283,7 @@ body {                        /*desain body*/
 <!-- dibuat oleh Alfian Noor 1700018233 -->
 
 <!-- Script fromedit.php ini digunakan untuk mengedit sebuah data yang sudah kita input data didalam file index dan melakukan perintah konfirmasi validasi apakah ingin mengedit  data -->
-                     <a href="fromedit.php?ID=<?php echo $data['ID'];?>" onclick="return confirm('Yakin mau ingin mengedit data?');"><input type="image" src="edit.png" width="20" height="20" /a>
+                     <a href="formedit.php?ID=<?php echo $data['ID'];?>" onclick="return confirm('Yakin mau ingin mengedit data?');"><input type="image" src="edit.png" width="20" height="20" /a>
 <!-- script model validasi delete -->
 <!-- dibuat oleh Alfian Noor 1700018233 -->
 

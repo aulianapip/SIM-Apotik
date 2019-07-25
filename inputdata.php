@@ -7,22 +7,21 @@ validasi dikerjakan oleh Alfian Noor
  -->
 <?php
 	include "library/import.php"; //Pemanggilan link untuk css,bootsrap dengan file name bernama import.php
-
+	//requiere_once("function.php");
+	
 ?>
 <?php  
 include ('header.php'); //pemanggilan untuk bagian header dengan nama file header.php
 	if ($_POST){ //method untuk mengirimkan data langsung ke action untuk di tampung, dan jika kita memasukan nilai value dia tidak akan langsung di tampilkan
-		include 'conect.php'; //untuk menghubungkan ke database
-		
+		include ('conect.php'); //untuk menghubungkan ke database
+
 		$Nama = $_POST['Nama']; //sintaks yang berfungsi untuk sebagai inisial yang akan menyimpan nilai atau value
 		$Jk = $_POST['Jk']; //sintaks yang berfungsi untuk sebagai inisial yang akan menyimpan nilai atau value
 		$NoHP = $_POST['NoHP']; //sintaks yang berfungsi untuk sebagai inisial yang akan menyimpan nilai atau value
 		$Email = $_POST['Email']; //sintaks yang berfungsi untuk sebagai inisial yang akan menyimpan nilai atau value
 		$Alamat = $_POST['Alamat']; //sintaks yang berfungsi untuk sebagai inisial yang akan menyimpan nilai atau value
-		
-
-		$QuerySql = "INSERT INTO pelanggan VALUES(now(),'m',null,'$Nama','$Jk','$NoHP','$Email', '$Alamat')"; //query Insert into berguna untuk memasukan nilai ke dalam data pelanggan. ID pelanggan yang auto increment. dan inisialisasi now() untuk date dan null adalah kosong maksudnya, date disini akan otomatis di isi langsung
-		$SQL = mysqli_query($connect,$QuerySql); //query ini berfungsi untuk memanggil fungsi conect untuk memberikan akses ke database dan inisialisasi dari querysql
+		include('function.php');
+		input($ID,$Nama,$jeniskelamin,$NoHP,$Email,$Alamat,$connect);
 
 		echo "<script>alert('Input data baru sukses!!!');window.location='index.php'</script>"; //perintah php yang akan menampilkan deskripsi script alert, dan jika berhasil maka akan membuka ke jendela lokasi file index.php
 	}

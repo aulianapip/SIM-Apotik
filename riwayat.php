@@ -1,7 +1,7 @@
 <!-- 1. Fitur CRM atau disebut pelanggan. fitur ini digunakan untuk menginputkan data member yang akan digunakan di bagian kasir. jika pelanggan tersebut adalah member maka akan di kenakan diskon. -->
 <?php 
     include('conect.php');
-
+  include('function.php');
     
    if (isset($_POST['Cari'])) {
 
@@ -24,10 +24,8 @@
     
     $tgl_awal= $_POST['tgl_awal'];
     $tgl_akhir= $_POST['tgl_akhir'];
-
-
-  $q1="SELECT penjualan.tgl_penjualan AS waktu,penjualan.tipe as tipe,penjualan.id as id,pelanggan.Nama as nama,penjualan.no_transaksi as no_transaksi,penjualan_detail.kd_barang as kode_obat,penjualan_detail.jumlah as jumlah_beli, penjualan_detail.sub_total as total_beli from penjualan,pelanggan,penjualan_detail where penjualan.id=pelanggan.ID and penjualan.tipe=pelanggan.tipe and penjualan.tipe=penjualan_detail.tipe and penjualan.id=penjualan_detail.id and penjualan.no_transaksi=penjualan_detail.no_transaksi and penjualan.tgl_penjualan between '$tgl_awal' and '$tgl_akhir'";
-  $SQL=mysqli_query($connect,$q1);
+    $a=riwayat_satu($tgl_awal,$tgl_akhir,$connect);
+  $SQL=eksekusi($a,$connect);
   
   }
   else if(isset($_POST['Refresh'])){
@@ -51,8 +49,7 @@
 
     }
   }
-
-  $SQL = mysqli_query($connect, "SELECT penjualan.tgl_penjualan AS waktu,penjualan.tipe as tipe,penjualan.id as id,pelanggan.Nama as nama, penjualan.no_transaksi as no_transaksi,penjualan_detail.kd_barang as kode_obat,penjualan_detail.jumlah as jumlah_beli, penjualan_detail.sub_total as total_beli from penjualan,pelanggan,penjualan_detail where penjualan.id=pelanggan.ID and penjualan.tipe=pelanggan.tipe and penjualan.tipe=penjualan_detail.tipe and penjualan.id=penjualan_detail.id and penjualan.no_transaksi=penjualan_detail.no_transaksi;");
+  $SQL=eksekusi(riwayat_dua($connect),$connect);
     
   }
 
