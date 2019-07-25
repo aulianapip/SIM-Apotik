@@ -2,7 +2,8 @@
 <?php
 	include 'db.php';
 	$QuerySql = "SELECT `kode_pasok`, `kode_obat`, `kode_supplier`, `jumlah_pasok`, `harga_beli`, `tanggal_pasok`, `tanggal_kadaluarsa` FROM pasok";
-	$SQL = mysqli_query($connect, $QuerySql); 
+	$SQL = mysqli_query($connect, $QuerySql)
+		// Untuk Query dalam menampilkan pada tabel; 
 ?> 
 <!DOCTYPE html>
 <html>
@@ -151,6 +152,7 @@
   </thead>
     <!--Untuk Menampilkan Data Pasok tersebut -->
 	<?php
+		//Untuk menampilkan isi database ke Tabel tersebut
       foreach ($SQL as $key) {
         echo "<tr>
             <td>$key[kode_pasok]</td>
