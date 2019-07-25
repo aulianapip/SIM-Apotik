@@ -144,11 +144,11 @@ if(!isset($_SESSION['SES_LOGIN'])){
 						<?php 
 							//$jmlbeli=$_POST['inpJumlahBeli'];
 							$ttlItem=0;$ttlJual=0;
-							$qri="SELECT a.*,b.nama_obat FROM penjualan_tmp a LEFT JOIN obat b ON b.kode_obat=a.kode_obat WHERE a.user='$user_id'";
+							$qri="SELECT a.*,b.nama_obat from penjualan_tmp a left join obat b on b.kode_obat = a.kode_obat left join barcode c on c.kode_obat = b.kode_obat where a.user='$user_id'";
 							$hsl=querydb($qri);
 							while($rek=arraydb($hsl)){
 								echo "<tr>";
-								echo "<td>".$rek['kode_obat']."</td>";
+								echo "<td>".$rek['kode_barcode']."</td>";
 								echo "<td>".$rek['nama_obat']."</td>";
 								echo "<td align='center'>".number_format($rek['harga'],0,",",".")."</td>";
 								echo "<td align='center'>".$rek['jumlah']."</td>";
