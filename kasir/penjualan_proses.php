@@ -30,7 +30,7 @@ if(isset($_POST['cariBarang'])){
 			
 			$subTtl = $rek['harga'] * 1;
 			$id = buatKode("penjualan_tmp","");
-			$qri3 = "INSERT INTO penjualan_tmp (id,no_faktur,kode_obat,jumlah,harga,sub_total,hrg_pokok,user) VALUES ('$id','$noFaktur','$rek[kode_obat]','1','$rek[harga]','$subTtl','$hrgAvg','$user_id')";
+			$qri3 = "INSERT INTO penjualan_tmp (id,no_faktur,kode_barcode,kode_obat,jumlah,harga,sub_total,hrg_pokok,user) VALUES ('$id','$noFaktur','$rek[kode_barcode]','$rek[kode_obat]','1','$rek[harga]','$subTtl','$hrgAvg','$user_id')";
 			$hsl3 = querydb($qri3);	
 		
 		}
@@ -89,14 +89,14 @@ if(isset($_POST['simpanJual'])){
 				$subTtl = $rek['sub_total'];
 						
 				if($c==1){
-					$qri2 = "INSERT INTO penjualan_detail (no_transaksi,kode_obat,jumlah,harga,sub_total,hrg_pokok) 
-					VALUES ('$noTrans', '$rek[kode_obat]','$rek[jumlah]','$rek[harga]','$subTtl','$rek[hrg_pokok]');";
+					$qri2 = "INSERT INTO penjualan_detail (no_transaksi,kode_obat,kode_barcode,jumlah,harga,sub_total,hrg_pokok) 
+					VALUES ('$noTrans', '$rek[kode_obat]','$rek[kode_barcode]','$rek[jumlah]','$rek[harga]','$subTtl','$rek[hrg_pokok]');";
 				}elseif($c<$row){
-					$qri2 .= "INSERT INTO penjualan_detail (no_transaksi,kode_obat,jumlah,harga,sub_total,hrg_pokok) 
-					VALUES ('$noTrans', '$rek[kode_obat]','$rek[jumlah]','$rek[harga]','$subTtl','$rek[hrg_pokok]');";
+					$qri2 .= "INSERT INTO penjualan_detail (no_transaksi,kode_obat,kode_barcode,jumlah,harga,sub_total,hrg_pokok) 
+					VALUES ('$noTrans', '$rek[kode_obat]','$rek[kode_barcode]','$rek[jumlah]','$rek[harga]','$subTtl','$rek[hrg_pokok]');";
 				}else{
-					$qri2 .= "INSERT INTO penjualan_detail (no_transaksi,kode_obat,jumlah,harga,sub_total,hrg_pokok) 
-					VALUES ('$noTrans', '$rek[kode_obat]','$rek[jumlah]','$rek[harga]','$subTtl','$rek[hrg_pokok]')";
+					$qri2 .= "INSERT INTO penjualan_detail (no_transaksi,kode_obat,kode_barcode,jumlah,harga,sub_total,hrg_pokok) 
+					VALUES ('$noTrans', '$rek[kode_obat]','$rek[kode_barcode]','$rek[jumlah]','$rek[harga]','$subTtl','$rek[hrg_pokok]')";
 				}	
 				$c++;	
 				$ttlJual = $ttlJual + $subTtl;
