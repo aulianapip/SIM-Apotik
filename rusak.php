@@ -128,9 +128,10 @@ kami menginputkan status kondisi barang yang berada ditoko, status antara lain a
                 <td>$data[status]</td>
                 <td>$data[catatan]</td>
                 <td>$data[tanggal]</td>
-                <td><a href='edit_opname.php?kode_barcode=$data[kode_barcode]'>EDIT</a> | <a href='delete_opname.php?kode_barcode=$data[kode_barcode]' onclick=”return confirm(‘Yakin Hapus?’)”>DELETE</a>
+                <td><a href='edit_opname.php?kode_barcode=$data[kode_barcode]'>EDIT</a> | 
+                echo "<a href=\"delete_opname.php?kode_barcode=$data[kode_barcode]"\ onclick=\”return confirm(‘Yakin Hapus?’);\”>DELETE</a>"
             </td>
-              </tr>";
+              </tr>";//tombol validasi untuk menghapus data opname dengan status opname RUSAK
 			}
 		?>
 </table>
