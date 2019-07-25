@@ -184,12 +184,19 @@ if(!isset($_SESSION['SES_LOGIN'])){
 							// 	 $ttlItem= $ttlItem-( $ttlItem *0.2);
 							//  //hitung kembalian	
 							// }
+					
+			//Nama	: Haykal Eka Putra Gultom
+			//Nim	: 1700018226
+			//Kelas	: E
+					
+			//Kelas ini digunakan untuk tmapilan dari kasirnya
+					//method isset untuk mengecek cash tidak bernilai null
 						if(isset($_POST['cash'])){
 							
 							$m='m';
 							$cash=$_POST['cash'];
 							$i = strlen($nama1);
-							
+							//percabangan ini digunakan untuk menghitung hasil dari kembaliannya
 							if ($ttlJual>30000 && $i>0) {
 										$kembali=$cash-($ttlJual-($ttlJual*0.2));
 										echo "masuk";
