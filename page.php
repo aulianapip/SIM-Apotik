@@ -1,4 +1,13 @@
+
+//Nama	: Ardiansyah 
+//Nim	: 1700018058
+//Kelas	: E
+
+//Kelas ini digunakan sebagai menu tampilan dari kasir 
+
 <?php
+
+//digunakan sebagai pengecekan user yang masuk
  session_start();
  if(!isset($_SESSION['SES_LOGIN'])){
 	header('location:home');
@@ -87,7 +96,7 @@
 </header>
 	<div class="navbar navbar-fixed-top">
 	<div class="navbar-inner">
-
+	//fungsi untuk menampilkan nama toko nya
 		<div class="container">
 
 			<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
