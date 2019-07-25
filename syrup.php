@@ -1,8 +1,15 @@
+<!--
+UAS PRPL
+NAMA : MUHAMMAD AFRIZAL
+NIM : 1700018231
+KELAS : E
+
+1. Function syrup disini untuk menampilkan semua jenis obat yang berjenis syrup yang ada di gudang
+-->
 <?php
-//AFRIZAL YANG BUAT
-	include 'db.php';
-	$QuerySql = "SELECT * FROM obat inner join jenis_obat on jenis_obat.kode_jenis=obat.kode_jenis where jenis_obat.nama_jenis='Syrup'";
-	$SQL = mysqli_query($connect, $QuerySql);
+	include 'db.php'; //2.untuk masuk ke database gudang
+	$QuerySql = "SELECT * FROM obat inner join jenis_obat on jenis_obat.kode_jenis=obat.kode_jenis where jenis_obat.nama_jenis='Syrup'";//2.Function untuk menampilkan obat berjenis syrup
+	$SQL = mysqli_query($connect, $QuerySql); //2.Menyambungkan query dengan gudang
 ?>
 
 <!DOCTYPE html>
@@ -97,7 +104,7 @@
   </thead>
     <?php
       foreach ($SQL as $key) {
-        if($key['Stok_Obat']<15){
+        if($key['Stok_Obat']<15){//2.memberikan penanda dengan warna merah jika stok obat kurang dari 15
         echo "<tr>
             <td bgcolor=red>$key[nama_obat]</td>
             <td bgcolor=red>$key[harga_obat]</td>
