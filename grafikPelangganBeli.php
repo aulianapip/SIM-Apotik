@@ -42,16 +42,7 @@ $koneksi = mysqli_connect("localhost", "root", "", "sim-apotek");
 
 	<form action="" method="post">
     	<!--Alya Masitha 1700018236-->
-        <label>Pilih Chart</label>
-		<div class="input-field col s12" > 
-			<select class="browser-default" name="area1">
-				<?php $options3 = array('pie', 'bar', 'line'); //pilihan grafiknya
-				foreach ($options3 as $area3) { //untuk perulangan
-					$selected = @$_POST['area3'] == $area3 ? ' selected3="selected3"' : '';				//menampilkan pilihan yang sudah dipilih 
-					echo '<option value="' . $area3 . '"' . $selected3 . '>' . $area3 . '</option>';
-				}?>
-			</select>
-		</div>
+       
 		<label>Pilih Urutan</label>
 		<div class="input-field col s12" > 
 			<select class="browser-default" name="area2">
