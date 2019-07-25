@@ -1,4 +1,4 @@
-<!--ARINDRA WAHYU CANDRA YANG BUAT-->
+<!--PRPL UAS ARINDRA WAHYU CANDRA Function data supplier tanggal berfungsi untuk mensorting data supplier dari tanngal pemasokan -->
 <!--1.  Pada kelompok gudang, kami telah membuat beberapa kelas yang mempunyai fungsi sebagai berikut:
 • Fungsi Sorting Nama Obat A-Z : fitur ini berfungsi mengurutkan nama obat sesuai alpabet dari awalan huruf A sampai awalan huruf Z.
 • Fungsi Sorting Jenis Obat Kapsul : fitur ini berfungsi mensorting obat yang berjenis kapsul untuk di tampilkan.
