@@ -1,4 +1,9 @@
 <html>
+	//Nama	: Ardiansyah 
+	//Nim	: 1700018058
+	//Kelas	: E
+	
+	//Kelas coba ini digunakan untuk menampilkan hasil inputan dari cash yang dimasukan
 <head>
 	<title>Php Nasi Goreng gilacoding.com</title>
 </head>
