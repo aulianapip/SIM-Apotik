@@ -1,6 +1,6 @@
 <?php
 
-// Fitur POS, fitur untuk menjalankan fungsi kasir dan operasional penjualan apotik 
+// Kelas api-test.php digunakan sebagai kelas yang menghubungkan dengan scan barcode android
 
 // Nama  : Muhammad Ramon Saputra
 // NIM   : 1700018245
@@ -31,7 +31,7 @@ opendb();
 	while($rek = arraydb($hslf)){
 		$noFaktur = $rek['no_faktur'];
 	}
-
+//method untuk mendapatkan kode obat dari barcode
 	$getcode = "SELECT kode_obat FROM barcode WHERE kode_barcode='$barcode'";
 	$hslcode = querydb($getcode);
 	$rowcode = numrows($hslcode);
