@@ -18,8 +18,8 @@ error_reporting(0); //untuk menghilangkan notif error pada program
     if (isset($_POST['submit'])) { // untuk mensubmite post area
     }
 $connect = mysqli_connect("localhost", "root", "", "sim-apotek");
-$tgl = mysqli_query($connect, "SELECT YEAR(tanggal_pasok)as tanggal FROM pasok, supplier WHERE supplier.kode_supplier=pasok.kode_supplier "); // Menampilkan tahun Tuhun 
-$jml = mysqli_query($connect, "SELECT count(nama_pemasok) as jumlah FROM pasok, supplier WHERE supplier.kode_supplier=pasok.kode_supplier"); // Menampilkan data  jumlah pasok
+$tgl = mysqli_query($connect, "SELECT YEAR(tanggal_pasok)as tanggal FROM pasok, supplier WHERE supplier.kode_supplier=pasok.kode_supplier GROUP BY YEAR(tanggal_pasok) "); // Menampilkan tahun Tuhun 
+$jml = mysqli_query($connect, "SELECT count(nama_pemasok) as jumlah FROM pasok, supplier WHERE supplier.kode_supplier=pasok.kode_supplier GROUP BY YEAR(tanggal_pasok) "); // Menampilkan data  jumlah pasok
 ?>
 <html>
     <head>
