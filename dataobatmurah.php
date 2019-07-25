@@ -1,7 +1,14 @@
+//UAS PRPL
+//DIMAS RESTU MAULANA
+//1700018247
+//E
+
+//1. dataobatmurah.php berfungsi untuk mengurutkan data obat mulai dari yang termurah hingga yang termahal.
+
 
 <?php
   include 'db.php';
-  $QuerySql = "SELECT `nama_obat`,`harga`,`jenis`,`kode_obat` FROM `obat` ORDER BY `harga` ASC"; 
+  $QuerySql = "SELECT `nama_obat`,`harga`,`jenis`,`kode_obat` FROM `obat` ORDER BY `harga` ASC"; //2. query disamping berfungsi untuk mengurutkan data obat mulai dari yang termurah hingga yang paling mahal. sehingga memudahkan untuk pencarian obat yang murah.
   $SQL = mysqli_query($connect, $QuerySql);
 ?>
 
