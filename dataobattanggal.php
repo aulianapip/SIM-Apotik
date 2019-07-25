@@ -1,10 +1,16 @@
+<!--
+UAS PRPL
+NAMA : MUHAMMAD AFRIZAL
+NIM : 1700018231
+KELAS : E
+
+1.dataobattanggal = yaitu untuk menampilkan data obat berdasarkan tanggal inputannya, dan juga mengurutkan berdasarkan tanggal input dari awal obat masuk sampai obat yg terakhir di input
+-->
 
 <?php
-	include 'db.php'; //untuk memasukan databasenya
-	$QuerySql = "SELECT * FROM `obat`, `jenis_obat` WHERE jenis_obat.kode_jenis=obat.kode_jenis ORDER BY `tanggal_input` ASC";
+	include 'db.php'; //2. untuk memasukan databasenya
+	$QuerySql = "SELECT * FROM `obat`, `jenis_obat` WHERE jenis_obat.kode_jenis=obat.kode_jenis ORDER BY `tanggal_input` ASC"; //2. query ini untuk menampilkan data obat berdasarkan tanggal inputnya, mengurutkan berdasarkan tanggal input dari awal obat yg masuk sampai obat yg terakhir di input
 	$SQL = mysqli_query($connect, $QuerySql);
-//query untuk menampilkan data obat berdasarkan tanggal inputnya, mengurutkan berdasarkan tanggal input dari awal obat yg masuk sampai obat yg terakhir di input
-//Muhammad Afrizal / 1700018231
 ?>
 
 
