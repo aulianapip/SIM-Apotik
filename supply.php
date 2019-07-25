@@ -12,8 +12,8 @@ hasil analisa tersebut juga dapat juga dapat membantu kita untuk mengambil keput
 
 <?php
 $connect = mysqli_connect("localhost", "root", "", "sim-apotek"); //untuk mengkoneksikan database sim-apotek.
-$nama_pemasok = mysqli_query($connect, "SELECT nama_pemasok FROM supplier,pasok WHERE supplier.kode_supplier=pasok.kode_supplier order by kode_pasok asc"); //mengambil data nama pemasok dari tabel supplier
-$jumlah_pasok= mysqli_query($connect, "SELECT jumlah_pasok FROM supplier,pasok WHERE supplier.kode_supplier=pasok.kode_supplier order by kode_pasok asc");  //mengambil data jumlah dari tabel supplier
+$nama_pemasok = mysqli_query($connect, "SELECT nama_pemasok FROM supplier,pasok WHERE supplier.kode_supplier=pasok.kode_supplier order by tanggal_pasok DESC limit 10"); //mengambil data nama pemasok dari tabel supplier
+$jumlah_pasok= mysqli_query($connect, "SELECT jumlah_pasok FROM supplier,pasok WHERE supplier.kode_supplier=pasok.kode_supplier order by tanggal_pasok DESC limit 10");  //mengambil data jumlah dari tabel supplier
 ?>
 <html>
     <head>
@@ -57,7 +57,7 @@ $jumlah_pasok= mysqli_query($connect, "SELECT jumlah_pasok FROM supplier,pasok W
         <tbody>
             <?php 
             $no = 1;
-            $data = mysqli_query($connect,"SELECT * FROM supplier,pasok WHERE supplier.kode_supplier=pasok.kode_supplier"); //Memanggil seluruh data yang ada dalam supplier
+            $data = mysqli_query($connect,"SELECT * FROM supplier,pasok WHERE supplier.kode_supplier=pasok.kode_supplier order by tanggal_pasok DESC limit 10"); //Memanggil seluruh data yang ada dalam supplier
             while($d=mysqli_fetch_array($data)){ //mengambil data dari array database
                 ?>
                 <tr> <!-- menjadikan data yang dipanggil kedalam kolom -->

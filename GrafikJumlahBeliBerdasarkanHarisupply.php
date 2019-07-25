@@ -231,7 +231,7 @@ $jumlah = mysqli_query($connect, "SELECT jumlah_pasok as jumlah FROM pasok, supp
             <select class="browser-default" name="area"">
                 <?php
                 $bulan_pasok = mysqli_query($connect, "SELECT MONTH(tanggal_pasok) as bulan_pasok FROM pasok, supplier WHERE supplier.kode_supplier=pasok.kode_supplier ");
-                 while( $options = mysqli_fetch_assoc( $bulan_pasok)){
+                 while( $options = mysqli_fetch_assoc($bulan_pasok)){
                  foreach ($options as $area) { // opsi pada form area
                     $selected = @$_POST['area'] == $area ? ' selected="selected"' : ''; // fungsi memeilih opsi area
                     echo '<option value="' . $area . '"' . $selected . '>' . $area . '</option>'; // untuk membuat tabel dari nama nama pada opsi
@@ -247,9 +247,11 @@ $jumlah = mysqli_query($connect, "SELECT jumlah_pasok as jumlah FROM pasok, supp
                 <?php
                 $tahun_pasok = mysqli_query($connect, "SELECT YEAR(tanggal_pasok) as tahun_pasok FROM pasok, supplier WHERE supplier.kode_supplier=pasok.kode_supplier ");
                  $options2 = mysqli_fetch_array($tahun_pasok); // menampilkan nama pada opsi area 
-                foreach ($options2 as $area2) { // opsi pada form area
-                    $selected2 = @$_POST['area2'] == $area2 ? ' selected2="selected2"' : ''; // fungsi memeilih opsi area
-                    echo '<option value="' . $area2 . '"' . $selected2 . '>' . $area2 . '</option>'; // untuk membuat tabel dari nama nama pada opsi
+                 while( $options2 = mysqli_fetch_assoc($tahun_pasok)){
+                 foreach ($options2 as $area) { // opsi pada form area
+                    $selected = @$_POST['area'] == $area ? ' selected="selected"' : ''; // fungsi memeilih opsi area
+                    echo '<option value="' . $area . '"' . $selected . '>' . $area . '</option>'; // untuk membuat tabel dari nama nama pada opsi
+                }
                 }?>
             </select>
         </div>
