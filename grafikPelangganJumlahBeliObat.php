@@ -1,3 +1,14 @@
+<!--
+//Nama : Zulfikar Ulya Zen
+//Nim : 1700018230
+//Kelas : E
+
+1. Fitur Analitik 
+	Fitur untuk menganalisa data dari seluruh fitur yang ada di sistem Informasi Apotik.
+	untuk menganalisa dibuatlah berbagai macam grafik untuk membantu merepresentasi hasil analisa yang telah dibuat.
+	hasil analisa tersebut juga dapat juga dapat membantu kita untuk mengambil keputusan dimasa yang akan datang.
+-->
+
 <?php
 $koneksi = mysqli_connect("localhost", "root", "", "sim-apotek"); //Memanggil database yang telah kita buat
 error_reporting(0); //untuk menghilangkan notif error pada program
@@ -29,7 +40,7 @@ $pilihan = $_POST['area1'];
 		 <center>
     <h3>GRAFIK PELANGGAN BERDASARKAN JUMLAH BELI OBAT
         <?php 
-            echo ' URUTAN'. ' '.$urutan.'';
+            echo ' URUTAN'. ' '.$urutan.'';//untuk menampilkan urutan
          ?>
          </h3></center>
     <div style="width: 800px;margin: 0px auto;">
@@ -79,7 +90,7 @@ $koneksi = mysqli_connect("localhost", "root", "", "sim-apotek");
 		<tbody>
 			<?php 
 			$no = 1;
-			$data = mysqli_query($koneksi,"SELECT pelanggan.nama as nama, pelanggan.ID as id, COUNT(penjualan.no_transaksi) as jumlah_beli_obat FROM penjualan_detail, penjualan, pelanggan, obat where pelanggan.ID=penjualan.id_pelanggan and obat.kode_obat=penjualan_detail.kode_obat and penjualan.no_transaksi=penjualan_detail.no_transaksi GROUP BY pelanggan.nama ORDER BY COUNT(penjualan.no_transaksi) $urutan");
+			$data = mysqli_query($koneksi,"SELECT pelanggan.nama as nama, pelanggan.ID as id, COUNT(penjualan.no_transaksi) as jumlah_beli_obat FROM penjualan_detail, penjualan, pelanggan, obat where pelanggan.ID=penjualan.id_pelanggan and obat.kode_obat=penjualan_detail.kode_obat and penjualan.no_transaksi=penjualan_detail.no_transaksi GROUP BY pelanggan.nama ORDER BY COUNT(penjualan.no_transaksi) $urutan"); //query utnuk menampilkan jumlah beli obat pada pelanggan
 			while($d=mysqli_fetch_array($data)){
 				?>
 				<tr>
@@ -101,12 +112,12 @@ $koneksi = mysqli_connect("localhost", "root", "", "sim-apotek");
 			type: '<?php echo $pilihan ?>',
 			data: {
 				labels: [<?php 
-					$nama= mysqli_query($koneksi, "SELECT pelanggan.nama as nama FROM penjualan_detail, penjualan, pelanggan, obat where pelanggan.ID=penjualan.id_pelanggan and obat.kode_obat=penjualan_detail.kode_obat and penjualan.no_transaksi=penjualan_detail.no_transaksi GROUP BY pelanggan.nama  ORDER BY COUNT(penjualan.no_transaksi) $urutan");
+					$nama= mysqli_query($koneksi, "SELECT pelanggan.nama as nama FROM penjualan_detail, penjualan, pelanggan, obat where pelanggan.ID=penjualan.id_pelanggan and obat.kode_obat=penjualan_detail.kode_obat and penjualan.no_transaksi=penjualan_detail.no_transaksi GROUP BY pelanggan.nama  ORDER BY COUNT(penjualan.no_transaksi) $urutan"); // querry untuk menampilkan data nama pelanggan grafik
 				while ($b = mysqli_fetch_array($nama)) { echo '"' . $b['nama'] . '",';} ?>
 					],
 				datasets: [{
 					label: '',
-					data: [<?php $jumlah_beli_obat  = mysqli_query($koneksi, "SELECT COUNT(penjualan.no_transaksi) as jumlah_beli_obat FROM penjualan_detail, penjualan, pelanggan, obat where pelanggan.ID=penjualan.id_pelanggan and obat.kode_obat=penjualan_detail.kode_obat and penjualan.no_transaksi=penjualan_detail.no_transaksi GROUP BY pelanggan.nama  ORDER BY COUNT(penjualan.no_transaksi) $urutan");
+					data: [<?php $jumlah_beli_obat  = mysqli_query($koneksi, "SELECT COUNT(penjualan.no_transaksi) as jumlah_beli_obat FROM penjualan_detail, penjualan, pelanggan, obat where pelanggan.ID=penjualan.id_pelanggan and obat.kode_obat=penjualan_detail.kode_obat and penjualan.no_transaksi=penjualan_detail.no_transaksi GROUP BY pelanggan.nama  ORDER BY COUNT(penjualan.no_transaksi) $urutan"); // querry untuk menampilkan jumlah beli obat pelanggan yang akan ditampilkan pada grafik
 while ($p = mysqli_fetch_array($jumlah_beli_obat)) { echo '"' . $p['jumlah_beli_obat'] . '",';}?>],
                             backgroundColor: [
 					'rgba(255, 99, 132, 0.2)',

@@ -1,3 +1,14 @@
+<!--
+//Nama : Zulfikar Ulya Zen
+//Nim : 1700018230
+//Kelas : E
+
+1. Fitur Analitik 
+    Fitur untuk menganalisa data dari seluruh fitur yang ada di sistem Informasi Apotik.
+    untuk menganalisa dibuatlah berbagai macam grafik untuk membantu merepresentasi hasil analisa yang telah dibuat.
+    hasil analisa tersebut juga dapat juga dapat membantu kita untuk mengambil keputusan dimasa yang akan datang.
+-->
+
 <?php
 $connect = mysqli_connect("localhost", "root", "", "sim-apotek");
 $hari_penjualan = mysqli_query($connect, "SELECT DAY(tgl_penjualan) as hari_penjualan FROM penjualan GROUP BY DAY(tgl_penjualan)");
