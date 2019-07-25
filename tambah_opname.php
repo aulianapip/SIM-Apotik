@@ -80,8 +80,10 @@ kami menginputkan status kondisi barang yang berada ditoko, status antara lain a
       $tambah_opname = "INSERT INTO opname VALUES ('$kode_barcode','$status','$catatan',curdate())";//menambah data opname sesuai dengan form input(fadhil)
       mysqli_query($connect,$tambah_opname);
       $update_barcode = "UPDATE barcode SET status='$status' WHERE kode_barcode='$kode_barcode'";//update status opname sesuai dengan barcode dari form input(thobie)
-
-
+      mysqli_query($connect,$update_barcode);
+      $barcode1 = "SELECT kode_pasok FROM barcode WHERE kode_barcode='$kode_barcode'";//untuk pemanggilan/pencarian code barcode
+      $barcode2 = mysqli_query($connect,$barcode1);
+      
    ?>
 <table class="table is-fullwidth" >
 <div class="container">
