@@ -1,4 +1,4 @@
-<!--ARINDRA WAHYU  CANDRA KURNIAWAN  YANG BUAT INI -->
+<!--UAS PRPL ARINDRA WAHYU  CANDRA KURNIAWAN  Function tidak terdapat obat berfungsi untuk memngetahui obat yang dicari yang tidak ada dalam database -->
 
 <!--1.  Pada kelompok gudang, kami telah membuat beberapa kelas yang mempunyai fungsi sebagai berikut:
 • Fungsi Sorting Nama Obat A-Z : fitur ini berfungsi mengurutkan nama obat sesuai alpabet dari awalan huruf A sampai awalan huruf Z.
@@ -114,6 +114,6 @@
 </nav>
 <table class="table is-fullwidth" >
 <h3 align="center"> TIDAK TERDAPAT DATA </h3>
-	<!--Menampilkan Tampilkan Pencarian yang tidak terdapat dalam pencarian obat maupun supplier  ARINDRA WAHYU  CANDRA K 1700018279 -->
+	<!--UAS PRPL Menampilkan Tampilkan Pencarian yang tidak terdapat dalam pencarian obat maupun supplier  ARINDRA WAHYU  CANDRA K 1700018279 -->
 </body>
 </html>
