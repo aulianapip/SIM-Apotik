@@ -1,4 +1,4 @@
-<!--ARINDRA WAHYU CANDRA YANG BUAT -->
+<!--UAS PRPL ARINDRA WAHYU CANDRA YANG BUAT function update data obat yang berfungsi untuk mengupdate database dari perubahan web  -->
 <!--1.  Pada kelompok gudang, kami telah membuat beberapa kelas yang mempunyai fungsi sebagai berikut:
 • Fungsi Sorting Nama Obat A-Z : fitur ini berfungsi mengurutkan nama obat sesuai alpabet dari awalan huruf A sampai awalan huruf Z.
 • Fungsi Sorting Jenis Obat Kapsul : fitur ini berfungsi mensorting obat yang berjenis kapsul untuk di tampilkan.
@@ -18,7 +18,7 @@
 -->
 
 <?php
-// Function Update Obat : untuk mengupdate, menambahkan dan mengedit obat di database agar bisa diubah sesuai dengan update sesuai data yang akan di ubah atau ditambhkan --> Arindra Wahyu Candra 1700018279
+// UAS PRPL Function Update Obat : untuk mengupdate, menambahkan dan mengedit obat di database agar bisa diubah sesuai dengan update sesuai data yang akan di ubah atau ditambhkan --> Arindra Wahyu Candra 1700018279
     include 'db.php';
     $nama_obat=$_POST['nama_obat'];
     $harga_obat=$_POST['harga_obat'];
