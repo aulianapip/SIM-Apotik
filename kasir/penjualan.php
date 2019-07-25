@@ -1,3 +1,9 @@
+//Nama	: Nurul Ika praptiwi
+//Nim	: 1700018254
+//Kelas	: E
+
+//Kelas ini digunakan sebagai tampilan dasar dari menu penjualannya
+
 <?php
 if(session_status()!==2)session_start();//>=php 5.4
 if(!isset($_SESSION['SES_LOGIN'])){
@@ -56,7 +62,7 @@ if(!isset($_SESSION['SES_LOGIN'])){
               <h3>Form Kasir</h3>
 
             </div>
-
+//method untuk menginputkan data member
  <form  method="POST" action="page.php?open=penjualan">
 
   	Member : <input type="text" name="inpMember"  data-toggle="tooltip" data-placement="bottom" title="Isi 'ID' jika ada, isi '0' jika tidak ada">
@@ -65,7 +71,7 @@ if(!isset($_SESSION['SES_LOGIN'])){
 
 
 
-
+//method digunakan sebagai pencari data member
   	<?php 
   	$iden=0;
   	$nama1='';
