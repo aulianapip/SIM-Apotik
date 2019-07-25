@@ -1,4 +1,6 @@
-<!--1.  Pada kelompok gudang, kami telah membuat beberapa kelas yang mempunyai fungsi sebagai berikut:
+<!--Aditya Gusti Mandala Putra perbaiki query db.php-->
+<!--Muhammad Afrizal, membuat file function dataobat.php-->
+<!--Arindra Wahyu , menambahkan sorting stok obat terkecil dataobat.php--><!--1.  Pada kelompok gudang, kami telah membuat beberapa kelas yang mempunyai fungsi sebagai berikut:
 • Fungsi Sorting Nama Obat A-Z : fitur ini berfungsi mengurutkan nama obat sesuai alpabet dari awalan huruf A sampai awalan huruf Z.
 • Fungsi Sorting Jenis Obat Kapsul : fitur ini berfungsi mensorting obat yang berjenis kapsul untuk di tampilkan.
 • Fungsi Menampilkan seluruh data obat
@@ -20,9 +22,7 @@
   $QuerySql = "SELECT obat.kode_obat,obat.nama_obat,SUM(supplier.jumlah_pasok) AS stok1 FROM obat LEFT JOIN supplier on obat.kode_obat=supplier.kode_obat group by obat.kode_obat ASC ";
   //Function Sorting Stok Obat : dengan mengurutkan dengan query  dari yang terkecil sampai terbesar dari stok obat  --> Arindra Wahyu C. K 1700018279
   $SQL = mysqli_query($connect, $QuerySql); 
-?> <!--Aditya Gusti Mandala Putra perbaiki query db.php-->
-<!--Muhammad Afrizal, membuat file function dataobat.php-->
-<!--Arindra Wahyu , menambahkan sorting stok obat terkecil dataobat.php-->
+?> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -128,9 +128,7 @@
       foreach ($SQL as $key) {
         echo "<tr>
             <td >$key[nama_obat]</td>
-           
             <td >$key[kode_obat]</td> 
-            
             <td >$key[stok1]</td>
             
         </tr>";
