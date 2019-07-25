@@ -1,7 +1,18 @@
+<!--
+UAS PRPRL
+NAMA : Aditya Gusti Mandala Putra
+NIM : 1700018256
+KELAS : E
+
+1. dataobatnama.php fitur ini berfungsi sebagai fitur untuk menampilkan obat berdasarkan urutan abjad dari A-Z
+
+-->
+
+<!--2. query dibawah ini sebagai operasi pencarian obat sesuai dengan nama berdasarakan urutan abjad dari A-Z. dengan tetap menampilkan atribut obat yaitu nama obat, harga obat, jenis, dan kode obat dari tabel obat -->
 <?php
 	include 'db.php';
-	$QuerySql = "SELECT `nama_obat`,`harga`,`jenis`,`kode_obat` FROM `obat` ORDER BY `nama_obat` ASC";
-	$SQL = mysqli_query($connect, $QuerySql);
+	$QuerySql = "SELECT `nama_obat`,`harga`,`jenis`,`kode_obat` FROM `obat` ORDER BY `nama_obat` ASC"; 
+	$SQL = mysqli_query($connect, $QuerySql); 
 ?>
 <!--file ini yang buat Aditya Gusti Mandala Putra-->
 <!DOCTYPE html>
@@ -12,7 +23,7 @@
 </head>
 <body>
 <nav class="navbar is-success" role="navigation" aria-label="main navigation">
-  <div class="navbar-brand">
+  <div class="navbar-brand">  
     <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
       <span aria-hidden="true"></span>
       <span aria-hidden="true"></span>
@@ -34,14 +45,14 @@
           </a>
           <a class="navbar-item" href="datasupiler.php">
             Supplier
-          </a>
+          </a>    
         </div>
       </div>
       <div class="navbar-item has-dropdown is-hoverable">
         <a class="navbar-link">
           Filter
         </a>
-        <div class="navbar-dropdown">
+        <div class="navbar-dropdown">          
           <a class="navbar-item" href="dataobattanggal.php">
             Tanggal Pasok
           </a>
@@ -96,7 +107,7 @@
   <a class="navbar-item" href="inputobat.php">
        Tambah Obat
       </a>
-      <a class="navbar-item" href="inputpasokobat.php">
+                  <a class="navbar-item" href="inputpasokobat.php">
        Pasok Obat
       </a>
        <a class="navbar-item" href="inputsupiler.php">
@@ -112,7 +123,7 @@
   </a>
   </div>
 </div>
-    </div>
+    </div>    
   </div>
 </nav>
 <table class="table is-fullwidth" >
@@ -121,7 +132,7 @@
       <th scope="col">Nama Obat</th>
       <th scope="col">Harga Obat</th>
       <th scope="col">Jenis Obat</th>
-      <th scope="col">Kode Obat</th>
+      <th scope="col">Kode Obat</th>    
     </tr>
   </thead>
     <?php
