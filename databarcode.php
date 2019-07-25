@@ -1,12 +1,29 @@
+<!--
+UAS PRPRL
+NAMA : Aditya Gusti Mandala Putra
+NIM : 1700018256
+KELAS : E
+
+1. databarcode. fitur ini berfungsi sebagai membuat barcode pada barang/obat. misal ada 10 obat, maka fitur ini berfungsi memberi barcode unik pada 10 obat tersebut. kombinasi barcode ini terdiri dari kodeobat-tanggalpasok-nomorpasok.
+-->
+
+
+
 <?php
   include 'db.php';
   include 'phpqrcode/qrlib.php';
-  $QuerySql = "SELECT * FROM `barcode`";
+  $QuerySql = "SELECT * FROM `barcode`"; <--2. query di samping sebagai operasi untuk menampilkan obat yang disertai dengan barcodenya-->
   $SQL = mysqli_query($connect, $QuerySql); 
   foreach ($SQL as $key) {
-       QRcode::png("$key[kode_obat]$key[tanggal_pasok]$key[nomor_pasok]","barcode/$key[kode_obat]$key[tanggal_pasok]$key[nomor_pasok].png","L",4,4); 
+       QRcode::png(
+        "$key[kode_obat]
+        $key[tanggal_pasok]
+        $key[nomor_pasok]",
+        "barcode/$key[kode_obat]
+        $key[tanggal_pasok]
+        $key[nomor_pasok].png","L",4,4); 
   }
-?> <!--Aditya Gusti Mandala Putra-->
+?> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,6 +33,8 @@
 <body>
 <nav class="navbar is-success" role="navigation" aria-label="main navigation">
   <div class="navbar-brand">
+   
+
     <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
       <span aria-hidden="true"></span>
       <span aria-hidden="true"></span>
@@ -109,27 +128,33 @@
           </a>
 </div>
 </div>
-      <a class="navbar-item" href="inputobat.php">
+
+
+
+  <a class="navbar-item" href="inputobat.php">
        Tambah Obat
       </a>
-          <a class="navbar-item" href="inputpasokobat.php">
+            <a class="navbar-item" href="inputpasokobat.php">
        Pasok Obat
       </a>
-          <a class="navbar-item" href="inputsupiler.php">
+       <a class="navbar-item" href="inputsupiler.php">
        Tambah Suppiler
       </a>
-          <a class="navbar-item">
+      <a class="navbar-item">
         <form action="cariobat.php" method="post">
         <div class="control">
-        <input class="input" type="text" placeholder="CARI OBAT" name="cari"> 
+          <input class="input" type="text" placeholder="CARI OBAT" name="cari"> 
         </div>
 </div>
         </form>
   </a>
+  </div>
 </div>
-</div>
-</div> 
-</div>
+    </div>
+
+    
+  </div>
+
 </nav>
 <table class="table is-fullwidth" >
   <thead>
