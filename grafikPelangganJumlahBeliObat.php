@@ -1,8 +1,16 @@
+<?php
+$koneksi = mysqli_connect("localhost", "root", "", "sim-apotek"); //Memanggil database yang telah kita buat
+error_reporting(0); //untuk menghilangkan notif error pada program
+$pilihan = $_POST['area1'];
+    $urutan = $_POST['area2'];//membuat area nama
+    if (isset($_POST['submit'])) { // untuk mensubmite post area
+    }
+    ?>
 <!DOCTYPE html>
 <html>
 
 <head>
-	<title>GRAFIK STOCK DARI KESELURUHAN SUPPLIER</title>
+	<title>GRAFIK PELANGGAN JUMLAH BELI OBAT</title>
 	<script type="text/javascript" src="Chart.js/Chart.js"></script>
     <link rel="stylesheet" href="materialize.min.css">
 </head>
@@ -18,20 +26,36 @@
     </div>
   </nav>
 
-		<h1><center>GRAFIK PELANGGAN BERDASARKAN KOTA</center></h1>
+		 <center>
+    <h3>GRAFIK PELANGGAN BERDASARKAN JUMLAH BELI OBAT
+        <?php 
+            echo ' URUTAN'. ' '.$urutan.'';
+         ?>
+         </h3></center>
+    <div style="width: 800px;margin: 0px auto;">
+        <canvas id="myChart"></canvas>
+    </div>
+    <form action="" method="post">
+        <!--Cendani Wukir Asih-1700018249-->
+		<label>Pilih Urutan</label>
+		<div class="input-field col s12" > 
+			<select class="browser-default" name="area2">
+				<?php $options4 = array('ASC', 'DESC'); //pilihan grafiknya
+				foreach ($options4 as $area4) { //untuk perulangan
+					$selected = @$_POST['area4'] == $area4 ? ' selected4="selected4"' : '';				//menampilkan pilihan yang sudah dipilih 
+					echo '<option value="' . $area4 . '"' . $selected4 . '>' . $area4 . '</option>';
+				}?>
+			</select>
+		</div>
+        <div class="row">
+            <input class="waves-effect waves-light btn-small" type="submit" name="submit" value="oke"/>
+        </div>
+    </form>
 
 
 <?php
 $koneksi = mysqli_connect("localhost", "root", "", "sim-apotek");
 ?>
-
-	<div style="width: 800px;margin: 0px auto;">
-		<canvas id="myChart"></canvas>
-	</div>
-
-	<br/>
-	<br/>
-
 	<table border="1">
 		<thead>
 			<tr>
@@ -45,7 +69,7 @@ $koneksi = mysqli_connect("localhost", "root", "", "sim-apotek");
 		<tbody>
 			<?php 
 			$no = 1;
-			$data = mysqli_query($koneksi,"SELECT pelanggan.nama as nama, pelanggan.ID as id, COUNT(penjualan.no_transaksi) as jumlah_beli_obat FROM penjualan_detail, penjualan, pelanggan, obat where pelanggan.ID=penjualan.id_pelanggan and obat.kode_obat=penjualan_detail.kode_obat and penjualan.no_transaksi=penjualan_detail.no_transaksi GROUP BY pelanggan.nama ORDER BY pelanggan.id");
+			$data = mysqli_query($koneksi,"SELECT pelanggan.nama as nama, pelanggan.ID as id, COUNT(penjualan.no_transaksi) as jumlah_beli_obat FROM penjualan_detail, penjualan, pelanggan, obat where pelanggan.ID=penjualan.id_pelanggan and obat.kode_obat=penjualan_detail.kode_obat and penjualan.no_transaksi=penjualan_detail.no_transaksi GROUP BY pelanggan.nama ORDER BY COUNT(penjualan.no_transaksi) $urutan");
 			while($d=mysqli_fetch_array($data)){
 				?>
 				<tr>
@@ -64,15 +88,15 @@ $koneksi = mysqli_connect("localhost", "root", "", "sim-apotek");
 	<script>
 		var ctx = document.getElementById("myChart").getContext('2d');
 		var myChart = new Chart(ctx, {
-			type: 'bar',
+			type: '<?php echo $pilihan ?>',
 			data: {
 				labels: [<?php 
-					$nama= mysqli_query($koneksi, "SELECT pelanggan.nama as nama FROM penjualan_detail, penjualan, pelanggan, obat where pelanggan.ID=penjualan.id_pelanggan and obat.kode_obat=penjualan_detail.kode_obat and penjualan.no_transaksi=penjualan_detail.no_transaksi GROUP BY pelanggan.nama ORDER BY pelanggan.id");
+					$nama= mysqli_query($koneksi, "SELECT pelanggan.nama as nama FROM penjualan_detail, penjualan, pelanggan, obat where pelanggan.ID=penjualan.id_pelanggan and obat.kode_obat=penjualan_detail.kode_obat and penjualan.no_transaksi=penjualan_detail.no_transaksi GROUP BY pelanggan.nama  ORDER BY COUNT(penjualan.no_transaksi) $urutan");
 				while ($b = mysqli_fetch_array($nama)) { echo '"' . $b['nama'] . '",';} ?>
 					],
 				datasets: [{
 					label: '',
-					data: [<?php $jumlah_beli_obat  = mysqli_query($koneksi, "SELECT COUNT(penjualan.no_transaksi) as jumlah_beli_obat FROM penjualan_detail, penjualan, pelanggan, obat where pelanggan.ID=penjualan.id_pelanggan and obat.kode_obat=penjualan_detail.kode_obat and penjualan.no_transaksi=penjualan_detail.no_transaksi GROUP BY pelanggan.nama ORDER BY pelanggan.id");
+					data: [<?php $jumlah_beli_obat  = mysqli_query($koneksi, "SELECT COUNT(penjualan.no_transaksi) as jumlah_beli_obat FROM penjualan_detail, penjualan, pelanggan, obat where pelanggan.ID=penjualan.id_pelanggan and obat.kode_obat=penjualan_detail.kode_obat and penjualan.no_transaksi=penjualan_detail.no_transaksi GROUP BY pelanggan.nama  ORDER BY COUNT(penjualan.no_transaksi) $urutan");
 while ($p = mysqli_fetch_array($jumlah_beli_obat)) { echo '"' . $p['jumlah_beli_obat'] . '",';}?>],
                             backgroundColor: [
 					'rgba(255, 99, 132, 0.2)',
