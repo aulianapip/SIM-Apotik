@@ -111,17 +111,17 @@ $koneksi = mysqli_connect("localhost", "root", "", "sim-apotek");//koneksi ke da
 
 
 	<script>
-		var ctx = document.getElementById("myChart").getContext('2d');
+		var ctx = document.getElementById("myChart").getContext('2d');//chart
 		var myChart = new Chart(ctx, {
 			type: 'bar',
 			data: {
 				labels: [<?php 
-					$tanggal_jual= mysqli_query($koneksi, "SELECT penjualan.tgl_penjualan as tanggal_jual FROM obat, penjualan_detail, pasok, penjualan WHERE obat.kode_obat=pasok.kode_obat and obat.kode_obat=penjualan_detail.kode_obat GROUP BY pasok.kode_obat");//Menampilkan Tanggal Jual
+					$tanggal_jual= mysqli_query($koneksi, "SELECT penjualan.tgl_penjualan as tanggal_jual FROM obat, penjualan_detail, pasok, penjualan WHERE obat.kode_obat=pasok.kode_obat and obat.kode_obat=penjualan_detail.kode_obat GROUP BY pasok.kode_obat");//Menampilkan Label Tanggal Jual
 				while ($b = mysqli_fetch_array($tanggal_jual)) { echo '"' . $b['tanggal_jual'] . '",';} ?>
 					],
 				datasets: [{
 					label: '',
-					data: [<?php $keuntungan = mysqli_query($koneksi, "SELECT penjualan_detail.harga-pasok.harga_beli as keuntungan FROM obat, penjualan_detail, pasok, penjualan WHERE obat.kode_obat=pasok.kode_obat and obat.kode_obat=penjualan_detail.kode_obat GROUP BY pasok.kode_obat");//Menampilkan Keuntungan
+					data: [<?php $keuntungan = mysqli_query($koneksi, "SELECT penjualan_detail.harga-pasok.harga_beli as keuntungan FROM obat, penjualan_detail, pasok, penjualan WHERE obat.kode_obat=pasok.kode_obat and obat.kode_obat=penjualan_detail.kode_obat GROUP BY pasok.kode_obat");//Menampilkan Label Keuntungan
 while ($p = mysqli_fetch_array($keuntungan)) { echo '"' . $p['keuntungan'] . '",';}?>],
                             backgroundColor: [
 					'rgba(255, 99, 132, 0.2)',
