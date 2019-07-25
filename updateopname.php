@@ -38,13 +38,17 @@ kami menginputkan status kondisi barang yang berada ditoko, status antara lain a
       $kurang_rusak = $row['rusak'];
       $kurang_rusak1=$kurang_rusak-$rusak;
       $totalopname = $kurang_rusak1 + $kurang_dipinjam1 + $kurang_hilang1 ;
+      
 
-      $query1 =mysqli_query($koneksi,"SELECT * FROM pasok WHERE kode_obat = '$kode_obat' ");// memilih kode obat yang akan diupdate (Reka)
-      $row1 = mysqli_fetch_array($query1);
+      //Reka Rachmadi Apriansyah - 1700018237
+      //bagian awal
+      $query1 =mysqli_query($koneksi,"SELECT * FROM pasok WHERE kode_obat = '$kode_obat' ");// Menampilkan tabel pasok semua artibut yang ditampilkan berdasarkan artibut kode_obat yang diisi ke var $query1
+      $row1 = mysqli_fetch_array($query1); //memilih untuk ditampilkan berdasarkan artibut pada var $query1 yang diisikan ke var $row1
+      $total_obat = $row1['jumlah_pasok']; //menampilkan artbut jumlah_pasok dan diisikan ke var $total_obat
+      $total_obat=$total_obat-$totalopname; //var $total_obat di kurangi var $totalopname diisikan ke var $total_obat
+      mysqli_query($koneksi,"UPDATE pasok SET jumlah_pasok='$total_obat' WHERE kode_obat='$kode_obat'");//update pasok pada artibut jumlah_pasok di update dengan var $total_obat berdasarkan kode_obat
+      //batas akhir pengerjaan reka
 
-      $total_obat = $row1['jumlah_pasok'];
-      $total_obat=$total_obat-$totalopname;
-      mysqli_query($koneksi,"UPDATE pasok SET jumlah_pasok='$total_obat' WHERE kode_obat='$kode_obat'");
 
       mysqli_query($koneksi,"UPDATE opname SET kode_opname='$kode_opname', kode_obat='$kode_obat', hilang='$hilang', rusak='$rusak', dipinjam='$dipinjam', status='$status', catatan='$catatan', tanggal=curdate() WHERE kode_opname='$kode_opname'");//update data opname sesuai dengan value 'kirim' (zaki)
       header("location: dataopname.php");
