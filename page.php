@@ -112,8 +112,14 @@
       <a class="brand" >
       <span style="display:inline-block; width: 250px;"></span>             
       
-      
+	 //Nama	: Harun Setiaji
+	 //Nim	: 1700018271
+	 //Kelas : E
+	      
+	      //Kelas page.php digunakan sebagai penampil dari menu kasirnya
       <a class="brand" href="?page=dashboard">
+	      
+	      //method ini digunakan untuk mengecek user mana yang sedang di akses
        -<?php echo $_SESSION['USER_LEVEL']; ?>-
       </a>
 			
@@ -140,7 +146,7 @@
 
 
 
-
+//method yang mengarahkan ke menu page_control.php 
         	<?php 
 			include"page_control.php";
 			?>
