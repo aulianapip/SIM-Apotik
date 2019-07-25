@@ -1,7 +1,7 @@
 <?php
-// MSULTAN A YANG BUAT
+// AGAM YANG BUAT
 	include 'db.php';
-	$QuerySql = "SELECT * FROM obat inner join jenis_obat on jenis_obat.kode_jenis=obat.kode_jenis where jenis_obat.nama_jenis='Tablet'";
+	$QuerySql = "SELECT  * FROM obat  where jenis='Tablet'";
 	$SQL = mysqli_query($connect, $QuerySql);
 ?>
 
@@ -134,36 +134,20 @@
     <tr>
       <th scope="col">Nama Obat</th>
       <th scope="col">Harga Obat</th>
-      <th scope="col">Kode Obat</th>
       <th scope="col">Jenis Obat</th>
-      <th scope="col">Kadaluarsa Obat</th>   <!--mohamad rifky fajri perbaiki tabel tanggal kadaluarsa-->
-      <th scope="col">Stok Obat</th>
+      <th scope="col">Kode Obat</th>
+      
     </tr>
   </thead>
     <?php
       foreach ($SQL as $key) {
-        if($key['Stok_Obat']<15){
-        echo "<tr>
-            <td bgcolor=red>$key[nama_obat]</td>
-            <td bgcolor=red>$key[harga_obat]</td>
-            <td bgcolor=red>$key[kode_obat]</td>
-            <td bgcolor=red>$key[nama_jenis]</td>
-            <td bgcolor=red>$key[kadaluarsa_obat]</td>
-            <td bgcolor=red>$key[Stok_Obat]</td>
-            
-        </tr>";
-      }
-      else{
         echo "<tr>
             <td>$key[nama_obat]</td>
-            <td>$key[harga_obat]</td>
+            <td>$key[harga]</td>
+            <td>$key[jenis]</td>
             <td>$key[kode_obat]</td>
-            <td>$key[nama_jenis]</td>
-            <td>$key[kadaluarsa_obat]</td>
-            <td>$key[Stok_Obat]</td>
             
         </tr>";
-      }
       }
     ?>
 </table>
