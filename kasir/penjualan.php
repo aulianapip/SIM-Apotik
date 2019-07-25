@@ -232,6 +232,13 @@ if(!isset($_SESSION['SES_LOGIN'])){
 				<br>
 				<br>
 
+	    //Nama	: Harun Setiaji
+	    //Nim	: 1700018271
+	    //Kelas	: E
+	    
+	    //Kelas ini digunakan untuk menampilkan tampilan utama dari kasir 
+	    
+	    //method ini digunakan sebagai penampil dari data user
 				<table class="table table-condensed" id="tblKasir">
 					<tr>
 						<td>ID User</td>
