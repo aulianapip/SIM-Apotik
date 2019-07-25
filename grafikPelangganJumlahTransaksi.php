@@ -49,6 +49,16 @@ $pilihan = $_POST['area1'];
 				}?>
 			</select>
 		</div>
+		<label>Pilih Urutan</label>
+		<div class="input-field col s12" > 
+			<select class="browser-default" name="area2">
+				<?php $options4 = array('ASC', 'DESC'); //pilihan grafiknya
+				foreach ($options4 as $area4) { //untuk perulangan
+					$selected = @$_POST['area4'] == $area4 ? ' selected4="selected4"' : '';				//menampilkan pilihan yang sudah dipilih 
+					echo '<option value="' . $area4 . '"' . $selected4 . '>' . $area4 . '</option>';
+				}?>
+			</select>
+		</div>
         <div class="row">
             <input class="waves-effect waves-light btn-small" type="submit" name="submit" value="oke"/>
         </div>
