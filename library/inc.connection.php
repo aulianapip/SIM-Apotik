@@ -1,12 +1,18 @@
 <?php
+//NAMA : FALAKH BURHANUDDIN S
+//NIM : 1700018227
+//KELAS : PRPL -E
 
+//Fitur POS, fitur untuk menjalankan fungsi kasir dan operasional penjualan apotik 
+
+// mengambil isi database team analitik
 # Konek ke Web Server
 $myHost	= "localhost";
 $myUser	= "root";
 $myPass	= "";
 $myDbs	= "sim-apotek-analitik";
 
-//192.168.43.114
+//192.168.43.114 / membuka database
 function opendb(){
 		global $myHost, $myUser, $myPass, $myDbs, $koneksi_db;
 		$koneksi_db = mysqli_connect($myHost,$myUser,$myPass,$myDbs); 
@@ -51,7 +57,7 @@ function freedb($hsl){
 	$free = mysqli_free_result($hsl);
 	
 }
-
+//koneksi databsae
 /*** Koneksi dg OOP ***/
 $mysqli = new mysqli($myHost,$myUser,$myPass,$myDbs);
 /* check connection */
