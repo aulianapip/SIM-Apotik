@@ -89,13 +89,13 @@ error_reporting(0); //untuk menghilangkan notif error pada program
 	<table border="1">
 		<thead>
 			<tr>
-				<th>No</th>
-				<th>Nama Obat</th>
-				<th>Kode Obat</th>
-				<th>Harga Beli</th>
-				<th>Harga Jual</th>
-				<th>Keuntungan</th>
-				<th>Bulan</th>
+				<th>No</th><!--untuk menampilkan judul atribut No yang ada pada tabel-->
+				<th>Nama Obat</th><!--untuk menampilkan judul atribut Nama obat yang ada pada tabel-->
+				<th>Kode Obat</th><!--untuk menampilkan judul atribut kode obat yang ada pada tabel-->
+				<th>Harga Beli</th><!--untuk menampilkan judul atribut harga beli yang ada pada tabel-->
+				<th>Harga Jual</th><!--untuk menampilkan judul atribut haga jual yang ada pada tabel-->
+				<th>Keuntungan</th><!--untuk menampilkan judul atribut keuntungan yang ada pada tabel-->
+				<th>Bulan</th><!--untuk menampilkan judul atribut bulan yang ada pada tabel-->
 			</tr>
 		</thead>
 		<tbody>
@@ -121,9 +121,9 @@ error_reporting(0); //untuk menghilangkan notif error pada program
 
 
 	<script>
-		var ctx = document.getElementById("myChart").getContext('2d');
+		var ctx = document.getElementById("myChart").getContext('2d');//untuk memanggil fungsi grafik
 		var myChart = new Chart(ctx, {
-			type: '<?php echo $pilihan ?>',
+			type: '<?php echo $pilihan ?>',//untuk memilih tipe grafik
 			data: {
 				labels: [<?php 
 					$tanggal_jual= mysqli_query($koneksi, "SELECT MONTH(tgl_penjualan) as tanggal_jual FROM obat, penjualan_detail, pasok, penjualan WHERE obat.kode_obat=pasok.kode_obat and obat.kode_obat=penjualan_detail.kode_obat and YEAR(tgl_penjualan)='$tahun' GROUP BY pasok.kode_obat ORDER BY penjualan_detail.harga-pasok.harga_beli $urutan");//untuk menampilkan bulan jual jika grafik dipilih
@@ -133,7 +133,7 @@ error_reporting(0); //untuk menghilangkan notif error pada program
 					label: '',
 					data: [<?php $keuntungan = mysqli_query($koneksi, "SELECT penjualan_detail.harga-pasok.harga_beli as keuntungan FROM obat, penjualan_detail, pasok, penjualan WHERE obat.kode_obat=pasok.kode_obat and obat.kode_obat=penjualan_detail.kode_obat and YEAR(tgl_penjualan)='$tahun' GROUP BY pasok.kode_obat ORDER BY keuntungan $urutan");//untuk menampilkan data keuntungan berdasarkan bulan jika grafik dipilih
 while ($p = mysqli_fetch_array($keuntungan)) { echo '"' . $p['keuntungan'] . '",';}?>],
-                            backgroundColor: [
+                            backgroundColor: [//untuk memberi warna pada grafik
 					'rgba(255, 99, 132, 0.2)',
 					'rgba(54, 162, 235, 0.2)',
 					'rgba(255, 206, 86, 0.2)',
