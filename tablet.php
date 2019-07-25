@@ -1,7 +1,16 @@
+<!--
+UAS PRPL
+NAMA : M. RAFIE SULTAN AGAM
+NIM : 1700018282
+KELAS : E
+
+1. tablet.php fitur ini berfungsi menampilkan jenis obat tablet. obat yang berjenis tablet pada database akan diampilkan ketika kita pilih fitur ini pada tampilan
+-->
+
 <?php
 // AGAM YANG BUAT
 	include 'db.php';
-	$QuerySql = "SELECT  * FROM obat  where jenis='Tablet'";
+	$QuerySql = "SELECT  * FROM obat  where jenis='Tablet'"; <--2. query disamping sebagai operasi mencari obat yang berjenis tablet pada tabel obat
 	$SQL = mysqli_query($connect, $QuerySql);
 ?>
 
@@ -142,10 +151,10 @@
     <?php
       foreach ($SQL as $key) {
         echo "<tr>
-            <td>$key[nama_obat]</td>
-            <td>$key[harga]</td>
-            <td>$key[jenis]</td>
-            <td>$key[kode_obat]</td>
+            <td>$key[nama_obat]</td> <--2. menampilkan obat pada tabel nama obat-->
+            <td>$key[harga]</td>     <--2. menampilkan tampilan harga pada tabel harga obat-->
+            <td>$key[jenis]</td>     <--2. menampilkan jenis pada tabel jenis obat-->
+            <td>$key[kode_obat]</td> <--2. menampilkan kodr pada tabel kode obat-->
             
         </tr>";
       }
