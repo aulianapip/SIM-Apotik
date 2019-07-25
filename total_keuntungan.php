@@ -1,6 +1,6 @@
 <!--ALWAN ZAKI-->
 <!--Vikri Ammar Kholis 1700018243 (Menambah fitur dan memperbaiki fitur)-->
-<!--A.Z Kharisma-->
+<!--A.Z Kharisma Pratama (Menambah fitur yang kurang dan memperbaiki fitur)-->
 <!--Leonka Pellu-->
 <?php
 	session_start();

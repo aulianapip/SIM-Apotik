@@ -1,5 +1,6 @@
  <!--AMANDA FAHMIDYNA 1700018273 (Pembuat fitur)
 	Siti Barkah Pellu 1700018235 
+	A.Z.Kharisma Pratama 1700018272 (Memperbaiki fitur)
 	Vikri Ammar Kholis 1700018243 (Menambah fitur dan memperbaiki fitur)
 	
  	 -->
@@ -49,6 +50,7 @@ $sql2 = mysqli_query($connect,$q);
  </thead>
 
 
+<!--A.Z.KHARISMA PRATAMA 1700018272 -->
 <?php
  foreach ($sql as $data) {} // untuk mengonect kan query
 
