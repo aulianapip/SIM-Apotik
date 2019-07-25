@@ -1,8 +1,9 @@
+<!--UAS PRPL Arindra Wahyu 1700018279 Function data Pasok berfungsi untuk mengetahui tabel dari pasok obat yang telah di stok  -->
 <?php
 	include 'db.php';
 	$QuerySql = "SELECT `kode_pasok`, `kode_obat`, `kode_supplier`, `jumlah_pasok`, `harga_beli`, `tanggal_pasok`, `tanggal_kadaluarsa` FROM pasok";
 	$SQL = mysqli_query($connect, $QuerySql); 
-?> <!--Arindra Wahyu yang membuat -->
+?> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -148,7 +149,8 @@
       <th scope="col"> Tanggal Kadaluarsa </th>
     </tr>
   </thead>
-    <?php
+    <!--Untuk Menampilkan Data Pasok tersebut -->
+	<?php
       foreach ($SQL as $key) {
         echo "<tr>
             <td>$key[kode_pasok]</td>
