@@ -1,3 +1,4 @@
+<!--ARINDRA WAHYU CANDRA YANG BUAT -->
 <!--1.  Pada kelompok gudang, kami telah membuat beberapa kelas yang mempunyai fungsi sebagai berikut:
 • Fungsi Sorting Nama Obat A-Z : fitur ini berfungsi mengurutkan nama obat sesuai alpabet dari awalan huruf A sampai awalan huruf Z.
 • Fungsi Sorting Jenis Obat Kapsul : fitur ini berfungsi mensorting obat yang berjenis kapsul untuk di tampilkan.
@@ -15,7 +16,7 @@
 • Function data suplier : fitur ini berfungsi untuk menampilkan data suplier sesuai database
 • Function sorting obat mahal : fitur ini berfungsi untuk mengurutkan harga obat dari yang termahal
 -->
-<!--ARINDRA WAHYU CANDRA YANG BUAT -->
+
 <?php
 // Function Update Obat : untuk mengupdate, menambahkan dan mengedit obat di database agar bisa diubah sesuai dengan update sesuai data yang akan di ubah atau ditambhkan --> Arindra Wahyu Candra 1700018279
     include 'db.php';
@@ -28,13 +29,12 @@
     $bulan_kadaluarsa=$_POST['bulan_kadaluarsa'];
     $tahun_kadaluarsa=$_POST['tahun_kadaluarsa'];
     $Stok_Obat=$_POST['Stok_Obat'];
-		$QuerySql = " UPDATE obat SET nama_obat='$nama_obat', harga_obat='$harga_obat', kode_obat='$kode_obat', dosis_obat='$dosis_obat', kode_jenis='$kode_jenis', tanggal_kadaluarsa='$tanggal_kadaluarsa' , bulan_kadaluarsa='$bulan_kadaluarsa', tahun_kadaluarsa='$tahun_kadaluarsa', Stok_Obat='$Stok_Obat' WHERE kode_obat='$kode_obat'";
+	$QuerySql = " UPDATE obat SET nama_obat='$nama_obat', harga_obat='$harga_obat', kode_obat='$kode_obat', dosis_obat='$dosis_obat', kode_jenis='$kode_jenis', tanggal_kadaluarsa='$tanggal_kadaluarsa' , bulan_kadaluarsa='$bulan_kadaluarsa', tahun_kadaluarsa='$tahun_kadaluarsa', Stok_Obat='$Stok_Obat' WHERE kode_obat='$kode_obat'";
 
 if (mysqli_query($connect, $QuerySql)) {
       		echo "<script><alert>Berhasil</alert></script>";
       		header("location: dataobat.php");
 		} else {
       		echo "Error: " . $QuerySql . "<br>" . mysqli_error($connect);
-		}
-?>
+		}?>
   
