@@ -10,10 +10,11 @@
   <link rel="stylesheet" href="bulma.min.css">
 </head>
 <body>
-<nav class="navbar is-success" role="navigation" aria-label="main navigation">
-  <div class="navbar-brand">
+	<nav class="navbar is-success" role="navigation" aria-label="main navigation">
+  	<div class="navbar-brand">
    
 
+	  
     <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
       <span aria-hidden="true"></span>
       <span aria-hidden="true"></span>
@@ -142,9 +143,9 @@
       <th scope="col">Kode Obat</th>
       <th scope="col">Kode Supplier</th>
       <th scope="col">Jumlah Pasok</th>
-      <th scope="col">Harga Beli</th>
-       <th scope="col">Tanggal Pasok</th>
-      <th scope="col">Tanggal Kadaluarsa</th>
+      <th scope="col"> Harga Beli </th>
+       <th scope="col"> Tanggal Pasok </th>
+      <th scope="col"> Tanggal Kadaluarsa </th>
     </tr>
   </thead>
     <?php
