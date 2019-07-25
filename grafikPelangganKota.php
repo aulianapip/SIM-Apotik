@@ -1,3 +1,14 @@
+<?php
+
+$koneksi = mysqli_connect("localhost", "root", "", "sim-apotek"); //Memanggil database yang telah kita buat
+error_reporting(0); //untuk menghilangkan notif error pada program
+$pilihan = $_POST['area1'];
+    $urutan = $_POST['area2'];//membuat area nama
+    if (isset($_POST['submit'])) { // untuk mensubmite post area
+    }
+    ?>
+
+?>
 <!DOCTYPE html>
 <html>
 
@@ -18,19 +29,38 @@
     </div>
   </nav>
 
-		<h1><center>GRAFIK PELANGGAN BERDASARKAN KOTA</center></h1><!-- Menampilkan judul pada grafik pelanggan-->
+		<h1><center>GRAFIK PELANGGAN BERDASARKAN KOTA
+			<?php 
+            echo ' URUTAN'. ' '.$urutan.'';
+         ?>
+		</center></h1><!-- Menampilkan judul pada grafik pelanggan-->
+		<div style="width: 800px;margin: 0px auto;">
+        <canvas id="myChart"></canvas>
+    </div>
+    <form action="" method="post">
+        <!--Meliya Kurniasari-1700018244-->
+		<label>Pilih Urutan</label>
+		<div class="input-field col s12" > 
+			<select class="browser-default" name="area2">
+				<?php $options4 = array('ASC', 'DESC'); //pilihan grafiknya
+				foreach ($options4 as $area4) { //untuk perulangan
+					$selected = @$_POST['area4'] == $area4 ? ' selected4="selected4"' : '';				//menampilkan pilihan yang sudah dipilih 
+					echo '<option value="' . $area4 . '"' . $selected4 . '>' . $area4 . '</option>';
+				}?>
+			</select>
+		</div>
+        <div class="row">
+            <input class="waves-effect waves-light btn-small" type="submit" name="submit" value="oke"/>
+        </div>
+    </form>
 
 
 <?php
-$koneksi = mysqli_connect("localhost", "root", "", "sim-apotek");//Menyambungkan ke database
+$koneksi = mysqli_connect("localhost", "root", "", "sim-apotek");
 ?>
 
-	<div style="width: 800px;margin: 0px auto;">
-		<canvas id="myChart"></canvas>
-	</div>
 
-	<br/>
-	<br/>
+
 
 	<table border="1">
 		<thead>
@@ -49,7 +79,7 @@ $koneksi = mysqli_connect("localhost", "root", "", "sim-apotek");//Menyambungkan
 		<tbody>
 			<?php 
 			$no = 1;
-			$data = mysqli_query($koneksi,"select * from pelanggan");//Menampilkan data pada tabel keterangan yang ada dibawah grafik
+			$data = mysqli_query($koneksi,"select * from pelanggan ");//Menampilkan data pada tabel keterangan yang ada dibawah grafik
 			while($d=mysqli_fetch_array($data)){
 				?>
 				<tr>
@@ -69,19 +99,18 @@ $koneksi = mysqli_connect("localhost", "root", "", "sim-apotek");//Menyambungkan
 		</tbody>
 	</table>
 
-
 	<script>
 		var ctx = document.getElementById("myChart").getContext('2d');//Memanggil fungsi grafik 
 		var myChart = new Chart(ctx, {
-			type: 'bar',//Menggunakan tipe grafik dengan tipe bar
+			type: '<?php echo $pilihan ?>',
 			data: {
 				labels: [<?php 
-					$alamat= mysqli_query($koneksi, "SELECT alamat from pelanggan GROUP BY ALAMAt");
+					$alamat= mysqli_query($koneksi, "SELECT alamat from pelanggan GROUP BY ALAMAt  ORDER BY COUNT(alamat) $urutan ");
 				while ($b = mysqli_fetch_array($alamat)) { echo '"' . $b['alamat'] . '",';} ?>
 					],//menampilkan jumlah alamat pada grafik
 				datasets: [{
 					label: '',
-					data: [<?php $kota = mysqli_query($koneksi, "SELECT COUNT(alamat) as jumlah_alamat FROM pelanggan GROUP BY Alamat");
+					data: [<?php $kota = mysqli_query($koneksi, "SELECT COUNT(alamat) as jumlah_alamat FROM pelanggan GROUP BY Alamat ORDER BY COUNT(alamat) $urutan");
 while ($p = mysqli_fetch_array($kota)) { echo '"' . $p['jumlah_alamat'] . '",';}?>],//menampilkan jumlah kota pada grafik /
                             backgroundColor: [
 					'rgba(255, 99, 132, 0.2)',
@@ -109,5 +138,6 @@ while ($p = mysqli_fetch_array($kota)) { echo '"' . $p['jumlah_alamat'] . '",';}
 			}
 		});
 	</script>
+
 </body>
 </html>
