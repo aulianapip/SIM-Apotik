@@ -1,3 +1,4 @@
+<!--ARINDRA WAHYU CANDRA YANG BUAT-->
 <!--1.  Pada kelompok gudang, kami telah membuat beberapa kelas yang mempunyai fungsi sebagai berikut:
 • Fungsi Sorting Nama Obat A-Z : fitur ini berfungsi mengurutkan nama obat sesuai alpabet dari awalan huruf A sampai awalan huruf Z.
 • Fungsi Sorting Jenis Obat Kapsul : fitur ini berfungsi mensorting obat yang berjenis kapsul untuk di tampilkan.
@@ -21,7 +22,6 @@
 	$SQL = mysqli_query($connect, $QuerySql);
 //Function Sorting Tanggal Supplier : Men-Sorting datasuplier sesuai dengan database dengan mengurutkan tanggal pasok obat yang telah memasok obat dari awal --> Arindra Wahyu C.K 17000018279
 ?>
-<!--ARINDRA WAHYU CANDRA YANG BUAT-->
 
 <!DOCTYPE html>
 <html>
@@ -115,9 +115,9 @@
       <th scope="col">Tanggal Pasok</th>
     </tr>
   </thead>
-		<?php
-			foreach ($SQL as $key) {
-				echo "<tr>
+	<?php
+	foreach ($SQL as $key) {
+	echo "<tr>
             <td>$key[nama_pemasok]</td>
             <td>$key[kode_obat]</td>
             <td>$key[jumlah_pasok]</td>
@@ -125,11 +125,9 @@
             <td>$key[kode_pasok]</td>
             <td>$key[harga_beli]</td>
             <td>$key[tanggal_pasok]</td>
-            
-            
         </tr>";
-			}
-		?>
+			
+	}?>
 </table>
 </body>
 </html>
