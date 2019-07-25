@@ -1,83 +1,57 @@
-<!--1  Pada kelompok gudang, kami telah membuat beberapa kelas yang mempunyai fungsi sebagai berikut:
-• Fungsi Sorting Nama Obat A-Z : fitur ini berfungsi mengurutkan nama obat sesuai alpabet dari awalan huruf A sampai awalan huruf Z.
-• Fungsi Sorting Jenis Obat Kapsul : fitur ini berfungsi mensorting obat yang berjenis kapsul untuk di tampilkan.
-• Fungsi Menampilkan seluruh data obat
-• Fungsi Tanggal pasok obat
-• Function Update Data Obat : Fitur ini berfungsi mengupdate perubahan yang telah kita tambah, Kurang, dan mengedit sesuai database
-• Function Stok Obat Menipis : Fitur ini berfungsi menandai tabel obat yang stoknya telah menipis
-• Function Pencarian  Data Tidak Ditemukan : fitur ini berfungsi  jika kita mencari obat atau supplier yang tidak ada didatabase
-• Function Sorting Tanggal Supplier : fitur ini berfungsi mensorting obat dengan tanggal pemasok supplier yang telah memasok obat dari tanggal terdahulu
-• Function Tambah Obat : fitur ini berfungsi untuk menambah data obat baru ke dalam tabel Obat
-• Function Tambah Supllier : fitur ini berfungsi untuk menambah data supllier baru ke tabel Supllier
-• Function Cari Obat : fitur ini berfungsi buat mencari data obat yang ada di tabel obat
-• Fuction Cari Supplier : fitur ini berfungsi mncari data supplier yang ada di tabel supplier
-• Function Sorting Nama Supplier A-Z : fitur ini berfungsi untuk mengurutkan nama supplier dari A-Z
-• Function data suplier : fitur ini berfungsi untuk menampilkan data suplier sesuai database
-• Function sorting obat mahal : fitur ini berfungsi untuk mengurutkan harga obat dari yang termahal
--->
 <?php
-	include 'db.php';
-	$QuerySql = "SELECT * FROM `obat`, `jenis_obat` WHERE jenis_obat.kode_jenis=obat.kode_jenis ORDER BY `harga_obat` DESC";
-	$SQL = mysqli_query($connect, $QuerySql);
-// function sorting harga obat dari yang termahal yang tampil di bagian paling atas lalu urut kebawah sesuai harga masing masing sesuai dengan yang ada di database
-  // Gifari Nanda Utama 1700018250
+  include 'db.php';
+  $QuerySql = "SELECT `nama_obat`,`harga`,`jenis`,`kode_obat` FROM `obat` ORDER BY `harga` DESC";
+  $SQL = mysqli_query($connect, $QuerySql);
 ?>
-
-<!--Gifari Nanda yang Membuat Ini-->
-
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Tampil Data Obat</title>
-	<link rel="stylesheet" href="bulma.min.css">
+  <title>Tampil Data Obat</title>
+  <link rel="stylesheet" href="bulma.min.css">
 </head>
 <body>
 <nav class="navbar is-success" role="navigation" aria-label="main navigation">
   <div class="navbar-brand">
-   
-
     <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
       <span aria-hidden="true"></span>
       <span aria-hidden="true"></span>
       <span aria-hidden="true"></span>
     </a>
   </div>
-
   <div id="navbarBasicExample" class="navbar-menu">
     <div class="navbar-start">
       <a class="navbar-item" href="login.html">
-       <img src="logut.png"></img>
+    <img src="logut.png"></img>
       </a>
-
       <div class="navbar-item has-dropdown is-hoverable">
         <a class="navbar-link">
           Daftar Tabel
         </a>
-
         <div class="navbar-dropdown">
-          
           <a class="navbar-item" href="dataobat.php">
             Obat
           </a>
+           <a class="navbar-item" href="inputpasokobat.php">
+       Pasok Obat
+      </a>
           <a class="navbar-item" href="datasupiler.php">
-            Supiler
-          </a>
-    
+            Supplier
+          </a>    
         </div>
       </div>
-
       <div class="navbar-item has-dropdown is-hoverable">
         <a class="navbar-link">
-          Sort By
+          Filter
         </a>
-
-        <div class="navbar-dropdown">
-          
+        <div class="navbar-dropdown">          
           <a class="navbar-item" href="dataobattanggal.php">
-            Tanggal
+            Tanggal Pasok
           </a>
           <a class="navbar-item" href="dataobatnama.php">
-            Nama
+            Nama A-Z 
+          </a>
+          <a class="navbar-item" href="dataobatnamaz-a.php">
+            Nama Z-A 
           </a>
           <a class="navbar-item" href="dataobatmurah.php">
             Harga Termurah
@@ -85,10 +59,43 @@
           <a class="navbar-item" href="dataobatmahal.php">
             Harga Termahal
           </a>
-    
         </div>
       </div>
+<div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          Jenis
+        </a>
+        <div class="navbar-dropdown">
 
+<a class="navbar-item" href="kaplet.php">
+            Kaplet
+          </a>
+          <a class="navbar-item" href="kapsul.php">
+            Kapsul
+          </a>
+          <a class="navbar-item" href="pil.php">
+            Pil
+          </a>
+          <a class="navbar-item" href="salep.php">
+            Salep
+          </a>
+          <a class="navbar-item" href="serbuk.php">
+            Serbuk
+          </a>
+          <a class="navbar-item" href="suntik.php">
+            suntik
+          </a>
+          <a class="navbar-item" href="syrup.php">
+            Sirup
+          </a>
+          <a class="navbar-item" href="tablet.php">
+            Tablet
+          </a>
+          <a class="navbar-item" href="tetes.php">
+            Tetes
+          </a>
+</div>
+</div>
 
   <a class="navbar-item" href="inputobat.php">
        Tambah Obat
@@ -107,39 +114,27 @@
   </div>
 </div>
     </div>
-
-    
   </div>
-
 </nav>
 <table class="table is-fullwidth" >
   <thead>
     <tr>
       <th scope="col">Nama Obat</th>
       <th scope="col">Harga Obat</th>
-      <th scope="col">Kode Obat</th>
       <th scope="col">Jenis Obat</th>
-      <th scope="col">Tanngal Kadaluarsa</th>
-      <th scope="col">Bulan Kadaluarsa</th>
-      <th scope="col">Tahun Kadaluarsa</th>
-      <th scope="col">Stok Obat</th>
+      <th scope="col">Kode Obat</th>
     </tr>
   </thead>
-		<?php
-			foreach ($SQL as $key) {
-				echo "<tr>
-						<td>$key[nama_obat]</td>
-						<td>$key[harga_obat]</td>
-						<td>$key[kode_obat]</td>
-						<td>$key[nama_jenis]</td>
-						<td>$key[tanggal_kadaluarsa]</td>
-						<td>$key[bulan_kadaluarsa]</td>
-						<td>$key[tahun_kadaluarsa]</td>
-						<td>$key[Stok_Obat]</td>
-						
-				</tr>";
-			}
-		?>
+    <?php
+      foreach ($SQL as $key) {
+        echo "<tr>
+            <td>$key[nama_obat]</td>
+            <td>$key[harga]</td>
+            <td>$key[jenis]</td>
+            <td>$key[kode_obat]</td>            
+        </tr>";
+      }
+    ?>
 </table>
 </body>
 </html>
