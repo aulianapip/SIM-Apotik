@@ -1,3 +1,9 @@
+//Nama	: Ardiansyah
+//Nim	: 1700018058
+//Kelas	: E
+
+
+//Kelas ini digunakan sebagai menu tampilan dari kasir
 
 <?php 
 
@@ -44,7 +50,7 @@ opendb();
                   <span class="shortcut-label">Tambah Pagu</span> 
                 </a> -->
               
-
+//method yang digunakan sebagai alat untuk mengakses ke menu penjualan dan juga setoran 
                 <a href="?open=penjualan" class="shortcut">
                   <i class="shortcut-icon  icon-shopping-cart"></i>
                   <span class="shortcut-label">Penjualan</span> 
