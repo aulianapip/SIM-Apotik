@@ -102,12 +102,11 @@
         </div>
 </div>
         </form>
-  </a>
-  </div>
-</div>
-    </div>
+	  </a>
+	</div>
+	</div>
+   	</div>
 
-    
   </div>
 
 </nav>
@@ -124,22 +123,17 @@
       <th scope="col">Stok Obat</th>
     </tr>
   </thead>
-
-
-		<?php
-
-			foreach ($SQL as $key) {
+	<?php foreach ($SQL as $key){
         if($key['Stok_Obat']<15){
 				echo "<tr>
-						<td bgcolor=red>$key[nama_obat]</td>
-						<td bgcolor=red>$key[harga_obat]</td>
-						<td bgcolor=red>$key[kode_obat]</td> 
-						<td bgcolor=red>$key[nama_jenis]</td>
-						<td bgcolor=red>$key[tanggal_kadaluarsa]</td>
-						<td bgcolor=red>$key[bulan_kadaluarsa]</td>
-						<td bgcolor=red>$key[tahun_kadaluarsa]</td>
-						<td bgcolor=red>$key[Stok_Obat]</td>
-						
+					<td bgcolor=red>$key[nama_obat]</td>
+					<td bgcolor=red>$key[harga_obat]</td>
+					<td bgcolor=red>$key[kode_obat]</td> 
+					<td bgcolor=red>$key[nama_jenis]</td>
+					<td bgcolor=red>$key[tanggal_kadaluarsa]</td>
+					<td bgcolor=red>$key[bulan_kadaluarsa]</td>
+					<td bgcolor=red>$key[tahun_kadaluarsa]</td>
+					<td bgcolor=red>$key[Stok_Obat]</td>
 				</tr>";
       }else{
         echo "<tr>
@@ -151,13 +145,11 @@
             <td>$key[bulan_kadaluarsa]</td>
             <td>$key[tahun_kadaluarsa]</td>
             <td>$key[Stok_Obat]</td>
-            
         </tr>";
 
 
       }
-				
-			}
+	}
 	// Function Stok Obat Menipis : Menampilkan data obat Dengan Menandai Tabel dengan warna merah jika obat dibawah 15 stok agar menambah stok agar tidak kehabisan dengan kondisi Stok Obat dibawah 15 maka tabel baris akan diwarna merah dan Stok Obat diatas 15 maka tabel biasa --> Arindra Wahyu C.K 1700018279
 		?>
     <!--Arindra Wahyu , menandai obat yang stok menipis dataobat.php-->
