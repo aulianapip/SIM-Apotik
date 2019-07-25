@@ -1,3 +1,9 @@
+//Nama	: Ardiansyah
+//Nim	: 1700018058
+//Kelas	: E
+
+//Kelas ini digunakan sebagai menu tampilan utama dari kasir nya 
+
 <?php 
  if(!isset($_SESSION['SES_LOGIN'])){
 	header('location:home');
@@ -17,9 +23,6 @@ opendb();
    $faxToko   = $rec['fax_toko'];
 ?>	
     
-
-
-
       <div class="row">
         <div class="span12">
           <div class="widget">
@@ -35,7 +38,8 @@ opendb();
                   <span class="shortcut-label">Tambah Pagu</span> 
                 </a> -->
               
-
+	//method digunakan sebagai akses untuk membuka menu penjualan maupun setoran 
+		      
                 <a href="?open=penjualan" class="shortcut">
                   <i class="shortcut-icon  icon-shopping-cart"></i>
                   <span class="shortcut-label">Penjualan</span> 
