@@ -1,7 +1,13 @@
 <?php
-//DIMAS RESTU MAULANA YANG BUAT
-	include 'db.php';
-	$QuerySql = "SELECT * FROM obat inner join jenis_obat on jenis_obat.kode_jenis=obat.kode_jenis where jenis_obat.nama_jenis='Serbuk'";
+//DIMAS RESTU MAULANA
+//1700018247
+//E
+
+
+//1. serbuk.php fitur ini berfungsi untuk menampilkan jenis obat serbuk. obat yang berjenis serbuk pada database akan di tampilkan ketika kita pilih fitur ini pada tampilan.
+	
+include 'db.php';
+	$QuerySql = "SELECT * FROM obat inner join jenis_obat on jenis_obat.kode_jenis=obat.kode_jenis where jenis_obat.nama_jenis='Serbuk'"; //2. query di samping sebagai operasi untuk mencari obat yang berjenis kapsul pada tabel obat
 	$SQL = mysqli_query($connect, $QuerySql);
 ?>
 
@@ -137,7 +143,7 @@
       <th scope="col">Harga Obat</th>
       <th scope="col">Kode Obat</th>
       <th scope="col">Jenis Obat</th>
-      <th scope="col">Kadaluarsa Obat</th>   <!--mohamad rifky fajri perbaiki tabel tanggal kadaluarsa-->
+      <th scope="col">Kadaluarsa Obat</th>
       <th scope="col">Stok Obat</th>
     </tr>
   </thead>
