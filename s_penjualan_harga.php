@@ -1,4 +1,4 @@
-<!--FADHIL ABIGAIL-->
+<!--ALDIANSYAH DARMAWAN-->
 <?php
 	session_start();
 
@@ -17,7 +17,7 @@ if (!isset($_SESSION["login1"])) {
 <html>
 <head>
 	<title>Tampil Data Obat</title>
-	<link rel="stylesheet" href="bulma.min.css">
+	<link rel="stylesheet" href="bulma.min.css">	<!-- Memanggil file css-->
 </head>
 <body>
 <?php 
@@ -25,7 +25,7 @@ if (!isset($_SESSION["login1"])) {
  ?>
 <table class="table is-fullwidth" >
   <thead>
-    <tr>
+    <tr> <!-- Menampilkan atribut id tanggal kodeobat nama obat harga jumlah dan harga total-->
       <th scope="col"><a href="s_penjualan_id.php"> ID PENJUALAN</a></th>
       <th scope="col"><a href="s_penjualan_tanggal.php">TANGGAL TERJUAL</a></th>
       <th scope="col"><a href="s_penjualan_ko.php">KODE OBAT</a></th>
@@ -37,7 +37,8 @@ if (!isset($_SESSION["login1"])) {
   </thead>
 		<?php
 			foreach ($SQL as $key) {
-				echo "<tr>
+				##Memanggil value yang ada
+				echo "<tr> 
 						<td>$key[id_penjualan]</td>
 						<td>$key[tanggal_terjual]</td>
 						<td>$key[kode_obat]</td>
