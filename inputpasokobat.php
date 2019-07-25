@@ -1,16 +1,28 @@
-<?php
-  if($_POST){
-    include 'db.php';
-    $kode_pasok=$_POST['kode_pasok'];
-    $kode_obat=$_POST['kode_obat'];
-    $kode_supplier=$_POST['kode_supplier'];
-    $jumlah_pasok=$_POST['jumlah_pasok'];
-    $harga_beli=$_POST['harga_beli'];
-    $tanggal_pasok=$_POST['tanggal_pasok'];
-    $tanggal_kadaluarsa=$_POST['tanggal_kadaluarsa'];
+<!--
+UAS PRPRL
+NAMA : Aditya Gusti Mandala Putra
+NIM : 1700018256
+KELAS : E
 
-    $QuerySql = "INSERT INTO pasok VALUES ('$kode_pasok', '$kode_obat', '$kode_supplier','$jumlah_pasok','$harga_beli','$tanggal_pasok','$tanggal_kadaluarsa')";
-    mysqli_query($connect, $QuerySql);
+1. inputpasokobat.php fitur ini berfungsi sebagai fitur untuk menambahkan pasok obat terbaru yang sebelumnya belum terdaftar atau terdata pada database Apotek. misal Apotek baru mempunyai 2 merk obat yaitu panadol dan konimex. jika apotek ingin menambah merk obat yang ingin di dagang maka pihak karyawan bisa menggunakan fitur ini untuk menambah merk obat pada data base.  
+
+
+
+2. dibawah ini merupakan source connect database.-->
+
+<?php
+  if($_POST){ //post berfungsi ketika kita menginputkan  / mengisi form maka data yang diisi akan masuk ke dalam data base. dan akan di tampilkan pada data obat yang sudah di kasih deklarasi GET
+    include 'db.php';
+    $kode_pasok=$_POST['kode_pasok']; //inisialisasi kode pasok 
+    $kode_obat=$_POST['kode_obat'];//inisialisasi kode obat
+    $kode_supplier=$_POST['kode_supplier'];//inisialisasi kode supplier
+    $jumlah_pasok=$_POST['jumlah_pasok']; //inisialisasi jumlah pasok
+    $harga_beli=$_POST['harga_beli'];//inisialisasi harga beli
+    $tanggal_pasok=$_POST['tanggal_pasok'];//inisialisasi tanggal pasok
+    $tanggal_kadaluarsa=$_POST['tanggal_kadaluarsa'];//inisialisasi tanggal kadaluarsa
+
+    $QuerySql = "INSERT INTO pasok VALUES ('$kode_pasok', '$kode_obat', '$kode_supplier','$jumlah_pasok','$harga_beli','$tanggal_pasok','$tanggal_kadaluarsa')";//setelah kita isi form maka selanjutnya data tadi akan di masukan pada tabel pasok
+    mysqli_query($connect, $QuerySql); 
 
     for ($i=1; $i <=$jumlah_pasok ; $i++) {
         $status = "DI GUDANG";
