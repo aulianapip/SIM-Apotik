@@ -1,28 +1,9 @@
-/*1.  Pada kelompok gudang, kami telah membuat beberapa kelas yang mempunyai fungsi sebagai berikut:
-• Fungsi Sorting Nama Obat A-Z : fitur ini berfungsi mengurutkan nama obat sesuai alpabet dari awalan huruf A sampai awalan huruf Z.
-• Fungsi Sorting Jenis Obat Kapsul : fitur ini berfungsi mensorting obat yang berjenis kapsul untuk di tampilkan.
-• Fungsi Menampilkan seluruh data obat
-• Fungsi Tanggal pasok obat
-• Function Update Data Obat : Fitur ini berfungsi mengupdate perubahan yang telah kita tambah, Kurang, dan mengedit sesuai database
-• Function Stok Obat Menipis : Fitur ini berfungsi menandai tabel obat yang stoknya telah menipis
-• Function Pencarian  Data Tidak Ditemukan : fitur ini berfungsi  jika kita mencari obat atau supplier yang tidak ada didatabase
-• Function Sorting Tanggal Supplier : fitur ini berfungsi mensorting obat dengan tanggal pemasok supplier yang telah memasok obat dari tanggal terdahulu
-• Function Tambah Obat : fitur ini berfungsi untuk menambah data obat baru ke dalam tabel Obat
-• Function Tambah Supllier : fitur ini berfungsi untuk menambah data supllier baru ke tabel Supllier
-• Function Cari Obat : fitur ini berfungsi buat mencari data obat yang ada di tabel obat
-• Fuction Cari Supplier : fitur ini berfungsi mncari data supplier yang ada di tabel supplier
-• Function Sorting Nama Supplier A-Z : fitur ini berfungsi untuk mengurutkan nama supplier dari A-Z
-• Function data suplier : fitur ini berfungsi untuk menampilkan data suplier sesuai database
-*/
-
---Aditya Gusti Mandala Putra yang membuat database--
-
 -- phpMyAdmin SQL Dump
 -- version 4.8.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 25 Bulan Mei 2019 pada 07.17
+-- Waktu pembuatan: 29 Bulan Mei 2019 pada 14.12
 -- Versi server: 10.1.31-MariaDB
 -- Versi PHP: 7.2.4
 
@@ -50,67 +31,118 @@ SET time_zone = "+00:00";
 CREATE TABLE `barcode` (
   `kode_obat` varchar(99) NOT NULL,
   `tanggal_pasok` date NOT NULL,
-  `nomor_pasok` int(99) NOT NULL
+  `nomor_pasok` int(99) NOT NULL,
+  `status` enum('Hilang','Rusak','Dipinjam','Terjual') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `barcode`
 --
 
-INSERT INTO `barcode` (`kode_obat`, `tanggal_pasok`, `nomor_pasok`) VALUES
-('ADS', '2019-05-25', 1),
-('ADS', '2019-05-25', 2),
-('ADS', '2019-05-25', 3),
-('ADS', '2019-05-25', 4),
-('ADS', '2019-05-25', 5),
-('ADS', '2019-05-25', 6),
-('ADS', '2019-05-25', 7),
-('ADS', '2019-05-25', 8),
-('ADS', '2019-05-25', 9),
-('ADS', '2019-05-25', 10),
-('ADS', '2019-05-25', 11),
-('ADS', '2019-05-25', 12),
-('ADS', '2019-05-25', 13),
-('ADS', '2019-05-25', 14),
-('ADS', '2019-05-25', 15),
-('ADS', '2019-05-25', 16),
-('ADS', '2019-05-25', 17),
-('ADS', '2019-05-25', 18),
-('ADS', '2019-05-25', 19),
-('ADS', '2019-05-25', 20),
-('ADS', '2019-05-25', 21),
-('ADS', '2019-05-25', 22),
-('ADS', '2019-05-25', 23),
-('AMO', '2019-03-06', 1),
-('AMO', '2019-03-06', 2),
-('AMO', '2019-03-06', 3),
-('AMO', '2019-03-06', 4),
-('AMO', '2019-03-06', 5),
-('AMO', '2019-03-06', 6),
-('AMO', '2019-03-06', 7),
-('AMO', '2019-03-06', 8),
-('AMO', '2019-03-06', 9),
-('AMO', '2019-03-06', 10),
-('AMO', '2019-03-06', 11),
-('AMO', '2019-03-06', 12),
-('AMO', '2019-03-06', 13),
-('AMO', '2019-03-06', 14),
-('AMO', '2019-03-06', 15),
-('AMO', '2019-03-06', 16),
-('AMO', '2019-03-06', 17),
-('AMO', '2019-03-06', 18),
-('AMO', '2019-03-06', 19),
-('AMO', '2019-03-06', 20),
-('AMO', '2019-03-06', 21),
-('AMO', '2019-03-06', 22),
-('AMO', '2019-03-06', 23),
-('AMO', '2019-03-06', 24),
-('AMO', '2019-03-06', 25),
-('AMO', '2019-03-06', 26),
-('AMO', '2019-03-06', 27),
-('AMO', '2019-03-06', 28),
-('AMO', '2019-03-06', 29),
-('AMO', '2019-03-06', 30);
+INSERT INTO `barcode` (`kode_obat`, `tanggal_pasok`, `nomor_pasok`, `status`) VALUES
+('ADS', '2019-05-25', 1, 'Hilang'),
+('ADS', '2019-05-25', 2, 'Hilang'),
+('ADS', '2019-05-25', 3, 'Hilang'),
+('ADS', '2019-05-25', 4, 'Hilang'),
+('ADS', '2019-05-25', 5, 'Hilang'),
+('ADS', '2019-05-25', 6, 'Hilang'),
+('ADS', '2019-05-25', 7, 'Hilang'),
+('ADS', '2019-05-25', 8, 'Hilang'),
+('ADS', '2019-05-25', 9, 'Hilang'),
+('ADS', '2019-05-25', 10, 'Hilang'),
+('ADS', '2019-05-25', 11, 'Hilang'),
+('ADS', '2019-05-25', 12, 'Hilang'),
+('ADS', '2019-05-25', 13, 'Hilang'),
+('ADS', '2019-05-25', 14, 'Hilang'),
+('ADS', '2019-05-25', 15, 'Hilang'),
+('ADS', '2019-05-25', 16, 'Hilang'),
+('ADS', '2019-05-25', 17, 'Hilang'),
+('ADS', '2019-05-25', 18, 'Hilang'),
+('ADS', '2019-05-25', 19, 'Hilang'),
+('ADS', '2019-05-25', 20, 'Hilang'),
+('ADS', '2019-05-25', 21, 'Hilang'),
+('ADS', '2019-05-25', 22, 'Hilang'),
+('ADS', '2019-05-25', 23, 'Hilang'),
+('AMO', '2019-03-06', 1, 'Hilang'),
+('AMO', '2019-03-06', 2, 'Hilang'),
+('AMO', '2019-03-06', 3, 'Hilang'),
+('AMO', '2019-03-06', 4, 'Hilang'),
+('AMO', '2019-03-06', 5, 'Hilang'),
+('AMO', '2019-03-06', 6, 'Hilang'),
+('AMO', '2019-03-06', 7, 'Hilang'),
+('AMO', '2019-03-06', 8, 'Hilang'),
+('AMO', '2019-03-06', 9, 'Hilang'),
+('AMO', '2019-03-06', 10, 'Hilang'),
+('AMO', '2019-03-06', 11, 'Hilang'),
+('AMO', '2019-03-06', 12, 'Hilang'),
+('AMO', '2019-03-06', 13, 'Hilang'),
+('AMO', '2019-03-06', 14, 'Hilang'),
+('AMO', '2019-03-06', 15, 'Hilang'),
+('AMO', '2019-03-06', 16, 'Hilang'),
+('AMO', '2019-03-06', 17, 'Hilang'),
+('AMO', '2019-03-06', 18, 'Hilang'),
+('AMO', '2019-03-06', 19, 'Hilang'),
+('AMO', '2019-03-06', 20, 'Hilang'),
+('AMO', '2019-03-06', 21, 'Hilang'),
+('AMO', '2019-03-06', 22, 'Hilang'),
+('AMO', '2019-03-06', 23, 'Hilang'),
+('AMO', '2019-03-06', 24, 'Hilang'),
+('AMO', '2019-03-06', 25, 'Hilang'),
+('AMO', '2019-03-06', 26, 'Hilang'),
+('AMO', '2019-03-06', 27, 'Hilang'),
+('AMO', '2019-03-06', 28, 'Hilang'),
+('AMO', '2019-03-06', 29, 'Hilang'),
+('AMO', '2019-03-06', 30, 'Hilang'),
+('ABK', '2019-03-06', 1, 'Hilang'),
+('ABK', '2019-03-06', 2, 'Hilang'),
+('ABK', '2019-03-06', 3, 'Hilang'),
+('ABK', '2019-03-06', 4, 'Hilang'),
+('ABK', '2019-03-06', 5, 'Hilang'),
+('ABK', '2019-03-06', 6, 'Hilang'),
+('ABK', '2019-03-06', 7, 'Hilang'),
+('ABK', '2019-03-06', 8, 'Hilang'),
+('ABK', '2019-03-06', 9, 'Hilang'),
+('ABK', '2019-03-06', 10, 'Hilang'),
+('ABK', '2019-03-06', 11, 'Hilang'),
+('ABK', '2019-03-06', 12, 'Hilang'),
+('ABK', '2019-03-06', 13, 'Hilang'),
+('ABK', '2019-03-06', 14, 'Hilang'),
+('ABK', '2019-03-06', 15, 'Hilang'),
+('ABK', '2019-03-06', 16, 'Hilang'),
+('ABK', '2019-03-06', 17, 'Hilang'),
+('ABK', '2019-03-06', 18, 'Hilang'),
+('ABK', '2019-03-06', 19, 'Hilang'),
+('ABK', '2019-03-06', 20, 'Hilang'),
+('ABK', '2019-03-06', 21, 'Hilang'),
+('ABK', '2019-03-06', 22, 'Hilang'),
+('ABK', '2019-03-06', 23, 'Hilang'),
+('ABK', '2019-03-06', 24, 'Hilang'),
+('ABK', '2019-03-06', 25, 'Hilang'),
+('ABK', '2019-03-06', 26, 'Hilang'),
+('ABK', '2019-03-06', 27, 'Hilang'),
+('ABK', '2019-03-06', 28, 'Hilang'),
+('ABK', '2019-03-06', 29, 'Hilang'),
+('ABK', '2019-03-06', 30, 'Hilang'),
+('ABK', '2019-03-06', 31, 'Hilang'),
+('ABK', '2019-03-06', 32, 'Hilang'),
+('ABK', '2019-03-06', 33, 'Hilang'),
+('ABK', '2019-03-06', 34, 'Hilang'),
+('ABK', '2019-03-06', 35, 'Hilang'),
+('ABK', '2019-03-06', 36, 'Hilang'),
+('ABK', '2019-03-06', 37, 'Hilang'),
+('ABK', '2019-03-06', 38, 'Hilang'),
+('ABK', '2019-03-06', 39, 'Hilang'),
+('ABK', '2019-03-06', 40, 'Hilang'),
+('ABK', '2019-03-06', 41, 'Hilang'),
+('ABK', '2019-03-06', 42, 'Hilang'),
+('ABK', '2019-03-06', 43, 'Hilang'),
+('ABK', '2019-03-06', 44, 'Hilang'),
+('ABK', '2019-03-06', 45, 'Hilang'),
+('ABK', '2019-03-06', 46, 'Hilang'),
+('ABK', '2019-03-06', 47, 'Hilang'),
+('ABK', '2019-03-06', 48, 'Hilang'),
+('ABK', '2019-03-06', 49, 'Hilang'),
+('ABK', '2019-03-06', 50, 'Hilang');
 
 -- --------------------------------------------------------
 
@@ -141,6 +173,7 @@ CREATE TABLE `obat` (
 --
 
 INSERT INTO `obat` (`nama_obat`, `harga`, `jenis`, `kode_obat`) VALUES
+('Anti Bokkek', 5000, 'Tablet', 'ABK'),
 ('Albumin', 7500, 'Syrup', 'ALB'),
 ('Ambroxol', 10000, 'Kapsul', 'AMB'),
 ('Amoxcilin', 15000, 'Tablet', 'AMO'),
@@ -231,6 +264,7 @@ INSERT INTO `pasok` (`kode_pasok`, `kode_obat`, `kode_supplier`, `jumlah_pasok`,
 ('KP27', 'AMO', 'AIC', 30, 3000, '2019-03-06', '2020-04-07'),
 ('KP28', 'AMO', 'AIC', 45, 2000, '2019-05-25', '2020-04-07'),
 ('KP3', 'ALB', 'DUN', 37, 5000, '2019-05-21', '2019-05-31'),
+('KP30', 'ABK', 'JAY', 50, 3000, '2019-03-06', '2020-04-07'),
 ('KP4', 'AMB', 'IND', 54, 5000, '2019-05-17', '2021-11-06'),
 ('KP5', 'ANT', 'TAP', 150, 3000, '2019-05-01', '2021-05-01'),
 ('KP6', 'ASP', 'DUN', 30, 7500, '2019-05-01', '2022-03-12'),
@@ -248,8 +282,16 @@ CREATE TABLE `retur` (
   `kode_retur` varchar(99) NOT NULL,
   `kode_obat` varchar(99) NOT NULL,
   `rusak` int(11) NOT NULL,
-  `tanggal` date NOT NULL
+  `tanggal` date NOT NULL,
+  `catatan` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `retur`
+--
+
+INSERT INTO `retur` (`kode_retur`, `kode_obat`, `rusak`, `tanggal`, `catatan`) VALUES
+('KR', 'ALB', 10, '2019-05-25', 'Peyok');
 
 -- --------------------------------------------------------
 
