@@ -22,7 +22,15 @@ kami menginputkan status kondisi barang yang berada ditoko, status antara lain a
        $dipinjam = $_POST['dipinjam'];//mengisi variabel $dipinjam menjadi dipinjam jika status obat diisi dipinjam
        $catatan = $_POST['catatan'];
        $tanggal = $_POST['tanggal'];//batas Airla Ismail
-      
+       
+       //Alwan Zaki 1700018259
+       if($rusak == 0 && $hilang == 0 && $dipinjam == 0 ){
+         $status = "Sesuai";//jika barang yang rusak,hilang, dan dipinjam tidak ada maka status = sesuai jika tidak status = tidak sesuai
+       }else{
+         $status = "Belum Sesuai";
+       }// batas pengerjaan zaki
+
+
    ?>
    <form class="from-horizontal" action="updateopname.php" method="POST" role="form" >
  <div class="form-group">
