@@ -1,15 +1,24 @@
+<!--
+UAS PRPRL
+NAMA : M. Rafie Sultan Agam
+NIM : 1700018282
+KELAS : E
+
+1. inputsupiler.php fitur ini berfungsi sebagai fitur untuk menambahkan data pemasok obat terbaru yang sebelumnya belum terdaftar atau terdata pada database Apotek. misal Apotek baru mempunyai 2 pemasok obat yaitu PT.SinarFarma dan PT.FarmaJaya. jika apotek ingin menambah data pemasok obat baru yang ingin di tambahkan maka pihak karyawan bisa menggunakan fitur ini untuk menambah data supplier pada data base.
+
+2. dibawah ini merupakan source connect database.-->
 <?php
-  if($_POST){
+  if($_POST){//post berfungsi ketika kita menginputkan  / mengisi form maka data yang diisi akan masuk ke dalam data base. dan akan di tampilkan pada data obat yang sudah di kasih deklarasi GET
     include 'db.php';
-    $nama_pemasok=$_POST['nama_pemasok'];
-    $nomor_telepon=$_POST['nomor_telepon'];
-    $alamat=$_POST['alamat'];
-    $contact_person=$_POST['contact_person'];
-    $kode_supplier=$_POST['kode_supplier'];
+    $nama_pemasok=$_POST['nama_pemasok'];//inisialisasi nama pemasok
+    $nomor_telepon=$_POST['nomor_telepon'];//inisialisasi nomor telepon pemasok
+    $alamat=$_POST['alamat'];//inisialisasi alamat pemasok
+    $contact_person=$_POST['contact_person'];//inisialisasi cp pemasok
+    $kode_supplier=$_POST['kode_supplier'];//inisialisasi kode pemasok
     //memperbaiki query tambah supplier
     
    
-    $QuerySql = " INSERT INTO supplier VALUES ('$nama_pemasok', '$nomor_telepon', '$alamat', '$contact_person', '$kode_supplier')";
+    $QuerySql = " INSERT INTO supplier VALUES ('$nama_pemasok', '$nomor_telepon', '$alamat', '$contact_person', '$kode_supplier')";//setelah kita isi form maka selanjutnya data tadi akan di masukan pada tabel input supplier
       $SQL = mysqli_query($connect, $QuerySql);
     }
 
