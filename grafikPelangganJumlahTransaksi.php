@@ -1,3 +1,14 @@
+<?php
+
+$koneksi = mysqli_connect("localhost", "root", "", "sim-apotek"); //Memanggil database yang telah kita buat
+error_reporting(0); //untuk menghilangkan notif error pada program
+$pilihan = $_POST['area1'];
+    $urutan = $_POST['area2'];//membuat area nama
+    if (isset($_POST['submit'])) { // untuk mensubmite post area
+    }
+    ?>
+
+?>
 <!DOCTYPE html>
 <html>
 
@@ -18,19 +29,35 @@
     </div>
   </nav>
 
-		<h1><center>GRAFIK PELANGGAN BERDASARKAN KOTA</center></h1>
+		<h1><center>GRAFIK PELANGGAN BERDASARKAN JUMLAH TRANSAKSI
+<?php 
+            echo ' URUTAN'. ' '.$urutan.'';
+         ?>
+		</center></h1>
+		<div style="width: 800px;margin: 0px auto;">
+        <canvas id="myChart"></canvas>
+    </div>
+    <form action="" method="post">
+    	
+        <label>Pilih Chart</label>
+		<div class="input-field col s12" > 
+			<select class="browser-default" name="area1">
+				<?php $options3 = array('pie', 'bar', 'line'); //pilihan grafiknya
+				foreach ($options3 as $area3) { //untuk perulangan
+					$selected = @$_POST['area3'] == $area3 ? ' selected3="selected3"' : '';				//menampilkan pilihan yang sudah dipilih 
+					echo '<option value="' . $area3 . '"' . $selected3 . '>' . $area3 . '</option>';
+				}?>
+			</select>
+		</div>
+        <div class="row">
+            <input class="waves-effect waves-light btn-small" type="submit" name="submit" value="oke"/>
+        </div>
+    </form>
 
 
 <?php
 $koneksi = mysqli_connect("localhost", "root", "", "sim-apotek");
 ?>
-
-	<div style="width: 800px;margin: 0px auto;">
-		<canvas id="myChart"></canvas>
-	</div>
-
-	<br/>
-	<br/>
 
 	<table border="1">
 		<thead>
@@ -45,7 +72,7 @@ $koneksi = mysqli_connect("localhost", "root", "", "sim-apotek");
 		<tbody>
 			<?php 
 			$no = 1;
-			$data = mysqli_query($koneksi,"SELECT pelanggan.Nama as nama, pelanggan.ID as id, COUNT(penjualan.id_pelanggan) AS jumlah_transaksi FROM penjualan, pelanggan WHERE pelanggan.ID=penjualan.id_pelanggan GROUP BY penjualan.id_pelanggan");
+			$data = mysqli_query($koneksi,"SELECT pelanggan.Nama as nama, pelanggan.ID as id, COUNT(penjualan.id_pelanggan) AS jumlah_transaksi FROM penjualan, pelanggan WHERE pelanggan.ID=penjualan.id_pelanggan GROUP BY penjualan.id_pelanggan  ORDER BY COUNT(penjualan.id_pelanggan) $urutan");
 			while($d=mysqli_fetch_array($data)){
 				?>
 				<tr>
@@ -64,15 +91,15 @@ $koneksi = mysqli_connect("localhost", "root", "", "sim-apotek");
 	<script>
 		var ctx = document.getElementById("myChart").getContext('2d');
 		var myChart = new Chart(ctx, {
-			type: 'bar',
+			type: '<?php echo $pilihan ?>',
 			data: {
 				labels: [<?php 
-					$nama= mysqli_query($koneksi, "SELECT pelanggan.Nama as nama FROM penjualan, pelanggan WHERE pelanggan.ID=penjualan.id_pelanggan GROUP BY penjualan.id_pelanggan");
+					$nama= mysqli_query($koneksi, "SELECT pelanggan.Nama as nama FROM penjualan, pelanggan WHERE pelanggan.ID=penjualan.id_pelanggan GROUP BY penjualan.id_pelanggan ORDER BY COUNT(penjualan.id_pelanggan) $urutan");
 				while ($b = mysqli_fetch_array($nama)) { echo '"' . $b['nama'] . '",';} ?>
 					],
 				datasets: [{
 					label: '',
-					data: [<?php $jumlah_transaksi = mysqli_query($koneksi, "SELECT COUNT(penjualan.id_pelanggan) as jumlah_transaksi FROM penjualan, pelanggan WHERE pelanggan.ID=penjualan.id_pelanggan GROUP BY penjualan.id_pelanggan");
+					data: [<?php $jumlah_transaksi = mysqli_query($koneksi, "SELECT COUNT(penjualan.id_pelanggan) as jumlah_transaksi FROM penjualan, pelanggan WHERE pelanggan.ID=penjualan.id_pelanggan GROUP BY penjualan.id_pelanggan ORDER BY COUNT(penjualan.id_pelanggan) $urutan");
 while ($p = mysqli_fetch_array($jumlah_transaksi)) { echo '"' . $p['jumlah_transaksi'] . '",';}?>],
                             backgroundColor: [
 					'rgba(255, 99, 132, 0.2)',
