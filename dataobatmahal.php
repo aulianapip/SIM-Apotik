@@ -1,8 +1,15 @@
 <?php
-  include 'db.php';
-  $QuerySql = "SELECT `nama_obat`,`harga`,`jenis`,`kode_obat` FROM `obat` ORDER BY `harga` DESC";
-  $SQL = mysqli_query($connect, $QuerySql);
+//GIFARI NANDA UTAMA
+//1700018250
+//E
+
+//function sorting obat dari yang termahal dibuat untuk mengurutkan harga obat termahal ke paling murah
+
+  include 'db.php';//untuk memasukan database gudang
+  $QuerySql = "SELECT `nama_obat`,`harga`,`jenis`,`kode_obat` FROM `obat` ORDER BY `harga` DESC";//query mengurutkan harga obat mulai dari nama obat, harga, jenis obat dan kode obat
+  $SQL = mysqli_query($connect, $QuerySql);//untuk menyambungkan query dengan database
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,34 +18,39 @@
 </head>
 <body>
 <nav class="navbar is-success" role="navigation" aria-label="main navigation">
-  <div class="navbar-brand"> 
+  <div class="navbar-brand">
+   
+
     <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
       <span aria-hidden="true"></span>
       <span aria-hidden="true"></span>
       <span aria-hidden="true"></span>
     </a>
   </div>
+
   <div id="navbarBasicExample" class="navbar-menu">
     <div class="navbar-start">
       <a class="navbar-item" href="login.html">
     <img src="logut.png"></img>
       </a>
+
       <div class="navbar-item has-dropdown is-hoverable">
         <a class="navbar-link">
           Daftar Tabel
         </a>
+
         <div class="navbar-dropdown">
-         
+          
           <a class="navbar-item" href="dataobat.php">
             Obat
           </a>
-          <a class="navbar-item" href="inputpasokobat.php">
+                      <a class="navbar-item" href="inputpasokobat.php">
        Pasok Obat
       </a>
-         <a class="navbar-item" href="datasupiler.php">
+          <a class="navbar-item" href="datasupiler.php">
             Supplier
           </a>
- 
+    
         </div>
       </div>
 
@@ -46,7 +58,9 @@
         <a class="navbar-link">
           Filter
         </a>
-        <div class="navbar-dropdown">          
+
+        <div class="navbar-dropdown">
+          
           <a class="navbar-item" href="dataobattanggal.php">
             Tanggal Pasok
           </a>
@@ -116,8 +130,11 @@
   </a>
   </div>
 </div>
-    </div>  
+    </div>
+
+    
   </div>
+
 </nav>
 <table class="table is-fullwidth" >
   <thead>
@@ -126,6 +143,7 @@
       <th scope="col">Harga Obat</th>
       <th scope="col">Jenis Obat</th>
       <th scope="col">Kode Obat</th>
+      
     </tr>
   </thead>
     <?php
