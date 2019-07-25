@@ -103,6 +103,13 @@ if(isset($_GET['no_faktur'])){
     <td>HRG</td>
     <td>SUB TTL</td>
   </tr>
+  
+//Nama  : Nurul Ika Praptiwi
+//Nim   : 1700018254
+//Kealas : E
+  
+  
+  //method untuk memasukan data hasil harga sub total penjualan kedalam variabel
  <?php
  $kembali=0; $total_item=0; $total_penjualan=0;
   while($rek2=arraydb($hsl2)){
