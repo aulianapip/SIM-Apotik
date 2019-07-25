@@ -1,8 +1,11 @@
 <?php
-
-	include 'db.php';
-	$QuerySql = "SELECT `nama_pemasok`,`nomor_telepon`,`alamat`,`contact_person`,`kode_supplier` FROM `supplier`";
-	$SQL = mysqli_query($connect, $QuerySql);
+//GIFARI NANDA UTAMA
+//1700018250
+//E
+//function data suplier dibuat untuk menampilkan suplier suplier yang ada di database
+	include 'db.php';//untuk memasukan database gudang
+	$QuerySql = "SELECT `nama_pemasok`,`nomor_telepon`,`alamat`,`contact_person`,`kode_supplier` FROM `supplier`";//query untuk menampilkan data suplier dengan memanggil nama pemasok, nomor,alamat, cp, dan menampilkan kode pemasok dari suplier
+	$SQL = mysqli_query($connect, $QuerySql);//untuk menyambungkan query dengan database
 ?>
 <!--Gifari Nanda Utama-->
 <!DOCTYPE html>
@@ -14,22 +17,28 @@
 <body>
 <nav class="navbar is-success" role="navigation" aria-label="main navigation">
   <div class="navbar-brand">
+   
+
     <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
       <span aria-hidden="true"></span>
       <span aria-hidden="true"></span>
       <span aria-hidden="true"></span>
     </a>
   </div>
+
   <div id="navbarBasicExample" class="navbar-menu">
     <div class="navbar-start">
       <a class="navbar-item" href="login.html">
      <img src="logut.png"></img>
       </a>
+
       <div class="navbar-item has-dropdown is-hoverable">
         <a class="navbar-link">
           Daftar Tabel
         </a>
+
         <div class="navbar-dropdown">
+          
           <a class="navbar-item" href="dataobat.php">
             Obat
           </a>
@@ -45,7 +54,10 @@
         <a class="navbar-link">
           Filter
         </a>
+
         <div class="navbar-dropdown">
+          
+        
           <a class="navbar-item" href="datasupilernama.php">
             Nama A-Z
           </a>
@@ -57,7 +69,7 @@
   <a class="navbar-item" href="inputobat.php">
        Tambah Obat
       </a>
-       <a class="navbar-item" href="inputpasokobat.php">
+                  <a class="navbar-item" href="inputpasokobat.php">
        Pasok Obat
       </a>
        <a class="navbar-item" href="inputsupiler.php">
@@ -91,12 +103,12 @@
   </thead>
 		<?php
 			foreach ($SQL as $key) {
-			echo "<tr>
-					<td>$key[nama_pemasok]</td>
-					<td>$key[nomor_telepon]</td>
-         				 <td>$key[alamat]</td>
-					<td>$key[contact_person]</td>
-					<td>$key[kode_supplier]</td>
+				echo "<tr>
+						<td>$key[nama_pemasok]</td>
+						<td>$key[nomor_telepon]</td>
+            <td>$key[alamat]</td>
+						<td>$key[contact_person]</td>
+						<td>$key[kode_supplier]</td>
 						
 						
 				</tr>";
