@@ -131,7 +131,7 @@ error_reporting(0); //untuk menghilangkan notif error pada program
 					],
 				datasets: [{
 					label: '',
-					data: [<?php $keuntungan = mysqli_query($koneksi, "SELECT penjualan_detail.harga-pasok.harga_beli as keuntungan FROM obat, penjualan_detail, pasok, penjualan WHERE obat.kode_obat=pasok.kode_obat and obat.kode_obat=penjualan_detail.kode_obat and YEAR(tgl_penjualan)='$tahun' GROUP BY pasok.kode_obat ORDER BY keuntungan $urutan");//untuk menampilkan data keuntungan berdasarkan bulan jika grafik dipilih
+					data: [<?php $keuntungan = mysqli_query($koneksi, "SELECT penjualan_detail.harga-pasok.harga_beli as keuntungan FROM obat, penjualan_detail, pasok, penjualan WHERE obat.kode_obat=pasok.kode_obat and obat.kode_obat=penjualan_detail.kode_obat and YEAR(tgl_penjualan)='$tahun' GROUP BY obat.kode_obat,YEAR(tgl_penjualan) ORDER BY keuntungan $urutan");//untuk menampilkan data keuntungan berdasarkan bulan jika grafik dipilih
 while ($p = mysqli_fetch_array($keuntungan)) { echo '"' . $p['keuntungan'] . '",';}?>],
                             backgroundColor: [//untuk memberi warna pada grafik
 					'rgba(255, 99, 132, 0.2)',
