@@ -101,7 +101,7 @@ $koneksi = mysqli_connect("localhost", "root", "", "sim-apotek");
 	<script>
 		var ctx = document.getElementById("myChart").getContext('2d');//Memanggil fungsi grafik 
 		var myChart = new Chart(ctx, {
-			type: '<?php echo $pilihan ?>',
+			type: '<?php echo $pilihan ?>',//untuk memasukan pilihan
 			data: {
 				labels: [<?php 
 					$nama= mysqli_query($koneksi, "SELECT pelanggan.Nama as nama FROM penjualan, pelanggan WHERE pelanggan.ID=penjualan.id_pelanggan GROUP BY penjualan.id_pelanggan ORDER BY COUNT(penjualan.id_pelanggan) $urutan"); //Menampilkan Nama Pelanggan
