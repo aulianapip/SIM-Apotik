@@ -38,7 +38,9 @@ lalu dapat diklik ok untuk dimasukan ke keranjang belanja web kasir.
 public class MainActivity extends AppCompatActivity implements ZXingScannerView.ResultHandler {
     private ZXingScannerView mScannerView;
     String Tempbarcode, userid ;
-    String ServerURL = "https://auliana.com/sim-apotek/API-Android/api-test.php" ;
+
+    //URL API untuk kirim data hasil scann qr code
+    String ServerURL = "https://auliana.com/sim-apotek/API-Android/insert.php" ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
