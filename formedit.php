@@ -31,7 +31,7 @@ fitur ini berupa jika data member akan diedit user maka jendela akan beralih pad
 		<table width="45%" ><!-- ukuran tabel -->
 		<tr>
 			 <td><label for="kode_obat">ID</label>
-     			 <input type="text" disabled class="form-control" id="kode_obat" name="Nama" required oninvalid="this.setCustomValidity('Nama tidak boleh kosong')" value="<?php echo "$a[tipe]"; echo $a['ID']; ?>" oninput="setCustomValidity('')"></td>
+     			 <input type="text" disabled class="form-control" id="kode_obat" name="Nama" required oninvalid="this.setCustomValidity('Nama tidak boleh kosong')" value="<?php  echo $a['ID']; ?>" oninput="setCustomValidity('')"></td>
      			 <!-- type disini memakai text dengan nama class untuk css form-control. dan id disini akan memanggil value yang sudah di inisialisasi sebelumnya. required oninvalid disini adalah alert yang jika kita tidak mengisi kolom tersebut maka akan muncul alert yang mengatakan "ID tidak boleh kosong dan jika oninput maka tidak akan keluar alert" -->
 		</tr>
 		<tr>
