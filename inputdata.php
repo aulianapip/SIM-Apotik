@@ -12,16 +12,18 @@ validasi dikerjakan oleh Alfian Noor
 ?>
 <?php  
 include ('header.php'); //pemanggilan untuk bagian header dengan nama file header.php
+			include ('conect.php');
+		include('function.php');
 	if ($_POST){ //method untuk mengirimkan data langsung ke action untuk di tampung, dan jika kita memasukan nilai value dia tidak akan langsung di tampilkan
-		include ('conect.php'); //untuk menghubungkan ke database
+	 //untuk menghubungkan ke database
 
 		$Nama = $_POST['Nama']; //sintaks yang berfungsi untuk sebagai inisial yang akan menyimpan nilai atau value
 		$Jk = $_POST['Jk']; //sintaks yang berfungsi untuk sebagai inisial yang akan menyimpan nilai atau value
 		$NoHP = $_POST['NoHP']; //sintaks yang berfungsi untuk sebagai inisial yang akan menyimpan nilai atau value
 		$Email = $_POST['Email']; //sintaks yang berfungsi untuk sebagai inisial yang akan menyimpan nilai atau value
 		$Alamat = $_POST['Alamat']; //sintaks yang berfungsi untuk sebagai inisial yang akan menyimpan nilai atau value
-		include('function.php');
-		input($ID,$Nama,$jeniskelamin,$NoHP,$Email,$Alamat,$connect);
+	
+		input($Nama,$Jk,$NoHP,$Email,$Alamat,$connect);
 
 		echo "<script>alert('Input data baru sukses!!!');window.location='index.php'</script>"; //perintah php yang akan menampilkan deskripsi script alert, dan jika berhasil maka akan membuka ke jendela lokasi file index.php
 	}
