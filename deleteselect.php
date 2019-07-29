@@ -17,7 +17,7 @@ for($x=0; $x<$jumlah_dipilih; $x++){
 	hapus_ceklis($ID,$connect,$x);
 }
  
- echo "<script>window.location='selectdelete.php'</script>";
+ echo "<script> alert('data berhasil dihapus!!!'); window.location='selectdelete.php'</script>";
 // setelah berhasil di delete, maka akan kembali atau refresh ke layar selectdelete.php  untuk mendelete data.
 ?>
 
