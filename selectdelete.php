@@ -116,7 +116,7 @@ body {
 			</tr>
 			<?php } ?>
 		</table>
-		<input type="submit" name="hapus" value="Hapus"> <!--akan diproses melalui file deleteselect.php dan di kirim untuk proses multiple delete -->
+		<input type="submit" name="hapus" value="Hapus" onclick="return confirm('Yakin mau hapus data?');"> <!--akan diproses melalui file deleteselect.php dan di kirim untuk proses multiple delete -->
 		<a href="index.php"><input type="image" width="20%" src="refresh.png" name="Refresh" class="button"></a> <!-- untuk memproses pengembalian kepada index.php -->
 		
 	</form>
