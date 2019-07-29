@@ -29,15 +29,16 @@ include('function.php');
     //include 'fungsi_indotgl.php';
     $tgl_awal= $_POST['tgl_awal'];
     $tgl_akhir= $_POST['tgl_akhir'];
-
+  $a=true;
     $SQL=eksekusi(tampil_berdasarkan_tanggal($tgl_awal, $tgl_akhir,$connect),$connect);
   
   }
   else if(isset($_POST['Refresh'])){
+      $a=false;
     echo "<meta http-equiv='refresh' content='1 url=pelanggan.php'>";
   }
   else{
-
+  $a=false;
   if(isset($_GET['pesan'])){
     $pesan=$_GET['pesan'];
     if($pesan=="Hapus"){
@@ -245,7 +246,12 @@ body {                        /*desain body*/
       <a href="index.php"><input type="submit"  value="Refresh" class="button"></input></a>
       </ul>
     </ul>  
- 
+    <?php 
+    if ($a==true){
+
+        echo "<center>data dari  $tgl_awal sampai
+    $tgl_akhir </center>";
+      } ?>
  </div>
  <br>
 <a href="selectdelete.php">PILIH</a>
