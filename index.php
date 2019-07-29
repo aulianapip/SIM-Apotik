@@ -96,7 +96,7 @@ include('function.php');
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
       <meta name="description" content="Demo project with jQuery">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css">
     <script type="text/javascript" charset="utf8" src="http://cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
@@ -261,32 +261,33 @@ body {                        /*desain body*/
  </div>
   </form>
     </div>
+    <div style="width: 90%" style="position: ">
     <table id="example" class="table table-striped table-bordered" width="100%" cellspacing="1 ">
         <thead>
             <tr>
                 <td width="10%">Tanggal Terdaftar</td>
-                <td width="10%">ID</td> 
+                <td width="15%">ID</td> 
                 <td width="10%">Nama</td>
                 <td width="10%">Jk</td>
                 <td width="10%">NoHp</td>
                 <td width="10%">Email</td>
                 <td width="30%">Alamat</td>
-                <td width="10%">Opsi</td>
+                <td width="15%">Opsi</td>
             </tr>
         </thead>
         
         <tbody>
             <?php   while($data = mysqli_fetch_array($SQL)){ ?>
                 <tr>
-                    <td><?= $data['tgl_daftar'] ?></td>
-                    <td><?= $data['tipe'] ?>
+                    <td ><?= $data['tgl_daftar'] ?></td>
+                    <td width="10%"><?= $data['tipe'] ?>
                     <?= $data['ID'] ?></td>
-                    <td><?= $data['Nama'] ?></td>
-                    <td><?= $data['Jk'] ?></td>
-                    <td><?= $data['NoHp'] ?></td>
-                    <td><?= $data['Email'] ?></td>
-                    <td><?= $data['Alamat'] ?></td>
-                    <td>
+                    <td ><?= $data['Nama'] ?></td>
+                    <td ><?= $data['Jk'] ?></td>
+                    <td width="10%"><?= $data['NoHp'] ?></td>
+                    <td width="10%"><?= $data['Email'] ?></td>
+                    <td width="50%"><?= $data['Alamat'] ?></td>
+                    <td width="20%">
 <!-- script model validasi edit -->
 <!-- dibuat oleh Alfian Noor 1700018233 -->
 
@@ -303,20 +304,24 @@ body {                        /*desain body*/
 
         <!-- Script cetak.php ini digunakan untuk mencetak data didalam file index dan melakukan perintah konfirmasi validasi apakah ingin mencetak  data-->
                      <a href="cetak.php?ID=<?php echo $data['ID'];?>" onclick="return confirm('Yakin mau ingin cetak data?');"><input type="image" src="cetak.png" width="20" height="20" /a>
+
                      <!-- dibuat oleh Alfian Noor 1700018233 -->  
                 </button> 
-                   </a>
+                   
      
 
                     </td>
                 </tr>
+                </div>
             <?php } ?>
         </tbody>
     </table>
     <!-- rangkaian dari bootstrap untuk tabel -->
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
+    <script src="//cdn.datatables.net/1.10.12/js/dataTables.bootstrap4.min.js"></script>
+    <!-- <script src="datatables.min.js"></script> -->
+    
     <script type="text/javascript">
       $(document).ready(function() {
           $('#example').DataTable();
