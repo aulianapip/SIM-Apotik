@@ -45,7 +45,7 @@ function eksekusi($SQL,$connect){
 		return $SQL = mysqli_query($connect,$QuerySql);
 	}
 	//deleteselect.php
-	function hapus_ceklis($ID,$connect){//Herni sartika M 1700018285
+	function hapus_ceklis($ID,$connect,$x){//Herni sartika M 1700018285
 
 	//disini, kodingan akan memproses dalam mendelete data yang telah kita pilih untuk didelete
 	return $SQL=mysqli_query($connect,"DELETE FROM pelanggan WHERE ID ='$ID[$x]'");  
