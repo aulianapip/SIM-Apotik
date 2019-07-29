@@ -209,9 +209,11 @@ body {                        /*desain body*/
 <div class="header">
   <a href="#default" class="logo">CRM APOTEK</a>
   <div class="header-right">
+    <a href=" ../page.php?open=home">Back</a>
     <a class="active" href="index.php">Home</a>
     <a href="inputdata.php">Input Data</a>
      <a href="riwayat.php">Log Member</a>
+
 </div>
 </div>
 </div>
