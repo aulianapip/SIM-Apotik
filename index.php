@@ -97,9 +97,12 @@ include('function.php');
       <meta name="description" content="Demo project with jQuery">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css">
-    <script type="text/javascript" charset="utf8" src="http://cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css"/>
+ 
+<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+<script src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+
     <link rel="stylesheet" type="text/css" href="style.css">
 <style type="text/css">
  
@@ -228,6 +231,12 @@ body {                        /*desain body*/
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css"/>
+ 
+<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+<script src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+
     <div class="dropdown">
     <button class="btn btn-primary "  data-toggle="dropdown">Cari Berdasarkan rentang tanggal
     <span class="caret"></span></button>
@@ -254,40 +263,41 @@ body {                        /*desain body*/
       } ?>
  </div>
  <br>
-<a href="selectdelete.php">PILIH</a>
+ <a class="x" href="selectdelete.php" style="text-decoration:none text:color white;">Pilih Hapus</a>
  
   
   
  </div>
   </form>
     </div>
-    <div style="width: 90%" style="position: ">
-    <table id="example" class="table table-striped table-bordered" width="100%" cellspacing="1 ">
+    
+    <div style="width: 99%">
+<table id="tabel-data"   class="table table-striped table-bordered"  cellspacing="0">
         <thead>
             <tr>
-                <td width="10%">Tanggal Terdaftar</td>
-                <td width="15%">ID</td> 
-                <td width="10%">Nama</td>
-                <td width="10%">Jk</td>
-                <td width="10%">NoHp</td>
-                <td width="10%">Email</td>
-                <td width="30%">Alamat</td>
-                <td width="15%">Opsi</td>
+                <th >Tanggal Terdaftar</th>
+                <th >ID</th> 
+                <th >Nama</th>
+                <th >Jenis Kelamin</th>
+                <th >NoHp</th>
+                <th >Email</th>
+                <th >Alamat</th>
+                <th >Opsi</th>
             </tr>
         </thead>
         
         <tbody>
             <?php   while($data = mysqli_fetch_array($SQL)){ ?>
                 <tr>
-                    <td ><?= $data['tgl_daftar'] ?></td>
-                    <td width="10%"><?= $data['tipe'] ?>
-                    <?= $data['ID'] ?></td>
-                    <td ><?= $data['Nama'] ?></td>
-                    <td ><?= $data['Jk'] ?></td>
-                    <td width="10%"><?= $data['NoHp'] ?></td>
-                    <td width="10%"><?= $data['Email'] ?></td>
-                    <td width="50%"><?= $data['Alamat'] ?></td>
-                    <td width="20%">
+                    <td ><?= $data['tgl_daftar'] ?></td >
+                    <td ><?= $data['tipe'] ?>
+                    <?= $data['ID'] ?></td >
+                    <td ><?= $data['Nama'] ?></td > 
+                    <td ><?= $data['Jk'] ?></td > 
+                    <td ><?= $data['NoHp'] ?></td > 
+                    <td ><?= $data['Email'] ?></td >
+                    <td ><?= $data['Alamat'] ?></td >
+                    <td >
 <!-- script model validasi edit -->
 <!-- dibuat oleh Alfian Noor 1700018233 -->
 
@@ -306,28 +316,27 @@ body {                        /*desain body*/
                      <a href="cetak.php?ID=<?php echo $data['ID'];?>" onclick="return confirm('Yakin mau ingin cetak data?');"><input type="image" src="cetak.png" width="20" height="20" /a>
 
                      <!-- dibuat oleh Alfian Noor 1700018233 -->  
-                </button> 
+                
                    
      
 
-                    </td>
+                    </td >
                 </tr>
-                </div>
+             
             <?php } ?>
         </tbody>
     </table>
+    </div>
     <!-- rangkaian dari bootstrap untuk tabel -->
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-    <script src="//cdn.datatables.net/1.10.12/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.1/js/dataTables.bootstrap.min.js"></script>
+   
     <!-- <script src="datatables.min.js"></script> -->
     
-    <script type="text/javascript">
-      $(document).ready(function() {
-          $('#example').DataTable();
-      } );
-    </script>
-
+    <script>
+    $(document).ready(function(){
+        $('#tabel-data').DataTable();
+    });
+</script>
     
   </body>
 </html>
