@@ -1,7 +1,5 @@
-<!-- Reka Rachmadi 1700018237 !-->
-<!--uas no 1. Stock Opname adalah kegiatan perhitungan secara fisik atas persediaan barang di gudang 
-secara fisik atas persedian barang di gudang yang akan dijual.Pada fitur yang kami buat
-kami menginputkan status kondisi barang yang berada ditoko, status antara lain adalah digudang rusak, hilang ,di pinjam , dan terjual. jika terjadi kesalahan input status maka dapat diubah dengan fitur edit, dan bila barang telah kembali atau di ganti atau telah di konfirmasi oleh pihak gudang dan kasir maka data opname dapat di hapus dengan fitur delete  -->
+<!-- Thobie Zatoni 1700018236 !-->
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -107,18 +105,18 @@ kami menginputkan status kondisi barang yang berada ditoko, status antara lain a
 <table class="table is-fullwidth" >
   <thead>
     <tr>
-      <th scope="col">Kode Obat</th>
-      <th scope="col">Kode Barcode</th>
-      <th scope="col">Status</th>
-      <th scope="col">Catatan</th>
-      <th scope="col">Tanggal</th>
-      <th scope="col">ACTION</th>
+      <th scope="col">Kode Obat</th><!-- Nama atribut pada tabel !-->
+      <th scope="col">Kode Barcode</th><!-- Nama atribut pada tabel !-->
+      <th scope="col">Status</th><!-- Nama atribut pada tabel !-->
+      <th scope="col">Catatan</th><!-- Nama atribut pada tabel !-->
+      <th scope="col">Tanggal</th><!-- Nama atribut pada tabel !-->
+      <th scope="col">ACTION</th><!-- Nama atribut pada tabel !-->
     </tr>
   </thead>
     <?php
-      include "db.php";//koneksi ke database
+      include "db.php";//Menghubungkan ke file yang bersambung dengan database
 
-      $query = mysqli_query($connect,"SELECT barcode.kode_obat AS kode_obat,opname.kode_barcode AS kode_barcode,opname.status AS status,catatan,tanggal from opname INNER JOIN barcode where opname.kode_barcode = barcode.kode_barcode AND opname.status = 'DIGUDANG' ");// mengambil kode obat, kode barcode, status, dari tabel barcode dan opname dengan inner join pada  opname.kode_barcode = barcode.kode_barcode, dengan status opname = DIGUDANG
+      $query = mysqli_query($connect,"SELECT barcode.kode_obat AS kode_obat,opname.kode_barcode AS kode_barcode,opname.status AS status,catatan,tanggal from opname INNER JOIN barcode where opname.kode_barcode = barcode.kode_barcode AND opname.status = 'DIGUDANG' ");// queri untuk menampilkan data opname berdasarkan status digudang
       foreach ($query as $data) {
         echo "<tr>
                 <td>$data[kode_obat]</td>
@@ -126,10 +124,9 @@ kami menginputkan status kondisi barang yang berada ditoko, status antara lain a
                 <td>$data[status]</td>
                 <td>$data[catatan]</td>
                 <td>$data[tanggal]</td>
-                <td><a href='edit_opname.php?kode_barcode=$data[kode_barcode]'>EDIT</a> | 
-                echo "<a href=\"delete_opname.php?kode_barcode=$data[kode_barcode]"\ onclick=\”return confirm(‘Yakin Hapus?’);\”>DELETE</a>"
+                <td><a href='edit_opname.php?kode_barcode=$data[kode_barcode]'>EDIT</a> | <a href='delete_opname.php?kode_barcode=$data[kode_barcode]' onclick=”return confirm(‘Yakin Hapus?’)”>DELETE</a>
             </td>
-              </tr>";//tombol validasi untuk menghapus data opname dengan status opname DIGUDANG
+              </tr>";
       }
     ?>
 </table>
